@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <AssemblyName>OneSheeld</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OneSheeldClasses</RootNamespace>
+    <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{83310819-1C4A-4085-9923-90BF5234AAC5}</ProjectGuid>
+    <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
+    <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AccelerometerSensorShield.cs" />
+    <Compile Include="BoolInputShield.cs" />
+    <Compile Include="BuzzerShield.cs" />
+    <Compile Include="ByteInputShield.cs" />
+    <Compile Include="CameraShield.cs" />
+    <Compile Include="CharInputShield.cs" />
+    <Compile Include="CircularBuffer.cs" />
+    <Compile Include="ClockShield.cs" />
+    <Compile Include="DataLoggerShield.cs" />
+    <Compile Include="EmailShield.cs" />
+    <Compile Include="FacebookShield.cs" />
+    <Compile Include="FoursquareShield.cs" />
+    <Compile Include="GamePadShield.cs" />
+    <Compile Include="GPSShield.cs" />
+    <Compile Include="GravitySensorShield.cs" />
+    <Compile Include="GyroscopeSensorShield.cs" />
+    <Compile Include="ICharCallback.cs" />
+    <Compile Include="IGamePadCallback.cs" />
+    <Compile Include="IGPSCallback.cs" />
+    <Compile Include="IPhoneCallback.cs" />
+    <Compile Include="IRemoteCallback.cs" />
+    <Compile Include="IRemoteShieldCallback.cs" />
+    <Compile Include="ISByteCallback.cs" />
+    <Compile Include="ISMSCallback.cs" />
+    <Compile Include="ISubscribeCallback.cs" />
+    <Compile Include="IULongCallback.cs" />
+    <Compile Include="IVoiceRecognitionCallback.cs" />
+    <Compile Include="IXYZFloatCallback.cs" />
+    <Compile Include="ITwitterCallback.cs" />
+    <Compile Include="KeyboardShield.cs" />
+    <Compile Include="LCDShield.cs" />
+    <Compile Include="LightSensorShield.cs" />
+    <Compile Include="MagnetometerSensorShield.cs" />
+    <Compile Include="MusicPlayerShield.cs" />
+    <Compile Include="NotificationShield.cs" />
+    <Compile Include="OrientationSensorShield.cs" />
+    <Compile Include="PhoneShield.cs" />
+    <Compile Include="PressureSensorShield.cs" />
+    <Compile Include="ProximitySensorShield.cs" />
+    <Compile Include="RemoteOneSheeld.cs" />
+    <Compile Include="SkypeShield.cs" />
+    <Compile Include="SliderShield.cs" />
+    <Compile Include="SMSShield.cs" />
+    <Compile Include="TemperatureSensorShield.cs" />
+    <Compile Include="TerminalShield.cs" />
+    <Compile Include="TTSShield.cs" />
+    <Compile Include="ULongInputShield.cs" />
+    <Compile Include="VoiceRecognitionShield.cs" />
+    <Compile Include="XYZSensorShield.cs" />
+    <Compile Include="SevenSegmentShield.cs" />
+    <Compile Include="TwitterShield.cs" />
+    <Compile Include="FunctionArg.cs" />
+    <Compile Include="IRowColCallback.cs" />
+    <Compile Include="IByteCallback.cs" />
+    <Compile Include="IBoolCallback.cs" />
+    <Compile Include="KeypadShield.cs" />
+    <Compile Include="LedShield.cs" />
+    <Compile Include="MicShield.cs" />
+    <Compile Include="OneSheeldPrint.cs" />
+    <Compile Include="OneSheeldPrintln.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OneSheeld.cs" />
+    <Compile Include="PushButtonShield.cs" />
+    <Compile Include="ToggleButtonShield.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SPOT.Hardware" />
+    <Reference Include="Microsoft.SPOT.Hardware.SerialPort" />
+    <Reference Include="Microsoft.SPOT.Native" />
+    <Reference Include="SecretLabs.NETMF.Hardware.Netduino, Version=4.3.1.0, Culture=neutral, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <Import Condition="EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
+  <Import Condition="!EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
