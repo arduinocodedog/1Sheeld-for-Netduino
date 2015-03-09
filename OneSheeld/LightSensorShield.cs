@@ -6,7 +6,7 @@ namespace OneSheeldClasses
     public class LightSensorShield : ULongInputShield
     {
         public LightSensorShield(OneSheeld onesheeld) :
-            base(onesheeld, LIGHT_VALUE, 3) { }
+            base(onesheeld, LIGHT_VALUE, (byte) ShieldIds.LIGHT_ID, 3) { }
 
 
         const byte LIGHT_VALUE = 0x01;

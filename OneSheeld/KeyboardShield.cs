@@ -6,7 +6,7 @@ namespace OneSheeldClasses
     public class KeyboardShield : CharInputShield
     {
         public KeyboardShield(OneSheeld onesheeld)
-            : base(onesheeld, KEYBOARD_GET_CHAR) { }
+            : base(onesheeld, KEYBOARD_GET_CHAR, (byte) ShieldIds.KEYBOARD_ID) { }
 
 
         public char getCharacter()

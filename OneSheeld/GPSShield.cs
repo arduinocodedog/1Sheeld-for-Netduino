@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class GPSShield
+    public class GPSShield : ShieldParent, IShieldChild
     {
         OneSheeld Sheeld = null;
         bool isCallBackAssigned = false;
@@ -16,12 +16,15 @@ namespace OneSheeldClasses
         byte[] getfloat = null;
 
         public GPSShield(OneSheeld onesheeld)
+            : base(onesheeld, (byte)ShieldIds.GPS_ID)
         {
             Sheeld = onesheeld;
             getfloat = new byte[4];
-        }
 
-        public void processData()
+            SetChild(this);
+        }
+        
+        void IShieldChild.processData()
         {
             //Checking Function-ID
             byte functionId = Sheeld.getFunctionId();

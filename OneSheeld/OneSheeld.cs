@@ -113,40 +113,40 @@ namespace OneSheeldClasses
             byte ShieldNumber = getShieldId();
             switch (ShieldNumber)
             {
-                case (byte)ShieldIds.ONESHEELD_ID: processData(); break;
-                case (byte)ShieldIds.KEYPAD_SHIELD_ID: KEYPAD.processData(); break;
-                case (byte)ShieldIds.GPS_ID: GPS.processData(); break;
-                case (byte)ShieldIds.SLIDER_ID: SLIDER.processData(); break;
-                case (byte)ShieldIds.PUSH_BUTTON_ID: PUSHBUTTON.processData(); break;
-                case (byte)ShieldIds.TOGGLE_BUTTON_ID: TOGGLEBUTTON.processData(); break;
-                case (byte)ShieldIds.GAMEPAD_ID: GAMEPAD.processData(); break;
-                case (byte)ShieldIds.PROXIMITY_ID: PROXIMITY.processData(); break;
-                case (byte)ShieldIds.MIC_ID: MIC.processData(); break;
-                case (byte)ShieldIds.TEMPERATURE_ID: TEMPERATURE.processData(); break;
-                case (byte)ShieldIds.LIGHT_ID: LIGHT.processData(); break;
-                case (byte)ShieldIds.PRESSURE_ID: PRESSURE.processData(); break;
-                case (byte)ShieldIds.GRAVITY_ID: GRAVITY.processData(); break;
-                case (byte)ShieldIds.ACCELEROMETER_ID: ACCELEROMETER.processData(); break;
-                case (byte)ShieldIds.GYROSCOPE_ID: GYROSCOPE.processData(); break;
-                case (byte)ShieldIds.ORIENTATION_ID: ORIENTATION.processData(); break;
-                case (byte)ShieldIds.MAGNETOMETER_ID: MAGNETOMETER.processData(); break;
-                case (byte)ShieldIds.PHONE_ID: PHONE.processData(); break;
-                case (byte)ShieldIds.SMS_ID: SMS.processData(); break;
-                case (byte)ShieldIds.CLOCK_ID: CLOCK.processData(); break;
-                case (byte)ShieldIds.KEYBOARD_ID: KEYBOARD.processData(); break;
-                case (byte)ShieldIds.TWITTER_ID: TWITTER.processData(); break;
-                case (byte)ShieldIds.VOICE_RECOGNITION_ID: VOICERECOGNITION.processData(); break;
-                case (byte)ShieldIds.TERMINAL_ID: TERMINAL.processData(); break;
+                case (byte)ShieldIds.ONESHEELD_ID: processFrame(); break;
+                case (byte)ShieldIds.KEYPAD_SHIELD_ID: KEYPAD.processFrame(); break;
+                case (byte)ShieldIds.GPS_ID: GPS.processFrame(); break;
+                case (byte)ShieldIds.SLIDER_ID: SLIDER.processFrame(); break;
+                case (byte)ShieldIds.PUSH_BUTTON_ID: PUSHBUTTON.processFrame(); break;
+                case (byte)ShieldIds.TOGGLE_BUTTON_ID: TOGGLEBUTTON.processFrame(); break;
+                case (byte)ShieldIds.GAMEPAD_ID: GAMEPAD.processFrame(); break;
+                case (byte)ShieldIds.PROXIMITY_ID: PROXIMITY.processFrame(); break;
+                case (byte)ShieldIds.MIC_ID: MIC.processFrame(); break;
+                case (byte)ShieldIds.TEMPERATURE_ID: TEMPERATURE.processFrame(); break;
+                case (byte)ShieldIds.LIGHT_ID: LIGHT.processFrame(); break;
+                case (byte)ShieldIds.PRESSURE_ID: PRESSURE.processFrame(); break;
+                case (byte)ShieldIds.GRAVITY_ID: GRAVITY.processFrame(); break;
+                case (byte)ShieldIds.ACCELEROMETER_ID: ACCELEROMETER.processFrame(); break;
+                case (byte)ShieldIds.GYROSCOPE_ID: GYROSCOPE.processFrame(); break;
+                case (byte)ShieldIds.ORIENTATION_ID: ORIENTATION.processFrame(); break;
+                case (byte)ShieldIds.MAGNETOMETER_ID: MAGNETOMETER.processFrame(); break;
+                case (byte)ShieldIds.PHONE_ID: PHONE.processFrame(); break;
+                case (byte)ShieldIds.SMS_ID: SMS.processFrame(); break;
+                case (byte)ShieldIds.CLOCK_ID: CLOCK.processFrame(); break;
+                case (byte)ShieldIds.KEYBOARD_ID: KEYBOARD.processFrame(); break;
+                case (byte)ShieldIds.TWITTER_ID: TWITTER.processFrame(); break;
+                case (byte)ShieldIds.VOICE_RECOGNITION_ID: VOICERECOGNITION.processFrame(); break;
+                case (byte)ShieldIds.TERMINAL_ID: TERMINAL.processFrame(); break;
                 case (byte)ShieldIds.REMOTE_SHEELD_ID:
                     for (int i = 0; i < remoteOneSheeldsCounter; i++)
-                        listOfRemoteOneSheelds[i].processData();
+                        listOfRemoteOneSheelds[i].processFrame();
                     if (isOneSheeldRemoteDataUsed)
                         processRemoteData();
                     break;
             }
         }
 
-        void processData()
+        void processFrame()
         {
             byte functionId = getFunctionId();
             //Check  the function ID 
@@ -252,106 +252,130 @@ namespace OneSheeldClasses
         public void processInput()
         {
             byte[] buffer = new byte[1];
-            byte data = 0;
 
             while (((SerialPort)OneSheeldSerial).BytesToRead > 0)
             {
                 int datacount = OneSheeldSerial.Read(buffer, 0, 1);
                 if (datacount == 0) return;
-                data = buffer[0];
-                if (!framestart && data == START_OF_FRAME)
+                processInput(buffer[0]);
+            }
+        }
+
+        void processInput(byte data)
+        {
+            if (!framestart && data == START_OF_FRAME)
+            {
+                freeMemoryAllocated();
+                counter = 0;
+                framestart = true;
+                arguments = null;
+                argumentLengths = null;
+                counter++;
+            }
+            else if (counter == 4 && framestart) // data is the no of arguments
+            {
+                datalengthcounter = 0;
+                argumentcounter = 0;
+                argumentnumber = data;
+                counter++;
+            }
+            else if (counter == 5 && framestart) // data is the no of arguments
+            {
+                if ((255 - argumentnumber) == data && argumentnumber == 0)
                 {
+                    counter = 9;
+                    return;
+                }
+                else if ((255 - argumentnumber) == data)
+                {
+                    // need to allocate stuff here
+                    arguments = new byte[argumentnumber][];
+                    isArgumentsNumberAllocated = true;
+                    argumentLengths = new byte[argumentnumber];
+                    isArgumentLengthsAllocated = true;
+                    counter++;
+                }
+                else
+                {
+                    framestart = false;
                     freeMemoryAllocated();
-                    counter = 0;
-                    framestart = true;
-                    arguments = null;
-                    argumentLengths = null;
-                    counter++;
+                    return;
                 }
-                else if (counter == 4 && framestart) // data is the no of arguments
+            }
+            else if (counter == 6 && framestart)  // data is the first argument
+            {
+                argumentLengths[argumentcounter] = data;
+                counter++;
+            }
+            else if (counter == 7 && framestart)  // data is the first argument data information
+            {
+                if ((255 - argumentLengths[argumentcounter]) == data)
                 {
-                    datalengthcounter = 0;
-                    argumentcounter = 0;
-                    argumentnumber = data;
-                    counter++;
-                }
-                else if (counter == 5 && framestart) // data is the no of arguments
-                {
-                    if ((255 - argumentnumber) == data && argumentnumber == 0)
-                    {
-                        counter = 9;
-                        continue;
-                    }
-                    else if ((255 - argumentnumber) == data)
-                    {
-                        // need to allocate stuff here
-                        arguments = new byte[argumentnumber][];
-                        isArgumentsNumberAllocated = true;
-                        argumentLengths = new byte[argumentnumber];
-                        isArgumentLengthsAllocated = true;
-                        counter++;
-                    }
-                    else
-                    {
-                        framestart = false;
-                        continue;
-                    }
-                }
-                else if (counter == 6 && framestart)  // data is the first argument
-                {
-                    argumentLengths[argumentcounter] = data;
-                    counter++;
-                }
-                else if (counter == 7 && framestart)  // data is the first argument data information
-                {
-                    if ((255 - argumentLengths[argumentcounter]) == data)
+                    if (argumentLengths[argumentcounter] != 0)
                     {
                         arguments[argumentcounter] = new byte[argumentLengths[argumentcounter]];
-                        numberOfDataAllocated++;
                         counter++;
                     }
                     else
                     {
-                        framestart = false;
-                        continue;
-                    }
-                }
-                else if (counter == 8 && framestart)
-                {
-                    arguments[argumentcounter][datalengthcounter++] = data;
-                    if (datalengthcounter == argumentLengths[argumentcounter])
-                    {
+                        arguments[argumentcounter] = null;
                         datalengthcounter = 0;
                         argumentcounter++;
                         if (argumentcounter == argumentnumber)
-                        {
-                            counter++;    // increment the counter to take the last byte which is the end of the frame
-                        }
+                            counter = 9;
                         else
-                        {
                             counter = 6;
-                        }
                     }
+                    numberOfDataAllocated++;
                 }
-                else if (counter == 9 && framestart)
+                else
                 {
-                    endFrame = data;
-                    if (endFrame == END_OF_FRAME)
+                    framestart = false;
+                    freeMemoryAllocated();
+                    return;
+                }
+            }
+            else if (counter == 8 && framestart)
+            {
+                if (arguments[argumentcounter] != null)
+                    arguments[argumentcounter][datalengthcounter++] = data;
+                if (datalengthcounter == argumentLengths[argumentcounter])
+                {
+                    datalengthcounter = 0;
+                    argumentcounter++;
+                    if (argumentcounter == argumentnumber)
                     {
-                        sendToShields();
-                        freeMemoryAllocated();
+                        counter++;    // increment the counter to take the last byte which is the end of the frame
                     }
                     else
                     {
-                        freeMemoryAllocated();
+                        counter = 6;
                     }
                 }
-                else if (framestart)
+            }
+            else if (counter == 9 && framestart)
+            {
+                endFrame = data;
+                if (endFrame == END_OF_FRAME)
                 {
-                    if (counter == 1)
+                    sendToShields();
+                    freeMemoryAllocated();
+                }
+                else
+                {
+                    freeMemoryAllocated();
+                }
+            }
+            else if (framestart)
+            {
+                if (counter == 1)
+                {
+                    shield = data;
+                    bool found = false;
+                    if (shield == (byte) ShieldIds.ONESHEELD_ID || shield == (byte) ShieldIds.REMOTE_SHEELD_ID)
+                        found = true;
+                    else
                     {
-                        shield = data;
-                        bool found = false;
                         for (int i = 0; i < inputShieldsList.Length; i++)
                         {
                             if (shield == (byte)inputShieldsList[i])
@@ -359,22 +383,23 @@ namespace OneSheeldClasses
                                 found = true;
                             }
                         }
-                        if (!found)
-                        {
-                            framestart = false;
-                            continue;
-                        }
                     }
-                    else if (counter == 2)
+                    if (!found)
                     {
-                        instance = data;
+                        framestart = false;
+                        freeMemoryAllocated();
+                        return;
                     }
-                    else if (counter == 3)
-                    {
-                        functions = data;
-                    }
-                    counter++;
                 }
+                else if (counter == 2)
+                {
+                    instance = data;
+                }
+                else if (counter == 3)
+                {
+                    functions = data;
+                }
+                counter++;
             }
         }
 
@@ -394,50 +419,79 @@ namespace OneSheeldClasses
             begin(115200);
         }
 
+        public void delay(long time)
+        {
+            long now = (DateTime.Now.Ticks / 10000L) + 1L;
+            long mill = now;
+            byte[] buffer = new byte[1];
+
+            while (mill < (now+time) || framestart)
+            {
+                if (((SerialPort)OneSheeldSerial).BytesToRead > 0)
+                {
+                    int datacount = OneSheeldSerial.Read(buffer, 0, 1);
+                    if (datacount == 0) return;
+                    processInput(buffer[0]);
+                }
+                mill = (DateTime.Now.Ticks / 10000L) + 1L;
+            }
+        }
+
         public void sendPacket(ShieldIds shieldID, byte instanceID, byte functionID, int argNo, ArrayList args)
         {
-              long mill = (DateTime.Now.Ticks / 10000L) + 1L;
-              byte[] buffer = new byte[1];
+            long mill = (DateTime.Now.Ticks / 10000L) + 1L;
+            byte[] buffer = new byte[1];
 
-              if((shieldID != ShieldIds.ONESHEELD_ID) && isFirstFrame == true && lastTimeFrameSent > 0L && (mill-lastTimeFrameSent) < TIME_GAP)
-                    Thread.Sleep((int) (TIME_GAP - (mill - lastTimeFrameSent)));
+            if((shieldID != ShieldIds.ONESHEELD_ID) && isFirstFrame == true && lastTimeFrameSent > 0L && (mill-lastTimeFrameSent) < TIME_GAP)
+            {
+                while (mill < (TIME_GAP+lastTimeFrameSent) || framestart)
+                {
+                    if (((SerialPort)OneSheeldSerial).BytesToRead > 0)
+                    {
+                        int datacount = OneSheeldSerial.Read(buffer, 0, 1);
+                        if (datacount == 0) return;
+                        processInput(buffer[0]);
+                    }
+                    mill = (DateTime.Now.Ticks / 10000L) + 1L;
+                }
+            }
 
-              isFirstFrame=true;
-              buffer[0] = START_OF_FRAME;
-              OneSheeldSerial.Write(buffer, 0, 1);
-              buffer[0] = LIBRARY_VERSION;
-              OneSheeldSerial.Write(buffer, 0, 1);
-              buffer[0] = (byte) shieldID;
-              OneSheeldSerial.Write(buffer, 0, 1);
-              buffer[0] = instanceID;
-              OneSheeldSerial.Write(buffer, 0, 1);
-              buffer[0] = functionID;
-              OneSheeldSerial.Write(buffer, 0, 1);
-              buffer[0] = (byte) argNo;
-              OneSheeldSerial.Write(buffer, 0, 1);
-              buffer[0] = (byte)(255 - argNo);
-              OneSheeldSerial.Write(buffer, 0, 1);
+            isFirstFrame=true;
+            buffer[0] = START_OF_FRAME;
+            OneSheeldSerial.Write(buffer, 0, 1);
+            buffer[0] = LIBRARY_VERSION;
+            OneSheeldSerial.Write(buffer, 0, 1);
+            buffer[0] = (byte) shieldID;
+            OneSheeldSerial.Write(buffer, 0, 1);
+            buffer[0] = instanceID;
+            OneSheeldSerial.Write(buffer, 0, 1);
+            buffer[0] = functionID;
+            OneSheeldSerial.Write(buffer, 0, 1);
+            buffer[0] = (byte) argNo;
+            OneSheeldSerial.Write(buffer, 0, 1);
+            buffer[0] = (byte)(255 - argNo);
+            OneSheeldSerial.Write(buffer, 0, 1);
 
-              for (int i=0; i < argNo; i++)
-              {
-                  FunctionArg temp = args[i] as FunctionArg;
-                  buffer[0] = (byte)temp.getLength();
-                  OneSheeldSerial.Write(buffer, 0, 1);
-                  buffer[0] = (byte)(0xFF - (temp.getLength()));
-                  OneSheeldSerial.Write(buffer, 0, 1);
+            for (int i=0; i < argNo; i++)
+            {
+                FunctionArg temp = args[i] as FunctionArg;
+                buffer[0] = (byte)temp.getLength();
+                OneSheeldSerial.Write(buffer, 0, 1);
+                buffer[0] = (byte)(0xFF - (temp.getLength()));
+                OneSheeldSerial.Write(buffer, 0, 1);
 
-                  for (int j = 0 ; j < temp.getLength() ; j++)
-                  {
-                        buffer[0] = temp.getData()[j];
-                        OneSheeldSerial.Write(buffer, 0, 1);
-                  }
+                for (int j = 0 ; j < temp.getLength() ; j++)
+                {
+                    buffer[0] = temp.getData()[j];
+                    OneSheeldSerial.Write(buffer, 0, 1);
+                }
 
-                  temp = null;
-              }
+                temp = null;
+            }
               
-              buffer[0] = END_OF_FRAME;
-              OneSheeldSerial.Write(buffer, 0, 1);
-              lastTimeFrameSent = (DateTime.Now.Ticks / 10000L) + 1L;
+            buffer[0] = END_OF_FRAME;
+            OneSheeldSerial.Write(buffer, 0, 1);
+            lastTimeFrameSent = (DateTime.Now.Ticks / 10000L) + 1L;
 
         }
 
@@ -586,7 +640,7 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 4;
+        const byte LIBRARY_VERSION = 5;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;
@@ -625,7 +679,7 @@ namespace OneSheeldClasses
         BUZZER_ID, KEYPAD_SHIELD_ID, MAGNETOMETER_ID, ACCELEROMETER_ID, GAMEPAD_ID, SMS_ID, GYROSCOPE_ID, ORIENTATION_ID,
         LIGHT_ID, PRESSURE_ID, TEMPERATURE_ID, PROXIMITY_ID, GRAVITY_ID, CAMERA_ID, UNKNOWN1_ID, LCD_ID, MIC_ID, FACEBOOK_ID,
         TWITTER_ID, FOURSQUARE_ID, GPS_ID, MUSIC_PLAYER_ID, EMAIL_ID, SKYPE_ID, PHONE_ID, CLOCK_ID, KEYBOARD_ID, TTS_ID,
-        VOICE_RECOGNITION_ID, DATA_LOGGER_ID, TERMINAL_ID, UNKNOWN2_ID, REMOTE_SHEELD_ID
+        VOICE_RECOGNITION_ID, DATA_LOGGER_ID, TERMINAL_ID, PATTERN_ID, REMOTE_SHEELD_ID, INTERNET_ID
     };
 
 }

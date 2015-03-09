@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class ULongInputShield
+    public class ULongInputShield : ShieldParent, IShieldChild
     {
         OneSheeld Sheeld = null;
         IULongCallback changeCallBack = null;
@@ -12,14 +12,19 @@ namespace OneSheeldClasses
         ulong value = 0L;
         ulong[] data = null;
         byte ShieldFunctionID = 0x00;
+        byte ShieldID = 0x00;
 
-        public ULongInputShield(OneSheeld onesheeld, byte funcid, int bytesused)
+        public ULongInputShield(OneSheeld onesheeld, byte funcid, byte shieldid, int bytesused)
+            : base(onesheeld, shieldid)
         {
             Sheeld = onesheeld;
             dataSize = bytesused;
             ShieldFunctionID = funcid;
+            ShieldID = shieldid;
 
             data = new ulong[dataSize];
+
+            SetChild(this);
         }
 
         public ulong getValue()
@@ -27,7 +32,7 @@ namespace OneSheeldClasses
             return value;
         }
 
-        public void processData()
+        void IShieldChild.processData()
         {
             //Check Function-ID
             byte functionId = Sheeld.getFunctionId();

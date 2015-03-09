@@ -3,19 +3,24 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class XYZSensorShield
+    public class XYZSensorShield : ShieldParent, IShieldChild
     {
         OneSheeld Sheeld = null;
         IXYZFloatCallback changeCallBack = null;
         bool isCallBackAssigned = false;
         byte ShieldFunctionID = 0x00;
+        byte ShieldID = 0x00;
 
         protected float valueX = 0.0f, valueY = 0.0f, valueZ = 0.0f;
 
-        public XYZSensorShield(OneSheeld onesheeld, byte funcid)
+        public XYZSensorShield(OneSheeld onesheeld, byte funcid, byte shieldid)
+            : base(onesheeld, shieldid)
         {
             Sheeld = onesheeld;
             ShieldFunctionID = funcid;
+            ShieldID = shieldid;
+
+            SetChild(this);
         }
 
         public float getX()
@@ -33,7 +38,7 @@ namespace OneSheeldClasses
             return valueZ;
         }
 
-        public void processData()
+        void IShieldChild.processData()
         {
             //Check Function-ID
             byte functionId = Sheeld.getFunctionId();
@@ -60,5 +65,6 @@ namespace OneSheeldClasses
             changeCallBack = userCallback;
             isCallBackAssigned = true;
         }
+
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class OneSheeldPrint
+    public class OneSheeldPrint : ShieldParent
     {
         OneSheeld Sheeld = null;
         ShieldIds shieldId = 0x00;
@@ -12,6 +12,7 @@ namespace OneSheeldClasses
         byte write_fn_id = 0x00;
 
         public OneSheeldPrint(OneSheeld onesheeld, ShieldIds shid, byte writefnid, byte printfnid)
+            : base(onesheeld, (byte) shid)
         {
             Sheeld = onesheeld;
             shieldId = shid;

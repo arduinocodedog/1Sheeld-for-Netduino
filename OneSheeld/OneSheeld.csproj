@@ -52,6 +52,7 @@
     <Compile Include="IRemoteCallback.cs" />
     <Compile Include="IRemoteShieldCallback.cs" />
     <Compile Include="ISByteCallback.cs" />
+    <Compile Include="IShieldChild.cs" />
     <Compile Include="ISMSCallback.cs" />
     <Compile Include="ISubscribeCallback.cs" />
     <Compile Include="IULongCallback.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="PressureSensorShield.cs" />
     <Compile Include="ProximitySensorShield.cs" />
     <Compile Include="RemoteOneSheeld.cs" />
+    <Compile Include="ShieldParent.cs" />
     <Compile Include="SkypeShield.cs" />
     <Compile Include="SliderShield.cs" />
     <Compile Include="SMSShield.cs" />

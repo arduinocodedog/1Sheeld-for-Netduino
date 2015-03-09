@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class ClockShield
+    public class ClockShield : ShieldParent, IShieldChild
     {
         OneSheeld Sheeld = null;
 
@@ -20,8 +20,11 @@ namespace OneSheeldClasses
         ulong timeCheck = 0L;
 
         public ClockShield(OneSheeld onesheeld)
+            : base(onesheeld, (byte) ShieldIds.CLOCK_ID)
         {
             Sheeld = onesheeld;
+
+            SetChild(this);
         }
 
         public void begin()
@@ -83,7 +86,7 @@ namespace OneSheeldClasses
         }
 
         //Clock Input Data Processing 
-        public void processData()
+        void IShieldChild.processData()
         {
 	        //Checking Function-ID
 	        byte functionId=Sheeld.getFunctionId();

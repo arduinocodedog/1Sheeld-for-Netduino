@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class TerminalShield : OneSheeldPrintln
+    public class TerminalShield : OneSheeldPrintln, IShieldChild
     {
         OneSheeld Sheeld = null;
         CircularBuffer buffer = null;
@@ -13,6 +13,8 @@ namespace OneSheeldClasses
         {
             Sheeld = onesheeld;
             buffer = new CircularBuffer(64);
+
+            SetChild(this);
         }
 
         //Read from Android
@@ -52,7 +54,7 @@ namespace OneSheeldClasses
         }
 
         //Terminal Incomming Data processing
-        public void processData()
+        void IShieldChild.processData()
         {
 	        byte functionID = Sheeld.getFunctionId();
 	        byte dataLength = Sheeld.getArgumentLength(0);
@@ -71,5 +73,6 @@ namespace OneSheeldClasses
 
         //Input Function ID
         const byte TERMINAL_READ = 0x01;
+
     }
 }

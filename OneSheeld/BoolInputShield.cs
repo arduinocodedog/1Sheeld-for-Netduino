@@ -3,22 +3,27 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class BoolInputShield
+    public class BoolInputShield : ShieldParent, IShieldChild
     {
         OneSheeld Sheeld = null;
         bool isCallBackAssigned = false;
         IBoolCallback changeCallBack = null;
         byte ShieldFunctionID = 0x00;
+        byte ShieldID = 0x00;
 
         protected byte value = 0x00;
 
-        public BoolInputShield(OneSheeld onesheeld, byte funcid)
+        public BoolInputShield(OneSheeld onesheeld, byte funcid, byte shieldid)
+            : base(onesheeld, shieldid)
         {
             Sheeld = onesheeld;
             ShieldFunctionID = funcid;
+            ShieldID = shieldid;
+
+            SetChild(this);
         }
 
-        public void processData()
+        void IShieldChild.processData()
         {
             byte functionID = Sheeld.getFunctionId();
 

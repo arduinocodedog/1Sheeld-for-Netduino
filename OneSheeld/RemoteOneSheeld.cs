@@ -176,7 +176,12 @@ namespace OneSheeldClasses
             Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SEND_STRING, 3, args);
         }
 
-        public void processData()
+        public void processFrame()
+        {
+            processData();
+        }
+
+        void processData()
         {
             string remoteAddress = "";
             for (int i = 0; i < 36; i++)
@@ -590,5 +595,8 @@ namespace OneSheeldClasses
         const byte DIGITAL_SUBSCRIBE_VALUE = 0x01;
         const byte READ_MESSAGE_FLOAT = 0x02;
         const byte READ_MESSAGE_STRING = 0x03;
+
+        // Process Frame Handling
+        const byte CHECK_SELECTED = 0xff;
     }
 }
