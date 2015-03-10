@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class ByteInputShield : ShieldParent, IShieldChild
+    public class ByteInputShield : ShieldParent
     {
         OneSheeld Sheeld = null;
         bool isCallBackAssigned = false;
@@ -19,8 +19,6 @@ namespace OneSheeldClasses
             Sheeld = onesheeld;
             ShieldFunctionID = funcid;
             ShieldID = shieldid;
-
-            SetChild(this);
          }
 
         public byte getValue()
@@ -28,7 +26,7 @@ namespace OneSheeldClasses
             return value;
         }
 
-        void IShieldChild.processData()
+        public override void processData()
         {
             byte functionID = Sheeld.getFunctionId();
 

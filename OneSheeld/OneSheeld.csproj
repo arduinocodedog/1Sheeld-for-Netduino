@@ -52,7 +52,6 @@
     <Compile Include="IRemoteCallback.cs" />
     <Compile Include="IRemoteShieldCallback.cs" />
     <Compile Include="ISByteCallback.cs" />
-    <Compile Include="IShieldChild.cs" />
     <Compile Include="ISMSCallback.cs" />
     <Compile Include="ISubscribeCallback.cs" />
     <Compile Include="IULongCallback.cs" />

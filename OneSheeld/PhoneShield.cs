@@ -4,7 +4,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class PhoneShield : ShieldParent, IShieldChild
+    public class PhoneShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
@@ -17,8 +17,6 @@ namespace OneSheeldClasses
             : base(onesheeld, (byte)ShieldIds.PHONE_ID)
         {
             Sheeld = onesheeld;
-
-            SetChild(this);
         }
 
         public void call(string phone)
@@ -48,7 +46,7 @@ namespace OneSheeldClasses
             isCallBackAssigned = true;
         }
 
-        void IShieldChild.processData()
+        public override void processData()
         {
      	    //Checking Function-ID
 	        byte x= Sheeld.getFunctionId();

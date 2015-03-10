@@ -4,7 +4,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class VoiceRecognitionShield : ShieldParent, IShieldChild
+    public class VoiceRecognitionShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
@@ -18,8 +18,6 @@ namespace OneSheeldClasses
             : base(onesheeld, (byte) ShieldIds.VOICE_RECOGNITION_ID)
         {
             Sheeld = onesheeld;
-
-            SetChild(this);
         }
 
         public void start()
@@ -46,7 +44,7 @@ namespace OneSheeldClasses
             return newCommand;
         }
 
-        void IShieldChild.processData()
+        public override void processData()
         {
             byte functionID = Sheeld.getFunctionId();
 

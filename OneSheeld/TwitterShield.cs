@@ -4,7 +4,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class TwitterShield : ShieldParent, IShieldChild
+    public class TwitterShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
@@ -18,8 +18,6 @@ namespace OneSheeldClasses
             : base(onesheeld, (byte) ShieldIds.TWITTER_ID)
         {
             Sheeld = onesheeld;
-
-            SetChild(this);
         }
 
         public void tweet(string data)
@@ -107,7 +105,7 @@ namespace OneSheeldClasses
 	        return tweetText;
         }
 
-        void IShieldChild.processData()
+        public override void processData()
         {
 	        //Checking Function-ID
 	        byte functionId = Sheeld.getFunctionId();

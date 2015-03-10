@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class CharInputShield : ShieldParent, IShieldChild
+    public class CharInputShield : ShieldParent
     {
         OneSheeld Sheeld = null;
         bool isCallBackAssigned = false;
@@ -19,11 +19,9 @@ namespace OneSheeldClasses
             Sheeld = onesheeld;
             ShieldFunctionID = funcid;
             ShieldID = shieldid;
-
-            SetChild(this);
          }
 
-        void IShieldChild.processData()
+        public override void processData()
         {
             byte functionID = Sheeld.getFunctionId();
 

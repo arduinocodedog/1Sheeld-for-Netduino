@@ -191,5 +191,11 @@ namespace OneSheeldClasses
             // return the value as a double
             return newstr;
         }
+
+
+        public override void processData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

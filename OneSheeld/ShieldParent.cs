@@ -3,21 +3,15 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class ShieldParent
+    public abstract class ShieldParent
     {
         byte ShieldID = 0x00;
-        IShieldChild Child = null;
         OneSheeld Sheeld = null;
 
         public ShieldParent(OneSheeld sheeld, byte shieldid)
         {
             Sheeld = sheeld;
             ShieldID = shieldid;
-        }
-
-        public void SetChild(IShieldChild child)
-        {
-            Child = child;
         }
 
         public void processFrame()
@@ -27,8 +21,10 @@ namespace OneSheeldClasses
 
             byte functionID = Sheeld.getFunctionId();
             if (functionID != CHECK_SELECTED)
-                Child.processData();
+                processData();
         }
+
+        public abstract void processData();
 
         // Process Frame Handling
         const byte CHECK_SELECTED = 0xff;

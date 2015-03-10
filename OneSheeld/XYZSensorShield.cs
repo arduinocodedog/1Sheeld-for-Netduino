@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class XYZSensorShield : ShieldParent, IShieldChild
+    public class XYZSensorShield : ShieldParent
     {
         OneSheeld Sheeld = null;
         IXYZFloatCallback changeCallBack = null;
@@ -19,8 +19,6 @@ namespace OneSheeldClasses
             Sheeld = onesheeld;
             ShieldFunctionID = funcid;
             ShieldID = shieldid;
-
-            SetChild(this);
         }
 
         public float getX()
@@ -38,7 +36,7 @@ namespace OneSheeldClasses
             return valueZ;
         }
 
-        void IShieldChild.processData()
+        public override void processData()
         {
             //Check Function-ID
             byte functionId = Sheeld.getFunctionId();

@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class KeypadShield : ShieldParent, IShieldChild
+    public class KeypadShield : ShieldParent
     {
         OneSheeld Sheeld = null;
         bool isCallBackAssigned = false;
@@ -16,11 +16,9 @@ namespace OneSheeldClasses
             : base(onesheeld, (byte)ShieldIds.KEYPAD_SHIELD_ID)
         {
             Sheeld = onesheeld;
-
-            SetChild(this);
         }
 
-        void IShieldChild.processData()
+        public override void processData()
         {
             byte functionID = Sheeld.getFunctionId();
 

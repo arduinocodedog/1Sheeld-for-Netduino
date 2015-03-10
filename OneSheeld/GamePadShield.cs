@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class GamePadShield : ShieldParent, IShieldChild
+    public class GamePadShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
@@ -24,8 +24,6 @@ namespace OneSheeldClasses
             : base(onesheeld, (byte)ShieldIds.GAMEPAD_ID)
         {
             Sheeld = onesheeld;
-
-            SetChild(this);
         }
 
         //Up ArrowChecker
@@ -77,7 +75,7 @@ namespace OneSheeldClasses
         }
 
         //GamePad Input Data Processing  
-        void IShieldChild.processData()
+        public override void processData()
         {
 	        //Checking Function-ID
 	        byte functionId = Sheeld.getFunctionId();

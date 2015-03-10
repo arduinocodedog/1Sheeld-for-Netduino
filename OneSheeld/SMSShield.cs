@@ -4,7 +4,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class SMSShield : ShieldParent, IShieldChild
+    public class SMSShield : ShieldParent
     {
         OneSheeld Sheeld = null;
         string number = null;
@@ -19,8 +19,6 @@ namespace OneSheeldClasses
             : base(onesheeld, (byte)ShieldIds.SMS_ID)
         {
             Sheeld = onesheeld;
-
-            SetChild(this);
         }
 
         public void send(string number, string text)
@@ -55,7 +53,7 @@ namespace OneSheeldClasses
 	        return isItNewSms;
         }
 
-        void IShieldChild.processData()
+        public override void processData()
         {
           	//Checking Function-ID
 	        byte x= Sheeld.getFunctionId();

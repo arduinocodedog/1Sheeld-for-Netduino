@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class TemperatureSensorShield : ShieldParent, IShieldChild
+    public class TemperatureSensorShield : ShieldParent
     {
         OneSheeld Sheeld = null;
         sbyte value = -1;
@@ -14,8 +14,6 @@ namespace OneSheeldClasses
             : base(onesheeld, (byte)ShieldIds.TEMPERATURE_ID)
         {
             Sheeld = onesheeld;
-
-            SetChild(this);
         }
 
         public sbyte getValue()
@@ -30,7 +28,7 @@ namespace OneSheeldClasses
             return fahrenheit;
         }
 
-        void IShieldChild.processData()
+        public override void processData()
         {
             byte functionID = Sheeld.getFunctionId();
 
