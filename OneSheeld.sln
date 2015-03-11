@@ -81,6 +81,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedREMOTE1", "Advanced
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedREMOTE2", "AdvancedREMOTE2\AdvancedREMOTE2.csproj", "{B8E0142C-36A9-467E-91C5-71D7A40B6452}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePATTERN", "SimplePATTERN\SimplePATTERN.csproj", "{4666FE8B-1EC8-425C-9109-E185A3B3F37D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -319,6 +321,12 @@ Global
 		{B8E0142C-36A9-467E-91C5-71D7A40B6452}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8E0142C-36A9-467E-91C5-71D7A40B6452}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B8E0142C-36A9-467E-91C5-71D7A40B6452}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4666FE8B-1EC8-425C-9109-E185A3B3F37D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4666FE8B-1EC8-425C-9109-E185A3B3F37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4666FE8B-1EC8-425C-9109-E185A3B3F37D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4666FE8B-1EC8-425C-9109-E185A3B3F37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4666FE8B-1EC8-425C-9109-E185A3B3F37D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4666FE8B-1EC8-425C-9109-E185A3B3F37D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

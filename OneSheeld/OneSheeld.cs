@@ -49,6 +49,7 @@ namespace OneSheeldClasses
         public GPSShield GPS = null;
         public GravitySensorShield GRAVITY = null;
         public GyroscopeSensorShield GYROSCOPE = null;
+        public InternetShield INTERNET = null;
         public KeyboardShield KEYBOARD = null;
         public KeypadShield KEYPAD = null;
         public LCDShield LCD = null;
@@ -59,6 +60,7 @@ namespace OneSheeldClasses
         public MusicPlayerShield MUSICPLAYER = null;
         public NotificationShield NOTIFICATION = null;
         public OrientationSensorShield ORIENTATION = null;
+        public PatternShield PATTERN = null;
         public PhoneShield PHONE = null;
         public PressureSensorShield PRESSURE = null;
         public ProximitySensorShield PROXIMITY = null;
@@ -137,6 +139,8 @@ namespace OneSheeldClasses
                 case (byte)ShieldIds.TWITTER_ID: TWITTER.processFrame(); break;
                 case (byte)ShieldIds.VOICE_RECOGNITION_ID: VOICERECOGNITION.processFrame(); break;
                 case (byte)ShieldIds.TERMINAL_ID: TERMINAL.processFrame(); break;
+                case (byte)ShieldIds.PATTERN_ID: PATTERN.processFrame(); break;
+                case (byte)ShieldIds.INTERNET_ID: INTERNET.processData(); break;
                 case (byte)ShieldIds.REMOTE_SHEELD_ID:
                     for (int i = 0; i < remoteOneSheeldsCounter; i++)
                         listOfRemoteOneSheelds[i].processFrame();
@@ -223,6 +227,7 @@ namespace OneSheeldClasses
             GYROSCOPE = new GyroscopeSensorShield(this);
             KEYBOARD = new KeyboardShield(this);
             KEYPAD = new KeypadShield(this);
+            INTERNET = new InternetShield(this);
             LCD = new LCDShield(this);
             LED = new LedShield(this);
             LIGHT = new LightSensorShield(this);
@@ -231,6 +236,7 @@ namespace OneSheeldClasses
             MUSICPLAYER = new MusicPlayerShield(this);
             NOTIFICATION = new NotificationShield(this);
             ORIENTATION = new OrientationSensorShield(this);
+            PATTERN = new PatternShield(this);
             PHONE = new PhoneShield(this);
             PRESSURE = new PressureSensorShield(this);
             PROXIMITY = new ProximitySensorShield(this);
@@ -668,7 +674,8 @@ namespace OneSheeldClasses
             ShieldIds.MIC_ID, ShieldIds.TEMPERATURE_ID, ShieldIds.LIGHT_ID, ShieldIds.PRESSURE_ID, ShieldIds.GRAVITY_ID,
             ShieldIds.ACCELEROMETER_ID, ShieldIds.GYROSCOPE_ID, ShieldIds.ORIENTATION_ID, ShieldIds.MAGNETOMETER_ID, 
             ShieldIds.PHONE_ID, ShieldIds.SMS_ID, ShieldIds.CLOCK_ID, ShieldIds.KEYBOARD_ID, ShieldIds.TWITTER_ID, 
-            ShieldIds.VOICE_RECOGNITION_ID, ShieldIds.TERMINAL_ID, ShieldIds.REMOTE_SHEELD_ID
+            ShieldIds.VOICE_RECOGNITION_ID, ShieldIds.TERMINAL_ID, ShieldIds.PATTERN_ID, ShieldIds.REMOTE_SHEELD_ID,
+            ShieldIds.INTERNET_ID
         };
 
     }

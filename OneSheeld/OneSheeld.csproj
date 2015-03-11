@@ -45,9 +45,13 @@
     <Compile Include="GPSShield.cs" />
     <Compile Include="GravitySensorShield.cs" />
     <Compile Include="GyroscopeSensorShield.cs" />
+    <Compile Include="HttpRequest.cs" />
+    <Compile Include="HttpResponse.cs" />
     <Compile Include="ICharCallback.cs" />
     <Compile Include="IGamePadCallback.cs" />
     <Compile Include="IGPSCallback.cs" />
+    <Compile Include="InternetShield.cs" />
+    <Compile Include="IPatternCallback.cs" />
     <Compile Include="IPhoneCallback.cs" />
     <Compile Include="IRemoteCallback.cs" />
     <Compile Include="IRemoteShieldCallback.cs" />
@@ -58,6 +62,8 @@
     <Compile Include="IVoiceRecognitionCallback.cs" />
     <Compile Include="IXYZFloatCallback.cs" />
     <Compile Include="ITwitterCallback.cs" />
+    <Compile Include="JsonKey.cs" />
+    <Compile Include="JsonKeyChain.cs" />
     <Compile Include="KeyboardShield.cs" />
     <Compile Include="LCDShield.cs" />
     <Compile Include="LightSensorShield.cs" />
@@ -65,6 +71,8 @@
     <Compile Include="MusicPlayerShield.cs" />
     <Compile Include="NotificationShield.cs" />
     <Compile Include="OrientationSensorShield.cs" />
+    <Compile Include="PatternNode.cs" />
+    <Compile Include="PatternShield.cs" />
     <Compile Include="PhoneShield.cs" />
     <Compile Include="PressureSensorShield.cs" />
     <Compile Include="ProximitySensorShield.cs" />
