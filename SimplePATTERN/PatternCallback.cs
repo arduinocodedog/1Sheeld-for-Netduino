@@ -34,7 +34,11 @@ namespace SimplePATTERN
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
+<<<<<<< HEAD
             OneSheeld.PATTERN.SetOnNewPattern(this);
+=======
+            sheeld.PATTERN.SetOnNewPattern(this);
+>>>>>>> origin/master
         }
 
         public void Loop()

@@ -1,5 +1,8 @@
 using System;
+<<<<<<< HEAD
 using System.Collections;
+=======
+>>>>>>> origin/master
 using Microsoft.SPOT;
 
 namespace OneSheeldClasses
@@ -8,6 +11,7 @@ namespace OneSheeldClasses
     {
         OneSheeld Sheeld = null;
 
+<<<<<<< HEAD
         bool isSetOnErrorCallBackAssigned = false;
         IInternetErrorCallback internetErrorCallBack = null;
 
@@ -109,10 +113,17 @@ namespace OneSheeldClasses
             args.Add(arg);
 
             Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_SET_DEFAULT_MAX_RESPONSE, 1, args);
+=======
+        public InternetShield(OneSheeld onesheeld)
+            :base(onesheeld, (byte) ShieldIds.INTERNET_ID)
+        {
+            Sheeld = onesheeld;
+>>>>>>> origin/master
         }
 
         public override void processData()
         {
+<<<<<<< HEAD
             byte functionId = getOneSheeldInstance().getFunctionId();
 
             if (functionId == HTTP_GET_SUCCESS || functionId == HTTP_GET_FAILURE || functionId == HTTP_GET_STARTED ||
@@ -416,5 +427,9 @@ namespace OneSheeldClasses
         const byte RESPONSE_GET_NEXT_RESPONSE = 0x09;
         const byte RESPONSE_GET_JSON = 0x0A;
         const byte RESPONSE_GET_JSON_ARRAY_LENGTH = 0x0B;
+=======
+            throw new NotImplementedException();
+        }
+>>>>>>> origin/master
     }
 }

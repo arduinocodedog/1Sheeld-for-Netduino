@@ -14,7 +14,11 @@ namespace OneSheeldClasses
         PatternNode[] nodes = null;
 
         public PatternShield(OneSheeld onesheeld)
+<<<<<<< HEAD
             : base (onesheeld, ShieldIds.PATTERN_ID)
+=======
+            : base (onesheeld, (byte) ShieldIds.PATTERN_ID)
+>>>>>>> origin/master
         {
             Sheeld = onesheeld;
             nodes = new PatternNode[MAX_PATTERN_SIZE];
@@ -38,17 +42,26 @@ namespace OneSheeldClasses
 
         public override void processData()
         {
+<<<<<<< HEAD
             byte functionID = getOneSheeldInstance().getFunctionId();
+=======
+            byte functionID = Sheeld.getFunctionId();
+>>>>>>> origin/master
 
             if (functionID == PATTERN_VALUE)
             {
                 isNewPattern = true;
+<<<<<<< HEAD
                 length = getOneSheeldInstance().getArgumentLength(0);
+=======
+                length = Sheeld.getArgumentLength(0);
+>>>>>>> origin/master
                 if (length > MAX_PATTERN_SIZE)
                     return;
                 for (int i = 0; i < length; i++)
                 {
                     PatternNode node = new PatternNode();
+<<<<<<< HEAD
                     node.setValue(getOneSheeldInstance().getArgumentData(0)[i]);
                     nodes[i] = node;
                 }
@@ -59,6 +72,14 @@ namespace OneSheeldClasses
                     userCallback.OnNewPattern(nodes, length);
                     exitingACallback();
                 }
+=======
+                    node.setValue(Sheeld.getArgumentData(0)[i]);
+                    nodes[i] = node;
+                }
+
+                if (isCallBackAssigned)
+                    userCallback.OnNewPattern(nodes, length);
+>>>>>>> origin/master
             }
 
         }

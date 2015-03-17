@@ -3,6 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
+<<<<<<< HEAD
     public class JsonKey
     {
         bool isText = false;
@@ -53,5 +54,9 @@ namespace OneSheeldClasses
         {
             return number;
         }
+=======
+    class JsonKey
+    {
+>>>>>>> origin/master
     }
 }

@@ -35,11 +35,19 @@ namespace SimplePATTERN
 
         public void Loop()
         {
+<<<<<<< HEAD
             if (OneSheeld.PATTERN.isNewPatternReceived())
             {
                 PatternNode[] patternEntered = OneSheeld.PATTERN.getLastPattern();
 
                 length = OneSheeld.PATTERN.getLastPatternLength();
+=======
+            if (sheeld.PATTERN.isNewPatternReceived())
+            {
+                PatternNode[] patternEntered = sheeld.PATTERN.getLastPattern();
+
+                length = sheeld.PATTERN.getLastPatternLength();
+>>>>>>> origin/master
 
                 if (length == 5)
                 {

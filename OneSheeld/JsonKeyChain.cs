@@ -1,9 +1,13 @@
 using System;
+<<<<<<< HEAD
 using System.Collections;
+=======
+>>>>>>> origin/master
 using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
+<<<<<<< HEAD
     public class JsonKeyChain
     {
         OneSheeld Sheeld = null;
@@ -179,5 +183,9 @@ namespace OneSheeldClasses
 
         const byte INTERNET_QUERY_JSON = 0x14;
         const byte INTERNET_QUERY_JSON_ARRAY_LENGTH = 0x17;
+=======
+    class JsonKeyChain
+    {
+>>>>>>> origin/master
     }
 }

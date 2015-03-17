@@ -45,6 +45,7 @@ namespace OneSheeldClasses
 
         public RemoteOneSheeld[] listOfRemoteOneSheelds = null;
 
+<<<<<<< HEAD
         static public AccelerometerSensorShield ACCELEROMETER = null;
         static public BuzzerShield BUZZER = null;
         static public CameraShield CAMERA = null;
@@ -88,6 +89,46 @@ namespace OneSheeldClasses
         {
             initShields();
         }
+=======
+        public AccelerometerSensorShield ACCELEROMETER = null;
+        public BuzzerShield BUZZER = null;
+        public CameraShield CAMERA = null;
+        public ClockShield CLOCK = null;
+        public DataLoggerShield DATALOGGER = null;
+        public EmailShield EMAIL = null;
+        public FacebookShield FACEBOOK = null;
+        public FoursquareShield FOURSQUARE = null;
+        public GamePadShield GAMEPAD = null;
+        public GPSShield GPS = null;
+        public GravitySensorShield GRAVITY = null;
+        public GyroscopeSensorShield GYROSCOPE = null;
+        public InternetShield INTERNET = null;
+        public KeyboardShield KEYBOARD = null;
+        public KeypadShield KEYPAD = null;
+        public LCDShield LCD = null;
+        public LedShield LED = null;
+        public LightSensorShield LIGHT = null;
+        public MagnetometerSensorShield MAGNETOMETER = null;
+        public MicShield MIC = null;
+        public MusicPlayerShield MUSICPLAYER = null;
+        public NotificationShield NOTIFICATION = null;
+        public OrientationSensorShield ORIENTATION = null;
+        public PatternShield PATTERN = null;
+        public PhoneShield PHONE = null;
+        public PressureSensorShield PRESSURE = null;
+        public ProximitySensorShield PROXIMITY = null;
+        public PushButtonShield PUSHBUTTON = null;
+        public SevenSegmentShield SEVENSEGMENT = null;
+        public SkypeShield SKYPE = null;
+        public SliderShield SLIDER = null;
+        public SMSShield SMS = null;
+        public TemperatureSensorShield TEMPERATURE = null;
+        public TerminalShield TERMINAL = null;
+        public ToggleButtonShield TOGGLEBUTTON = null;
+        public TTSShield TTS = null;
+        public TwitterShield TWITTER = null;
+        public VoiceRecognitionShield VOICERECOGNITION = null;
+>>>>>>> origin/master
 
         void begin(int baud)
         {
@@ -111,11 +152,51 @@ namespace OneSheeldClasses
 
         public void begin()
         {
+<<<<<<< HEAD
             begin(115200);
             isInitialized = true;
             for (int i = 0; i < requestsCounter; i++)
                 requestsArray[i].sendInitFrame();
             requestsArray = null;
+=======
+            //Checking the Shield-ID    
+            byte ShieldNumber = getShieldId();
+            switch (ShieldNumber)
+            {
+                case (byte)ShieldIds.ONESHEELD_ID: processFrame(); break;
+                case (byte)ShieldIds.KEYPAD_SHIELD_ID: KEYPAD.processFrame(); break;
+                case (byte)ShieldIds.GPS_ID: GPS.processFrame(); break;
+                case (byte)ShieldIds.SLIDER_ID: SLIDER.processFrame(); break;
+                case (byte)ShieldIds.PUSH_BUTTON_ID: PUSHBUTTON.processFrame(); break;
+                case (byte)ShieldIds.TOGGLE_BUTTON_ID: TOGGLEBUTTON.processFrame(); break;
+                case (byte)ShieldIds.GAMEPAD_ID: GAMEPAD.processFrame(); break;
+                case (byte)ShieldIds.PROXIMITY_ID: PROXIMITY.processFrame(); break;
+                case (byte)ShieldIds.MIC_ID: MIC.processFrame(); break;
+                case (byte)ShieldIds.TEMPERATURE_ID: TEMPERATURE.processFrame(); break;
+                case (byte)ShieldIds.LIGHT_ID: LIGHT.processFrame(); break;
+                case (byte)ShieldIds.PRESSURE_ID: PRESSURE.processFrame(); break;
+                case (byte)ShieldIds.GRAVITY_ID: GRAVITY.processFrame(); break;
+                case (byte)ShieldIds.ACCELEROMETER_ID: ACCELEROMETER.processFrame(); break;
+                case (byte)ShieldIds.GYROSCOPE_ID: GYROSCOPE.processFrame(); break;
+                case (byte)ShieldIds.ORIENTATION_ID: ORIENTATION.processFrame(); break;
+                case (byte)ShieldIds.MAGNETOMETER_ID: MAGNETOMETER.processFrame(); break;
+                case (byte)ShieldIds.PHONE_ID: PHONE.processFrame(); break;
+                case (byte)ShieldIds.SMS_ID: SMS.processFrame(); break;
+                case (byte)ShieldIds.CLOCK_ID: CLOCK.processFrame(); break;
+                case (byte)ShieldIds.KEYBOARD_ID: KEYBOARD.processFrame(); break;
+                case (byte)ShieldIds.TWITTER_ID: TWITTER.processFrame(); break;
+                case (byte)ShieldIds.VOICE_RECOGNITION_ID: VOICERECOGNITION.processFrame(); break;
+                case (byte)ShieldIds.TERMINAL_ID: TERMINAL.processFrame(); break;
+                case (byte)ShieldIds.PATTERN_ID: PATTERN.processFrame(); break;
+                case (byte)ShieldIds.INTERNET_ID: INTERNET.processData(); break;
+                case (byte)ShieldIds.REMOTE_SHEELD_ID:
+                    for (int i = 0; i < remoteOneSheeldsCounter; i++)
+                        listOfRemoteOneSheelds[i].processFrame();
+                    if (isOneSheeldRemoteDataUsed)
+                        processRemoteData();
+                    break;
+            }
+>>>>>>> origin/master
         }
 
         public static void addToShieldsArray(ShieldParent shield)
@@ -219,7 +300,50 @@ namespace OneSheeldClasses
 
         public byte getFunctionId()
         {
+<<<<<<< HEAD
             return functions;
+=======
+            ACCELEROMETER = new AccelerometerSensorShield(this);
+            BUZZER = new BuzzerShield(this);
+            CAMERA = new CameraShield(this);
+            CLOCK = new ClockShield(this);
+            DATALOGGER = new DataLoggerShield(this);
+            EMAIL = new EmailShield(this);
+            FACEBOOK = new FacebookShield(this);
+            GAMEPAD = new GamePadShield(this);
+            FOURSQUARE = new FoursquareShield(this);
+            GPS = new GPSShield(this);
+            GRAVITY = new GravitySensorShield(this);
+            GYROSCOPE = new GyroscopeSensorShield(this);
+            KEYBOARD = new KeyboardShield(this);
+            KEYPAD = new KeypadShield(this);
+            INTERNET = new InternetShield(this);
+            LCD = new LCDShield(this);
+            LED = new LedShield(this);
+            LIGHT = new LightSensorShield(this);
+            MAGNETOMETER = new MagnetometerSensorShield(this);
+            MIC = new MicShield(this);
+            MUSICPLAYER = new MusicPlayerShield(this);
+            NOTIFICATION = new NotificationShield(this);
+            ORIENTATION = new OrientationSensorShield(this);
+            PATTERN = new PatternShield(this);
+            PHONE = new PhoneShield(this);
+            PRESSURE = new PressureSensorShield(this);
+            PROXIMITY = new ProximitySensorShield(this);
+            PUSHBUTTON = new PushButtonShield(this);
+            SEVENSEGMENT = new SevenSegmentShield(this);
+            SKYPE = new SkypeShield(this);
+            SLIDER = new SliderShield(this);
+            SMS = new SMSShield(this);
+            TEMPERATURE = new TemperatureSensorShield(this);
+            TERMINAL = new TerminalShield(this);
+            TOGGLEBUTTON = new ToggleButtonShield(this);
+            TTS = new TTSShield(this);
+            TWITTER = new TwitterShield(this);
+            VOICERECOGNITION = new VoiceRecognitionShield(this);
+
+            listOfRemoteOneSheelds = new RemoteOneSheeld[MAX_REMOTE_CONNECTIONS];
+>>>>>>> origin/master
         }
 
         public byte getArgumentNo()
@@ -790,5 +914,20 @@ namespace OneSheeldClasses
         //RemoteShield constants
         const byte READ_MESSAGE_FLOAT = 0x02;
         const byte READ_MESSAGE_STRING = 0x03;
+<<<<<<< HEAD
+=======
+
+        // inputShields
+        ShieldIds[] inputShieldsList = { 
+            ShieldIds.ONESHEELD_ID, ShieldIds.KEYPAD_SHIELD_ID, ShieldIds.GPS_ID, ShieldIds.SLIDER_ID, 
+            ShieldIds.PUSH_BUTTON_ID, ShieldIds.TOGGLE_BUTTON_ID, ShieldIds.GAMEPAD_ID, ShieldIds.PROXIMITY_ID, 
+            ShieldIds.MIC_ID, ShieldIds.TEMPERATURE_ID, ShieldIds.LIGHT_ID, ShieldIds.PRESSURE_ID, ShieldIds.GRAVITY_ID,
+            ShieldIds.ACCELEROMETER_ID, ShieldIds.GYROSCOPE_ID, ShieldIds.ORIENTATION_ID, ShieldIds.MAGNETOMETER_ID, 
+            ShieldIds.PHONE_ID, ShieldIds.SMS_ID, ShieldIds.CLOCK_ID, ShieldIds.KEYBOARD_ID, ShieldIds.TWITTER_ID, 
+            ShieldIds.VOICE_RECOGNITION_ID, ShieldIds.TERMINAL_ID, ShieldIds.PATTERN_ID, ShieldIds.REMOTE_SHEELD_ID,
+            ShieldIds.INTERNET_ID
+        };
+
+>>>>>>> origin/master
     }
 }
