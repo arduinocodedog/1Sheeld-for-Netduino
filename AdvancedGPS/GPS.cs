@@ -24,15 +24,15 @@ namespace AdvancedGPS
         public void Loop()
         {
             /* If PushButton is pressed, check GPS and send an SMS Message */
-            if (sheeld.PUSHBUTTON.isPressed())
+            if (OneSheeld.PUSHBUTTON.isPressed())
             {
-                if (sheeld.GPS.isInRange(30.0831008f, 31.3242943f, 100.0f))
+                if (OneSheeld.GPS.isInRange(30.0831008f, 31.3242943f, 100.0f))
                 {
                     /* Check that we haven't sent the SMS already. */
                     if (!isInRange)
                     {
                         /* Send the SMS. */
-                        sheeld.SMS.send("1234567890", "Smartphone is In Range.");
+                        OneSheeld.SMS.send("1234567890", "Smartphone is In Range.");
                         /* Set the flag. */
                         isInRange = true;
                     }
@@ -40,7 +40,7 @@ namespace AdvancedGPS
                 else
                 {
                     /* Reset the flag. */
-                    sheeld.SMS.send("1234567890", "Smartphone is not In Range.");
+                    OneSheeld.SMS.send("1234567890", "Smartphone is not In Range.");
                     isInRange = false;
                 }
             }

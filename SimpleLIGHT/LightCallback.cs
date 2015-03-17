@@ -23,7 +23,7 @@ namespace SimpleLIGHT
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.LIGHT.setOnValueChange(this);
+            OneSheeld.LIGHT.setOnValueChange(this);
         }
 
         public void Loop()

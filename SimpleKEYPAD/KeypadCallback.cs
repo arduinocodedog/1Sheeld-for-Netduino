@@ -30,7 +30,7 @@ namespace SimpleKEYPAD
             led3 = new OutputPort(Pins.GPIO_PIN_D11, false);
             led4 = new OutputPort(Pins.GPIO_PIN_D10, false);
 
-            sheeld.KEYPAD.setOnButtonChange(this);
+            OneSheeld.KEYPAD.setOnButtonChange(this);
         }
 
         public void Loop()

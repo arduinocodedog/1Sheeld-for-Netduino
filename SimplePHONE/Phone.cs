@@ -22,10 +22,10 @@ namespace SimplePHONE
 
         public void Loop()
         {
-            if (sheeld.PUSHBUTTON.isPressed())
+            if (OneSheeld.PUSHBUTTON.isPressed())
             {
                 led.Write(true);
-                sheeld.PHONE.call("1234567890");
+                OneSheeld.PHONE.call("1234567890");
                 Thread.Sleep(300);
             }
             else

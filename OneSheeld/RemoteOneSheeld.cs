@@ -178,11 +178,9 @@ namespace OneSheeldClasses
 
         public void processFrame()
         {
-            processData();
-        }
+            if(!isSubscribeAssigned || Sheeld.isInACallback())
+                return;
 
-        void processData()
-        {
             string remoteAddress = "";
             for (int i = 0; i < 36; i++)
                 remoteAddress += Convert.ToChar(Sheeld.getArgumentData(0)[i]);
@@ -190,9 +188,16 @@ namespace OneSheeldClasses
             if (!remoteOneSheeldAddress.Equals(remoteAddress))
                 return;
 
+            processData();
+        }
+
+        void processData()
+        {
+  
 	        byte functionId = Sheeld.getFunctionId();
 
-	        if(functionId == DIGITAL_SUBSCRIBE_VALUE)
+            Sheeld.enteringACallback();
+	        if(functionId == DIGITAL_SUBSCRIBE_VALUE && isSubscribeAssigned)
 	        {
 		        int argumentNo = Sheeld.getArgumentNo();
 		        byte pinData;
@@ -241,6 +246,7 @@ namespace OneSheeldClasses
     		        remoteCallBack.OnNewMessage(stringKey,incommingStringData);	
     	        }
         	}
+            Sheeld.exitingACallback();
         }
 
         public byte checkAnalogPinNumbers(byte pinNumber)

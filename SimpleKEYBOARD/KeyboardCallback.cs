@@ -22,7 +22,7 @@ namespace SimpleKEYBOARD
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.KEYBOARD.setOnValueChange(this);
+            OneSheeld.KEYBOARD.setOnValueChange(this);
         }
 
         public void Loop()

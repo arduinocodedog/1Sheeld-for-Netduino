@@ -35,8 +35,8 @@ namespace AdvancedREMOTE1
 
         public void Loop()
         {
-            if (sheeld.VOICERECOGNITION.isNewCommandReceived())
-                usaSheeld.sendMessage("USA", sheeld.VOICERECOGNITION.getLastCommand());
+            if (OneSheeld.VOICERECOGNITION.isNewCommandReceived())
+                usaSheeld.sendMessage("USA", OneSheeld.VOICERECOGNITION.getLastCommand());
         }
 
         public void OnSubscribeOrDigitalChange(byte incomingPinNumber, bool incommingPinValue)

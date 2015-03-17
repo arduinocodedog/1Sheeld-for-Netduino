@@ -20,7 +20,7 @@ namespace OneSheeldClasses
         ulong timeCheck = 0L;
 
         public ClockShield(OneSheeld onesheeld)
-            : base(onesheeld, (byte) ShieldIds.CLOCK_ID)
+            : base(onesheeld, ShieldIds.CLOCK_ID)
         {
             Sheeld = onesheeld;
         }
@@ -87,43 +87,42 @@ namespace OneSheeldClasses
         public override void processData()
         {
 	        //Checking Function-ID
-	        byte functionId=Sheeld.getFunctionId();
+	        byte functionId=getOneSheeldInstance().getFunctionId();
 
 	        if(functionId==CLOCK_DATE_VALUE)
 	        {
-		        byte argumentNumber=Sheeld.getArgumentNo();
+		        byte argumentNumber=getOneSheeldInstance().getArgumentNo();
 
 		        switch(argumentNumber)
 		        {
-			        case 0x01 	: 	seconds=Sheeld.getArgumentData(0)[0];break;
-			
-			        case 0x02 	: 	seconds=Sheeld.getArgumentData(0)[0];
-							        minutes=Sheeld.getArgumentData(1)[0];break;
-			
-			        case 0x03	: 	seconds=Sheeld.getArgumentData(0)[0];
-						            minutes=Sheeld.getArgumentData(1)[0];
-						   	        hours=Sheeld.getArgumentData(2)[0];break;
-			
-			        case 0x04 	: 	seconds=Sheeld.getArgumentData(0)[0];
-						            minutes=Sheeld.getArgumentData(1)[0];
-						   	        hours=Sheeld.getArgumentData(2)[0];
-						   	        day=Sheeld.getArgumentData(3)[0];break;
-			
-			        case 0x05 	:	seconds=Sheeld.getArgumentData(0)[0];
-						            minutes=Sheeld.getArgumentData(1)[0];
-						   	        hours=Sheeld.getArgumentData(2)[0];
-						   	        day=Sheeld.getArgumentData(3)[0];
-						   	        month=Sheeld.getArgumentData(4)[0];break;
+                    case 0x01: seconds = getOneSheeldInstance().getArgumentData(0)[0]; break;
 
-			        case 0x06	:	isClockInit=true;
-							        seconds=Sheeld.getArgumentData(0)[0];
-						            minutes=Sheeld.getArgumentData(1)[0];
-						   	        hours=Sheeld.getArgumentData(2)[0];
-						   	        day=Sheeld.getArgumentData(3)[0];
-						   	        month=Sheeld.getArgumentData(4)[0];
-						   	        year=(short)Sheeld.getArgumentData(5)[0];
-						   	        year|=(short)(Sheeld.getArgumentData(5)[1]<<8);break;
+                    case 0x02: seconds = getOneSheeldInstance().getArgumentData(0)[0];
+							   minutes = getOneSheeldInstance().getArgumentData(1)[0]; break;
 
+                    case 0x03: seconds = getOneSheeldInstance().getArgumentData(0)[0];
+                               minutes = getOneSheeldInstance().getArgumentData(1)[0];
+						   	   hours =   getOneSheeldInstance().getArgumentData(2)[0]; break;
+
+                    case 0x04: seconds = getOneSheeldInstance().getArgumentData(0)[0];
+                               minutes = getOneSheeldInstance().getArgumentData(1)[0];
+                               hours =   getOneSheeldInstance().getArgumentData(2)[0];
+						   	   day =     getOneSheeldInstance().getArgumentData(3)[0]; break;
+
+                    case 0x05: seconds = getOneSheeldInstance().getArgumentData(0)[0];
+                               minutes = getOneSheeldInstance().getArgumentData(1)[0];
+                               hours =   getOneSheeldInstance().getArgumentData(2)[0];
+                               day =     getOneSheeldInstance().getArgumentData(3)[0];
+						   	   month =   getOneSheeldInstance().getArgumentData(4)[0]; break;
+
+			        case 0x06: isClockInit=true;
+                               seconds = getOneSheeldInstance().getArgumentData(0)[0];
+                               minutes = getOneSheeldInstance().getArgumentData(1)[0];
+                               hours =   getOneSheeldInstance().getArgumentData(2)[0];
+                               day =     getOneSheeldInstance().getArgumentData(3)[0];
+                               month =   getOneSheeldInstance().getArgumentData(4)[0];
+                               year =    (short)getOneSheeldInstance().getArgumentData(5)[0];
+						   	   year |=   (short)(getOneSheeldInstance().getArgumentData(5)[1]<<8); break;
 		        }
 	        }
         }

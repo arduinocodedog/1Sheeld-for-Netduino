@@ -10,7 +10,7 @@ using OneSheeldClasses;
 
 namespace SimpleDATALOGGER
 {
-    public class DataLogger
+    class DataLogger
     {
         OneSheeld sheeld = null;
         InputPort button = null;
@@ -30,21 +30,21 @@ namespace SimpleDATALOGGER
         {
             if (button.Read())
             {
-                sheeld.DATALOGGER.stop();
+                OneSheeld.DATALOGGER.stop();
                 Thread.Sleep(500);
-                sheeld.DATALOGGER.start("Mic values");
+                OneSheeld.DATALOGGER.start("Mic values");
                 startFlag = true;
             }
 
             if (startFlag)
             {
-                sheeld.DATALOGGER.add("Decibles", sheeld.MIC.getValue());
-                sheeld.DATALOGGER.log();
+                OneSheeld.DATALOGGER.add("Decibles", OneSheeld.MIC.getValue());
+                OneSheeld.DATALOGGER.log();
                 Thread.Sleep(1000);
                 counter++;
                 if (counter == 20)
                 {
-                    sheeld.DATALOGGER.stop();
+                    OneSheeld.DATALOGGER.stop();
                     counter = 0;
                     startFlag = false;
                 }

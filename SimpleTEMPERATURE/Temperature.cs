@@ -25,7 +25,7 @@ namespace SimpleTEMPERATURE
 
         public void Loop()
         {
-            if (sheeld.TEMPERATURE.getValue() < 10)
+            if (OneSheeld.TEMPERATURE.getValue() < 10)
             {
                 led.Write(true);
             }

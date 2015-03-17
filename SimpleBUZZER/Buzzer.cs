@@ -31,12 +31,12 @@ namespace SimpleBUZZER
         {
             if (button.Read())
             {
-                sheeld.BUZZER.buzzOn();
+                OneSheeld.BUZZER.buzzOn();
                 led.Write(true);
             }
             else
             {
-                sheeld.BUZZER.buzzOff();
+                OneSheeld.BUZZER.buzzOff();
                 led.Write(false);
             }
         }

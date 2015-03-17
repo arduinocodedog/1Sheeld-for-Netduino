@@ -16,7 +16,7 @@ namespace OneSheeldClasses
         byte[] getfloat = null;
 
         public GPSShield(OneSheeld onesheeld)
-            : base(onesheeld, (byte)ShieldIds.GPS_ID)
+            : base(onesheeld, ShieldIds.GPS_ID)
         {
             Sheeld = onesheeld;
             getfloat = new byte[4];
@@ -25,30 +25,32 @@ namespace OneSheeldClasses
         public override void processData()
         {
             //Checking Function-ID
-            byte functionId = Sheeld.getFunctionId();
+            byte functionId = getOneSheeldInstance().getFunctionId();
             if (functionId == GPS_VALUE)
             {
                 //Process Lattitude Value
-                getfloat[0] = Sheeld.getArgumentData(0)[0];
-                getfloat[1] = Sheeld.getArgumentData(0)[1];
-                getfloat[2] = Sheeld.getArgumentData(0)[2];
-                getfloat[3] = Sheeld.getArgumentData(0)[3];
-                LatValue = Sheeld.convertBytesToFloat(getfloat);
+                getfloat[0] = getOneSheeldInstance().getArgumentData(0)[0];
+                getfloat[1] = getOneSheeldInstance().getArgumentData(0)[1];
+                getfloat[2] = getOneSheeldInstance().getArgumentData(0)[2];
+                getfloat[3] = getOneSheeldInstance().getArgumentData(0)[3];
+                LatValue = getOneSheeldInstance().convertBytesToFloat(getfloat);
 
                 //Process Longitude Value
-                getfloat[0] = Sheeld.getArgumentData(1)[0];
-                getfloat[1] = Sheeld.getArgumentData(1)[1];
-                getfloat[2] = Sheeld.getArgumentData(1)[2];
-                getfloat[3] = Sheeld.getArgumentData(1)[3];
-                LonValue = Sheeld.convertBytesToFloat(getfloat);
+                getfloat[0] = getOneSheeldInstance().getArgumentData(1)[0];
+                getfloat[1] = getOneSheeldInstance().getArgumentData(1)[1];
+                getfloat[2] = getOneSheeldInstance().getArgumentData(1)[2];
+                getfloat[3] = getOneSheeldInstance().getArgumentData(1)[3];
+                LonValue = getOneSheeldInstance().convertBytesToFloat(getfloat);
 
                 isInit = true;  								
             }
 
             //Users Function Invoked
-            if (isCallBackAssigned)
+            if (isCallBackAssigned && !isInACallback())
             {
+                enteringACallback();
                 changeCallBack.OnChange(LatValue, LonValue);
+                exitingACallback();
             }
         }
 

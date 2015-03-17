@@ -29,34 +29,34 @@ namespace SimpleGAMEPAD
             sheeld = new OneSheeld();
             sheeld.begin();
 
-            sheeld.GAMEPAD.setOnButtonChange(this);
+            OneSheeld.GAMEPAD.setOnButtonChange(this);
         }
 
         public void Loop()
         {
             if (upButton)
-               sheeld.TERMINAL.println("UP Pressed");
+                OneSheeld.TERMINAL.println("UP Pressed");
 
             if (downButton)
-                sheeld.TERMINAL.println("DOWN Pressed");
+                OneSheeld.TERMINAL.println("DOWN Pressed");
 
             if (leftButton)
-                sheeld.TERMINAL.println("LEFT Pressed");
+                OneSheeld.TERMINAL.println("LEFT Pressed");
 
             if (rightButton)
-                sheeld.TERMINAL.println("RIGHT Pressed");
+                OneSheeld.TERMINAL.println("RIGHT Pressed");
 
             if (orangeButton)
-                sheeld.TERMINAL.println("ORANGE Pressed");
+                OneSheeld.TERMINAL.println("ORANGE Pressed");
 
             if (redButton)
-                sheeld.TERMINAL.println("RED Pressed");
+                OneSheeld.TERMINAL.println("RED Pressed");
 
             if (greenButton)
-                sheeld.TERMINAL.println("GREEN Pressed");
+                OneSheeld.TERMINAL.println("GREEN Pressed");
 
             if (blueButton)
-                sheeld.TERMINAL.println("BLUE Pressed");
+                OneSheeld.TERMINAL.println("BLUE Pressed");
 
             Thread.Sleep(2000);
         }

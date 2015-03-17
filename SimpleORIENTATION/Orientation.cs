@@ -25,9 +25,9 @@ namespace SimpleORIENTATION
 
         public void Loop()
         {
-            if (sheeld.ACCELEROMETER.getX() > 350 ||
-                sheeld.ACCELEROMETER.getY() > 170 ||
-                sheeld.ACCELEROMETER.getZ() > 80)
+            if (OneSheeld.ACCELEROMETER.getX() > 350 ||
+                OneSheeld.ACCELEROMETER.getY() > 170 ||
+                OneSheeld.ACCELEROMETER.getZ() > 80)
             {
                 led.Write(true);
             }

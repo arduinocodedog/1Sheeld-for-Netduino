@@ -31,7 +31,7 @@ namespace SimpleFACEBOOK
             if (button.Read())
             {
                 led.Write(true);
-                sheeld.FACEBOOK.post("Posting to Facebook with a 1Sheeld on a Netduino!");
+                OneSheeld.FACEBOOK.post("Posting to Facebook with a 1Sheeld on a Netduino!");
                 Thread.Sleep(300);
             }
             else

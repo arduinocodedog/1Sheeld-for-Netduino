@@ -30,28 +30,28 @@ namespace OneSheeldClasses
         }
 
         //print integer with newline
-        public void println(int data, byte b)
+        public void println(int data, byte b = DEC)
         {
             string buffer = data.ToString() + "\r\n";
             print(buffer);
         }
 
         //print unsigned integer with newline
-        public void println(uint data, byte b)
+        public void println(uint data, byte b = DEC)
         {
             string buffer = data.ToString() + "\r\n";
             print(buffer);
         }
 
         //print long with newline
-        public void println(long data, byte b)
+        public void println(long data, byte b = DEC)
         {
             string buffer = data.ToString() + "\r\n";
             print(buffer);
         }
 
         //print unsigned long with newline
-        public void println(ulong data, byte b)
+        public void println(ulong data, byte b = DEC)
         {
             string buffer = data.ToString() + "\r\n";
             print(buffer);
@@ -61,6 +61,26 @@ namespace OneSheeldClasses
         public void println(string data)
         {
             string buffer = data + "\r\n";
+            print(buffer);
+        }
+
+        // print byte array with newline
+        public void println(byte[] data)
+        {
+            byte[] buffer = null;
+            int Length = 0;
+            if (data != null)
+            {
+                Length = data.Length;
+                buffer = new byte[data.Length + 2];
+                for (int i = 0; i < data.Length; i++)
+                    buffer[i] = data[i];
+            }
+            else
+                buffer = new byte[2];
+            buffer[Length] = (byte)'\r';
+            buffer[Length + 1] = (byte)'\n';
+
             print(buffer);
         }
 
@@ -77,5 +97,7 @@ namespace OneSheeldClasses
             string buffer = Round(data, precision) + "\r\n";
             print(buffer);
         }
+
+        const byte DEC = 10;
     }
 }

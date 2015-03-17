@@ -27,21 +27,21 @@ namespace AdvancedLCD
         {
             if (button.Read())
             {
-                sheeld.LCD.begin();
-                sheeld.LCD.blink();
+                OneSheeld.LCD.begin();
+                OneSheeld.LCD.blink();
                 Thread.Sleep(5000);
-                sheeld.LCD.noBlink();
-                sheeld.LCD.write('A');
-                sheeld.LCD.write('B');
-                sheeld.LCD.write('C');
+                OneSheeld.LCD.noBlink();
+                OneSheeld.LCD.write('A');
+                OneSheeld.LCD.write('B');
+                OneSheeld.LCD.write('C');
                 Thread.Sleep(2000);
-                sheeld.LCD.clear();
-                sheeld.LCD.print("Hello, World!");
-                sheeld.LCD.setCursor(1, 0);
-                sheeld.LCD.print("This is 1Sheeld");
+                OneSheeld.LCD.clear();
+                OneSheeld.LCD.print("Hello, World!");
+                OneSheeld.LCD.setCursor(1, 0);
+                OneSheeld.LCD.print("This is 1Sheeld");
                 Thread.Sleep(10000);
-                sheeld.LCD.clear();
-                sheeld.LCD.print("Closing!");
+                OneSheeld.LCD.clear();
+                OneSheeld.LCD.print("Closing!");
                 Thread.Sleep(10000);
             }
         }

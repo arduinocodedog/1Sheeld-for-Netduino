@@ -9,11 +9,11 @@ namespace OneSheeldClasses
         bool isCallBackAssigned = false;
         IByteCallback changeCallBack = null;
         byte ShieldFunctionID = 0x00;
-        byte ShieldID = 0x00;
+        ShieldIds ShieldID = 0x00;
 
         protected byte value = 0x00;
 
-        public ByteInputShield(OneSheeld onesheeld, byte funcid, byte shieldid)
+        public ByteInputShield(OneSheeld onesheeld, byte funcid, ShieldIds shieldid)
             : base(onesheeld, shieldid)
         {
             Sheeld = onesheeld;
@@ -28,15 +28,17 @@ namespace OneSheeldClasses
 
         public override void processData()
         {
-            byte functionID = Sheeld.getFunctionId();
+            byte functionID = getOneSheeldInstance().getFunctionId();
 
             if (functionID == ShieldFunctionID)
             {
                 value = 0;
-                value = Sheeld.getArgumentData(0)[0];
-                if (isCallBackAssigned)
+                value = getOneSheeldInstance().getArgumentData(0)[0];
+                if (isCallBackAssigned && !isInACallback())
                 {
+                    enteringACallback();
                     changeCallBack.OnChange(value);
+                    exitingACallback();
                 }
             }
         }

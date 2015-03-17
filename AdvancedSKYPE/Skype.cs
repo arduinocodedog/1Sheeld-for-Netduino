@@ -24,13 +24,13 @@ namespace AdvancedSKYPE
         public void Loop()
         {
             /* If PushButton is pressed, send an SMS Message */
-            if (sheeld.PUSHBUTTON.isPressed())
+            if (OneSheeld.PUSHBUTTON.isPressed())
             {
                 /* Check that we haven't sent the SMS already. */
                 if (!didWeCall)
                 {
                     /* Send the SMS. */
-                    sheeld.SKYPE.call("echo123");
+                    OneSheeld.SKYPE.call("echo123");
                     /* Set the flag. */
                     didWeCall = true;
                 }

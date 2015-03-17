@@ -26,7 +26,7 @@ namespace SimpleKEYBOARD
         public void Loop()
         {
             /* If keyboard's A key is pressed. */
-            if (sheeld.KEYBOARD.getCharacter() == 'A')
+            if (OneSheeld.KEYBOARD.getCharacter() == 'A')
             {
                 /* Turn on the LED. */
                 led.Write(true);

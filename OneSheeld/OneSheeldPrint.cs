@@ -12,7 +12,7 @@ namespace OneSheeldClasses
         byte write_fn_id = 0x00;
 
         public OneSheeldPrint(OneSheeld onesheeld, ShieldIds shid, byte writefnid, byte printfnid)
-            : base(onesheeld, (byte) shid)
+            : base(onesheeld, shid)
         {
             Sheeld = onesheeld;
             shieldId = shid;
@@ -81,7 +81,7 @@ namespace OneSheeldClasses
         }
 
         //Print integers
-        public void print(int data, byte b)
+        public void print(int data, byte b = DEC)
         {
             ArrayList args = new ArrayList();
 
@@ -95,7 +95,7 @@ namespace OneSheeldClasses
         }
 
         //Print unsigned integers 
-        public void print(uint data, byte b)
+        public void print(uint data, byte b = DEC)
         {
            ArrayList args = new ArrayList();
 
@@ -109,7 +109,7 @@ namespace OneSheeldClasses
         }
 
         //Print long integers
-        public void print(long data, byte b)
+        public void print(long data, byte b = DEC)
         {
            ArrayList args = new ArrayList();
 
@@ -123,7 +123,7 @@ namespace OneSheeldClasses
         }
 
         //Print unsigned long integers
-        public void print(ulong data , byte b)
+        public void print(ulong data , byte b = DEC)
         {
             ArrayList args = new ArrayList();
 
@@ -134,6 +134,19 @@ namespace OneSheeldClasses
             args.Add(arg);
 	
 	        Sheeld.sendPacket(shieldId,0,print_fn_id,1,args);	
+        }
+
+        // Print byte Array
+        public void print (byte[] data)
+        {
+            ArrayList args = new ArrayList();
+
+            FunctionArg arg = new FunctionArg(data.Length, data);
+
+            args.Add(arg);
+
+            Sheeld.sendPacket(shieldId, 0, print_fn_id, 1, args);	
+
         }
 
         //Print string
@@ -192,10 +205,6 @@ namespace OneSheeldClasses
             return newstr;
         }
 
-
-        public override void processData()
-        {
-            throw new NotImplementedException();
-        }
+        const byte DEC = 10;
     }
 }

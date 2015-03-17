@@ -6,7 +6,7 @@ namespace OneSheeldClasses
     public class PushButtonShield : BoolInputShield
     {
         public PushButtonShield(OneSheeld onesheeld)
-            : base(onesheeld, PUSHBUTTON_VALUE, (byte) ShieldIds.PUSH_BUTTON_ID) { }
+            : base(onesheeld, PUSHBUTTON_VALUE, ShieldIds.PUSH_BUTTON_ID) { }
 
         public bool isPressed()
         {

@@ -4,11 +4,12 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class SevenSegmentShield
+    public class SevenSegmentShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
         public SevenSegmentShield(OneSheeld onesheeld)
+            : base(onesheeld, ShieldIds.SEV_SEG_ID)
         {
             Sheeld = onesheeld;
         }

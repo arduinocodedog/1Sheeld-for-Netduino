@@ -16,7 +16,7 @@ namespace OneSheeldClasses
         ISMSCallback changeCallBack = null;
 
         public SMSShield(OneSheeld onesheeld)
-            : base(onesheeld, (byte)ShieldIds.SMS_ID)
+            : base(onesheeld, ShieldIds.SMS_ID)
         {
             Sheeld = onesheeld;
         }
@@ -56,7 +56,7 @@ namespace OneSheeldClasses
         public override void processData()
         {
           	//Checking Function-ID
-	        byte x= Sheeld.getFunctionId();
+            byte x = getOneSheeldInstance().getFunctionId();
 
             if (x == SMS_GET)
             {
@@ -72,25 +72,27 @@ namespace OneSheeldClasses
                     number = null;
                 }
 
-                int numberlength = Sheeld.getArgumentLength(0);
+                int numberlength = getOneSheeldInstance().getArgumentLength(0);
                 number = "";
                 for (int j = 0; j < numberlength; j++)
                 {
-                    number += Sheeld.getArgumentData(0)[j];
+                    number += getOneSheeldInstance().getArgumentData(0)[j];
                 }
 
-                int textlength = Sheeld.getArgumentLength(1);
+                int textlength = getOneSheeldInstance().getArgumentLength(1);
                 text = "";
 
                 for (int i = 0; i < textlength; i++)
                 {
-                    text += Sheeld.getArgumentData(1)[i];
+                    text += getOneSheeldInstance().getArgumentData(1)[i];
                 }
 
                 //Users Function Invoked
-                if (isCallBackAssigned)
+                if (isCallBackAssigned && !isInACallback())
                 {
+                    enteringACallback();
                     changeCallBack.OnSMSReceive(number, text);
+                    exitingACallback();
                 }
             }
         }

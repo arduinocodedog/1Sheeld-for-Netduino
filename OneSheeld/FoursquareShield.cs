@@ -4,11 +4,12 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class FoursquareShield
+    public class FoursquareShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
         public FoursquareShield(OneSheeld onesheeld)
+            : base(onesheeld, ShieldIds.FOURSQUARE_ID)
         {
             Sheeld = onesheeld;
         }

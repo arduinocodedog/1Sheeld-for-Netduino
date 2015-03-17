@@ -6,7 +6,7 @@ namespace OneSheeldClasses
     public class MagnetometerSensorShield : XYZSensorShield
     {
         public MagnetometerSensorShield(OneSheeld onesheeld) : 
-            base(onesheeld, MAGNETOMETER_VALUE, (byte) ShieldIds.MAGNETOMETER_ID) {}
+            base(onesheeld, MAGNETOMETER_VALUE, ShieldIds.MAGNETOMETER_ID) {}
  
         //Helper
         public float getMagneticStrength()

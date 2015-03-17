@@ -11,7 +11,7 @@ namespace OneSheeldClasses
         ISByteCallback changeCallBack = null;
 
         public TemperatureSensorShield(OneSheeld onesheeld)
-            : base(onesheeld, (byte)ShieldIds.TEMPERATURE_ID)
+            : base(onesheeld, ShieldIds.TEMPERATURE_ID)
         {
             Sheeld = onesheeld;
         }
@@ -30,14 +30,16 @@ namespace OneSheeldClasses
 
         public override void processData()
         {
-            byte functionID = Sheeld.getFunctionId();
+            byte functionID = getOneSheeldInstance().getFunctionId();
 
             if (functionID == TEMPERATURE_VALUE)
             {
-                value = (sbyte) Sheeld.getArgumentData(0)[0];
-                if (isCallBackAssigned)
+                value = (sbyte)getOneSheeldInstance().getArgumentData(0)[0];
+                if (isCallBackAssigned && !isInACallback())
                 {
+                    enteringACallback();
                     changeCallBack.OnChange(value);
+                    exitingACallback();
                 }
             }
         }

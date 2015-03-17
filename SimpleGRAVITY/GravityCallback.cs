@@ -26,7 +26,7 @@ namespace SimpleGRAVITY
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.GRAVITY.setOnValueChange(this);
+            OneSheeld.GRAVITY.setOnValueChange(this);
         }
 
         public void Loop()

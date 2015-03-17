@@ -23,7 +23,7 @@ namespace SimplePROXIMITY
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.PROXIMITY.setOnValueChange(this);
+            OneSheeld.PROXIMITY.setOnValueChange(this);
         }
 
         public void Loop()

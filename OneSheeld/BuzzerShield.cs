@@ -4,7 +4,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class BuzzerShield
+    public class BuzzerShield : ShieldParent
     {
         OneSheeld Sheeld = null;
         bool buzzing = false;
@@ -28,6 +28,7 @@ namespace OneSheeldClasses
 
         //Constructor
         public BuzzerShield(OneSheeld onesheeld)
+            :base(onesheeld, ShieldIds.BUZZER_ID)
         {
             Sheeld = onesheeld;
         }

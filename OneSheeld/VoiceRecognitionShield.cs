@@ -15,7 +15,7 @@ namespace OneSheeldClasses
         IVoiceRecognitionCallback userCallback = null;
 
         public VoiceRecognitionShield(OneSheeld onesheeld)
-            : base(onesheeld, (byte) ShieldIds.VOICE_RECOGNITION_ID)
+            : base(onesheeld, ShieldIds.VOICE_RECOGNITION_ID)
         {
             Sheeld = onesheeld;
         }
@@ -46,32 +46,40 @@ namespace OneSheeldClasses
 
         public override void processData()
         {
-            byte functionID = Sheeld.getFunctionId();
+            byte functionID = getOneSheeldInstance().getFunctionId();
 
             if (functionID == VOICE_GET)
             {
                 if (voice != null)
                     voice = "";
 
-                int voicetextLength = Sheeld.getArgumentLength(0);
+                int voicetextLength = getOneSheeldInstance().getArgumentLength(0);
 
                 if (voicetextLength > 0)
                 {
                     for (int j = 0; j < voicetextLength; j++)
-                        voice += Convert.ToChar(Sheeld.getArgumentData(0)[j]);
+                        voice += Convert.ToChar(getOneSheeldInstance().getArgumentData(0)[j]);
 
                     newCommand = true;
                 }
 
-                if (isCallbackAssigned)
+                if (isCallbackAssigned && !isInACallback())
+                {
+                    enteringACallback();
                     userCallback.OnNewCommand(voice);
+                    exitingACallback();
+                }
             }
             else if (functionID == VOICE_GET_ERROR)
             {
-                errorNumber = Sheeld.getArgumentData(0)[0];
+                errorNumber = getOneSheeldInstance().getArgumentData(0)[0];
 
-                if (isCallbackAssigned)
+                if (isCallbackAssigned && !isInACallback())
+                {
+                    enteringACallback();
                     userCallback.OnError(errorNumber);
+                    exitingACallback();
+                }
             }
 
         }

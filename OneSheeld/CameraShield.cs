@@ -4,11 +4,12 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class CameraShield
+    public class CameraShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
         public CameraShield(OneSheeld onesheeld)
+            : base(onesheeld, ShieldIds.CAMERA_ID)
         {
             Sheeld = onesheeld;
         }

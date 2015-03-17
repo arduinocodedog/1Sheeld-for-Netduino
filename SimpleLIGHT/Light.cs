@@ -25,7 +25,7 @@ namespace SimpleLIGHT
 
         public void Loop()
         {
-            if (sheeld.LIGHT.getValue() < 100 && sheeld.LIGHT.getValue() > 0)
+            if (OneSheeld.LIGHT.getValue() < 100 && OneSheeld.LIGHT.getValue() > 0)
             {
                 led.Write(true);
             }

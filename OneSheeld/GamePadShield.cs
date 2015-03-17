@@ -21,7 +21,7 @@ namespace OneSheeldClasses
         IGamePadCallback buttonChangeCallBack = null;
 
         public GamePadShield(OneSheeld onesheeld)
-            : base(onesheeld, (byte)ShieldIds.GAMEPAD_ID)
+            : base(onesheeld, ShieldIds.GAMEPAD_ID)
         {
             Sheeld = onesheeld;
         }
@@ -78,10 +78,10 @@ namespace OneSheeldClasses
         public override void processData()
         {
 	        //Checking Function-ID
-	        byte functionId = Sheeld.getFunctionId();
+            byte functionId = getOneSheeldInstance().getFunctionId();
 	        if (functionId == GAMEPAD_VALUE)
 	        {
-		        byte value = Sheeld.getArgumentData(0)[0];
+                byte value = getOneSheeldInstance().getArgumentData(0)[0];
 
                 up = (value & (1 << UP_BIT)) != 0;
                 down = (value & (1 << DOWN_BIT)) != 0;
@@ -93,9 +93,11 @@ namespace OneSheeldClasses
                 blue = (value & (1 << BLUE_BIT)) != 0;
 
                 //Users Function Invoked
-		        if(isCallBackAssigned)
+		        if(isCallBackAssigned && !isInACallback())
 		        {
+                    enteringACallback();
 			        buttonChangeCallBack.OnButtonChange(up, down, left, right, orange, red, green, blue);
+                    exitingACallback();
 		        }
 	        }
         }

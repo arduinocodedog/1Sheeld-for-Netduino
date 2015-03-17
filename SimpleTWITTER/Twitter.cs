@@ -31,7 +31,7 @@ namespace SimpleTWITTER
             if (button.Read())
             {
                 led.Write(true);
-                sheeld.TWITTER.tweet("I'm tweeting from @Netduino via @1Sheeld!");
+                OneSheeld.TWITTER.tweet("I'm tweeting from @Netduino via @1Sheeld!");
                 Thread.Sleep(300);
             }
             else

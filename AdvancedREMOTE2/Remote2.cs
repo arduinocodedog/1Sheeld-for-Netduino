@@ -32,7 +32,7 @@ namespace AdvancedREMOTE2
         public void OnNewMessage(string address, string key, string voiceCommand)
         {
             if (key.Equals("USA"))
-                sheeld.TTS.say(voiceCommand);
+                OneSheeld.TTS.say(voiceCommand);
         }
     }
 }

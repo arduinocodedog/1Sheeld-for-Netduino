@@ -25,7 +25,7 @@ namespace SimplePUSHBUTTON
 		
 		public void Loop()
 		{
-            if (sheeld.PUSHBUTTON.isPressed())
+            if (OneSheeld.PUSHBUTTON.isPressed())
             {
                 led.Write(true);
             }

@@ -4,11 +4,12 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class EmailShield
+    public class EmailShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
         public EmailShield(OneSheeld onesheeld)
+            : base(onesheeld, ShieldIds.EMAIL_ID)
         {
             Sheeld = onesheeld;
         }

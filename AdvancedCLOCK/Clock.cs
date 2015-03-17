@@ -22,22 +22,22 @@ namespace AdvancedCLOCK
 
         public void Loop()
         {
-            if (!sheeld.CLOCK.isInitialized())
+            if (!OneSheeld.CLOCK.isInitialized())
             {
-                sheeld.TERMINAL.println("Initializing Clock.");
-                sheeld.CLOCK.begin();
+                OneSheeld.TERMINAL.println("Initializing Clock.");
+                OneSheeld.CLOCK.begin();
             }
             else
             {
-                byte hour = sheeld.CLOCK.getHours();
-                byte minute = sheeld.CLOCK.getMinutes();
-                byte second = sheeld.CLOCK.getSeconds();
-                byte day = sheeld.CLOCK.getDay();
-                byte month = sheeld.CLOCK.getMonth();
-                short year = sheeld.CLOCK.getYear();
+                byte hour = OneSheeld.CLOCK.getHours();
+                byte minute = OneSheeld.CLOCK.getMinutes();
+                byte second = OneSheeld.CLOCK.getSeconds();
+                byte day = OneSheeld.CLOCK.getDay();
+                byte month = OneSheeld.CLOCK.getMonth();
+                short year = OneSheeld.CLOCK.getYear();
 
                 DateTime dt = new DateTime(year, month, day, hour, minute, second);
-                sheeld.TERMINAL.println(dt.ToString());
+                OneSheeld.TERMINAL.println(dt.ToString());
             }
 
             Thread.Sleep(2000);

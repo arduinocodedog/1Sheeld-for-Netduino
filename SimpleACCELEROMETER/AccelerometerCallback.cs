@@ -26,7 +26,7 @@ namespace SimpleACCELEROMETER
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.ACCELEROMETER.setOnValueChange(this);
+            OneSheeld.ACCELEROMETER.setOnValueChange(this);
         }
 
         public void Loop()

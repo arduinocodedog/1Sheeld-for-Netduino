@@ -26,7 +26,7 @@ namespace SimpleGYROSCOPE
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.GYROSCOPE.setOnValueChange(this);
+            OneSheeld.GYROSCOPE.setOnValueChange(this);
         }
 
         public void Loop()

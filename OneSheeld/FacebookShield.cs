@@ -4,11 +4,12 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class FacebookShield
+    public class FacebookShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
         public FacebookShield(OneSheeld onesheeld)
+            : base(onesheeld, ShieldIds.FACEBOOK_ID)
         {
             Sheeld = onesheeld;
         }

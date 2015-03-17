@@ -14,7 +14,7 @@ namespace OneSheeldClasses
         IPhoneCallback changeCallBack = null;
 
         public PhoneShield(OneSheeld onesheeld)
-            : base(onesheeld, (byte)ShieldIds.PHONE_ID)
+            : base(onesheeld, ShieldIds.PHONE_ID)
         {
             Sheeld = onesheeld;
         }
@@ -49,27 +49,29 @@ namespace OneSheeldClasses
         public override void processData()
         {
      	    //Checking Function-ID
-	        byte x= Sheeld.getFunctionId();
+            byte x = getOneSheeldInstance().getFunctionId();
 
 	        if (x == PHONE_IS_RINGING)
 	        {
-                ringing = (Sheeld.getArgumentData(0)[0] != 0x00);
+                ringing = (getOneSheeldInstance().getArgumentData(0)[0] != 0x00);
 	        }
 
 	        else if (x == PHONE_GET_NUMBER)
 	        {
 		        if(number != null)
 			        number = "";
-		
-		        byte length=Sheeld.getArgumentLength(0);
+
+                byte length = getOneSheeldInstance().getArgumentLength(0);
 		
 		        for (int i=0; i< length; i++)
-			        number += Convert.ToChar(Sheeld.getArgumentData(0)[i]);
+                    number += Convert.ToChar(getOneSheeldInstance().getArgumentData(0)[i]);
 
 		        //Users Function Invoked
-		        if (isCallBackAssigned)
+		        if (isCallBackAssigned && !isInACallback())
 		        {
+                    enteringACallback();
 			        changeCallBack.OnCallStatusChange(ringing,number);
+                    exitingACallback();
 		        }
             }
         }

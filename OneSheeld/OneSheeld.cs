@@ -12,10 +12,18 @@ namespace OneSheeldClasses
 {
     public class OneSheeld
     {
+        static ulong lastTimeFrameSent = 0L;
+        static bool isFirstFrame = false;
+        static bool isInit = false;
+        static bool callbacksInterrupts = false;
+        static bool inACallback = false;
+        static int shieldsCounter = 0;
+        static byte requestsCounter = 0;
+        static ShieldParent[] shieldsArray = new ShieldParent[SHIELDS_NO];
+        static HttpRequest[] requestsArray = new HttpRequest[MAX_NO_OF_REQUESTS];
+        static SerialPort Serial1 = null;
+
         Stream OneSheeldSerial = null;
-        SerialPort Serial1 = null;
-        long lastTimeFrameSent = 0L;
-        bool isFirstFrame = false;
         bool framestart = false;
         bool isArgumentsNumberAllocated = false;
         bool isArgumentLengthsAllocated = false;
@@ -37,42 +45,49 @@ namespace OneSheeldClasses
 
         public RemoteOneSheeld[] listOfRemoteOneSheelds = null;
 
-        public AccelerometerSensorShield ACCELEROMETER = null;
-        public BuzzerShield BUZZER = null;
-        public CameraShield CAMERA = null;
-        public ClockShield CLOCK = null;
-        public DataLoggerShield DATALOGGER = null;
-        public EmailShield EMAIL = null;
-        public FacebookShield FACEBOOK = null;
-        public FoursquareShield FOURSQUARE = null;
-        public GamePadShield GAMEPAD = null;
-        public GPSShield GPS = null;
-        public GravitySensorShield GRAVITY = null;
-        public GyroscopeSensorShield GYROSCOPE = null;
-        public KeyboardShield KEYBOARD = null;
-        public KeypadShield KEYPAD = null;
-        public LCDShield LCD = null;
-        public LedShield LED = null;
-        public LightSensorShield LIGHT = null;
-        public MagnetometerSensorShield MAGNETOMETER = null;
-        public MicShield MIC = null;
-        public MusicPlayerShield MUSICPLAYER = null;
-        public NotificationShield NOTIFICATION = null;
-        public OrientationSensorShield ORIENTATION = null;
-        public PhoneShield PHONE = null;
-        public PressureSensorShield PRESSURE = null;
-        public ProximitySensorShield PROXIMITY = null;
-        public PushButtonShield PUSHBUTTON = null;
-        public SevenSegmentShield SEVENSEGMENT = null;
-        public SkypeShield SKYPE = null;
-        public SliderShield SLIDER = null;
-        public SMSShield SMS = null;
-        public TemperatureSensorShield TEMPERATURE = null;
-        public TerminalShield TERMINAL = null;
-        public ToggleButtonShield TOGGLEBUTTON = null;
-        public TTSShield TTS = null;
-        public TwitterShield TWITTER = null;
-        public VoiceRecognitionShield VOICERECOGNITION = null;
+        static public AccelerometerSensorShield ACCELEROMETER = null;
+        static public BuzzerShield BUZZER = null;
+        static public CameraShield CAMERA = null;
+        static public ClockShield CLOCK = null;
+        static public DataLoggerShield DATALOGGER = null;
+        static public EmailShield EMAIL = null;
+        static public FacebookShield FACEBOOK = null;
+        static public FoursquareShield FOURSQUARE = null;
+        static public GamePadShield GAMEPAD = null;
+        static public GPSShield GPS = null;
+        static public GravitySensorShield GRAVITY = null;
+        static public GyroscopeSensorShield GYROSCOPE = null;
+        static public InternetShield INTERNET = null;
+        static public KeyboardShield KEYBOARD = null;
+        static public KeypadShield KEYPAD = null;
+        static public LCDShield LCD = null;
+        static public LedShield LED = null;
+        static public LightSensorShield LIGHT = null;
+        static public MagnetometerSensorShield MAGNETOMETER = null;
+        static public MicShield MIC = null;
+        static public MusicPlayerShield MUSICPLAYER = null;
+        static public NotificationShield NOTIFICATION = null;
+        static public OrientationSensorShield ORIENTATION = null;
+        static public PatternShield PATTERN = null;
+        static public PhoneShield PHONE = null;
+        static public PressureSensorShield PRESSURE = null;
+        static public ProximitySensorShield PROXIMITY = null;
+        static public PushButtonShield PUSHBUTTON = null;
+        static public SevenSegmentShield SEVENSEGMENT = null;
+        static public SkypeShield SKYPE = null;
+        static public SliderShield SLIDER = null;
+        static public SMSShield SMS = null;
+        static public TemperatureSensorShield TEMPERATURE = null;
+        static public TerminalShield TERMINAL = null;
+        static public ToggleButtonShield TOGGLEBUTTON = null;
+        static public TTSShield TTS = null;
+        static public TwitterShield TWITTER = null;
+        static public VoiceRecognitionShield VOICERECOGNITION = null;
+
+        public OneSheeld()
+        {
+            initShields();
+        }
 
         void begin(int baud)
         {
@@ -82,183 +97,156 @@ namespace OneSheeldClasses
             OneSheeldSerial = Serial1;
         }
 
-        void processInput(Object sender, SerialDataReceivedEventArgs e)
+        public void waitForAppConnection()
         {
-            processInput();
+            isOneSheeldConnected = false;
+
+            sendPacket(ShieldIds.ONESHEELD_ID, 0, WAIT_RESET_APPLICATION, 0, null);
+
+            while (!isOneSheeldConnected)
+            {
+                processInput();
+            }
         }
 
-        void freeMemoryAllocated()
+        public void begin()
         {
-            framestart = false;
-            if (isArgumentsNumberAllocated)
+            begin(115200);
+            isInitialized = true;
+            for (int i = 0; i < requestsCounter; i++)
+                requestsArray[i].sendInitFrame();
+            requestsArray = null;
+        }
+
+        public static void addToShieldsArray(ShieldParent shield)
+        {
+            if (shieldsCounter == SHIELDS_NO)
+                return;
+            shieldsArray[shieldsCounter++] = shield;
+        }
+
+        public static void addToUnSentRequestsArray(HttpRequest request)
+        {
+            if (requestsCounter == MAX_NO_OF_REQUESTS)
+                return;
+            requestsArray[requestsCounter++] = request;
+        }
+
+        public static bool isInitialized
+        {
+            get { return isInit; }
+            set { isInit = value; }
+        }
+
+        public void sendPacket(ShieldIds shieldID, byte instanceID, byte functionID, int argNo, ArrayList args)
+        {
+            ulong mill = millis() + 1;
+
+            if ((shieldID != ShieldIds.ONESHEELD_ID) && isFirstFrame == true && lastTimeFrameSent > 0L && (mill - lastTimeFrameSent) < TIME_GAP)
             {
-                for (int i = 0; i < numberOfDataAllocated; i++)
+                byte[] buffer = new byte[1];
+
+                if (isInACallback())
                 {
-                    arguments[i] = null;
+                    OneSheeld TempOneSheeld = new OneSheeld();
+                    TempOneSheeld.OneSheeldSerial = OneSheeldSerial;
+
+                    ShieldParent.setOneSheeldInstance(TempOneSheeld);
+                    while ((millis() < (TIME_GAP + lastTimeFrameSent)) || TempOneSheeld.framestart)
+                    {
+                        if (((SerialPort)TempOneSheeld.OneSheeldSerial).BytesToRead > 0)
+                        {
+                            int datacount = TempOneSheeld.OneSheeldSerial.Read(buffer, 0, 1);
+                            if (datacount == 0) return;
+                            TempOneSheeld.processInput(buffer[0]);
+                        }
+                    }
+                    ShieldParent.unSetOneSheeldInstance();
                 }
-                numberOfDataAllocated = 0;
-                arguments = null;
-                isArgumentsNumberAllocated = false;
+                else
+                {
+                    while ((millis() < (TIME_GAP + lastTimeFrameSent)) || framestart)
+                    {
+                        if (((SerialPort)OneSheeldSerial).BytesToRead > 0)
+                        {
+                            int datacount = OneSheeldSerial.Read(buffer, 0, 1);
+                            if (datacount == 0) return;
+                            processInput(buffer[0]);
+                        }
+                    }
+                }
             }
-            if (isArgumentLengthsAllocated)
+
+            isFirstFrame = true;
+            Write(START_OF_FRAME);
+            Write(LIBRARY_VERSION);
+            Write((byte)shieldID);
+            Write(instanceID);
+            Write(functionID);
+            Write((byte)argNo);
+            Write((byte)(255 - argNo));
+
+            for (int i = 0; i < argNo; i++)
             {
-                argumentLengths = null;
-                isArgumentLengthsAllocated = false;
+                FunctionArg temp = args[i] as FunctionArg;
+                Write((byte)temp.getLength());
+                Write((byte)(255 - (temp.getLength())));
+                for (int j = 0; j < temp.getLength(); j++)
+                {
+                    Write(temp.getData()[j]);
+                }
+                temp = null;
             }
+
+            Write(END_OF_FRAME);
+            lastTimeFrameSent = millis() + 1;
         }
 
-        void sendToShields()
+        public bool isAppConnected()
         {
-            //Checking the Shield-ID    
-            byte ShieldNumber = getShieldId();
-            switch (ShieldNumber)
-            {
-                case (byte)ShieldIds.ONESHEELD_ID: processFrame(); break;
-                case (byte)ShieldIds.KEYPAD_SHIELD_ID: KEYPAD.processFrame(); break;
-                case (byte)ShieldIds.GPS_ID: GPS.processFrame(); break;
-                case (byte)ShieldIds.SLIDER_ID: SLIDER.processFrame(); break;
-                case (byte)ShieldIds.PUSH_BUTTON_ID: PUSHBUTTON.processFrame(); break;
-                case (byte)ShieldIds.TOGGLE_BUTTON_ID: TOGGLEBUTTON.processFrame(); break;
-                case (byte)ShieldIds.GAMEPAD_ID: GAMEPAD.processFrame(); break;
-                case (byte)ShieldIds.PROXIMITY_ID: PROXIMITY.processFrame(); break;
-                case (byte)ShieldIds.MIC_ID: MIC.processFrame(); break;
-                case (byte)ShieldIds.TEMPERATURE_ID: TEMPERATURE.processFrame(); break;
-                case (byte)ShieldIds.LIGHT_ID: LIGHT.processFrame(); break;
-                case (byte)ShieldIds.PRESSURE_ID: PRESSURE.processFrame(); break;
-                case (byte)ShieldIds.GRAVITY_ID: GRAVITY.processFrame(); break;
-                case (byte)ShieldIds.ACCELEROMETER_ID: ACCELEROMETER.processFrame(); break;
-                case (byte)ShieldIds.GYROSCOPE_ID: GYROSCOPE.processFrame(); break;
-                case (byte)ShieldIds.ORIENTATION_ID: ORIENTATION.processFrame(); break;
-                case (byte)ShieldIds.MAGNETOMETER_ID: MAGNETOMETER.processFrame(); break;
-                case (byte)ShieldIds.PHONE_ID: PHONE.processFrame(); break;
-                case (byte)ShieldIds.SMS_ID: SMS.processFrame(); break;
-                case (byte)ShieldIds.CLOCK_ID: CLOCK.processFrame(); break;
-                case (byte)ShieldIds.KEYBOARD_ID: KEYBOARD.processFrame(); break;
-                case (byte)ShieldIds.TWITTER_ID: TWITTER.processFrame(); break;
-                case (byte)ShieldIds.VOICE_RECOGNITION_ID: VOICERECOGNITION.processFrame(); break;
-                case (byte)ShieldIds.TERMINAL_ID: TERMINAL.processFrame(); break;
-                case (byte)ShieldIds.REMOTE_SHEELD_ID:
-                    for (int i = 0; i < remoteOneSheeldsCounter; i++)
-                        listOfRemoteOneSheelds[i].processFrame();
-                    if (isOneSheeldRemoteDataUsed)
-                        processRemoteData();
-                    break;
-            }
+            return isOneSheeldConnected;
         }
 
-        void processFrame()
+        public byte getShieldId()
         {
-            byte functionId = getFunctionId();
-            //Check  the function ID 
-            if (functionId == DISCONNECTION_CHECK_FUNCTION)
-            {
-                isOneSheeldConnected = false;
-            }
-            else if (functionId == CONNECTION_CHECK_FUNCTION)
-            {
-                isOneSheeldConnected = true;
-            }
-            else if (functionId == LIBRARY_VERSION_REQUEST)
-            {
-                sendPacket((byte) ShieldIds.ONESHEELD_ID, 0, SEND_LIBRARY_VERSION, 0, null);
-            }
+            return shield;
         }
 
-        void processRemoteData()
-        { 
-            byte functionId = getFunctionId();
-
-            if(functionId == READ_MESSAGE_FLOAT)
-            {
-                string remoteAddress = "";
-                for (int i = 0; i < 36; i++)
-                    remoteAddress += Convert.ToChar(getArgumentData(0)[i]);
-
-                string key = "";
-                int keyLength = getArgumentLength(1);
-                for (int i = 0; i < keyLength; i++)
-                    key += Convert.ToChar(getArgumentData(1)[i]);
-
-                float incomingValue = convertBytesToFloat(getArgumentData(2));
-
-                if(isOneSheeldRemoteDataUsed)
-                    remoteCallBack.OnNewMessage(remoteAddress,key,incomingValue);
-            }
-            else if(functionId == READ_MESSAGE_STRING)
-            {
-                string remoteAddress = "";
-                for (int i = 0; i < 36; i++)
-                    remoteAddress += Convert.ToChar(getArgumentData(0)[i]);
-
-                string key = "";
-                int keyLength = getArgumentLength(1);
-                for (int i = 0; i < keyLength; i++)
-                    key += Convert.ToChar(getArgumentData(1)[i]);
-
-                string stringData = "";
-                int stringDataLength = getArgumentLength(2);
-                for (int i = 0; i < stringDataLength; i++)
-                    stringData += Convert.ToChar(getArgumentData(2)[i]);
-
-                if(isOneSheeldRemoteDataUsed)
-                    remoteCallBack.OnNewMessage(remoteAddress,key,stringData);
-            }
-        }
-
-        // ---------------------- Public Methods ----------------------
-
-        public OneSheeld()
+        public byte getInstanceId()
         {
-            ACCELEROMETER = new AccelerometerSensorShield(this);
-            BUZZER = new BuzzerShield(this);
-            CAMERA = new CameraShield(this);
-            CLOCK = new ClockShield(this);
-            DATALOGGER = new DataLoggerShield(this);
-            EMAIL = new EmailShield(this);
-            FACEBOOK = new FacebookShield(this);
-            GAMEPAD = new GamePadShield(this);
-            FOURSQUARE = new FoursquareShield(this);
-            GPS = new GPSShield(this);
-            GRAVITY = new GravitySensorShield(this);
-            GYROSCOPE = new GyroscopeSensorShield(this);
-            KEYBOARD = new KeyboardShield(this);
-            KEYPAD = new KeypadShield(this);
-            LCD = new LCDShield(this);
-            LED = new LedShield(this);
-            LIGHT = new LightSensorShield(this);
-            MAGNETOMETER = new MagnetometerSensorShield(this);
-            MIC = new MicShield(this);
-            MUSICPLAYER = new MusicPlayerShield(this);
-            NOTIFICATION = new NotificationShield(this);
-            ORIENTATION = new OrientationSensorShield(this);
-            PHONE = new PhoneShield(this);
-            PRESSURE = new PressureSensorShield(this);
-            PROXIMITY = new ProximitySensorShield(this);
-            PUSHBUTTON = new PushButtonShield(this);
-            SEVENSEGMENT = new SevenSegmentShield(this);
-            SKYPE = new SkypeShield(this);
-            SLIDER = new SliderShield(this);
-            SMS = new SMSShield(this);
-            TEMPERATURE = new TemperatureSensorShield(this);
-            TERMINAL = new TerminalShield(this);
-            TOGGLEBUTTON = new ToggleButtonShield(this);
-            TTS = new TTSShield(this);
-            TWITTER = new TwitterShield(this);
-            VOICERECOGNITION = new VoiceRecognitionShield(this);
-
-            listOfRemoteOneSheelds = new RemoteOneSheeld[MAX_REMOTE_CONNECTIONS];
+            return instance;
         }
 
-        public void processInput()
+        public byte getFunctionId()
         {
-            byte[] buffer = new byte[1];
+            return functions;
+        }
 
-            while (((SerialPort)OneSheeldSerial).BytesToRead > 0)
-            {
-                int datacount = OneSheeldSerial.Read(buffer, 0, 1);
-                if (datacount == 0) return;
-                processInput(buffer[0]);
-            }
+        public byte getArgumentNo()
+        {
+            return argumentnumber;
+        }
+
+        public byte getArgumentLength(byte x)
+        {
+            return argumentLengths[x];
+        }
+
+        public byte[] getArgumentData(byte x)
+        {
+            if (argumentLengths[x] != 0)
+                return arguments[x];
+            return null;
+        }
+
+        public byte[] convertFloatToBytes(float data)
+        {
+            return System.BitConverter.GetBytes(data);
+        }
+
+        public float convertBytesToFloat(byte[] data)
+        {
+            return System.BitConverter.ToSingle(data, 0);
         }
 
         void processInput(byte data)
@@ -372,13 +360,13 @@ namespace OneSheeldClasses
                 {
                     shield = data;
                     bool found = false;
-                    if (shield == (byte) ShieldIds.ONESHEELD_ID || shield == (byte) ShieldIds.REMOTE_SHEELD_ID)
+                    if (shield == (byte)ShieldIds.ONESHEELD_ID || shield == (byte)ShieldIds.REMOTE_SHEELD_ID)
                         found = true;
                     else
                     {
-                        for (int i = 0; i < inputShieldsList.Length; i++)
+                        for (int i = 0; i < shieldsCounter; i++)
                         {
-                            if (shield == (byte)inputShieldsList[i])
+                            if (shield == shieldsArray[i].getShieldID())
                             {
                                 found = true;
                             }
@@ -403,48 +391,208 @@ namespace OneSheeldClasses
             }
         }
 
-        public void waitForAppConnection()
+        public void processInput()
         {
-          isOneSheeldConnected = false;
+            byte[] buffer = new byte[1];
 
-          while(!isOneSheeldConnected)
-          {
-            processInput();
-          }
-
+            while (((SerialPort)OneSheeldSerial).BytesToRead > 0)
+            {
+                int datacount = OneSheeldSerial.Read(buffer, 0, 1);
+                if (datacount == 0) return;
+                processInput(buffer[0]);
+            }
         }
 
-        public void begin()
+        void freeMemoryAllocated()
         {
-            begin(115200);
+            framestart = false;
+            if (isArgumentsNumberAllocated)
+            {
+                for (int i = 0; i < numberOfDataAllocated; i++)
+                {
+                    if (arguments[i] != null)
+                        arguments[i] = null;
+                }
+                numberOfDataAllocated = 0;
+                arguments = null;
+                isArgumentsNumberAllocated = false;
+            }
+            if (isArgumentLengthsAllocated)
+            {
+                argumentLengths = null;
+                isArgumentLengthsAllocated = false;
+            }
+        }
+
+        public void listenToRemoteOneSheeld(RemoteOneSheeld remoteonesheeld)
+        {
+            if (remoteOneSheeldsCounter < MAX_REMOTE_CONNECTIONS)
+                listOfRemoteOneSheelds[remoteOneSheeldsCounter++] = remoteonesheeld;
+        }
+
+        void sendToShields()
+        {
+            //Checking the Shield-ID    
+            byte ShieldNumber = getShieldId();
+            switch (ShieldNumber)
+            {
+                case (byte)ShieldIds.ONESHEELD_ID:
+                    processFrame(); break;
+
+                case (byte)ShieldIds.REMOTE_SHEELD_ID:
+                    for (int i = 0; i < remoteOneSheeldsCounter; i++)
+                        listOfRemoteOneSheelds[i].processFrame();
+                    if (isOneSheeldRemoteDataUsed)
+                        processRemoteData();
+                    break;
+
+                default:
+                    for (int i = 0; i < shieldsCounter; i++)
+                    {
+                        shieldsArray[i].processFrame();
+                    }
+                    break;
+            }
+        }
+
+        public void setOnNewMessage(IRemoteCallback userCallback)
+        {
+            isOneSheeldRemoteDataUsed = true;
+            remoteCallBack = userCallback;
+        }
+
+        void processRemoteData()
+        {
+            byte functionId = getFunctionId();
+
+            if (functionId == READ_MESSAGE_FLOAT)
+            {
+                string remoteAddress = "";
+                for (int i = 0; i < 36; i++)
+                    remoteAddress += Convert.ToChar(getArgumentData(0)[i]);
+
+                string key = "";
+                int keyLength = getArgumentLength(1);
+                for (int i = 0; i < keyLength; i++)
+                    key += Convert.ToChar(getArgumentData(1)[i]);
+
+                float incomingValue = convertBytesToFloat(getArgumentData(2));
+
+                if (isOneSheeldRemoteDataUsed && !isInACallback())
+                {
+                    enteringACallback();
+                    remoteCallBack.OnNewMessage(remoteAddress, key, incomingValue);
+                    exitingACallback();
+                }
+            }
+            else if (functionId == READ_MESSAGE_STRING)
+            {
+                string remoteAddress = "";
+                for (int i = 0; i < 36; i++)
+                    remoteAddress += Convert.ToChar(getArgumentData(0)[i]);
+
+                string key = "";
+                int keyLength = getArgumentLength(1);
+                for (int i = 0; i < keyLength; i++)
+                    key += Convert.ToChar(getArgumentData(1)[i]);
+
+                string stringData = "";
+                int stringDataLength = getArgumentLength(2);
+                for (int i = 0; i < stringDataLength; i++)
+                    stringData += Convert.ToChar(getArgumentData(2)[i]);
+
+                if (isOneSheeldRemoteDataUsed && !isInACallback())
+                {
+                    enteringACallback();
+                    remoteCallBack.OnNewMessage(remoteAddress, key, stringData);
+                    exitingACallback();
+                }
+            }
+        }
+
+        void processFrame()
+        {
+            byte functionId = getFunctionId();
+            //Check  the function ID 
+            if (functionId == DISCONNECTION_CHECK_FUNCTION)
+            {
+                isOneSheeldConnected = false;
+            }
+            else if (functionId == CONNECTION_CHECK_FUNCTION)
+            {
+                isOneSheeldConnected = true;
+            }
+            else if (functionId == LIBRARY_VERSION_REQUEST)
+            {
+                sendPacket(ShieldIds.ONESHEELD_ID, 0, SEND_LIBRARY_VERSION, 0, null);
+            }
+        }
+
+        /***** NO analogRead ... not used anyhow *****/
+
+        public void enteringACallback()
+        {
+            if (!isInACallback())
+            {
+                inACallback = true;
+                sendPacket(ShieldIds.ONESHEELD_ID, 0, CALLBACK_ENTERED, 0, null);
+            }
+        }
+
+        public void exitingACallback()
+        {
+            if (isInACallback())
+            {
+                inACallback = false;
+                sendPacket(ShieldIds.ONESHEELD_ID, 0, CALLBACK_EXITED, 0, null);
+            }
+        }
+
+        public bool isInACallback()
+        {
+            return (inACallback && !callbacksInterrupts);
+        }
+
+        public bool isCallbacksInterruptsSet()
+        {
+            return callbacksInterrupts;
+        }
+
+        public void disableCallbacksInterrupts()
+        {
+            callbacksInterrupts = false;
+        }
+
+        public void enableCallbacksInterrupts()
+        {
+            callbacksInterrupts = true;
         }
 
         public void delay(long time)
         {
-            long now = (DateTime.Now.Ticks / 10000L) + 1L;
-            long mill = now;
+            ulong now = millis();
             byte[] buffer = new byte[1];
 
-            while (mill < (now+time) || framestart)
+            if (isInACallback())
             {
-                if (((SerialPort)OneSheeldSerial).BytesToRead > 0)
+                OneSheeld TempOneSheeld = new OneSheeld();
+                TempOneSheeld.OneSheeldSerial = OneSheeldSerial;
+
+                ShieldParent.setOneSheeldInstance(TempOneSheeld);
+                while ((millis() < (now + (ulong)time)) || TempOneSheeld.framestart)
                 {
-                    int datacount = OneSheeldSerial.Read(buffer, 0, 1);
-                    if (datacount == 0) return;
-                    processInput(buffer[0]);
+                    if (((SerialPort)TempOneSheeld.OneSheeldSerial).BytesToRead > 0)
+                    {
+                        int datacount = TempOneSheeld.OneSheeldSerial.Read(buffer, 0, 1);
+                        if (datacount == 0) return;
+                        processInput(buffer[0]);
+                    }
                 }
-                mill = (DateTime.Now.Ticks / 10000L) + 1L;
+                ShieldParent.unSetOneSheeldInstance();
             }
-        }
-
-        public void sendPacket(ShieldIds shieldID, byte instanceID, byte functionID, int argNo, ArrayList args)
-        {
-            long mill = (DateTime.Now.Ticks / 10000L) + 1L;
-            byte[] buffer = new byte[1];
-
-            if((shieldID != ShieldIds.ONESHEELD_ID) && isFirstFrame == true && lastTimeFrameSent > 0L && (mill-lastTimeFrameSent) < TIME_GAP)
+            else
             {
-                while (mill < (TIME_GAP+lastTimeFrameSent) || framestart)
+                while ((millis() < (now + (ulong)time)) || framestart)
                 {
                     if (((SerialPort)OneSheeldSerial).BytesToRead > 0)
                     {
@@ -452,94 +600,79 @@ namespace OneSheeldClasses
                         if (datacount == 0) return;
                         processInput(buffer[0]);
                     }
-                    mill = (DateTime.Now.Ticks / 10000L) + 1L;
                 }
             }
+        }
 
-            isFirstFrame=true;
-            buffer[0] = START_OF_FRAME;
+        // ----- Netduino Specific Functions -----
+
+        // Instantiate the shields
+        void initShields()
+        {
+            if (ACCELEROMETER == null) ACCELEROMETER = new AccelerometerSensorShield(this);
+            if (BUZZER == null) BUZZER = new BuzzerShield(this);
+            if (CAMERA == null) CAMERA = new CameraShield(this);
+            if (CLOCK == null) CLOCK = new ClockShield(this);
+            if (DATALOGGER == null) DATALOGGER = new DataLoggerShield(this);
+            if (EMAIL == null) EMAIL = new EmailShield(this);
+            if (FACEBOOK == null) FACEBOOK = new FacebookShield(this);
+            if (GAMEPAD == null) GAMEPAD = new GamePadShield(this);
+            if (FOURSQUARE == null) FOURSQUARE = new FoursquareShield(this);
+            if (GPS == null) GPS = new GPSShield(this);
+            if (GRAVITY == null) GRAVITY = new GravitySensorShield(this);
+            if (GYROSCOPE == null) GYROSCOPE = new GyroscopeSensorShield(this);
+            if (KEYBOARD == null) KEYBOARD = new KeyboardShield(this);
+            if (KEYPAD == null) KEYPAD = new KeypadShield(this);
+            if (INTERNET == null) INTERNET = new InternetShield(this);
+            if (LCD == null) LCD = new LCDShield(this);
+            if (LED == null) LED = new LedShield(this);
+            if (LIGHT == null) LIGHT = new LightSensorShield(this);
+            if (MAGNETOMETER == null) MAGNETOMETER = new MagnetometerSensorShield(this);
+            if (MIC == null) MIC = new MicShield(this);
+            if (MUSICPLAYER == null) MUSICPLAYER = new MusicPlayerShield(this);
+            if (NOTIFICATION == null) NOTIFICATION = new NotificationShield(this);
+            if (ORIENTATION == null) ORIENTATION = new OrientationSensorShield(this);
+            if (PATTERN == null) PATTERN = new PatternShield(this);
+            if (PHONE == null) PHONE = new PhoneShield(this);
+            if (PRESSURE == null) PRESSURE = new PressureSensorShield(this);
+            if (PROXIMITY == null) PROXIMITY = new ProximitySensorShield(this);
+            if (PUSHBUTTON == null) PUSHBUTTON = new PushButtonShield(this);
+            if (SEVENSEGMENT == null) SEVENSEGMENT = new SevenSegmentShield(this);
+            if (SKYPE == null) SKYPE = new SkypeShield(this);
+            if (SLIDER == null) SLIDER = new SliderShield(this);
+            if (SMS == null) SMS = new SMSShield(this);
+            if (TEMPERATURE == null) TEMPERATURE = new TemperatureSensorShield(this);
+            if (TERMINAL == null) TERMINAL = new TerminalShield(this);
+            if (TOGGLEBUTTON == null) TOGGLEBUTTON = new ToggleButtonShield(this);
+            if (TTS == null) TTS = new TTSShield(this);
+            if (TWITTER == null) TWITTER = new TwitterShield(this);
+            if (VOICERECOGNITION == null) VOICERECOGNITION = new VoiceRecognitionShield(this);
+
+            if (listOfRemoteOneSheelds == null)
+                listOfRemoteOneSheelds = new RemoteOneSheeld[MAX_REMOTE_CONNECTIONS];
+        }
+
+        // For Serial Event Handling on Netduino
+        void processInput(Object sender, SerialDataReceivedEventArgs e)
+        {
+            processInput();
+        }
+
+        public ulong millis()
+        {
+            return (ulong)(DateTime.Now.Ticks / 10000L);
+        }
+
+        // Write a byte to the Serial Port
+        public void Write(byte b)
+        {
+            byte[] buffer = new byte[1];
+            buffer[0] = b;
+
             OneSheeldSerial.Write(buffer, 0, 1);
-            buffer[0] = LIBRARY_VERSION;
-            OneSheeldSerial.Write(buffer, 0, 1);
-            buffer[0] = (byte) shieldID;
-            OneSheeldSerial.Write(buffer, 0, 1);
-            buffer[0] = instanceID;
-            OneSheeldSerial.Write(buffer, 0, 1);
-            buffer[0] = functionID;
-            OneSheeldSerial.Write(buffer, 0, 1);
-            buffer[0] = (byte) argNo;
-            OneSheeldSerial.Write(buffer, 0, 1);
-            buffer[0] = (byte)(255 - argNo);
-            OneSheeldSerial.Write(buffer, 0, 1);
-
-            for (int i=0; i < argNo; i++)
-            {
-                FunctionArg temp = args[i] as FunctionArg;
-                buffer[0] = (byte)temp.getLength();
-                OneSheeldSerial.Write(buffer, 0, 1);
-                buffer[0] = (byte)(0xFF - (temp.getLength()));
-                OneSheeldSerial.Write(buffer, 0, 1);
-
-                for (int j = 0 ; j < temp.getLength() ; j++)
-                {
-                    buffer[0] = temp.getData()[j];
-                    OneSheeldSerial.Write(buffer, 0, 1);
-                }
-
-                temp = null;
-            }
-              
-            buffer[0] = END_OF_FRAME;
-            OneSheeldSerial.Write(buffer, 0, 1);
-            lastTimeFrameSent = (DateTime.Now.Ticks / 10000L) + 1L;
-
         }
 
-        public bool isAppConnected()
-        {
-          return isOneSheeldConnected;
-        }
-
-        public byte getShieldId()
-        {
-          return shield;
-        } 
-
-        public byte getInstanceId()
-        {
-            return instance;
-        }
-
-        public byte getFunctionId()
-        {
-            return functions;
-        }
-
-        public byte getArgumentNo()
-        {
-            return argumentnumber;
-        }
-
-        public byte getArgumentLength(byte x)
-        {
-            return argumentLengths[x];
-        }
-
-        public byte[] getArgumentData(byte x)
-        {
-          return arguments[x];
-        }
-
-        public float convertBytesToFloat(byte[] data)
-        {
-            return System.BitConverter.ToSingle(data, 0);
-        }
-
-        public byte[] convertFloatToBytes(float data)
-        {
-            return System.BitConverter.GetBytes(data);
-        }
-
+        // Convert a Arduino Pin # to a Netduino GPIO_PIN
         public Cpu.Pin ConvertByteToPin(byte PinNumber)
         {
             Cpu.Pin retval = Cpu.Pin.GPIO_NONE;
@@ -574,6 +707,7 @@ namespace OneSheeldClasses
             return retval;
         }
 
+        // Convert a Netduino GPIO_PIN to an Arduino Pin #
         public byte ConvertPinToByte(Cpu.Pin pin)
         {
             byte retval = 0x0ff;
@@ -623,18 +757,6 @@ namespace OneSheeldClasses
             return retval;
         }
 
-        public void listenToRemoteOneSheeld(RemoteOneSheeld remoteonesheeld)
-        {
-            if (remoteOneSheeldsCounter < MAX_REMOTE_CONNECTIONS)
-                listOfRemoteOneSheelds[remoteOneSheeldsCounter++] = remoteonesheeld;
-        }
-
-        public void setOnNewMessage(IRemoteCallback userCallback)
-        {
-            isOneSheeldRemoteDataUsed = true;
-            remoteCallBack = userCallback;
-        }
-
         //Start and End of packet sent
         const byte START_OF_FRAME = 0xFF;
         const byte END_OF_FRAME = 0x00;
@@ -644,6 +766,9 @@ namespace OneSheeldClasses
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;
+        const byte WAIT_RESET_APPLICATION = 0x02;
+        const byte CALLBACK_ENTERED = 0x03;
+        const byte CALLBACK_EXITED = 0x04;
 
         //Input function ID's 
         //Checking Bluetooth connection
@@ -654,32 +779,16 @@ namespace OneSheeldClasses
         // Time between sending frames
         const int TIME_GAP = 200;
 
+        // Number of Shields
+        const int SHIELDS_NO = 38;
+
         // Maximum number of Remote Connections
         const int MAX_REMOTE_CONNECTIONS = 10;
+
+        const int MAX_NO_OF_REQUESTS = 20;
 
         //RemoteShield constants
         const byte READ_MESSAGE_FLOAT = 0x02;
         const byte READ_MESSAGE_STRING = 0x03;
-
-        // inputShields
-        ShieldIds[] inputShieldsList = { 
-            ShieldIds.ONESHEELD_ID, ShieldIds.KEYPAD_SHIELD_ID, ShieldIds.GPS_ID, ShieldIds.SLIDER_ID, 
-            ShieldIds.PUSH_BUTTON_ID, ShieldIds.TOGGLE_BUTTON_ID, ShieldIds.GAMEPAD_ID, ShieldIds.PROXIMITY_ID, 
-            ShieldIds.MIC_ID, ShieldIds.TEMPERATURE_ID, ShieldIds.LIGHT_ID, ShieldIds.PRESSURE_ID, ShieldIds.GRAVITY_ID,
-            ShieldIds.ACCELEROMETER_ID, ShieldIds.GYROSCOPE_ID, ShieldIds.ORIENTATION_ID, ShieldIds.MAGNETOMETER_ID, 
-            ShieldIds.PHONE_ID, ShieldIds.SMS_ID, ShieldIds.CLOCK_ID, ShieldIds.KEYBOARD_ID, ShieldIds.TWITTER_ID, 
-            ShieldIds.VOICE_RECOGNITION_ID, ShieldIds.TERMINAL_ID, ShieldIds.REMOTE_SHEELD_ID
-        };
-
     }
-
-    public enum ShieldIds
-    {
-        ONESHEELD_ID, SLIDER_ID, LED_ID, PUSH_BUTTON_ID, TOGGLE_BUTTON_ID, FLASH_ID, NOTIFICATION_ID, SEV_SEG_ID,
-        BUZZER_ID, KEYPAD_SHIELD_ID, MAGNETOMETER_ID, ACCELEROMETER_ID, GAMEPAD_ID, SMS_ID, GYROSCOPE_ID, ORIENTATION_ID,
-        LIGHT_ID, PRESSURE_ID, TEMPERATURE_ID, PROXIMITY_ID, GRAVITY_ID, CAMERA_ID, UNKNOWN1_ID, LCD_ID, MIC_ID, FACEBOOK_ID,
-        TWITTER_ID, FOURSQUARE_ID, GPS_ID, MUSIC_PLAYER_ID, EMAIL_ID, SKYPE_ID, PHONE_ID, CLOCK_ID, KEYBOARD_ID, TTS_ID,
-        VOICE_RECOGNITION_ID, DATA_LOGGER_ID, TERMINAL_ID, PATTERN_ID, REMOTE_SHEELD_ID, INTERNET_ID
-    };
-
 }

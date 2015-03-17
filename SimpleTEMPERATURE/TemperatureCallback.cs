@@ -25,7 +25,7 @@ namespace SimpleTEMPERATURE
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.TEMPERATURE.setOnValueChange(this);
+            OneSheeld.TEMPERATURE.setOnValueChange(this);
         }
 
         public void Loop()

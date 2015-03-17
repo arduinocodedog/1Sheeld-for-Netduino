@@ -15,7 +15,7 @@ namespace OneSheeldClasses
         ITwitterCallback twitterCallback = null;
 
         public TwitterShield(OneSheeld onesheeld)
-            : base(onesheeld, (byte) ShieldIds.TWITTER_ID)
+            : base(onesheeld, ShieldIds.TWITTER_ID)
         {
             Sheeld = onesheeld;
         }
@@ -108,7 +108,7 @@ namespace OneSheeldClasses
         public override void processData()
         {
 	        //Checking Function-ID
-	        byte functionId = Sheeld.getFunctionId();
+            byte functionId = getOneSheeldInstance().getFunctionId();
 	        if( functionId == TWITTER_GET_TWEET)
 	        {	
 		        isItNewTweet = true;
@@ -123,29 +123,33 @@ namespace OneSheeldClasses
 			        tweetText = "";
 		        }
 
-		        int userNameLength = Sheeld.getArgumentLength(0);
+                int userNameLength = getOneSheeldInstance().getArgumentLength(0);
 		        for (int j=0; j<userNameLength; j++)
 		        {
-                    userName += Sheeld.getArgumentData(0)[j];
+                    userName += getOneSheeldInstance().getArgumentData(0)[j];
 		        }
 
-		        int tweetLength= Sheeld.getArgumentLength(1);
+                int tweetLength = getOneSheeldInstance().getArgumentLength(1);
 		        for(int i=0 ;i<tweetLength;i++)
 		        {
-			        tweetText += Sheeld.getArgumentData(1)[i];
+                    tweetText += getOneSheeldInstance().getArgumentData(1)[i];
 		        }
 
                 //Users Function Invoked
-		        if(isCallBackAssigned)
+		        if(isCallBackAssigned && !isInACallback())
 		        {
+                    enteringACallback();
 			        twitterCallback.OnNewTweet(userName,tweetText);
+                    exitingACallback();
 		        }
 	        }
 	        else if(functionId == TWITTER_CHECK_SELECTED) //called when twitter shield is selected
 	        {
-                if (isCallBackAssigned)
+                if (isCallBackAssigned && !isInACallback())
                 {
+                    enteringACallback();
                     twitterCallback.OnTwitterSelected();
+                    exitingACallback();
                 }
             }
         }

@@ -25,10 +25,10 @@ namespace SimpleFOURSQUARE
 
         public void Loop()
         {
-            if (sheeld.PUSHBUTTON.isPressed())
+            if (OneSheeld.PUSHBUTTON.isPressed())
             {
                 led.Write(true);
-                sheeld.FOURSQUARE.checkIn("511759f2e4b0b0ae6ed91067", "Back to work!");
+                OneSheeld.FOURSQUARE.checkIn("511759f2e4b0b0ae6ed91067", "Back to work!");
                 Thread.Sleep(300);
             }
             else

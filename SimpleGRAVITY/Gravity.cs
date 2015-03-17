@@ -25,9 +25,9 @@ namespace SimpleGRAVITY
 
         public void Loop()
         {
-            if (sheeld.GRAVITY.getX() > 9 ||
-                sheeld.GRAVITY.getY() > 9 ||
-                sheeld.GRAVITY.getZ() > 9)
+            if (OneSheeld.GRAVITY.getX() > 9 ||
+                OneSheeld.GRAVITY.getY() > 9 ||
+                OneSheeld.GRAVITY.getZ() > 9)
             {
                 led.Write(true);
             }

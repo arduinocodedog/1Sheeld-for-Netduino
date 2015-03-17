@@ -22,9 +22,9 @@ namespace SimpleLED
 
         public void Loop()
         {
-            sheeld.LED.setHigh();
+            OneSheeld.LED.setHigh();
             Thread.Sleep(1000);
-            sheeld.LED.setLow();
+            OneSheeld.LED.setLow();
             Thread.Sleep(1000);
         }
     }

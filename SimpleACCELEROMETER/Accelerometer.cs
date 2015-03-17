@@ -25,9 +25,9 @@ namespace SimpleACCELEROMETER
 
         public void Loop()
         {
-            if (sheeld.ACCELEROMETER.getX() > 8 ||
-                sheeld.ACCELEROMETER.getY() > 8 ||
-                sheeld.ACCELEROMETER.getZ() > 8)
+            if (OneSheeld.ACCELEROMETER.getX() > 8 ||
+                OneSheeld.ACCELEROMETER.getY() > 8 ||
+                OneSheeld.ACCELEROMETER.getZ() > 8)
             {
                 led.Write(true);
             }

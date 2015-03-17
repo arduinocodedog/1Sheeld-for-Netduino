@@ -19,23 +19,23 @@ namespace SimpleMAGNETOMETER
             sheeld = new OneSheeld();
             sheeld.begin();
 
-            sheeld.LCD.begin();
+            OneSheeld.LCD.begin();
         }
 
         public void Loop()
         {
             /* Move the cursor. */
-            sheeld.LCD.setCursor(0, 0);
+            OneSheeld.LCD.setCursor(0, 0);
             /* Print a title. */
-            sheeld.LCD.print("MagneticStrength");
+            OneSheeld.LCD.print("MagneticStrength");
             /* Move the cursor. */
-            sheeld.LCD.setCursor(1, 0);
+            OneSheeld.LCD.setCursor(1, 0);
             /* Display the magnetic strength. */
-            sheeld.LCD.print(sheeld.MAGNETOMETER.getMagneticStrength(), 2);
+            OneSheeld.LCD.print(OneSheeld.MAGNETOMETER.getMagneticStrength(), 2);
             /* Move the cursor. */
-            sheeld.LCD.setCursor(1, 7);
+            OneSheeld.LCD.setCursor(1, 7);
             /* Print a unit. */
-            sheeld.LCD.print("Tesla");
+            OneSheeld.LCD.print("Tesla");
             /* Wait for 1 second. */
             Thread.Sleep(1000);
         }

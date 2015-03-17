@@ -21,7 +21,7 @@ namespace AdvancedEMAIL
             sheeld = new OneSheeld();
             sheeld.begin();
 
-            sheeld.PUSHBUTTON.setOnButtonStatusChange(this);
+            OneSheeld.PUSHBUTTON.setOnButtonStatusChange(this);
         }
 
         public void Loop()
@@ -30,7 +30,7 @@ namespace AdvancedEMAIL
             {
                 if (IsButtonPressed)
                 {
-                    sheeld.EMAIL.send("example@example.com", "Button pressed!", "Hi, someone pressed the button!");
+                    OneSheeld.EMAIL.send("example@example.com", "Button pressed!", "Hi, someone pressed the button!");
                     MessageSent = true;
                 }
             }

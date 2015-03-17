@@ -25,7 +25,7 @@ namespace SimpleMIC
 
         public void Loop()
         {
-            if (sheeld.MIC.getValue() > 80)
+            if (OneSheeld.MIC.getValue() > 80)
             {
                 led.Write(true);
             }

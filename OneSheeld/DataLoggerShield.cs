@@ -4,11 +4,12 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class DataLoggerShield
+    public class DataLoggerShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
         public DataLoggerShield(OneSheeld onesheeld)
+            :base(onesheeld, ShieldIds.DATA_LOGGER_ID)
         {
             Sheeld = onesheeld;
         }

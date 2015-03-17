@@ -4,7 +4,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class LedShield
+    public class LedShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
@@ -26,6 +26,7 @@ namespace OneSheeldClasses
         // ----------------------  Public Methods -----------------------
 
         public LedShield(OneSheeld onesheeld)
+            : base(onesheeld, ShieldIds.LED_ID)
         {
             Sheeld = onesheeld;
         }

@@ -54,13 +54,13 @@ namespace OneSheeldClasses
         //Terminal Incomming Data processing
         public override void processData()
         {
-	        byte functionID = Sheeld.getFunctionId();
-	        byte dataLength = Sheeld.getArgumentLength(0);
+            byte functionID = getOneSheeldInstance().getFunctionId();
+            byte dataLength = getOneSheeldInstance().getArgumentLength(0);
 	        if(functionID == TERMINAL_READ)
 	        {
 			    for (int j=0; j < dataLength; j++)
 			    {
-				    buffer.push((sbyte) Sheeld.getArgumentData(0)[j]);
+                    buffer.push((sbyte)getOneSheeldInstance().getArgumentData(0)[j]);
 			    }
 	        }
         }

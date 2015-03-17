@@ -4,11 +4,12 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class SkypeShield
+    public class SkypeShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
         public SkypeShield(OneSheeld onesheeld)
+            : base(onesheeld, ShieldIds.SKYPE_ID)
         {
             Sheeld = onesheeld;
         }

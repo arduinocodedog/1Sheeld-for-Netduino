@@ -25,9 +25,9 @@ namespace SimpleGYROSCOPE
 
         public void Loop()
         {
-            if (sheeld.GRAVITY.getX() > 1 ||
-                sheeld.GRAVITY.getY() > 1 ||
-                sheeld.GRAVITY.getZ() > 1)
+            if (OneSheeld.GRAVITY.getX() > 1 ||
+                OneSheeld.GRAVITY.getY() > 1 ||
+                OneSheeld.GRAVITY.getZ() > 1)
             {
                 led.Write(true);
             }

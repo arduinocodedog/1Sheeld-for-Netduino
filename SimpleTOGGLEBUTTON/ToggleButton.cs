@@ -25,7 +25,7 @@ namespace SimpleTOGGLEBUTTON
 		
 		public void Loop()
 		{
-            if (sheeld.TOGGLEBUTTON.getStatus())
+            if (OneSheeld.TOGGLEBUTTON.getStatus())
             {
                 led.Write(true);
             }

@@ -25,7 +25,7 @@ namespace SimplePROXIMITY
 
         public void Loop()
         {
-            if (sheeld.PROXIMITY.getValue() > 0)
+            if (OneSheeld.PROXIMITY.getValue() > 0)
             {
                 led.Write(true);
             }

@@ -30,18 +30,18 @@ namespace AdvancedTTS
 
         public void Loop()
         {
-            if (sheeld.VOICERECOGNITION.isNewCommandReceived())
+            if (OneSheeld.VOICERECOGNITION.isNewCommandReceived())
             {
-                string lastCommand = sheeld.VOICERECOGNITION.getLastCommand();
+                string lastCommand = OneSheeld.VOICERECOGNITION.getLastCommand();
 
                 if (lastCommand.CompareTo(firstCommand) == 0)
                 {
-                    sheeld.TTS.say("Good morning sir");
+                    OneSheeld.TTS.say("Good morning sir");
                 }
                 
                 if (lastCommand.CompareTo(secondCommand) == 0)
                 {
-                    sheeld.TTS.say("the weather is pretty good sir");
+                    OneSheeld.TTS.say("the weather is pretty good sir");
                 }
 
                 if (lastCommand.Length >= thirdCommand.Length)
@@ -49,7 +49,7 @@ namespace AdvancedTTS
                     if (lastCommand.Substring(0, thirdCommand.Length).CompareTo(thirdCommand) == 0)
                     {
                         led.Write(true);
-                        sheeld.TTS.say("L.E.D. turned on");
+                        OneSheeld.TTS.say("L.E.D. turned on");
                     }
                 }
 
@@ -58,7 +58,7 @@ namespace AdvancedTTS
                     if (lastCommand.Substring(0, fourthCommand.Length).CompareTo(fourthCommand) == 0)
                     {
                         led.Write(false);
-                        sheeld.TTS.say("L.E.D. turned off");
+                        OneSheeld.TTS.say("L.E.D. turned off");
                     }
                 }
             }

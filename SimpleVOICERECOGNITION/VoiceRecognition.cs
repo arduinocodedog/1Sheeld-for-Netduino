@@ -28,17 +28,17 @@ namespace SimpleVOICERECOGNITION
 
         public void Loop()
         {
-            if (sheeld.VOICERECOGNITION.isNewCommandReceived())
+            if (OneSheeld.VOICERECOGNITION.isNewCommandReceived())
             {
-                string lastCommand = sheeld.VOICERECOGNITION.getLastCommand();
+                string lastCommand = OneSheeld.VOICERECOGNITION.getLastCommand();
 
                 if (lastCommand.Length >= firstCommand.Length)
                 {
                     if (lastCommand.Substring(0, firstCommand.Length).CompareTo(firstCommand) == 0)
                     {
                         led.Write(true);
-                        sheeld.MUSICPLAYER.setVolume(5);
-                        sheeld.MUSICPLAYER.play();
+                        OneSheeld.MUSICPLAYER.setVolume(5);
+                        OneSheeld.MUSICPLAYER.play();
                     }
                 }
 
@@ -47,7 +47,7 @@ namespace SimpleVOICERECOGNITION
                     if (lastCommand.Substring(0, secondCommand.Length).CompareTo(secondCommand) == 0)
                     {
                         led.Write(false);
-                        sheeld.MUSICPLAYER.pause();
+                        OneSheeld.MUSICPLAYER.pause();
                     }
                 }
 

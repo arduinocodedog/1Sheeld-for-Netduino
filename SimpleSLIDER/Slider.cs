@@ -22,13 +22,13 @@ namespace SimpleSLIDER
 
         public void Loop()
         {
-            byte value = sheeld.SLIDER.getValue();
+            byte value = OneSheeld.SLIDER.getValue();
             
             int waitvalue = 1000 - (3 * value);
 
-            sheeld.BUZZER.buzzOn();
+            OneSheeld.BUZZER.buzzOn();
             Thread.Sleep(waitvalue);
-            sheeld.BUZZER.buzzOff();
+            OneSheeld.BUZZER.buzzOff();
             Thread.Sleep(waitvalue);
         }
     }

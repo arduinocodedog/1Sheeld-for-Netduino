@@ -27,19 +27,19 @@ namespace SimpleMUSICPLAYER
 
         public void Loop()
         {
-            if (sheeld.PUSHBUTTON.isPressed())
+            if (OneSheeld.PUSHBUTTON.isPressed())
             { 
                 if (MusicPlaying)
                 {
                     led.Write(false);
-                    sheeld.MUSICPLAYER.pause();
+                    OneSheeld.MUSICPLAYER.pause();
                     MusicPlaying = false;
                 }
                 else
                 {
                     led.Write(true);
-                    sheeld.MUSICPLAYER.setVolume(5);
-                    sheeld.MUSICPLAYER.play();
+                    OneSheeld.MUSICPLAYER.setVolume(5);
+                    OneSheeld.MUSICPLAYER.play();
                     MusicPlaying = true;
                 }
 

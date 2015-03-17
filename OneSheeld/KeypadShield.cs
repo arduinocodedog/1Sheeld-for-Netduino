@@ -13,24 +13,27 @@ namespace OneSheeldClasses
         byte col = 0;
 
         public KeypadShield(OneSheeld onesheeld)
-            : base(onesheeld, (byte)ShieldIds.KEYPAD_SHIELD_ID)
+            : base(onesheeld, ShieldIds.KEYPAD_SHIELD_ID)
         {
             Sheeld = onesheeld;
         }
 
         public override void processData()
         {
-            byte functionID = Sheeld.getFunctionId();
+            byte functionID = getOneSheeldInstance().getFunctionId();
 
             if (functionID == KEYPAD_VALUE)
             {
-                row = Sheeld.getArgumentData(0)[0];
-                col = Sheeld.getArgumentData(1)[0]; 
-                if (isCallBackAssigned)
+                row = getOneSheeldInstance().getArgumentData(0)[0];
+                col = getOneSheeldInstance().getArgumentData(1)[0]; 
+                if (isCallBackAssigned && !isInACallback())
                 {
                     byte bitrow = (byte) findbitposition(row);
                     byte bitcol = (byte) findbitposition(col);
+
+                    enteringACallback();
                     changeCallBack.OnChange(bitrow, bitcol);
+                    exitingACallback();
                 }
             }
         }

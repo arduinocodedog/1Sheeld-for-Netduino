@@ -24,13 +24,13 @@ namespace AdvancedSMS
         public void Loop()
         {
             /* If PushButton is pressed, send an SMS Message */
-            if (sheeld.PUSHBUTTON.isPressed())
+            if (OneSheeld.PUSHBUTTON.isPressed())
             {
                 /* Check that we haven't sent the SMS already. */
                 if (!isMessageSent)
                 {
                     /* Send the SMS. */
-                    sheeld.SMS.send("1234567890", "Push a button, send a text!");
+                    OneSheeld.SMS.send("1234567890", "Push a button, send a text!");
                     /* Set the flag. */
                     isMessageSent = true;
                 }

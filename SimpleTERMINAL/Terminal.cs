@@ -25,17 +25,17 @@ namespace SimpleTERMINAL
 
         public void Loop()
         {
-            if (sheeld.TOGGLEBUTTON.getStatus())
+            if (OneSheeld.TOGGLEBUTTON.getStatus())
             {
                 led.Write(true);
-                sheeld.TERMINAL.println("PushButton Pressed");
+                OneSheeld.TERMINAL.println("PushButton Pressed");
             }
             else
             {
                 led.Write(false);
-                sheeld.TERMINAL.println("PushButton Released");
+                OneSheeld.TERMINAL.println("PushButton Released");
             }
-            Thread.Sleep(5000);
+            sheeld.delay(500);
         }
     }
 }

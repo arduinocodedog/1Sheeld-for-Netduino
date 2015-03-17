@@ -28,7 +28,7 @@ namespace AdvancedSEVENSEGMENT
         {
             if (button.Read())
             {
-                sheeld.SEVENSEGMENT.setNumber(number);
+                OneSheeld.SEVENSEGMENT.setNumber(number);
                 Thread.Sleep(1000);
                 number++;
                 if (number > 9)

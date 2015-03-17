@@ -26,7 +26,7 @@ namespace SimpleORIENTATION
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.ORIENTATION.setOnValueChange(this);
+            OneSheeld.ORIENTATION.setOnValueChange(this);
         }
 
         public void Loop()

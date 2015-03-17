@@ -23,7 +23,7 @@ namespace SimplePUSHBUTTON
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.PUSHBUTTON.setOnButtonStatusChange(this);
+            OneSheeld.PUSHBUTTON.setOnButtonStatusChange(this);
         }
 
         public void Loop()

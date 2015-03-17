@@ -23,7 +23,7 @@ namespace SimpleTOGGLEBUTTON
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.TOGGLEBUTTON.setOnButtonStatusChange(this);
+            OneSheeld.TOGGLEBUTTON.setOnButtonStatusChange(this);
         }
 
         public void Loop()

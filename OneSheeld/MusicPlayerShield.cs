@@ -4,11 +4,12 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class MusicPlayerShield
+    public class MusicPlayerShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
         public MusicPlayerShield(OneSheeld onesheeld)
+            : base(onesheeld, ShieldIds.MUSIC_PLAYER_ID)
         {
             Sheeld = onesheeld;
         }

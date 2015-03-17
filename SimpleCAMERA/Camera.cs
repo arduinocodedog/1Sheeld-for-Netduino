@@ -32,10 +32,10 @@ namespace SimpleCAMERA
             if (button.Read())
             {
                 led.Write(true);
-                sheeld.CAMERA.setFlash(sheeld.CAMERA.ON);
-                sheeld.CAMERA.rearCapture();
-                Thread.Sleep(10000); 
-                sheeld.TWITTER.tweetLastPicture("Posted by @1Sheeld");
+                OneSheeld.CAMERA.setFlash(OneSheeld.CAMERA.ON);
+                OneSheeld.CAMERA.rearCapture();
+                Thread.Sleep(10000);
+                OneSheeld.TWITTER.tweetLastPicture("Posted by @1Sheeld");
             }
             else
             {

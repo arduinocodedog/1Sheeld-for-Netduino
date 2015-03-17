@@ -25,10 +25,10 @@ namespace SimpleNOTIFICATION
 
         public void Loop()
         {
-            if (sheeld.PUSHBUTTON.isPressed())
+            if (OneSheeld.PUSHBUTTON.isPressed())
             {
                 led.Write(true);
-                sheeld.NOTIFICATION.notifyPhone("Someone pressed the button!");
+                OneSheeld.NOTIFICATION.notifyPhone("Someone pressed the button!");
                 Thread.Sleep(300);
             }
             else

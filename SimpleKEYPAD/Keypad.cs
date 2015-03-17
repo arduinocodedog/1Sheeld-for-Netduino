@@ -32,7 +32,7 @@ namespace SimpleKEYPAD
         public void Loop()
         {
             /* If keypad's button 1 is pressed. */
-            if (sheeld.KEYPAD.isRowPressed(0) && sheeld.KEYPAD.isColumnPressed(0))
+            if (OneSheeld.KEYPAD.isRowPressed(0) && OneSheeld.KEYPAD.isColumnPressed(0))
             {
                 /* Turn on the LED 1. */
                 led1.Write(true);
@@ -42,7 +42,7 @@ namespace SimpleKEYPAD
                 led4.Write(false);
             }
             /* If keypad's button 2 is pressed. */
-            else if (sheeld.KEYPAD.isRowPressed(0) && sheeld.KEYPAD.isColumnPressed(1))
+            else if (OneSheeld.KEYPAD.isRowPressed(0) && OneSheeld.KEYPAD.isColumnPressed(1))
             {
                 /* Turn on the LED 2. */
                 led2.Write(true);
@@ -52,7 +52,7 @@ namespace SimpleKEYPAD
                 led4.Write(false);
             }
             /* If keypad's button 3 is pressed. */
-            else if (sheeld.KEYPAD.isRowPressed(0) && sheeld.KEYPAD.isColumnPressed(2))
+            else if (OneSheeld.KEYPAD.isRowPressed(0) && OneSheeld.KEYPAD.isColumnPressed(2))
             {
                 /* Turn on the LED 3. */
                 led3.Write(true);
@@ -62,7 +62,7 @@ namespace SimpleKEYPAD
                 led4.Write(false);
             }
             /* If keypad's button 4 is pressed. */
-            else if (sheeld.KEYPAD.isRowPressed(1) && sheeld.KEYPAD.isColumnPressed(0))
+            else if (OneSheeld.KEYPAD.isRowPressed(1) && OneSheeld.KEYPAD.isColumnPressed(0))
             {
                 /* Turn on the LED 4. */
                 led4.Write(true);

@@ -12,9 +12,9 @@ namespace OneSheeldClasses
         ulong value = 0L;
         ulong[] data = null;
         byte ShieldFunctionID = 0x00;
-        byte ShieldID = 0x00;
+        ShieldIds ShieldID = 0x00;
 
-        public ULongInputShield(OneSheeld onesheeld, byte funcid, byte shieldid, int bytesused)
+        public ULongInputShield(OneSheeld onesheeld, byte funcid, ShieldIds shieldid, int bytesused)
             : base(onesheeld, shieldid)
         {
             Sheeld = onesheeld;
@@ -33,24 +33,26 @@ namespace OneSheeldClasses
         public override void processData()
         {
             //Check Function-ID
-            byte functionId = Sheeld.getFunctionId();
+            byte functionId = getOneSheeldInstance().getFunctionId();
 
             if (functionId == ShieldFunctionID)
             {
                 value = 0;
-                data[0] = Sheeld.getArgumentData(0)[0];
-                data[1] = Sheeld.getArgumentData(0)[1];
+                data[0] = getOneSheeldInstance().getArgumentData(0)[0];
+                data[1] = getOneSheeldInstance().getArgumentData(0)[1];
                 if (dataSize > 2)
-                    data[2] = Sheeld.getArgumentData(0)[2];
+                    data[2] = getOneSheeldInstance().getArgumentData(0)[2];
                 value |= data[0];
                 value |= (data[1] << 8);
                 if (dataSize > 2)
                     value |= (data[2] << 16);                
 
                 //User Function Invoked
-                if (isCallBackAssigned)
+                if (isCallBackAssigned && !isInACallback())
                 {
+                    enteringACallback();
                     changeCallBack.OnChange(value);
+                    exitingACallback();
                 }
             }	
         }

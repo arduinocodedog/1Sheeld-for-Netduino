@@ -4,11 +4,12 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class NotificationShield
+    public class NotificationShield : ShieldParent
     {
         OneSheeld Sheeld = null;
 
         public NotificationShield(OneSheeld onesheeld)
+            : base(onesheeld, ShieldIds.NOTIFICATION_ID)
         {
             Sheeld = onesheeld;
         }

@@ -23,7 +23,7 @@ namespace SimpleMIC
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            sheeld.MIC.setOnValueChange(this);
+            OneSheeld.MIC.setOnValueChange(this);
         }
 
         public void Loop()
