@@ -1,13 +1,9 @@
 using System;
-<<<<<<< HEAD
 using System.Collections;
-=======
->>>>>>> origin/master
 using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-<<<<<<< HEAD
     public class HttpRequest
     {
         OneSheeld Sheeld = null;
@@ -276,9 +272,5 @@ namespace OneSheeldClasses
         const byte FINISH_CALLBACK_BIT = 0x08;
 
         const int MAX_NO_OF_REQUESTS = 20;
-=======
-    class HttpRequest
-    {
->>>>>>> origin/master
     }
 }

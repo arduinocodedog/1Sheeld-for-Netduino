@@ -50,7 +50,6 @@
     <Compile Include="ICharCallback.cs" />
     <Compile Include="IGamePadCallback.cs" />
     <Compile Include="IGPSCallback.cs" />
-<<<<<<< HEAD
     <Compile Include="IHttpJsonArrayLengthResponseCallback.cs" />
     <Compile Include="IHttpRequestFailureCallback.cs" />
     <Compile Include="IHttpRequestFinishCallback.cs" />
@@ -61,8 +60,6 @@
     <Compile Include="IHttpResponseJsonResponseCallback.cs" />
     <Compile Include="IHttpResponseNextResponseBytesCallback.cs" />
     <Compile Include="IInternetErrorCallback.cs" />
-=======
->>>>>>> origin/master
     <Compile Include="InternetShield.cs" />
     <Compile Include="IPatternCallback.cs" />
     <Compile Include="IPhoneCallback.cs" />

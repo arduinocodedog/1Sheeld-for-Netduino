@@ -1,13 +1,9 @@
 using System;
-<<<<<<< HEAD
 using System.Collections;
-=======
->>>>>>> origin/master
 using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-<<<<<<< HEAD
     public class HttpResponse
     {
         OneSheeld Sheeld = null;
@@ -221,9 +217,5 @@ namespace OneSheeldClasses
         const byte RESPONSE_GET_NEXT_RESPONSE_BIT =	0x04;
         const byte RESPONSE_GET_JSON_BIT = 0x08;
         const byte RESPONSE_GET_JSON_ARRAY_LENGTH_BIT = 0x10;
-=======
-    class HttpResponse
-    {
->>>>>>> origin/master
     }
 }
