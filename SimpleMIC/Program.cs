@@ -7,21 +7,11 @@ namespace SimpleMIC
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            MicCallback callback = new MicCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new MicCallback());
 
-            /*
             // Non-Callback Version
-            Mic mic = new Mic();
-            mic.Setup();
-            while (true)
-                mic.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new Mic());
         }
 
     }

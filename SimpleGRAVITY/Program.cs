@@ -7,21 +7,11 @@ namespace SimpleGRAVITY
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            GravityCallback callback = new GravityCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new GravityCallback());
 
-            /*
             // Non-Callback Version
-            Gravity gravity = new Gravity();
-            gravity.Setup();
-            while (true)
-                gravity.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new Gravity());
         }
 
     }

@@ -10,22 +10,20 @@ using OneSheeldClasses;
 
 namespace SimpleMIC
 {
-    public class Mic
+    public class Mic : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
 		public void Setup()
 		{
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.MIC.getValue() > 80)
+            if (MIC.getValue() > 80)
             {
                 led.Write(true);
             }

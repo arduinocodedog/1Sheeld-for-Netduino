@@ -6,17 +6,14 @@ namespace OneSheeldClasses
 {
     public class PhoneShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
         bool ringing = false;
         string number = null;
         bool isCallBackAssigned = false;
         IPhoneCallback changeCallBack = null;
 
-        public PhoneShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.PHONE_ID)
+        public PhoneShield()
+            : base(ShieldIds.PHONE_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void call(string phone)
@@ -27,7 +24,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.PHONE_ID, 0, PHONE_CALL, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.PHONE_ID, 0, PHONE_CALL, 1, args);
         }
 
         public bool isRinging()

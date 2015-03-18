@@ -7,12 +7,7 @@ namespace SimpleCAMERA
     {
         public static void Main()
         {
-            // write your code here
-            Camera camera = new Camera();
-            camera.Setup();
-            while (true)
-                camera.Loop();
-
+            OneSheeldClasses.OneSheeldUser.Run(new Camera());
         }
 
     }

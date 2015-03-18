@@ -7,21 +7,11 @@ namespace SimpleORIENTATION
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            OrientationCallback callback = new OrientationCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new OrientationCallback());
 
-            /*
             // Non-Callback Version
-            Orientation orientation = new Orientation();
-            orientation.Setup();
-            while (true)
-                orientation.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new Orientation());
         }
 
     }

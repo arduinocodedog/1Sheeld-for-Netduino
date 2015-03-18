@@ -6,7 +6,6 @@ namespace OneSheeldClasses
 {
     public class BuzzerShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
         bool buzzing = false;
 
         //Buzz Setter 
@@ -21,16 +20,15 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        Sheeld.sendPacket(ShieldIds.BUZZER_ID,0,BUZZER_SET,1,args);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.BUZZER_ID,0,BUZZER_SET,1,args);
         }
 
         // ----------------------  Public Methods -----------------------
 
         //Constructor
-        public BuzzerShield(OneSheeld onesheeld)
-            :base(onesheeld, ShieldIds.BUZZER_ID)
+        public BuzzerShield()
+            :base(ShieldIds.BUZZER_ID)
         {
-            Sheeld = onesheeld;
         }
 
         //Buzzing On

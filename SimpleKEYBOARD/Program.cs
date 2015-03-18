@@ -7,21 +7,11 @@ namespace SimpleKEYBOARD
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            KeyboardCallback callback = new KeyboardCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new KeyboardCallback());
 
-            /*
             // Non-Callback Version
-            Keyboard keyboard = new Keyboard();
-            keyboard.Setup();
-            while (true)
-                keyboard.Loop();
-             */
+            // OneSheeldClasses.OneSheeldUser.Run(new Keyboard());
         }
 
     }

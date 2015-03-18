@@ -10,22 +10,20 @@ using OneSheeldClasses;
 
 namespace SimplePROXIMITY
 {
-    public class Proximity
+    public class Proximity : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.PROXIMITY.getValue() > 0)
+            if (PROXIMITY.getValue() > 0)
             {
                 led.Write(true);
             }

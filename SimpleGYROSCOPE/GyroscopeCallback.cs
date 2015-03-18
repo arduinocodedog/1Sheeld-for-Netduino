@@ -10,9 +10,8 @@ using OneSheeldClasses;
 
 namespace SimpleGYROSCOPE
 {
-    public class GyroscopeCallback : IXYZFloatCallback
+    public class GyroscopeCallback : OneSheeldUser, IOneSheeldSketch, IXYZFloatCallback
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         float x = 0.0f;
@@ -21,12 +20,11 @@ namespace SimpleGYROSCOPE
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.GYROSCOPE.setOnValueChange(this);
+            GYROSCOPE.setOnValueChange(this);
         }
 
         public void Loop()

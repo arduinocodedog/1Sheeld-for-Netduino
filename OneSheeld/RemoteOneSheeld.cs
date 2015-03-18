@@ -6,16 +6,14 @@ namespace OneSheeldClasses
 {
     public class RemoteOneSheeld
     {
-        OneSheeld Sheeld = null;
         bool isCallBackAssigned = false;
         bool isSubscribeAssigned = false;
         IRemoteShieldCallback remoteCallBack = null;
         ISubscribeCallback subscribeCallBack = null;
         string remoteOneSheeldAddress = "";
         
-        public RemoteOneSheeld(OneSheeld onesheeld, string address)
+        public RemoteOneSheeld(string address)
         {
-            Sheeld = onesheeld;
             remoteOneSheeldAddress = address;
         }
 
@@ -46,7 +44,7 @@ namespace OneSheeldClasses
 
                 args.Add(arg3);
 
-		        Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID,0,REMOTEONESHEELD_PIN_MODE,3,args);
+		        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID,0,REMOTEONESHEELD_PIN_MODE,3,args);
 	        }
         }
 
@@ -77,7 +75,7 @@ namespace OneSheeldClasses
 
                 args.Add(arg3);
 
-                Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_WRITE, 3, args);
+                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_WRITE, 3, args);
             }
         }
 
@@ -116,7 +114,7 @@ namespace OneSheeldClasses
 
                 args.Add(arg3);
 
-                Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_ANALOG_WRITE, 3, args);
+                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_ANALOG_WRITE, 3, args);
             }
         }
 
@@ -134,7 +132,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg2 = new FunctionArg(1, pn);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_READ, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_READ, 2, args);
         }
 
         //Sending Message Remotely
@@ -150,11 +148,11 @@ namespace OneSheeldClasses
 
             args.Add(arg2);
 
-            FunctionArg arg3 = new FunctionArg(sizeof(float), Sheeld.convertFloatToBytes(value));
+            FunctionArg arg3 = new FunctionArg(sizeof(float), OneSheeldMain.OneSheeld.convertFloatToBytes(value));
 
             args.Add(arg3);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SEND_FLOAT, 3, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SEND_FLOAT, 3, args);
         }
 
         public void sendMessage(string key, string stringData)
@@ -173,17 +171,17 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SEND_STRING, 3, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SEND_STRING, 3, args);
         }
 
         public void processFrame()
         {
-            if(!isSubscribeAssigned || Sheeld.isInACallback())
+            if(!isSubscribeAssigned || OneSheeldMain.OneSheeld.isInACallback())
                 return;
 
             string remoteAddress = "";
             for (int i = 0; i < 36; i++)
-                remoteAddress += Convert.ToChar(Sheeld.getArgumentData(0)[i]);
+                remoteAddress += Convert.ToChar(OneSheeldMain.OneSheeld.getArgumentData(0)[i]);
 
             if (!remoteOneSheeldAddress.Equals(remoteAddress))
                 return;
@@ -194,19 +192,19 @@ namespace OneSheeldClasses
         void processData()
         {
   
-	        byte functionId = Sheeld.getFunctionId();
+	        byte functionId = OneSheeldMain.OneSheeld.getFunctionId();
 
-            Sheeld.enteringACallback();
+            OneSheeldMain.OneSheeld.enteringACallback();
 	        if(functionId == DIGITAL_SUBSCRIBE_VALUE && isSubscribeAssigned)
 	        {
-		        int argumentNo = Sheeld.getArgumentNo();
+		        int argumentNo = OneSheeldMain.OneSheeld.getArgumentNo();
 		        byte pinData;
 		        byte pinNo;
 		        bool pinValue;
 
 		        for (int i=1 ; i <argumentNo; i++)
 		        {
-			        pinData = Sheeld.getArgumentData((byte)i)[0];
+			        pinData = OneSheeldMain.OneSheeld.getArgumentData((byte)i)[0];
 			        pinNo = (byte) (pinData & 0x7F);
 			        pinValue = (pinData >> 7) != 0x00;
 
@@ -217,11 +215,11 @@ namespace OneSheeldClasses
 	        else if(functionId == READ_MESSAGE_FLOAT)
 	        {
                 string floatKey = "";
-                int keyLength = Sheeld.getArgumentLength(1);
+                int keyLength = OneSheeldMain.OneSheeld.getArgumentLength(1);
                 for (int i = 0; i < keyLength; i++)
-                    floatKey += Convert.ToChar(Sheeld.getArgumentData(1)[i]);
+                    floatKey += Convert.ToChar(OneSheeldMain.OneSheeld.getArgumentData(1)[i]);
 
-                float incommingFloatValue = Sheeld.convertBytesToFloat(Sheeld.getArgumentData(2));
+                float incommingFloatValue = OneSheeldMain.OneSheeld.convertBytesToFloat(OneSheeldMain.OneSheeld.getArgumentData(2));
 
     	        if(isCallBackAssigned)
     	        {
@@ -232,21 +230,21 @@ namespace OneSheeldClasses
 	        else if(functionId == READ_MESSAGE_STRING )
 	        {
                 string stringKey = "";
-                int keyLength = Sheeld.getArgumentLength(1);
+                int keyLength = OneSheeldMain.OneSheeld.getArgumentLength(1);
                 for (int i = 0; i < keyLength; i++)
-                    stringKey += Convert.ToChar(Sheeld.getArgumentData(1)[i]);
+                    stringKey += Convert.ToChar(OneSheeldMain.OneSheeld.getArgumentData(1)[i]);
 
                 string incommingStringData = "";
-                int stringDataLength = Sheeld.getArgumentLength(2);
+                int stringDataLength = OneSheeldMain.OneSheeld.getArgumentLength(2);
                 for (int i = 0; i < stringDataLength; i++)
-                    incommingStringData += Convert.ToChar(Sheeld.getArgumentData(2)[i]);
+                    incommingStringData += Convert.ToChar(OneSheeldMain.OneSheeld.getArgumentData(2)[i]);
 
     	        if(isCallBackAssigned)
     	        {
     		        remoteCallBack.OnNewMessage(stringKey,incommingStringData);	
     	        }
         	}
-            Sheeld.exitingACallback();
+            OneSheeldMain.OneSheeld.exitingACallback();
         }
 
         public byte checkAnalogPinNumbers(byte pinNumber)
@@ -293,7 +291,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg2 = new FunctionArg(1, pn0);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SUBSCRIBE, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SUBSCRIBE, 2, args);
         }
 
         //Subscribe to a certain pin on remote device
@@ -318,7 +316,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg3 = new FunctionArg(1, pn1);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SUBSCRIBE, 3, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SUBSCRIBE, 3, args);
         }
 
         //Subscribe to a certain pin on remote device
@@ -349,7 +347,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg4 = new FunctionArg(1, pn2);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SUBSCRIBE, 4, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SUBSCRIBE, 4, args);
         }
 
         //Subscribe to a certain pin on remote device
@@ -386,7 +384,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg5 = new FunctionArg(1, pn3);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SUBSCRIBE, 5, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SUBSCRIBE, 5, args);
         }
 
         //Subscribe to a certain pin on remote device
@@ -429,7 +427,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg6 = new FunctionArg(1, pn4);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SUBSCRIBE, 6, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_SUBSCRIBE, 6, args);
         }
 
         //imSubscribe to a certain pin on remote device
@@ -448,7 +446,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg2 = new FunctionArg(1, pn0);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_UNSUBSCRIBE, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_UNSUBSCRIBE, 2, args);
         }
 
         //unSubscribe to a certain pin on remote device
@@ -473,7 +471,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg3 = new FunctionArg(1, pn1);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_UNSUBSCRIBE, 3, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_UNSUBSCRIBE, 3, args);
         }
 
         //unSubscribe to a certain pin on remote device
@@ -504,7 +502,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg4 = new FunctionArg(1, pn2);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_UNSUBSCRIBE, 4, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_UNSUBSCRIBE, 4, args);
         }
 
         //unSubscribe to a certain pin on remote device
@@ -541,7 +539,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg5 = new FunctionArg(1, pn3);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_UNSUBSCRIBE, 5, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_UNSUBSCRIBE, 5, args);
         }
 
         //unSubscribe to a certain pin on remote device
@@ -584,7 +582,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg6 = new FunctionArg(1, pn4);
 
-            Sheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_UNSUBSCRIBE, 6, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.REMOTE_SHEELD_ID, 0, REMOTEONESHEELD_UNSUBSCRIBE, 6, args);
         }
 
         //Output function ID's 
@@ -604,5 +602,7 @@ namespace OneSheeldClasses
 
         // Process Frame Handling
         const byte CHECK_SELECTED = 0xff;
+
+        const int MAX_REMOTE_CONNECTIONS = 10;
     }
 }

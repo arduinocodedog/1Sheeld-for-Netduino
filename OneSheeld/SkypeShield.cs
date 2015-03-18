@@ -6,12 +6,9 @@ namespace OneSheeldClasses
 {
     public class SkypeShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
-        public SkypeShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.SKYPE_ID)
+        public SkypeShield()
+            : base(ShieldIds.SKYPE_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void call(string username)
@@ -22,7 +19,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.SKYPE_ID, 0, SKYPE_CALL, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SKYPE_ID, 0, SKYPE_CALL, 1, args);
         }
 
         public void videoCall(string username)
@@ -33,7 +30,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.SKYPE_ID, 0, SKYPE_VIDEO_CALL, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SKYPE_ID, 0, SKYPE_VIDEO_CALL, 1, args);
         }
 
         //Output Function ID's

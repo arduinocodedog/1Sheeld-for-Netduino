@@ -10,22 +10,20 @@ using OneSheeldClasses;
 
 namespace SimpleTOGGLEBUTTON
 {
-    class ToggleButton
+    class ToggleButton : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
 		public void Setup()
 		{
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 		
 		public void Loop()
 		{
-            if (OneSheeld.TOGGLEBUTTON.getStatus())
+            if (TOGGLEBUTTON.getStatus())
             {
                 led.Write(true);
             }

@@ -10,9 +10,8 @@ using OneSheeldClasses;
 
 namespace SimpleKEYPAD
 {
-    public class Keypad
+    public class Keypad : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led1 = null;
         OutputPort led2 = null;
         OutputPort led3 = null;
@@ -20,8 +19,7 @@ namespace SimpleKEYPAD
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led1 = new OutputPort(Pins.GPIO_PIN_D13, false);
             led2 = new OutputPort(Pins.GPIO_PIN_D12, false);
@@ -32,7 +30,7 @@ namespace SimpleKEYPAD
         public void Loop()
         {
             /* If keypad's button 1 is pressed. */
-            if (OneSheeld.KEYPAD.isRowPressed(0) && OneSheeld.KEYPAD.isColumnPressed(0))
+            if (KEYPAD.isRowPressed(0) && KEYPAD.isColumnPressed(0))
             {
                 /* Turn on the LED 1. */
                 led1.Write(true);
@@ -42,7 +40,7 @@ namespace SimpleKEYPAD
                 led4.Write(false);
             }
             /* If keypad's button 2 is pressed. */
-            else if (OneSheeld.KEYPAD.isRowPressed(0) && OneSheeld.KEYPAD.isColumnPressed(1))
+            else if (KEYPAD.isRowPressed(0) && KEYPAD.isColumnPressed(1))
             {
                 /* Turn on the LED 2. */
                 led2.Write(true);
@@ -52,7 +50,7 @@ namespace SimpleKEYPAD
                 led4.Write(false);
             }
             /* If keypad's button 3 is pressed. */
-            else if (OneSheeld.KEYPAD.isRowPressed(0) && OneSheeld.KEYPAD.isColumnPressed(2))
+            else if (KEYPAD.isRowPressed(0) && KEYPAD.isColumnPressed(2))
             {
                 /* Turn on the LED 3. */
                 led3.Write(true);
@@ -62,7 +60,7 @@ namespace SimpleKEYPAD
                 led4.Write(false);
             }
             /* If keypad's button 4 is pressed. */
-            else if (OneSheeld.KEYPAD.isRowPressed(1) && OneSheeld.KEYPAD.isColumnPressed(0))
+            else if (KEYPAD.isRowPressed(1) && KEYPAD.isColumnPressed(0))
             {
                 /* Turn on the LED 4. */
                 led4.Write(true);

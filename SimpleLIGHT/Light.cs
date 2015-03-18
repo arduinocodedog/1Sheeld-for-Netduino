@@ -10,22 +10,20 @@ using OneSheeldClasses;
 
 namespace SimpleLIGHT
 {
-    public class Light
+    public class Light : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.LIGHT.getValue() < 100 && OneSheeld.LIGHT.getValue() > 0)
+            if (LIGHT.getValue() < 100 && LIGHT.getValue() > 0)
             {
                 led.Write(true);
             }

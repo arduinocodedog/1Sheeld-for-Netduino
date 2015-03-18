@@ -6,32 +6,30 @@ namespace OneSheeldClasses
     public class ShieldParent
     {
         ShieldIds ShieldID = 0x00;
-        static OneSheeld Sheeld = null;
-        static OneSheeld oneSheeldInstance = null;
+        static OneSheeldClass oneSheeldInstance = null;
         static bool oneSheeldInstanceAvailable = false;
         bool isCallBackSet = false;
         ISelectedCallback callBack = null;
 
-        public ShieldParent(OneSheeld sheeld, ShieldIds shieldid)
+        public ShieldParent(ShieldIds shieldid)
         {
-            Sheeld = sheeld;
             ShieldID = shieldid;
-            OneSheeld.addToShieldsArray(this);
+            OneSheeldClass.addToShieldsArray(this);
         }
 
         public void select()
         {
-            Sheeld.sendPacket(ShieldID, 0x00, SELECT_SHIELD, 0x00, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldID, 0x00, SELECT_SHIELD, 0x00, null);
         }
 
         public void deselect()
         {
-            Sheeld.sendPacket(ShieldID, 0x00, DESELECT_SHIELD, 0x00, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldID, 0x00, DESELECT_SHIELD, 0x00, null);
         }
 
         public void setOnSelected(ISelectedCallback userCallback)
         {
-            Sheeld.sendPacket(ShieldID, 0x00, QUERY_SELECTED, 0x00, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldID, 0x00, QUERY_SELECTED, 0x00, null);
             isCallBackSet = true;
             callBack = userCallback;
         }
@@ -43,37 +41,37 @@ namespace OneSheeldClasses
 
         protected void enteringACallback()
         {
-            Sheeld.enteringACallback();
+            OneSheeldMain.OneSheeld.enteringACallback();
         }
 
         protected void exitingACallback()
         {
-            Sheeld.exitingACallback();
+            OneSheeldMain.OneSheeld.exitingACallback();
         }
 
         protected bool isInACallback()
         {
-            return Sheeld.isInACallback();
+            return OneSheeldMain.OneSheeld.isInACallback();
         }
 
-        static public void setOneSheeldInstance(OneSheeld instance)
+        public static void setOneSheeldInstance(OneSheeldClass instance)
         {
-            oneSheeldInstance = instance;
-            oneSheeldInstanceAvailable = true;
+            ShieldParent.oneSheeldInstance = instance;
+            ShieldParent.oneSheeldInstanceAvailable = true;
         }
 
-        static public void unSetOneSheeldInstance()
+        public static void unSetOneSheeldInstance()
         {
-            oneSheeldInstance = null;
-            oneSheeldInstanceAvailable = false;
+            ShieldParent.oneSheeldInstance = null;
+            ShieldParent.oneSheeldInstanceAvailable = false;
         }
 
-        static public OneSheeld getOneSheeldInstance()
+        public static OneSheeldClass getOneSheeldInstance()
         {
-            if (oneSheeldInstanceAvailable)
-                return oneSheeldInstance;
+            if (ShieldParent.oneSheeldInstanceAvailable)
+                return ShieldParent.oneSheeldInstance;
             else
-                return Sheeld;
+                return OneSheeldMain.OneSheeld;
         }
 
         public void processFrame()

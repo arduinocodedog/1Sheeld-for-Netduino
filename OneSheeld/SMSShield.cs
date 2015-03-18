@@ -6,7 +6,6 @@ namespace OneSheeldClasses
 {
     public class SMSShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
         string number = null;
         string text = null;
 
@@ -15,10 +14,9 @@ namespace OneSheeldClasses
 
         ISMSCallback changeCallBack = null;
 
-        public SMSShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.SMS_ID)
+        public SMSShield()
+            : base(ShieldIds.SMS_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void send(string number, string text)
@@ -31,7 +29,7 @@ namespace OneSheeldClasses
             FunctionArg arg2 = new FunctionArg(text.Length, System.Text.Encoding.UTF8.GetBytes(text));
             args.Add(arg2);
 
-            Sheeld.sendPacket(ShieldIds.SMS_ID, 0, SMS_SEND, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SMS_ID, 0, SMS_SEND, 2, args);
         }
 
         //Number Getter

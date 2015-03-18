@@ -5,7 +5,6 @@ namespace OneSheeldClasses
 {
     public class GPSShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
         bool isCallBackAssigned = false;
         IGPSCallback changeCallBack = null;
 
@@ -15,10 +14,9 @@ namespace OneSheeldClasses
 
         byte[] getfloat = null;
 
-        public GPSShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.GPS_ID)
+        public GPSShield()
+            : base(ShieldIds.GPS_ID)
         {
-            Sheeld = onesheeld;
             getfloat = new byte[4];
         }
         

@@ -10,32 +10,29 @@ using OneSheeldClasses;
 
 namespace SimpleMAGNETOMETER
 {
-    class Magnetometer
+    class Magnetometer : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
-
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
-            OneSheeld.LCD.begin();
+            LCD.begin();
         }
 
         public void Loop()
         {
             /* Move the cursor. */
-            OneSheeld.LCD.setCursor(0, 0);
+            LCD.setCursor(0, 0);
             /* Print a title. */
-            OneSheeld.LCD.print("MagneticStrength");
+            LCD.print("MagneticStrength");
             /* Move the cursor. */
-            OneSheeld.LCD.setCursor(1, 0);
+            LCD.setCursor(1, 0);
             /* Display the magnetic strength. */
-            OneSheeld.LCD.print(OneSheeld.MAGNETOMETER.getMagneticStrength(), 2);
+            LCD.print(MAGNETOMETER.getMagneticStrength(), 2);
             /* Move the cursor. */
-            OneSheeld.LCD.setCursor(1, 7);
+            LCD.setCursor(1, 7);
             /* Print a unit. */
-            OneSheeld.LCD.print("Tesla");
+            LCD.print("Tesla");
             /* Wait for 1 second. */
             Thread.Sleep(1000);
         }

@@ -7,12 +7,7 @@ namespace AdvancedTTS
     {
         public static void Main()
         {
-            // write your code here
-
-            TextToSpeech tts = new TextToSpeech();
-            tts.Setup();
-            while (true)
-                tts.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new TextToSpeech());
         }
 
     }

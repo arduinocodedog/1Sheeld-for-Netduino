@@ -7,12 +7,7 @@ namespace SimpleTWITTER
     {
         public static void Main()
         {
-            // write your code here
-            Twitter twitter = new Twitter();
-            twitter.Setup();
-            while (true)
-                twitter.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new Twitter());
         }
-
     }
 }

@@ -5,7 +5,6 @@ namespace OneSheeldClasses
 {
     public class XYZSensorShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
         IXYZFloatCallback changeCallBack = null;
         bool isCallBackAssigned = false;
         byte ShieldFunctionID = 0x00;
@@ -13,10 +12,9 @@ namespace OneSheeldClasses
 
         protected float valueX = 0.0f, valueY = 0.0f, valueZ = 0.0f;
 
-        public XYZSensorShield(OneSheeld onesheeld, byte funcid, ShieldIds shieldid)
-            : base(onesheeld, shieldid)
+        public XYZSensorShield(byte funcid, ShieldIds shieldid)
+            : base(shieldid)
         {
-            Sheeld = onesheeld;
             ShieldFunctionID = funcid;
             ShieldID = shieldid;
         }
@@ -44,11 +42,11 @@ namespace OneSheeldClasses
             if (functionId == ShieldFunctionID)
             {
                 //Process X-Axis Value
-                valueX = Sheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(0));
+                valueX =  OneSheeldMain.OneSheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(0));
                 //Process Y-Axis Value
-                valueY = Sheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(1));
+                valueY =  OneSheeldMain.OneSheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(1));
                 //Process Z-Axis Value
-                valueZ = Sheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(2));
+                valueZ =  OneSheeldMain.OneSheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(2));
                 
                 //User Function Invoked
                 if (isCallBackAssigned & !isInACallback())
@@ -65,6 +63,5 @@ namespace OneSheeldClasses
             changeCallBack = userCallback;
             isCallBackAssigned = true;
         }
-
     }
 }

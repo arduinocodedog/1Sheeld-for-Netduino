@@ -7,14 +7,13 @@ using OneSheeldClasses;
 
 namespace AdvancedINTERNET
 {
-    public class Internet :
+    public class Internet : OneSheeldUser, IOneSheeldSketch,
         IHttpRequestSuccessCallback,
+        IHttpRequestFailureCallback,
         IHttpResponseJsonResponseCallback,
         IHttpResponseErrorCallback,
         IInternetErrorCallback
     {
-        static OneSheeld sheeld = new OneSheeld();
-
         HttpRequest oneSheeldRequest = null;
 
         OutputPort red = null;
@@ -27,26 +26,25 @@ namespace AdvancedINTERNET
             green = new OutputPort(Pins.GPIO_PIN_D9, false);
             blue = new OutputPort(Pins.GPIO_PIN_D10, false);
 
-            sheeld.begin();
-            sheeld.waitForAppConnection();
+            OneSheeld.begin();
+            OneSheeld.waitForAppConnection();
 
-            Thread.Sleep(5000);
-
-            oneSheeldRequest = new HttpRequest(sheeld, "http://api.openweathermap.org/data/2.5/weather");
+            oneSheeldRequest = new HttpRequest("http://api.openweathermap.org/data/2.5/weather");
             oneSheeldRequest.setOnSuccess(this);
+            oneSheeldRequest.setOnFailure(this);
             oneSheeldRequest.response.setOnJsonResponse(this);
             oneSheeldRequest.response.setOnError(this);
 
-            OneSheeld.INTERNET.setOnError(this);
+            INTERNET.setOnError(this);
         }
 
         public void Loop() 
         { 
-            if (OneSheeld.VOICERECOGNITION.isNewCommandReceived())
+            if (VOICERECOGNITION.isNewCommandReceived())
             {
-                oneSheeldRequest.addParameter("q", OneSheeld.VOICERECOGNITION.getLastCommand());
-                OneSheeld.INTERNET.performGet(oneSheeldRequest);
-                //sheeld.delay(5000);
+                oneSheeldRequest.addParameter("q", VOICERECOGNITION.getLastCommand());
+                INTERNET.performGet(oneSheeldRequest);
+                //OneSheeld.delay(5000);
             }
         }
 
@@ -55,9 +53,15 @@ namespace AdvancedINTERNET
             response.AddKeytoChain("weather").AddKeytoChain(0).AddKeytoChain("main").query();
         }
 
+        public void OnFailure(HttpResponse response)
+        {
+            TERMINAL.println(response.getStatusCode());
+            TERMINAL.println(response.getBytes());
+        }
+
         public void OnJsonResponse(JsonKeyChain chain, byte[] data)
         {
-            OneSheeld.TTS.say(data);
+            TTS.say(data);
             if (data.Equals("Clouds"))
                 blueRGB();
             if (data.Equals("Sand"))
@@ -108,17 +112,17 @@ namespace AdvancedINTERNET
 
         public void OnError(int errorNumber)
         {
-            OneSheeld.TERMINAL.print("Error:");
+            TERMINAL.print("Error:");
             switch (errorNumber)
             {
-                case INDEX_OUT_OF_BOUNDS: OneSheeld.TERMINAL.println("INDEX_OUT_OF_BOUNDS"); break;
-                case RESPONSE_CAN_NOT_BE_FOUND: OneSheeld.TERMINAL.println("RESPONSE_CAN_NOT_BE_FOUND"); break;
-                case HEADER_CAN_NOT_BE_FOUND: OneSheeld.TERMINAL.println("HEADER_CAN_NOT_BE_FOUND"); break;
-                case NO_ENOUGH_BYTES: OneSheeld.TERMINAL.println("NO_ENOUGH_BYTES"); break;
-                case REQUEST_HAS_NO_RESPONSE: OneSheeld.TERMINAL.println("REQUEST_HAS_NO_RESPONSE"); break;
-                case SIZE_OF_REQUEST_CAN_NOT_BE_ZERO: OneSheeld.TERMINAL.println("SIZE_OF_REQUEST_CAN_NOT_BE_ZERO"); break;
-                case UNSUPPORTED_HTTP_ENTITY: OneSheeld.TERMINAL.println("UNSUPPORTED_HTTP_ENTITY"); break;
-                case JSON_KEYCHAIN_IS_WRONG: OneSheeld.TERMINAL.println("JSON_KEYCHAIN_IS_WRONG"); break;
+                case INDEX_OUT_OF_BOUNDS: TERMINAL.println("INDEX_OUT_OF_BOUNDS"); break;
+                case RESPONSE_CAN_NOT_BE_FOUND: TERMINAL.println("RESPONSE_CAN_NOT_BE_FOUND"); break;
+                case HEADER_CAN_NOT_BE_FOUND: TERMINAL.println("HEADER_CAN_NOT_BE_FOUND"); break;
+                case NO_ENOUGH_BYTES: TERMINAL.println("NO_ENOUGH_BYTES"); break;
+                case REQUEST_HAS_NO_RESPONSE: TERMINAL.println("REQUEST_HAS_NO_RESPONSE"); break;
+                case SIZE_OF_REQUEST_CAN_NOT_BE_ZERO: TERMINAL.println("SIZE_OF_REQUEST_CAN_NOT_BE_ZERO"); break;
+                case UNSUPPORTED_HTTP_ENTITY: TERMINAL.println("UNSUPPORTED_HTTP_ENTITY"); break;
+                case JSON_KEYCHAIN_IS_WRONG: TERMINAL.println("JSON_KEYCHAIN_IS_WRONG"); break;
             }
         }
 
@@ -131,16 +135,16 @@ namespace AdvancedINTERNET
         public void OnError(int requestId, int errorNumber)
         {
             /* Print out error Number.*/
-            OneSheeld.TERMINAL.print("Request id:");
-            OneSheeld.TERMINAL.println(requestId);
-            OneSheeld.TERMINAL.print("Internet error:");
+            TERMINAL.print("Request id:");
+            TERMINAL.println(requestId);
+            TERMINAL.print("Internet error:");
             switch (errorNumber)
             {
-                case REQUEST_CAN_NOT_BE_FOUND: OneSheeld.TERMINAL.println("REQUEST_CAN_NOT_BE_FOUND"); break;
-                case NOT_CONNECTED_TO_NETWORK: OneSheeld.TERMINAL.println("NOT_CONNECTED_TO_NETWORK"); break;
-                case URL_IS_NOT_FOUND: OneSheeld.TERMINAL.println("URL_IS_NOT_FOUND"); break;
-                case ALREADY_EXECUTING_REQUEST: OneSheeld.TERMINAL.println("ALREADY_EXECUTING_REQUEST"); break;
-                case URL_IS_WRONG: OneSheeld.TERMINAL.println("URL_IS_WRONG"); break;
+                case REQUEST_CAN_NOT_BE_FOUND: TERMINAL.println("REQUEST_CAN_NOT_BE_FOUND"); break;
+                case NOT_CONNECTED_TO_NETWORK: TERMINAL.println("NOT_CONNECTED_TO_NETWORK"); break;
+                case URL_IS_NOT_FOUND: TERMINAL.println("URL_IS_NOT_FOUND"); break;
+                case ALREADY_EXECUTING_REQUEST: TERMINAL.println("ALREADY_EXECUTING_REQUEST"); break;
+                case URL_IS_WRONG: TERMINAL.println("URL_IS_WRONG"); break;
             }
 
         }

@@ -7,12 +7,7 @@ namespace SimpleNOTIFICATION
     {
         public static void Main()
         {
-            // write your code here
-
-            Notification notification = new Notification();
-            notification.Setup();
-            while (true)
-                notification.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new Notification());
         }
 
     }

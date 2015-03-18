@@ -10,34 +10,31 @@ using OneSheeldClasses;
 
 namespace AdvancedCLOCK
 {
-    public class Clock
+    public class Clock : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
-
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
         }
 
         public void Loop()
         {
-            if (!OneSheeld.CLOCK.isInitialized())
+            if (!CLOCK.isInitialized())
             {
-                OneSheeld.TERMINAL.println("Initializing Clock.");
-                OneSheeld.CLOCK.begin();
+                TERMINAL.println("Initializing Clock.");
+                CLOCK.begin();
             }
             else
             {
-                byte hour = OneSheeld.CLOCK.getHours();
-                byte minute = OneSheeld.CLOCK.getMinutes();
-                byte second = OneSheeld.CLOCK.getSeconds();
-                byte day = OneSheeld.CLOCK.getDay();
-                byte month = OneSheeld.CLOCK.getMonth();
-                short year = OneSheeld.CLOCK.getYear();
+                byte hour = CLOCK.getHours();
+                byte minute = CLOCK.getMinutes();
+                byte second = CLOCK.getSeconds();
+                byte day = CLOCK.getDay();
+                byte month = CLOCK.getMonth();
+                short year = CLOCK.getYear();
 
                 DateTime dt = new DateTime(year, month, day, hour, minute, second);
-                OneSheeld.TERMINAL.println(dt.ToString());
+                TERMINAL.println(dt.ToString());
             }
 
             Thread.Sleep(2000);

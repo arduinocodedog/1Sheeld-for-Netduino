@@ -10,17 +10,14 @@ using OneSheeldClasses;
 
 namespace SimpleTWITTER
 {
-    public class Twitter
+    public class Twitter : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
-
         InputPort button = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             button = new InputPort(Pins.GPIO_PIN_D11, true, Port.ResistorMode.Disabled);
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
@@ -31,7 +28,7 @@ namespace SimpleTWITTER
             if (button.Read())
             {
                 led.Write(true);
-                OneSheeld.TWITTER.tweet("I'm tweeting from @Netduino via @1Sheeld!");
+                TWITTER.tweet("I'm tweeting from @Netduino via @1Sheeld!");
                 Thread.Sleep(300);
             }
             else

@@ -10,22 +10,20 @@ using OneSheeldClasses;
 
 namespace SimpleTEMPERATURE
 {
-    public class Temperature
+    public class Temperature : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.TEMPERATURE.getValue() < 10)
+            if (TEMPERATURE.getValue() < 10)
             {
                 led.Write(true);
             }

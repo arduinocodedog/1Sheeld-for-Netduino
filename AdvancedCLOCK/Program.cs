@@ -7,12 +7,7 @@ namespace AdvancedCLOCK
     {
         public static void Main()
         {
-            // write your code here
-
-            Clock clock = new Clock();
-            clock.Setup();
-            while (true)
-                clock.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new Clock());
         }
 
     }

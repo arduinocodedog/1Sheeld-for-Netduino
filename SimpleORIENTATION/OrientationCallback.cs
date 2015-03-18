@@ -10,9 +10,8 @@ using OneSheeldClasses;
 
 namespace SimpleORIENTATION
 {
-    public class OrientationCallback : IXYZFloatCallback
+    public class OrientationCallback : OneSheeldUser, IOneSheeldSketch, IXYZFloatCallback
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         float x = 0.0f;
@@ -21,12 +20,11 @@ namespace SimpleORIENTATION
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.ORIENTATION.setOnValueChange(this);
+            ORIENTATION.setOnValueChange(this);
         }
 
         public void Loop()

@@ -11,10 +11,8 @@ using OneSheeldClasses;
 
 namespace SimpleGAMEPAD
 {
-    public class GamePadCallback : IGamePadCallback
+    public class GamePadCallback : OneSheeldUser, IOneSheeldSketch, IGamePadCallback
     {
-        OneSheeld sheeld = null;
-
         bool upButton = false;
         bool downButton = false;
         bool rightButton = false;
@@ -26,37 +24,36 @@ namespace SimpleGAMEPAD
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
-            OneSheeld.GAMEPAD.setOnButtonChange(this);
+            GAMEPAD.setOnButtonChange(this);
         }
 
         public void Loop()
         {
             if (upButton)
-                OneSheeld.TERMINAL.println("UP Pressed");
+                TERMINAL.println("UP Pressed");
 
             if (downButton)
-                OneSheeld.TERMINAL.println("DOWN Pressed");
+                TERMINAL.println("DOWN Pressed");
 
             if (leftButton)
-                OneSheeld.TERMINAL.println("LEFT Pressed");
+                TERMINAL.println("LEFT Pressed");
 
             if (rightButton)
-                OneSheeld.TERMINAL.println("RIGHT Pressed");
+                TERMINAL.println("RIGHT Pressed");
 
             if (orangeButton)
-                OneSheeld.TERMINAL.println("ORANGE Pressed");
+                TERMINAL.println("ORANGE Pressed");
 
             if (redButton)
-                OneSheeld.TERMINAL.println("RED Pressed");
+                TERMINAL.println("RED Pressed");
 
             if (greenButton)
-                OneSheeld.TERMINAL.println("GREEN Pressed");
+                TERMINAL.println("GREEN Pressed");
 
             if (blueButton)
-                OneSheeld.TERMINAL.println("BLUE Pressed");
+                TERMINAL.println("BLUE Pressed");
 
             Thread.Sleep(2000);
         }

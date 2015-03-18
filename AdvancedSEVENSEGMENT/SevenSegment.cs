@@ -10,16 +10,14 @@ using OneSheeldClasses;
 
 namespace AdvancedSEVENSEGMENT
 {
-    class SevenSegment
+    class SevenSegment : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         InputPort button = null;
         byte number = 0;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             button = new InputPort(Pins.GPIO_PIN_D11, false, Port.ResistorMode.Disabled);
         }
@@ -28,7 +26,7 @@ namespace AdvancedSEVENSEGMENT
         {
             if (button.Read())
             {
-                OneSheeld.SEVENSEGMENT.setNumber(number);
+                SEVENSEGMENT.setNumber(number);
                 Thread.Sleep(1000);
                 number++;
                 if (number > 9)

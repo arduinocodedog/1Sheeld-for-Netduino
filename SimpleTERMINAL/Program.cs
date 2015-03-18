@@ -7,12 +7,7 @@ namespace SimpleTERMINAL
     {
         public static void Main()
         {
-            // write your code here
-            Terminal terminal = new Terminal();
-            terminal.Setup();
-            while (true)
-                terminal.Loop();
-
+            OneSheeldClasses.OneSheeldUser.Run(new Terminal());
         }
 
     }

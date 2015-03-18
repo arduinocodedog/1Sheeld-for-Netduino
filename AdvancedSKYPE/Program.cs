@@ -7,13 +7,7 @@ namespace AdvancedSKYPE
     {
         public static void Main()
         {
-            // write your code here
-
-            Skype skype = new Skype();
-            skype.Setup();
-            while (true)
-                skype.Loop();
-
+            OneSheeldClasses.OneSheeldUser.Run(new Skype());
         }
 
     }

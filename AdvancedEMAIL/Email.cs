@@ -10,18 +10,16 @@ using OneSheeldClasses;
 
 namespace AdvancedEMAIL
 {
-    public class Email : IBoolCallback
+    public class Email : OneSheeldUser, IOneSheeldSketch, IBoolCallback
     {
-        OneSheeld sheeld = null;
         bool IsButtonPressed = false;
         bool MessageSent = false;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
-            OneSheeld.PUSHBUTTON.setOnButtonStatusChange(this);
+            PUSHBUTTON.setOnButtonStatusChange(this);
         }
 
         public void Loop()
@@ -30,7 +28,7 @@ namespace AdvancedEMAIL
             {
                 if (IsButtonPressed)
                 {
-                    OneSheeld.EMAIL.send("example@example.com", "Button pressed!", "Hi, someone pressed the button!");
+                    EMAIL.send("example@example.com", "Button pressed!", "Hi, someone pressed the button!");
                     MessageSent = true;
                 }
             }

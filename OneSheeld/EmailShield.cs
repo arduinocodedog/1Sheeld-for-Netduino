@@ -6,12 +6,9 @@ namespace OneSheeldClasses
 {
     public class EmailShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
-        public EmailShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.EMAIL_ID)
+        public EmailShield()
+            : base(ShieldIds.EMAIL_ID)
         {
-            Sheeld = onesheeld;
         }
 
         //Email Sender
@@ -31,7 +28,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-	        Sheeld.sendPacket(ShieldIds.EMAIL_ID, 0, EMAIL_SEND, 3, args);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.EMAIL_ID, 0, EMAIL_SEND, 3, args);
         }
 
         //Attaching picture
@@ -57,7 +54,7 @@ namespace OneSheeldClasses
             FunctionArg arg4 = new FunctionArg(1, imgsrc);
             args.Add(arg4);
 
-            Sheeld.sendPacket(ShieldIds.EMAIL_ID, 0, EMAIL_ATTACH_PICTURE, 4, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.EMAIL_ID, 0, EMAIL_ATTACH_PICTURE, 4, args);
         }
 
         const byte EMAIL_SEND = 0x01;

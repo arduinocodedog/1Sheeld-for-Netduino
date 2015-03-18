@@ -13,14 +13,7 @@ namespace SimpleVOICERECOGNITION
     {
         public static void Main()
         {
-            // write your code here
-
-            VoiceRecognition vr = new VoiceRecognition();
-            vr.Setup();
-            while (true)
-                vr.Loop();
-
+            OneSheeldClasses.OneSheeldUser.Run(new VoiceRecognition());
         }
-
     }
 }

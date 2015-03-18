@@ -11,41 +11,38 @@ using OneSheeldClasses;
 
 namespace SimpleGAMEPAD
 {
-    public class GamePad
+    public class GamePad : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
-
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
         }
 
         public void Loop()
         {
-            if (OneSheeld.GAMEPAD.isUpPressed())
-                OneSheeld.TERMINAL.println("UP Pressed");
+            if (GAMEPAD.isUpPressed())
+                TERMINAL.println("UP Pressed");
 
-            if (OneSheeld.GAMEPAD.isDownPressed())
-                OneSheeld.TERMINAL.println("DOWN Pressed");
+            if (GAMEPAD.isDownPressed())
+                TERMINAL.println("DOWN Pressed");
 
-            if (OneSheeld.GAMEPAD.isLeftPressed())
-                OneSheeld.TERMINAL.println("LEFT Pressed");
+            if (GAMEPAD.isLeftPressed())
+                TERMINAL.println("LEFT Pressed");
 
-            if (OneSheeld.GAMEPAD.isRightPressed())
-                OneSheeld.TERMINAL.println("RIGHT Pressed");
+            if (GAMEPAD.isRightPressed())
+                TERMINAL.println("RIGHT Pressed");
 
-            if (OneSheeld.GAMEPAD.isOrangePressed())
-                OneSheeld.TERMINAL.println("ORANGE Pressed");
+            if (GAMEPAD.isOrangePressed())
+                TERMINAL.println("ORANGE Pressed");
 
-            if (OneSheeld.GAMEPAD.isRedPressed())
-                OneSheeld.TERMINAL.println("RED Pressed");
+            if (GAMEPAD.isRedPressed())
+                TERMINAL.println("RED Pressed");
 
-            if (OneSheeld.GAMEPAD.isGreenPressed())
-                OneSheeld.TERMINAL.println("GREEN Pressed");
+            if (GAMEPAD.isGreenPressed())
+                TERMINAL.println("GREEN Pressed");
 
-            if (OneSheeld.GAMEPAD.isBluePressed())
-                OneSheeld.TERMINAL.println("BLUE Pressed");
+            if (GAMEPAD.isBluePressed())
+                TERMINAL.println("BLUE Pressed");
 
             Thread.Sleep(2000);
 

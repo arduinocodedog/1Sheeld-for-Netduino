@@ -10,7 +10,7 @@ using OneSheeldClasses;
 
 namespace SimplePUSHBUTTON
 {
-    public class PushButtonCallback : IBoolCallback
+    public class PushButtonCallback : OneSheeldUser, IOneSheeldSketch, IBoolCallback
     {
         OutputPort led = null;
 
@@ -18,12 +18,11 @@ namespace SimplePUSHBUTTON
 
         public void Setup()
         {
-            OneSheeld sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.PUSHBUTTON.setOnButtonStatusChange(this);
+            PUSHBUTTON.setOnButtonStatusChange(this);
         }
 
         public void Loop()

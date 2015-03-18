@@ -10,7 +10,7 @@ using OneSheeldClasses;
 
 namespace SimpleKEYPAD
 {
-    public class KeypadCallback : IRowColCallback
+    public class KeypadCallback : OneSheeldUser, IOneSheeldSketch, IRowColCallback
     {
         OutputPort led1 = null;
         OutputPort led2 = null;
@@ -22,15 +22,14 @@ namespace SimpleKEYPAD
 
         public void Setup()
         {
-            OneSheeld sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led1 = new OutputPort(Pins.GPIO_PIN_D13, false);
             led2 = new OutputPort(Pins.GPIO_PIN_D12, false);
             led3 = new OutputPort(Pins.GPIO_PIN_D11, false);
             led4 = new OutputPort(Pins.GPIO_PIN_D10, false);
 
-            OneSheeld.KEYPAD.setOnButtonChange(this);
+            KEYPAD.setOnButtonChange(this);
         }
 
         public void Loop()

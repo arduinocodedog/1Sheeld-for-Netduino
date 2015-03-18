@@ -5,13 +5,11 @@ namespace OneSheeldClasses
 {
     public class TerminalShield : OneSheeldPrintln
     {
-        OneSheeld Sheeld = null;
         CircularBuffer buffer = null;
 
-        public TerminalShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.TERMINAL_ID, TERMINAL_WRITE, TERMINAL_PRINT)
+        public TerminalShield()
+            : base(ShieldIds.TERMINAL_ID, TERMINAL_WRITE, TERMINAL_PRINT)
         {
-            Sheeld = onesheeld;
             buffer = new CircularBuffer(64);
         }
 
@@ -71,6 +69,5 @@ namespace OneSheeldClasses
 
         //Input Function ID
         const byte TERMINAL_READ = 0x01;
-
     }
 }

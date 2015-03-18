@@ -61,6 +61,7 @@
     <Compile Include="IHttpResponseNextResponseBytesCallback.cs" />
     <Compile Include="IInternetErrorCallback.cs" />
     <Compile Include="InternetShield.cs" />
+    <Compile Include="IOneSheeldSketch.cs" />
     <Compile Include="IPatternCallback.cs" />
     <Compile Include="IPhoneCallback.cs" />
     <Compile Include="IRemoteCallback.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="MagnetometerSensorShield.cs" />
     <Compile Include="MusicPlayerShield.cs" />
     <Compile Include="NotificationShield.cs" />
+    <Compile Include="OneSheeldUser.cs" />
+    <Compile Include="OneSheeldMain.cs" />
     <Compile Include="OrientationSensorShield.cs" />
     <Compile Include="PatternNode.cs" />
     <Compile Include="PatternShield.cs" />
@@ -111,7 +114,7 @@
     <Compile Include="OneSheeldPrint.cs" />
     <Compile Include="OneSheeldPrintln.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="OneSheeld.cs" />
+    <Compile Include="OneSheeldClass.cs" />
     <Compile Include="PushButtonShield.cs" />
     <Compile Include="ToggleButtonShield.cs" />
   </ItemGroup>

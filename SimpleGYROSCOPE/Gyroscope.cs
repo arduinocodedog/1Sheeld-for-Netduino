@@ -10,24 +10,22 @@ using OneSheeldClasses;
 
 namespace SimpleGYROSCOPE
 {
-    class Gravity
+    class Gravity : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.GRAVITY.getX() > 1 ||
-                OneSheeld.GRAVITY.getY() > 1 ||
-                OneSheeld.GRAVITY.getZ() > 1)
+            if (GYROSCOPE.getX() > 1 ||
+                GYROSCOPE.getY() > 1 ||
+                GYROSCOPE.getZ() > 1)
             {
                 led.Write(true);
             }

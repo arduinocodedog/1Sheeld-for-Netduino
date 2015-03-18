@@ -10,27 +10,25 @@ using OneSheeldClasses;
 
 namespace AdvancedSMS
 {
-    public class SMS
+    public class SMS : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         bool isMessageSent = false;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
         }
 
         public void Loop()
         {
             /* If PushButton is pressed, send an SMS Message */
-            if (OneSheeld.PUSHBUTTON.isPressed())
+            if (PUSHBUTTON.isPressed())
             {
                 /* Check that we haven't sent the SMS already. */
                 if (!isMessageSent)
                 {
                     /* Send the SMS. */
-                    OneSheeld.SMS.send("1234567890", "Push a button, send a text!");
+                    SMS.send("1234567890", "Push a button, send a text!");
                     /* Set the flag. */
                     isMessageSent = true;
                 }

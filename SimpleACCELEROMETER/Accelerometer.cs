@@ -10,24 +10,22 @@ using OneSheeldClasses;
 
 namespace SimpleACCELEROMETER
 {
-    public class Accelerometer
+    public class Accelerometer : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.ACCELEROMETER.getX() > 8 ||
-                OneSheeld.ACCELEROMETER.getY() > 8 ||
-                OneSheeld.ACCELEROMETER.getZ() > 8)
+            if (ACCELEROMETER.getX() > 8 ||
+                ACCELEROMETER.getY() > 8 ||
+                ACCELEROMETER.getZ() > 8)
             {
                 led.Write(true);
             }

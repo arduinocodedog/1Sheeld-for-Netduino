@@ -10,7 +10,7 @@ using OneSheeldClasses;
 
 namespace SimpleTOGGLEBUTTON
 {
-    public class ToggleButtonCallback : IBoolCallback
+    public class ToggleButtonCallback : OneSheeldUser, IOneSheeldSketch, IBoolCallback
     {
         OutputPort led = null;
 
@@ -18,12 +18,11 @@ namespace SimpleTOGGLEBUTTON
         
         public void Setup()
         {
-            OneSheeld sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.TOGGLEBUTTON.setOnButtonStatusChange(this);
+            TOGGLEBUTTON.setOnButtonStatusChange(this);
         }
 
         public void Loop()

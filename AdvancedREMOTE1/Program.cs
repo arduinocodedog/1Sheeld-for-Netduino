@@ -7,12 +7,7 @@ namespace AdvancedREMOTE1
     {
         public static void Main()
         {
-            // write your code here
-
-            Remote1 remote1 = new Remote1();
-            remote1.Setup();
-            while (true)
-                remote1.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new Remote1());
         }
     }
 }

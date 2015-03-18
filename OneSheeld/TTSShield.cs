@@ -6,12 +6,9 @@ namespace OneSheeldClasses
 {
     public class TTSShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
-        public TTSShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.TTS_ID)
+        public TTSShield()
+            : base(ShieldIds.TTS_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void say(byte[] text)
@@ -22,7 +19,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.TTS_ID, 0, TTS_SAY, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.TTS_ID, 0, TTS_SAY, 1, args);
         }
 
         public void say(string text)
@@ -33,7 +30,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.TTS_ID, 0, TTS_SAY, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.TTS_ID, 0, TTS_SAY, 1, args);
         }
 
         //Output Function ID

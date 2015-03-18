@@ -4,9 +4,8 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public class HttpResponse
+    public class HttpResponse 
     {
-        OneSheeld Sheeld = null;
         public int requestId = 0;
         public bool isDisposedTriggered = false;
         public int statusCode = 0;
@@ -26,11 +25,6 @@ namespace OneSheeldClasses
         public HttpResponse()
         {
             isInit = false;
-        }
-
-        public void SetOneSheeld(OneSheeld onesheeld)
-        {
-            Sheeld = onesheeld;
         }
 
         ~HttpResponse()
@@ -95,7 +89,7 @@ namespace OneSheeldClasses
                 FunctionArg arg3 = new FunctionArg(2, sizeArray);
                 args.Add(arg3);
 
-                Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, RESPONSE_GET_NEXT_BYTES, 3, args);
+                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, RESPONSE_GET_NEXT_BYTES, 3, args);
     	    }
         }
 
@@ -158,7 +152,7 @@ namespace OneSheeldClasses
 	
 	        if(sendFrame)
 	        {
-		        Sheeld.sendPacket(ShieldIds.INTERNET_ID,0,RESPONSE_DISPOSE,1,args);
+		        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID,0,RESPONSE_DISPOSE,1,args);
 		        callbacksRequested=0;
 	        }
         }
@@ -188,14 +182,14 @@ namespace OneSheeldClasses
                 FunctionArg arg1 = new FunctionArg(headerName.Length, System.Text.Encoding.UTF8.GetBytes(headerName));
                 args.Add(arg1);
 
-		        Sheeld.sendPacket(ShieldIds.INTERNET_ID,0,RESPONSE_INPUT_GET_HEADER,1,args);	
+		        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID,0,RESPONSE_INPUT_GET_HEADER,1,args);	
 	        }
 	
         }
 
         public JsonKeyChain AddKeytoChain(int key)
         {
-            JsonKeyChain chain = new JsonKeyChain(Sheeld, requestId);
+            JsonKeyChain chain = new JsonKeyChain(requestId);
             return chain.AddKeytoChain(key);
         }
 
@@ -204,7 +198,7 @@ namespace OneSheeldClasses
             if (key == null)
                 return null;
 
-            JsonKeyChain chain = new JsonKeyChain(Sheeld, requestId);
+            JsonKeyChain chain = new JsonKeyChain(requestId);
             return chain.AddKeytoChain(key);
         }
 

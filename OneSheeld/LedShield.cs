@@ -6,8 +6,6 @@ namespace OneSheeldClasses
 {
     public class LedShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
         //Setter 
         void setValue(byte data)
         {
@@ -20,15 +18,14 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        Sheeld.sendPacket(ShieldIds.LED_ID,0,LED_SET_VALUE,1,args);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LED_ID,0,LED_SET_VALUE,1,args);
         }
 
         // ----------------------  Public Methods -----------------------
 
-        public LedShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.LED_ID)
+        public LedShield()
+            : base(ShieldIds.LED_ID)
         {
-            Sheeld = onesheeld;
         }
 
         //LedOff Setter

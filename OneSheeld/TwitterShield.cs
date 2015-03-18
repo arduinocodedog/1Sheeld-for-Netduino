@@ -6,18 +6,15 @@ namespace OneSheeldClasses
 {
     public class TwitterShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
         string userName = null;
  	    string tweetText = null;
  	    bool isCallBackAssigned = false;
  	    bool isItNewTweet = false;
         ITwitterCallback twitterCallback = null;
 
-        public TwitterShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.TWITTER_ID)
+        public TwitterShield()
+            : base(ShieldIds.TWITTER_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void tweet(string data)
@@ -28,7 +25,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.TWITTER_ID, 0, TWITTER_SEND, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.TWITTER_ID, 0, TWITTER_SEND, 1, args);
         }
 
         public void sendMessage(string username, string message)
@@ -42,7 +39,7 @@ namespace OneSheeldClasses
             args.Add(arg2);
 
 
-            Sheeld.sendPacket(ShieldIds.TWITTER_ID, 0, TWITTER_SEND_DIRECT_MESSAGE, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.TWITTER_ID, 0, TWITTER_SEND_DIRECT_MESSAGE, 2, args);
         }
 
         public void tweetLastPicture(string pictureText, byte imageSource)
@@ -58,7 +55,7 @@ namespace OneSheeldClasses
             FunctionArg arg2 = new FunctionArg(1, imgsrc);
             args.Add(arg2);
 
-            Sheeld.sendPacket(ShieldIds.TWITTER_ID, 0, TWITTER_POST_LAST_PIC, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.TWITTER_ID, 0, TWITTER_POST_LAST_PIC, 2, args);
         }
 
         public void tweetLastPicture(string pictureText)
@@ -79,7 +76,7 @@ namespace OneSheeldClasses
             FunctionArg arg = new FunctionArg(keyword.Length, System.Text.Encoding.UTF8.GetBytes(keyword));
             args.Add(arg);
 
-	        Sheeld.sendPacket(ShieldIds.TWITTER_ID,0,TWITTER_TRACK_KEYWORD,1,args);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.TWITTER_ID,0,TWITTER_TRACK_KEYWORD,1,args);
         }
 
         public void untrackKeyword(string keyword)
@@ -89,7 +86,7 @@ namespace OneSheeldClasses
             FunctionArg arg = new FunctionArg(keyword.Length, System.Text.Encoding.UTF8.GetBytes(keyword));
             args.Add(arg);
 
-	        Sheeld.sendPacket(ShieldIds.TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,args);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,args);
         }
 
         // UserName Getter

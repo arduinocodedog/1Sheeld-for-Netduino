@@ -6,12 +6,9 @@ namespace OneSheeldClasses
 {
     public class FacebookShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
-        public FacebookShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.FACEBOOK_ID)
+        public FacebookShield()
+            : base(ShieldIds.FACEBOOK_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void post(string status)
@@ -22,7 +19,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.FACEBOOK_ID, 0, FACEBOOK_UPDATE_STATUS, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.FACEBOOK_ID, 0, FACEBOOK_UPDATE_STATUS, 1, args);
         }
 
         public void postLastPicture(string pictureText, byte imageSource)
@@ -40,7 +37,7 @@ namespace OneSheeldClasses
 
             args.Add(arg2);
 
-            Sheeld.sendPacket(ShieldIds.FACEBOOK_ID, 0, FACEBOOK_POST_LAST_PIC, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.FACEBOOK_ID, 0, FACEBOOK_POST_LAST_PIC, 2, args);
         }
 
         const byte FACEBOOK_UPDATE_STATUS = 0x01;

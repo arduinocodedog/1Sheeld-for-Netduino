@@ -10,17 +10,14 @@ using OneSheeldClasses;
 
 namespace SimpleBUZZER
 {
-    public class Buzzer
+    public class Buzzer : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
-
         InputPort button = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             button = new InputPort(Pins.GPIO_PIN_D11, false, Port.ResistorMode.Disabled);
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
@@ -31,12 +28,12 @@ namespace SimpleBUZZER
         {
             if (button.Read())
             {
-                OneSheeld.BUZZER.buzzOn();
+                BUZZER.buzzOn();
                 led.Write(true);
             }
             else
             {
-                OneSheeld.BUZZER.buzzOff();
+                BUZZER.buzzOff();
                 led.Write(false);
             }
         }

@@ -10,7 +10,7 @@ using OneSheeldClasses;
 
 namespace SimpleMIC
 {
-    public class MicCallback : IByteCallback
+    public class MicCallback : OneSheeldUser, IOneSheeldSketch, IByteCallback
     {
         OutputPort led = null;
 
@@ -18,12 +18,11 @@ namespace SimpleMIC
         
         public void Setup()
         {
-            OneSheeld sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.MIC.setOnValueChange(this);
+            MIC.setOnValueChange(this);
         }
 
         public void Loop()

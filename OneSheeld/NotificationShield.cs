@@ -6,12 +6,9 @@ namespace OneSheeldClasses
 {
     public class NotificationShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
-        public NotificationShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.NOTIFICATION_ID)
+        public NotificationShield()
+            : base(ShieldIds.NOTIFICATION_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void notifyPhone(string data)
@@ -22,7 +19,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        Sheeld.sendPacket(ShieldIds.NOTIFICATION_ID,0,NOTIFICATION_NOTIFY_PHONE,1,args);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.NOTIFICATION_ID,0,NOTIFICATION_NOTIFY_PHONE,1,args);
         }
 
         const byte NOTIFICATION_NOTIFY_PHONE = 0x01;

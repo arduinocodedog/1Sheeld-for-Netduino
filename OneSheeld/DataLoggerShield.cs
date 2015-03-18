@@ -6,17 +6,14 @@ namespace OneSheeldClasses
 {
     public class DataLoggerShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
-        public DataLoggerShield(OneSheeld onesheeld)
-            :base(onesheeld, ShieldIds.DATA_LOGGER_ID)
+        public DataLoggerShield()
+            :base(ShieldIds.DATA_LOGGER_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void start()
         {
-            Sheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_START_LOG, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_START_LOG, 0, null);
         }
 
         public void start(string fileName)
@@ -27,12 +24,12 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_START_LOG, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_START_LOG, 1, args);
         }
 
         public void stop()
         {
-            Sheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_STOP_LOG, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_STOP_LOG, 0, null);
         }
 
         public void add(string key, float value)
@@ -43,11 +40,11 @@ namespace OneSheeldClasses
 
             args.Add(keyarg);
 
-            FunctionArg floatarg = new FunctionArg(sizeof(float), Sheeld.convertFloatToBytes(value));
+            FunctionArg floatarg = new FunctionArg(sizeof(float), OneSheeldMain.OneSheeld.convertFloatToBytes(value));
 
             args.Add(floatarg);
 
-            Sheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_ADD_FLOAT, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_ADD_FLOAT, 2, args);
         }
 
         public void add(string key, string data)
@@ -62,12 +59,12 @@ namespace OneSheeldClasses
 
             args.Add(dataarg);
 
-            Sheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_ADD_STRING, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_ADD_STRING, 2, args);
         }
 
         public void log()
         {
-            Sheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_LOG_DATA, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_LOG_DATA, 0, null);
         }
 
         //Ouput Function ID's

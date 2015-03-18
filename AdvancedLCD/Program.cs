@@ -7,11 +7,8 @@ namespace AdvancedLCD
     {
         public static void Main()
         {
-            // write your code here
-            Lcd lcd = new Lcd();
-            lcd.Setup();
-            while (true)
-                lcd.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new Lcd());
+
         }
 
     }

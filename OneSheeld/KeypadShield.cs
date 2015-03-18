@@ -5,17 +5,15 @@ namespace OneSheeldClasses
 {
     public class KeypadShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
         bool isCallBackAssigned = false;
         IRowColCallback changeCallBack = null;
 
         byte row = 0;
         byte col = 0;
 
-        public KeypadShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.KEYPAD_SHIELD_ID)
+        public KeypadShield()
+            : base(ShieldIds.KEYPAD_SHIELD_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public override void processData()

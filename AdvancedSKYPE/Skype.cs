@@ -10,27 +10,25 @@ using OneSheeldClasses;
 
 namespace AdvancedSKYPE
 {
-    public class Skype
+    public class Skype : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         bool didWeCall = false;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
         }
 
         public void Loop()
         {
             /* If PushButton is pressed, send an SMS Message */
-            if (OneSheeld.PUSHBUTTON.isPressed())
+            if (PUSHBUTTON.isPressed())
             {
                 /* Check that we haven't sent the SMS already. */
                 if (!didWeCall)
                 {
                     /* Send the SMS. */
-                    OneSheeld.SKYPE.call("echo123");
+                    SKYPE.call("echo123");
                     /* Set the flag. */
                     didWeCall = true;
                 }

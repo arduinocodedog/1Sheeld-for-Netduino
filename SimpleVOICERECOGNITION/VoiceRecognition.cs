@@ -10,9 +10,8 @@ using OneSheeldClasses;
 
 namespace SimpleVOICERECOGNITION
 {
-    public class VoiceRecognition
+    public class VoiceRecognition : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         string firstCommand = "play";
@@ -20,25 +19,24 @@ namespace SimpleVOICERECOGNITION
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.VOICERECOGNITION.isNewCommandReceived())
+            if (VOICERECOGNITION.isNewCommandReceived())
             {
-                string lastCommand = OneSheeld.VOICERECOGNITION.getLastCommand();
+                string lastCommand = VOICERECOGNITION.getLastCommand();
 
                 if (lastCommand.Length >= firstCommand.Length)
                 {
                     if (lastCommand.Substring(0, firstCommand.Length).CompareTo(firstCommand) == 0)
                     {
                         led.Write(true);
-                        OneSheeld.MUSICPLAYER.setVolume(5);
-                        OneSheeld.MUSICPLAYER.play();
+                        MUSICPLAYER.setVolume(5);
+                        MUSICPLAYER.play();
                     }
                 }
 
@@ -47,7 +45,7 @@ namespace SimpleVOICERECOGNITION
                     if (lastCommand.Substring(0, secondCommand.Length).CompareTo(secondCommand) == 0)
                     {
                         led.Write(false);
-                        OneSheeld.MUSICPLAYER.pause();
+                        MUSICPLAYER.pause();
                     }
                 }
 

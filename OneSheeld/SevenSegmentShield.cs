@@ -6,12 +6,9 @@ namespace OneSheeldClasses
 {
     public class SevenSegmentShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
-        public SevenSegmentShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.SEV_SEG_ID)
+        public SevenSegmentShield()
+            : base(ShieldIds.SEV_SEG_ID)
         {
-            Sheeld = onesheeld;
         }
 
         //Number Setter
@@ -48,16 +45,16 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        Sheeld.sendPacket(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_VALUE,1,args);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_VALUE,1,args);
         }
 
         //Dot Setter
         public void setDot()
         {
-	        Sheeld.sendPacket(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_DOT,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_DOT,0,null);
         }
 
         const byte SEVENSEGMENT_SET_VALUE = 0x01;
-        const byte SEVENSEGMENT_SET_DOT = 0x02;    
+        const byte SEVENSEGMENT_SET_DOT = 0x02;
     }
 }

@@ -5,7 +5,6 @@ namespace OneSheeldClasses
 {
     public class BoolInputShield : ShieldParent    
     {
-        OneSheeld Sheeld = null;
         bool isCallBackAssigned = false;
         IBoolCallback changeCallBack = null;
         byte ShieldFunctionID = 0x00;
@@ -13,10 +12,9 @@ namespace OneSheeldClasses
 
         protected byte value = 0x00;
 
-        public BoolInputShield(OneSheeld onesheeld, byte funcid, ShieldIds shieldid)
-            : base(onesheeld, shieldid)
+        public BoolInputShield(byte funcid, ShieldIds shieldid)
+            : base(shieldid)
         {
-            Sheeld = onesheeld;
             ShieldFunctionID = funcid;
             ShieldID = shieldid;
         }

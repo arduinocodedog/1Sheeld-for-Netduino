@@ -6,18 +6,14 @@ namespace OneSheeldClasses
 {
     public class InternetShield : ShieldParent 
     {
-        OneSheeld Sheeld = null;
-
         bool isSetOnErrorCallBackAssigned = false;
         IInternetErrorCallback internetErrorCallBack = null;
 
-        public HttpRequest[] requestsArray = null;
+        public HttpRequest[] requestsArray = new HttpRequest[MAX_NO_OF_REQUESTS];
 
-        public InternetShield(OneSheeld onesheeld)
-            :base(onesheeld, ShieldIds.INTERNET_ID)
+        public InternetShield()
+            :base(ShieldIds.INTERNET_ID)
         {
-            Sheeld = onesheeld;
-            requestsArray = new HttpRequest[MAX_NO_OF_REQUESTS];
             for(int i = 0; i < MAX_NO_OF_REQUESTS; i++)
 		        requestsArray[i] = null;
         }
@@ -27,7 +23,7 @@ namespace OneSheeldClasses
             bool isAdded = addToRequestsArray(request);
             if (isAdded)
             {
-                Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_GET, 2, GetRequestArgs(request));
+                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_GET, 2, GetRequestArgs(request));
             }
 
             return isAdded;
@@ -38,7 +34,7 @@ namespace OneSheeldClasses
             bool isAdded = addToRequestsArray(request);
             if (isAdded)
             {
-                Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_POST, 2, GetRequestArgs(request));
+                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_POST, 2, GetRequestArgs(request));
             }
 
             return isAdded;
@@ -49,7 +45,7 @@ namespace OneSheeldClasses
             bool isAdded = addToRequestsArray(request);
             if (isAdded)
             {
-                Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_PUT, 2, GetRequestArgs(request));
+                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_PUT, 2, GetRequestArgs(request));
             }
 
             return isAdded;
@@ -60,7 +56,7 @@ namespace OneSheeldClasses
             bool isAdded = addToRequestsArray(request);
             if (isAdded)
             {
-                Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_DELETE, 2, GetRequestArgs(request));
+                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_DELETE, 2, GetRequestArgs(request));
             }
 
             return isAdded;
@@ -68,7 +64,7 @@ namespace OneSheeldClasses
 
 	    public void cancelAllRequests()
         {
-            Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_CANCEL_ALL_REQUESTS, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_CANCEL_ALL_REQUESTS, 0, null);
         }
 
 	    public void ignoreResponse(HttpRequest request)
@@ -89,12 +85,12 @@ namespace OneSheeldClasses
             FunctionArg arg2 = new FunctionArg(password.Length, System.Text.Encoding.UTF8.GetBytes(password));
             args.Add(arg2);
 
-            Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_SET_AUTHENTICATION, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_SET_AUTHENTICATION, 2, args);
         }
 
 	    public void clearBasicAuthentication()
         {
-            Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_CLEAR_AUTHENTICATION, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_CLEAR_AUTHENTICATION, 0, null);
         }
 
 	    public void setIntialResponseMaxBytesCount(int size)
@@ -108,7 +104,7 @@ namespace OneSheeldClasses
             FunctionArg arg = new FunctionArg(2, sizeArray);
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_SET_DEFAULT_MAX_RESPONSE, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_SET_DEFAULT_MAX_RESPONSE, 1, args);
         }
 
         public override void processData()
@@ -257,7 +253,7 @@ namespace OneSheeldClasses
                                 byte argumentNo = getOneSheeldInstance().getArgumentNo();
                                 if (argumentNo - 3 <= MAX_JSON_KEY_DEPTH)
                                 {
-                                    JsonKeyChain responseJsonChain = new JsonKeyChain(Sheeld);
+                                    JsonKeyChain responseJsonChain = new JsonKeyChain();
                                     for (byte j = 3; j < argumentNo; j++)
                                     {
                                         if ((keyChainTypes & (1 << (j - 3))) != 0)

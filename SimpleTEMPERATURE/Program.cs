@@ -7,21 +7,11 @@ namespace SimpleTEMPERATURE
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            TemperatureCallback callback = new TemperatureCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new TemperatureCallback());
 
-            /*
             // Non-Callback Version
-            Temperature temperature = new Temperature();
-            temperature.Setup();
-            while (true)
-                temperature.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new Temperature());
         }
 
     }

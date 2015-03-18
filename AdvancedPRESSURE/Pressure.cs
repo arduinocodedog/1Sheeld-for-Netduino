@@ -10,27 +10,25 @@ using OneSheeldClasses;
 
 namespace AdvancedPRESSURE
 {
-    public class Pressure
+    public class Pressure : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         bool isMessageSent = false;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
         }
 
         public void Loop()
         {
             /* Always read the pressure value and check if it exceeds a certain value. */
-            if (OneSheeld.PRESSURE.getValue() > 1008)
+            if (PRESSURE.getValue() > 1008)
             {
                 /* Check that we haven't sent the SMS already. */
                 if (!isMessageSent)
                 {
                     /* Send the SMS. */
-                    OneSheeld.SMS.send("1234567890", "Pressure is getting high in here!");
+                    SMS.send("1234567890", "Pressure is getting high in here!");
                     /* Set the flag. */
                     isMessageSent = true;
                 }

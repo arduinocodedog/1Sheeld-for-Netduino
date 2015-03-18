@@ -5,7 +5,6 @@ namespace OneSheeldClasses
 {
     public class ULongInputShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
         IULongCallback changeCallBack = null;
         bool isCallBackAssigned = false;
         int dataSize = 0;
@@ -14,10 +13,9 @@ namespace OneSheeldClasses
         byte ShieldFunctionID = 0x00;
         ShieldIds ShieldID = 0x00;
 
-        public ULongInputShield(OneSheeld onesheeld, byte funcid, ShieldIds shieldid, int bytesused)
-            : base(onesheeld, shieldid)
+        public ULongInputShield(byte funcid, ShieldIds shieldid, int bytesused)
+            : base(shieldid)
         {
-            Sheeld = onesheeld;
             dataSize = bytesused;
             ShieldFunctionID = funcid;
             ShieldID = shieldid;

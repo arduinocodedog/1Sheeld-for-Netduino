@@ -7,12 +7,7 @@ namespace SimplePHONE
     {
         public static void Main()
         {
-            // write your code here
-
-            Phone phone = new Phone();
-            phone.Setup();
-            while (true)
-                phone.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new Phone());
         }
 
     }

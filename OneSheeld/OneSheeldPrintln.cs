@@ -5,8 +5,8 @@ namespace OneSheeldClasses
 {
     public class OneSheeldPrintln : OneSheeldPrint
     {
-        public OneSheeldPrintln(OneSheeld onesheeld, ShieldIds shid, byte writefnid, byte printfnid) 
-            : base(onesheeld, shid, writefnid, printfnid) { }
+        public OneSheeldPrintln(ShieldIds shid, byte writefnid, byte printfnid) 
+            : base(shid, writefnid, printfnid) { }
         
         //print newline
         public void println()

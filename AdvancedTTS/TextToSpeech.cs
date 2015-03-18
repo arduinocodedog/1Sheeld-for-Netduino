@@ -10,9 +10,8 @@ using OneSheeldClasses;
 
 namespace AdvancedTTS
 {
-    public class TextToSpeech
+    public class TextToSpeech : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         string firstCommand = "good morning one shield";
@@ -22,26 +21,25 @@ namespace AdvancedTTS
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.VOICERECOGNITION.isNewCommandReceived())
+            if (VOICERECOGNITION.isNewCommandReceived())
             {
-                string lastCommand = OneSheeld.VOICERECOGNITION.getLastCommand();
+                string lastCommand = VOICERECOGNITION.getLastCommand();
 
                 if (lastCommand.CompareTo(firstCommand) == 0)
                 {
-                    OneSheeld.TTS.say("Good morning sir");
+                    TTS.say("Good morning sir");
                 }
                 
                 if (lastCommand.CompareTo(secondCommand) == 0)
                 {
-                    OneSheeld.TTS.say("the weather is pretty good sir");
+                    TTS.say("the weather is pretty good sir");
                 }
 
                 if (lastCommand.Length >= thirdCommand.Length)
@@ -49,7 +47,7 @@ namespace AdvancedTTS
                     if (lastCommand.Substring(0, thirdCommand.Length).CompareTo(thirdCommand) == 0)
                     {
                         led.Write(true);
-                        OneSheeld.TTS.say("L.E.D. turned on");
+                        TTS.say("L.E.D. turned on");
                     }
                 }
 
@@ -58,7 +56,7 @@ namespace AdvancedTTS
                     if (lastCommand.Substring(0, fourthCommand.Length).CompareTo(fourthCommand) == 0)
                     {
                         led.Write(false);
-                        OneSheeld.TTS.say("L.E.D. turned off");
+                        TTS.say("L.E.D. turned off");
                     }
                 }
             }

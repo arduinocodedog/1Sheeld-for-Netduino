@@ -6,42 +6,39 @@ namespace OneSheeldClasses
 {
     public class MusicPlayerShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
-        public MusicPlayerShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.MUSIC_PLAYER_ID)
+        public MusicPlayerShield()
+            : base(ShieldIds.MUSIC_PLAYER_ID)
         {
-            Sheeld = onesheeld;
         }
 
         //Stop Setter
         public void stop()
         {
-	        Sheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_STOP,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_STOP,0,null);
         }
 
         //Play Setter
         public void play()
         {
-	        Sheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PLAY,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PLAY,0,null);
         }
 
         //Pause Setter
         public void pause()
         {
-	        Sheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PAUSE,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PAUSE,0,null);
         }
 
         //Previous Setter
         public void previous()
         {
-	        Sheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PREVIOUS,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PREVIOUS,0,null);
         }
 
         //Next Setter
         public void next()
         {
-	        Sheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_NEXT,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_NEXT,0,null);
         }
 
         //SeekForward Setter
@@ -56,7 +53,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        Sheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_SEEK_FORWARD,1,args);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_SEEK_FORWARD,1,args);
         }
 
         //SeekBackward Setter
@@ -71,7 +68,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_SEEK_BACKWARD, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_SEEK_BACKWARD, 1, args);
         }
 
         //Volume Setter
@@ -91,7 +88,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            Sheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_VOLUME, 1, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_VOLUME, 1, args);
         }
 
         //Output Functions ID's

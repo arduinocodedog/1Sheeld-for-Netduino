@@ -7,21 +7,11 @@ namespace SimplePATTERN
     {
         public static void Main()
         {
-            // write your code here
-
-            /*
             // Don't Use Callback
-            Pattern pattern = new Pattern();
-            pattern.Setup();
-            while (true)
-                pattern.Loop();
-            */
+            OneSheeldClasses.OneSheeldUser.Run(new Pattern());
 
             // Use Callback
-            PatternCallback callback = new PatternCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            // OneSheeldClasses.OneSheeldUser.Run(new PatternCallback());
         }
 
     }

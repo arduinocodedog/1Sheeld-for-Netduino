@@ -7,11 +7,7 @@ namespace AdvancedSEVENSEGMENT
     {
         public static void Main()
         {
-            // write your code here
-            SevenSegment sevensegment = new SevenSegment();
-            sevensegment.Setup();
-            while (true)
-                sevensegment.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new SevenSegment());
         }
 
     }

@@ -7,22 +7,11 @@ namespace SimpleGAMEPAD
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            GamePadCallback callback = new GamePadCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new GamePadCallback());
 
-            /*
             // Non-Callback Version
-            GamePad gamepad = new GamePad();
-            gamepad.Setup();
-            while (true)
-                gamepad.Loop();
-            */
-
+            // OneSheeldClasses.OneSheeldUser.Run(new GamePad());
         }
 
     }

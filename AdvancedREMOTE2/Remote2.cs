@@ -10,16 +10,13 @@ using OneSheeldClasses;
 
 namespace AdvancedREMOTE2
 {
-    public class Remote2 : IRemoteCallback
+    public class Remote2 : OneSheeldUser, IOneSheeldSketch, IRemoteCallback
     {
-        OneSheeld sheeld = null;
-
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
-            sheeld.setOnNewMessage(this);
+            OneSheeld.setOnNewMessage(this);
         }
 
         public void Loop() {}
@@ -32,7 +29,7 @@ namespace AdvancedREMOTE2
         public void OnNewMessage(string address, string key, string voiceCommand)
         {
             if (key.Equals("USA"))
-                OneSheeld.TTS.say(voiceCommand);
+                TTS.say(voiceCommand);
         }
     }
 }

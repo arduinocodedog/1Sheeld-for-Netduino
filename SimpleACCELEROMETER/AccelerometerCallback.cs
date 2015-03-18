@@ -10,9 +10,8 @@ using OneSheeldClasses;
 
 namespace SimpleACCELEROMETER
 {
-    public class AccelerometerCallback : IXYZFloatCallback
+    public class AccelerometerCallback : OneSheeldUser, IOneSheeldSketch, IXYZFloatCallback
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         float x = 0.0f;
@@ -21,12 +20,11 @@ namespace SimpleACCELEROMETER
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.ACCELEROMETER.setOnValueChange(this);
+            ACCELEROMETER.setOnValueChange(this);
         }
 
         public void Loop()

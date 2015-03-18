@@ -11,17 +11,14 @@ using OneSheeldClasses;
 
 namespace SimpleCAMERA
 {
-    public class Camera
+    public class Camera : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
-
         InputPort button = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             button = new InputPort(Pins.GPIO_PIN_D11, true, Port.ResistorMode.Disabled);
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
@@ -32,10 +29,10 @@ namespace SimpleCAMERA
             if (button.Read())
             {
                 led.Write(true);
-                OneSheeld.CAMERA.setFlash(OneSheeld.CAMERA.ON);
-                OneSheeld.CAMERA.rearCapture();
+                CAMERA.setFlash(CAMERA.ON);
+                CAMERA.rearCapture();
                 Thread.Sleep(10000);
-                OneSheeld.TWITTER.tweetLastPicture("Posted by @1Sheeld");
+                TWITTER.tweetLastPicture("Posted by @1Sheeld");
             }
             else
             {

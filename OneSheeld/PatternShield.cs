@@ -5,7 +5,6 @@ namespace OneSheeldClasses
 {
     public class PatternShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
         IPatternCallback userCallback = null;
         bool isCallBackAssigned = false;
         bool isNewPattern = false;
@@ -13,10 +12,9 @@ namespace OneSheeldClasses
 
         PatternNode[] nodes = null;
 
-        public PatternShield(OneSheeld onesheeld)
-            : base (onesheeld, ShieldIds.PATTERN_ID)
+        public PatternShield()
+            : base (ShieldIds.PATTERN_ID)
         {
-            Sheeld = onesheeld;
             nodes = new PatternNode[MAX_PATTERN_SIZE];
         }
 

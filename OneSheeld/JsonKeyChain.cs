@@ -6,23 +6,20 @@ namespace OneSheeldClasses
 {
     public class JsonKeyChain
     {
-        OneSheeld Sheeld = null;
         int counter = 0;
         int request = 0;
         JsonKey[] keysArray = new JsonKey[MAX_JSON_KEY_DEPTH];
 
-        public JsonKeyChain(OneSheeld onesheeld)
+        public JsonKeyChain()
         {
             counter = 0;
             request = 0;
-            Sheeld = onesheeld;
         }
 
-        public JsonKeyChain(OneSheeld onesheeld, int id)
+        public JsonKeyChain(int id)
         {
             counter = 0;
             request = id;
-            Sheeld = onesheeld;
         }
 
         public JsonKeyChain(JsonKeyChain old)
@@ -36,7 +33,6 @@ namespace OneSheeldClasses
                     keysArray[i] = new JsonKey(old.keysArray[i]);
                 }
             }
-            Sheeld = old.Sheeld;
         }
 
         ~JsonKeyChain()
@@ -165,7 +161,7 @@ namespace OneSheeldClasses
                 args.Add(arguments[c]);
             }
 
-            Sheeld.sendPacket(ShieldIds.INTERNET_ID, 0, functionId, counter+2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, functionId, counter+2, args);
 
             for (int d = 0; d < counter+2; d++)
             {

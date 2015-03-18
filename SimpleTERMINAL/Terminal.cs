@@ -10,32 +10,30 @@ using OneSheeldClasses;
 
 namespace SimpleTERMINAL
 {
-    class Terminal
+    class Terminal : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.TOGGLEBUTTON.getStatus())
+            if (TOGGLEBUTTON.getStatus())
             {
                 led.Write(true);
-                OneSheeld.TERMINAL.println("PushButton Pressed");
+                TERMINAL.println("PushButton Pressed");
             }
             else
             {
                 led.Write(false);
-                OneSheeld.TERMINAL.println("PushButton Released");
+                TERMINAL.println("PushButton Released");
             }
-            sheeld.delay(500);
+            OneSheeld.delay(500);
         }
     }
 }

@@ -6,21 +6,11 @@ namespace SimpleSLIDER
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            SliderCallback callback = new SliderCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new SliderCallback());
 
-            /*
             // Non-Callback Version
-            Slider slider = new Slider();
-            slider.Setup();
-            while (true)
-                slider.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new Slider());
         }
 
     }

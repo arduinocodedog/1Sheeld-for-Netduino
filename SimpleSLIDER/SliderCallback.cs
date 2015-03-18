@@ -9,24 +9,22 @@ using OneSheeldClasses;
 
 namespace SimpleSLIDER
 {
-    public class SliderCallback : IByteCallback
+    public class SliderCallback : OneSheeldUser, IOneSheeldSketch, IByteCallback
     {
-        OneSheeld sheeld = null;
         int waitvalue = 0;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
-            OneSheeld.SLIDER.setOnValueChange(this);
+            SLIDER.setOnValueChange(this);
         }
 
         public void Loop()
         {
-            OneSheeld.BUZZER.buzzOn();
+            BUZZER.buzzOn();
             Thread.Sleep(waitvalue);
-            OneSheeld.BUZZER.buzzOff();
+            BUZZER.buzzOff();
             Thread.Sleep(waitvalue);
         }
 

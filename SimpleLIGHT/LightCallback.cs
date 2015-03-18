@@ -10,7 +10,7 @@ using OneSheeldClasses;
 
 namespace SimpleLIGHT
 {
-    public class LightCallback : IULongCallback
+    public class LightCallback : OneSheeldUser, IOneSheeldSketch, IULongCallback
     {
         OutputPort led = null;
 
@@ -18,12 +18,11 @@ namespace SimpleLIGHT
 
         public void Setup()
         {
-            OneSheeld sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.LIGHT.setOnValueChange(this);
+            LIGHT.setOnValueChange(this);
         }
 
         public void Loop()

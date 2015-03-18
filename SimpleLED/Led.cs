@@ -10,21 +10,18 @@ using OneSheeldClasses;
 
 namespace SimpleLED
 {
-    public class Led
+    public class Led : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
-
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
         }
 
         public void Loop()
         {
-            OneSheeld.LED.setHigh();
+            LED.setHigh();
             Thread.Sleep(1000);
-            OneSheeld.LED.setLow();
+            LED.setLow();
             Thread.Sleep(1000);
         }
     }

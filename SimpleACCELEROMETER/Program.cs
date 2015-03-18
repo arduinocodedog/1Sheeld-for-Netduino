@@ -7,21 +7,11 @@ namespace SimpleACCELEROMETER
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            AccelerometerCallback callback = new AccelerometerCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new AccelerometerCallback());
 
-            /*
             // Non-Callback Version
-            Accelerometer accelerometer = new Accelerometer();
-            accelerometer.Setup();
-            while (true)
-                accelerometer.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new Accelerometer());
         }
 
     }

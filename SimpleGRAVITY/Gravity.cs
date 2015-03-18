@@ -10,24 +10,22 @@ using OneSheeldClasses;
 
 namespace SimpleGRAVITY
 {
-    class Gravity
+    class Gravity : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.GRAVITY.getX() > 9 ||
-                OneSheeld.GRAVITY.getY() > 9 ||
-                OneSheeld.GRAVITY.getZ() > 9)
+            if (GRAVITY.getX() > 9 ||
+                GRAVITY.getY() > 9 ||
+                GRAVITY.getZ() > 9)
             {
                 led.Write(true);
             }

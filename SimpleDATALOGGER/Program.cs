@@ -7,12 +7,7 @@ namespace SimpleDATALOGGER
     {
         public static void Main()
         {
-            // write your code here
-
-            DataLogger datalogger = new DataLogger();
-            datalogger.Setup();
-            while (true)
-                datalogger.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new DataLogger());
         }
 
     }

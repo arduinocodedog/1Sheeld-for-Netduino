@@ -10,23 +10,21 @@ using OneSheeldClasses;
 
 namespace AdvancedREMOTE1
 {
-    public class Remote1 : ISubscribeCallback
+    public class Remote1 : OneSheeldUser, IOneSheeldSketch, ISubscribeCallback
     {
-        OneSheeld sheeld = null;
         RemoteOneSheeld usaSheeld = null;
 
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
-            usaSheeld = new RemoteOneSheeld(sheeld, "-----REMOTE-1SHEELD-ADDRESS-----");
+            usaSheeld = new RemoteOneSheeld("-----REMOTE-1SHEELD-ADDRESS-----");
 
-            sheeld.listenToRemoteOneSheeld(usaSheeld);
+            OneSheeld.listenToRemoteOneSheeld(usaSheeld);
 
-            usaSheeld.subscribeToChanges(sheeld.ConvertPinToByte(Pins.GPIO_PIN_D11));
+            usaSheeld.subscribeToChanges(OneSheeld.ConvertPinToByte(Pins.GPIO_PIN_D11));
 
             usaSheeld.setOnSubsribeOrDigitalChange(this);
 
@@ -35,14 +33,14 @@ namespace AdvancedREMOTE1
 
         public void Loop()
         {
-            if (OneSheeld.VOICERECOGNITION.isNewCommandReceived())
-                usaSheeld.sendMessage("USA", OneSheeld.VOICERECOGNITION.getLastCommand());
+            if (VOICERECOGNITION.isNewCommandReceived())
+                usaSheeld.sendMessage("USA", VOICERECOGNITION.getLastCommand());
         }
 
         public void OnSubscribeOrDigitalChange(byte incomingPinNumber, bool incommingPinValue)
         {
             if (led == null)
-                led = new OutputPort(sheeld.ConvertByteToPin(incomingPinNumber), false);
+                led = new OutputPort(OneSheeld.ConvertByteToPin(incomingPinNumber), false);
 
             led.Write(incommingPinValue);
         }

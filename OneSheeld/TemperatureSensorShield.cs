@@ -5,15 +5,13 @@ namespace OneSheeldClasses
 {
     public class TemperatureSensorShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
         sbyte value = -1;
 	    bool isCallBackAssigned=false;
         ISByteCallback changeCallBack = null;
 
-        public TemperatureSensorShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.TEMPERATURE_ID)
+        public TemperatureSensorShield()
+            : base(ShieldIds.TEMPERATURE_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public sbyte getValue()

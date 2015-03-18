@@ -5,8 +5,8 @@ namespace OneSheeldClasses
 {
     public class ToggleButtonShield : BoolInputShield
     {
-        public ToggleButtonShield(OneSheeld onesheeld)
-            : base(onesheeld, TOGGLEBUTTON_VALUE, ShieldIds.TOGGLE_BUTTON_ID) { }
+        public ToggleButtonShield()
+            : base(TOGGLEBUTTON_VALUE, ShieldIds.TOGGLE_BUTTON_ID) { }
 
         public bool getStatus()
         {

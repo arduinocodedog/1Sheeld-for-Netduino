@@ -10,18 +10,10 @@ namespace SimpleGYROSCOPE
             // write your code here
 
             // Callback Version
-            GyroscopeCallback callback = new GyroscopeCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new GyroscopeCallback());
 
-            /*
             // Non-Callback Version
-            Gyroscope gyroscope = new Gyroscope();
-            gyroscope.Setup();
-            while (true)
-                gyroscope.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new Gyroscope());
         }
 
     }

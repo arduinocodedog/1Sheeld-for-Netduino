@@ -10,9 +10,8 @@ using OneSheeldClasses;
 
 namespace SimpleGRAVITY
 {
-    public class GravityCallback : IXYZFloatCallback
+    public class GravityCallback : OneSheeldUser, IOneSheeldSketch, IXYZFloatCallback
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         float x = 0.0f;
@@ -21,12 +20,11 @@ namespace SimpleGRAVITY
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.GRAVITY.setOnValueChange(this);
+            GRAVITY.setOnValueChange(this);
         }
 
         public void Loop()

@@ -6,12 +6,9 @@ namespace OneSheeldClasses
 {
     public class FoursquareShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
-        public FoursquareShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.FOURSQUARE_ID)
+        public FoursquareShield()
+            : base(ShieldIds.FOURSQUARE_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void checkIn(string placeId, string message)
@@ -26,7 +23,7 @@ namespace OneSheeldClasses
 
             args.Add(arg2);
 
-            Sheeld.sendPacket(ShieldIds.FOURSQUARE_ID, 0, FOURSQUARE_CHECK_IN, 2, args);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.FOURSQUARE_ID, 0, FOURSQUARE_CHECK_IN, 2, args);
         }
 
         const byte FOURSQUARE_CHECK_IN = 0x01;

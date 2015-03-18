@@ -5,7 +5,6 @@ namespace OneSheeldClasses
 {
     public class CharInputShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
         bool isCallBackAssigned = false;
         ICharCallback changeCallBack = null;
         byte ShieldFunctionID = 0x00;
@@ -13,10 +12,9 @@ namespace OneSheeldClasses
 
         protected char character = (char) 0;
 
-        public CharInputShield(OneSheeld onesheeld, byte funcid, ShieldIds shieldid)
-            : base(onesheeld, shieldid)
+        public CharInputShield(byte funcid, ShieldIds shieldid)
+            : base(shieldid)
         {
-            Sheeld = onesheeld;
             ShieldFunctionID = funcid;
             ShieldID = shieldid;
          }

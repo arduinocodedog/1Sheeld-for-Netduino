@@ -7,12 +7,7 @@ namespace SimpleFACEBOOK
     {
         public static void Main()
         {
-            // write your code here
-            Facebook facebook = new Facebook();
-            facebook.Setup();
-            while (true)
-                facebook.Loop();
-
+            OneSheeldClasses.OneSheeldUser.Run(new Facebook());
         }
 
     }

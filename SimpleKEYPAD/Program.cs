@@ -7,21 +7,11 @@ namespace SimpleKEYPAD
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            KeypadCallback callback = new KeypadCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new KeypadCallback());
 
-            /*
             // Non-Callback Version
-            Keypad keypad = new Keypad();
-            keypad.Setup();
-            while (true)
-                keypad.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new Keypad());
         }
 
     }

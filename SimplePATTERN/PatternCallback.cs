@@ -7,9 +7,8 @@ using OneSheeldClasses;
 
 namespace SimplePATTERN
 {
-    public class PatternCallback : IPatternCallback
+    public class PatternCallback : OneSheeldUser, IOneSheeldSketch, IPatternCallback
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         // Initialize the pattern we want to see
@@ -29,12 +28,11 @@ namespace SimplePATTERN
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.PATTERN.SetOnNewPattern(this);
+            PATTERN.SetOnNewPattern(this);
         }
 
         public void Loop()

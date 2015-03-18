@@ -7,11 +7,7 @@ namespace SimpleLED
     {
         public static void Main()
         {
-            // write your code here
-            Led led = new Led();
-            led.Setup();
-            while (true)
-                led.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new Led());
         }
     }
 }

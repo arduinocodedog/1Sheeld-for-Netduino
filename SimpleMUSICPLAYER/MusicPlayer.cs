@@ -10,36 +10,34 @@ using OneSheeldClasses;
 
 namespace SimpleMUSICPLAYER
 {
-    public class MusicPlayer
+    public class MusicPlayer : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         bool MusicPlaying = false;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.PUSHBUTTON.isPressed())
+            if (PUSHBUTTON.isPressed())
             { 
                 if (MusicPlaying)
                 {
                     led.Write(false);
-                    OneSheeld.MUSICPLAYER.pause();
+                    MUSICPLAYER.pause();
                     MusicPlaying = false;
                 }
                 else
                 {
                     led.Write(true);
-                    OneSheeld.MUSICPLAYER.setVolume(5);
-                    OneSheeld.MUSICPLAYER.play();
+                    MUSICPLAYER.setVolume(5);
+                    MUSICPLAYER.play();
                     MusicPlaying = true;
                 }
 

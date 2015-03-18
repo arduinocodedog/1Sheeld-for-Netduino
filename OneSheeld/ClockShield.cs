@@ -5,8 +5,6 @@ namespace OneSheeldClasses
 {
     public class ClockShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
         byte seconds = 0;
         byte hours = 0;
         byte minutes = 0;
@@ -19,15 +17,14 @@ namespace OneSheeldClasses
         ulong timeStart = 0L;
         ulong timeCheck = 0L;
 
-        public ClockShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.CLOCK_ID)
+        public ClockShield()
+            : base(ShieldIds.CLOCK_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void begin()
         {
-            Sheeld.sendPacket(ShieldIds.CLOCK_ID,0,CLOCK_BEGIN,0,null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.CLOCK_ID,0,CLOCK_BEGIN,0,null);
 	        timeStart= (ulong)(DateTime.Now.Ticks / 10000L);
 	        isClockInit=false;
 	        while(!isClockInit)
@@ -38,7 +35,7 @@ namespace OneSheeldClasses
                     break;
                 }
 
-		        Sheeld.processInput();
+		        OneSheeldMain.OneSheeld.processInput();
             }		
         }
 

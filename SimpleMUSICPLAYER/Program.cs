@@ -7,12 +7,7 @@ namespace SimpleMUSICPLAYER
     {
         public static void Main()
         {
-            // write your code here
-
-            MusicPlayer musicplayer = new MusicPlayer();
-            musicplayer.Setup();
-            while (true)
-                musicplayer.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new MusicPlayer());
         }
 
     }

@@ -10,15 +10,13 @@ using OneSheeldClasses;
 
 namespace SimpleKEYBOARD
 {
-    public class Keyboard
+    public class Keyboard : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
@@ -26,7 +24,7 @@ namespace SimpleKEYBOARD
         public void Loop()
         {
             /* If keyboard's A key is pressed. */
-            if (OneSheeld.KEYBOARD.getCharacter() == 'A')
+            if (KEYBOARD.getCharacter() == 'A')
             {
                 /* Turn on the LED. */
                 led.Write(true);

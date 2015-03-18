@@ -10,25 +10,23 @@ using OneSheeldClasses;
 
 namespace SimpleFOURSQUARE
 {
-    public class Foursquare
+    public class Foursquare : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.PUSHBUTTON.isPressed())
+            if (PUSHBUTTON.isPressed())
             {
                 led.Write(true);
-                OneSheeld.FOURSQUARE.checkIn("511759f2e4b0b0ae6ed91067", "Back to work!");
+                FOURSQUARE.checkIn("511759f2e4b0b0ae6ed91067", "Back to work!");
                 Thread.Sleep(300);
             }
             else

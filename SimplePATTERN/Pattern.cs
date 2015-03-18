@@ -7,9 +7,8 @@ using OneSheeldClasses;
 
 namespace SimplePATTERN
 {
-    public class Pattern
+    public class Pattern : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         // Initialize the pattern we want to see
@@ -27,19 +26,18 @@ namespace SimplePATTERN
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
         }
 
         public void Loop()
         {
-            if (OneSheeld.PATTERN.isNewPatternReceived())
+            if (PATTERN.isNewPatternReceived())
             {
-                PatternNode[] patternEntered = OneSheeld.PATTERN.getLastPattern();
+                PatternNode[] patternEntered = PATTERN.getLastPattern();
 
-                length = OneSheeld.PATTERN.getLastPatternLength();
+                length = PATTERN.getLastPatternLength();
 
                 if (length == 5)
                 {

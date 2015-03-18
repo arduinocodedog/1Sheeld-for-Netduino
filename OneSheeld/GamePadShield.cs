@@ -5,8 +5,6 @@ namespace OneSheeldClasses
 {
     public class GamePadShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
         bool isCallBackAssigned = false;
 
         bool up = false;
@@ -20,10 +18,9 @@ namespace OneSheeldClasses
 
         IGamePadCallback buttonChangeCallBack = null;
 
-        public GamePadShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.GAMEPAD_ID)
+        public GamePadShield()
+            : base(ShieldIds.GAMEPAD_ID)
         {
-            Sheeld = onesheeld;
         }
 
         //Up ArrowChecker

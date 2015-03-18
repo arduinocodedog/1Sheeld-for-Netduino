@@ -8,12 +8,7 @@ namespace AdvancedGPS
     {
         public static void Main()
         {
-            // write your code here
-
-            GPS gps = new GPS();
-            gps.Setup();
-            while (true)
-                gps.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new GPS());
         }
 
     }

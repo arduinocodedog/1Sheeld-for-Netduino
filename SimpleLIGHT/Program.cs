@@ -10,18 +10,10 @@ namespace SimpleLIGHT
             // write your code here
 
             // Callback Version
-            LightCallback callback = new LightCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new LightCallback());
 
-            /*
             // Non-Callback Version
-            Light light = new Light();
-            light.Setup();
-            while (true)
-                light.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new Light());
         }
 
     }

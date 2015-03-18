@@ -7,21 +7,11 @@ namespace SimplePROXIMITY
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            ProximityCallback callback = new ProximityCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new ProximityCallback());
 
-            /*
             // Non-Callback Version
-            Proximity proximity = new Proximity();
-            proximity.Setup();
-            while (true)
-                proximity.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new Proximity());
         }
 
     }

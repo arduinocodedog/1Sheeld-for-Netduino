@@ -7,21 +7,11 @@ namespace SimpleTOGGLEBUTTON
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            ToggleButtonCallback callback = new ToggleButtonCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new ToggleButtonCallback());
 
-            /*
             // Non-Callback Version
-            ToggleButton togglebutton = new ToggleButton();
-            togglebutton.Setup();
-            while (true)
-                togglebutton.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new ToggleButton());
         }
     }
 }

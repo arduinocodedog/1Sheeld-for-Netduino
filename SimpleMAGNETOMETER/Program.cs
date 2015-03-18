@@ -7,11 +7,7 @@ namespace SimpleMAGNETOMETER
     {
         public static void Main()
         {
-            // write your code here
-            Magnetometer magnetometer = new Magnetometer();
-            magnetometer.Setup();
-            while (true)
-                magnetometer.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new Magnetometer());
         }
 
     }

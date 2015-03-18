@@ -7,21 +7,11 @@ namespace SimplePUSHBUTTON
     {
         public static void Main()
         {
-            // write your code here
-
             // Callback Version
-            PushButtonCallback callback = new PushButtonCallback();
-            callback.Setup();
-            while (true)
-                callback.Loop();
- 
-            /*
+            OneSheeldClasses.OneSheeldUser.Run(new PushButtonCallback());
+
             // Non-Callback Version
-            PushButton pushbutton = new PushButton();
-            pushbutton.Setup();
-            while (true)
-                pushbutton.Loop();
-            */
+            // OneSheeldClasses.OneSheeldUser.Run(new PushButton());
         }
     }
 }

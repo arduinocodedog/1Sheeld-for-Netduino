@@ -7,12 +7,7 @@ namespace AdvancedEMAIL
     {
         public static void Main()
         {
-            // write your code here
-
-            Email email = new Email();
-            email.Setup();
-            while (true)
-                email.Loop();
+            OneSheeldClasses.OneSheeldUser.Run(new Email());
         }
 
     }

@@ -10,25 +10,22 @@ using OneSheeldClasses;
 
 namespace SimpleSLIDER
 {
-    public class Slider
+    public class Slider : OneSheeldUser, IOneSheeldSketch
     {
-        OneSheeld sheeld = null;
-
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
         }
 
         public void Loop()
         {
-            byte value = OneSheeld.SLIDER.getValue();
+            byte value = SLIDER.getValue();
             
             int waitvalue = 1000 - (3 * value);
 
-            OneSheeld.BUZZER.buzzOn();
+            BUZZER.buzzOn();
             Thread.Sleep(waitvalue);
-            OneSheeld.BUZZER.buzzOff();
+            BUZZER.buzzOff();
             Thread.Sleep(waitvalue);
         }
     }

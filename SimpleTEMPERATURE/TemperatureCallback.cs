@@ -11,21 +11,19 @@ using OneSheeldClasses;
 
 namespace SimpleTEMPERATURE
 {
-    public class TemperatureCallback : ISByteCallback
+    public class TemperatureCallback : OneSheeldUser, IOneSheeldSketch, ISByteCallback
     {
-        OneSheeld sheeld = null;
         OutputPort led = null;
 
         sbyte value = 0x00;
 
         public void Setup()
         {
-            sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.TEMPERATURE.setOnValueChange(this);
+            TEMPERATURE.setOnValueChange(this);
         }
 
         public void Loop()

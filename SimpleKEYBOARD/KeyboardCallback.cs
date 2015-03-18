@@ -10,19 +10,18 @@ using OneSheeldClasses;
 
 namespace SimpleKEYBOARD
 {
-    public class KeyboardCallback : ICharCallback
+    public class KeyboardCallback : OneSheeldUser, IOneSheeldSketch, ICharCallback
     {
         OutputPort led = null;
         char character = (char)0;
 
         public void Setup()
         {
-            OneSheeld sheeld = new OneSheeld();
-            sheeld.begin();
+            OneSheeld.begin();
 
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
-            OneSheeld.KEYBOARD.setOnValueChange(this);
+            KEYBOARD.setOnValueChange(this);
         }
 
         public void Loop()

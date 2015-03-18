@@ -6,23 +6,20 @@ namespace OneSheeldClasses
 {
     public class VoiceRecognitionShield : ShieldParent
     {
-        OneSheeld Sheeld = null;
-
         string voice = null;
         bool isCallbackAssigned = false;
         bool newCommand = false;
         byte errorNumber = 0x00;
         IVoiceRecognitionCallback userCallback = null;
 
-        public VoiceRecognitionShield(OneSheeld onesheeld)
-            : base(onesheeld, ShieldIds.VOICE_RECOGNITION_ID)
+        public VoiceRecognitionShield()
+            : base(ShieldIds.VOICE_RECOGNITION_ID)
         {
-            Sheeld = onesheeld;
         }
 
         public void start()
         {
-            Sheeld.sendPacket(ShieldIds.VOICE_RECOGNITION_ID, 0, VOICE_START_LISTENING, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.VOICE_RECOGNITION_ID, 0, VOICE_START_LISTENING, 0, null);
         }
 
         public string getLastCommand()
