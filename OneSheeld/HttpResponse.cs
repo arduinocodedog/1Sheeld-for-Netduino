@@ -187,6 +187,18 @@ namespace OneSheeldClasses
 	
         }
 
+        public JsonKeyChain this[int key]
+        {
+            get { return AddKeytoChain(key); }
+            set { }
+        }
+
+        public JsonKeyChain this[string key]
+        {
+            get { return AddKeytoChain(key); }
+            set { }
+        }
+
         public JsonKeyChain AddKeytoChain(int key)
         {
             JsonKeyChain chain = new JsonKeyChain(requestId);

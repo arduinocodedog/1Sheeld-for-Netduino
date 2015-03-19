@@ -89,6 +89,19 @@ namespace OneSheeldClasses
             return base.GetHashCode();
         }
 
+        public JsonKeyChain this[int key]
+        {
+            get { return AddKeytoChain(key); }
+            set { }
+        }
+
+        public JsonKeyChain this[string key]
+        {
+            get { return AddKeytoChain(key); }
+            set { }
+        }
+
+
         public JsonKeyChain AddKeytoChain(int key)
         {
             if (counter < MAX_JSON_KEY_DEPTH)

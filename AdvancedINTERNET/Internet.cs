@@ -50,7 +50,8 @@ namespace AdvancedINTERNET
 
         public void OnSuccess(HttpResponse response)
         {
-            response.AddKeytoChain("weather").AddKeytoChain(0).AddKeytoChain("main").query();
+            response["weather"][0]["main"].query();
+            //response.AddKeytoChain("weather").AddKeytoChain(0).AddKeytoChain("main").query();
         }
 
         public void OnFailure(HttpResponse response)
