@@ -107,10 +107,9 @@ namespace OneSheeldClasses
             if (counter < MAX_JSON_KEY_DEPTH)
             {
                 keysArray[counter++] = new JsonKey(key);
-                return this;
             }
 
-            return null;
+            return this;
         }
 
         public JsonKeyChain AddKeytoChain(string key)
@@ -118,10 +117,9 @@ namespace OneSheeldClasses
             if (counter < MAX_JSON_KEY_DEPTH)
             {
                 keysArray[counter++] = new JsonKey(key);
-                return this;
             }
-           
-            return null;
+
+            return this;
         }
 
         public void query()
