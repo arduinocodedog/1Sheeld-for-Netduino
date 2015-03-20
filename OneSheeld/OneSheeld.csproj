@@ -60,6 +60,7 @@
     <Compile Include="IHttpResponseJsonResponseCallback.cs" />
     <Compile Include="IHttpResponseNextResponseBytesCallback.cs" />
     <Compile Include="IInternetErrorCallback.cs" />
+    <Compile Include="IncludedShieldsDefines.cs" />
     <Compile Include="InternetShield.cs" />
     <Compile Include="IOneSheeldSketch.cs" />
     <Compile Include="IPatternCallback.cs" />
