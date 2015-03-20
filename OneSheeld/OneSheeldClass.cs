@@ -23,7 +23,7 @@ namespace OneSheeldClasses
         static HttpRequest[] requestsArray = null;
         static SerialPort Serial1 = null;
 
-        RemoteOneSheeld[] listOfRemoteOneSheelds = new RemoteOneSheeld[MAX_REMOTE_CONNECTIONS];
+        public RemoteOneSheeld[] listOfRemoteOneSheelds = null;
 
         Stream OneSheeldSerial = null;
         bool framestart = false;
@@ -391,7 +391,7 @@ namespace OneSheeldClasses
 
         public void listenToRemoteOneSheeld(RemoteOneSheeld remoteonesheeld)
         {
-            if (remoteOneSheeldsCounter < MAX_REMOTE_CONNECTIONS)
+            if (listOfRemoteOneSheelds != null && remoteOneSheeldsCounter < MAX_REMOTE_CONNECTIONS)
                 listOfRemoteOneSheelds[remoteOneSheeldsCounter++] = remoteonesheeld;
         }
 
@@ -405,10 +405,13 @@ namespace OneSheeldClasses
                     processFrame(); break;
 
                 case (byte)ShieldIds.REMOTE_SHEELD_ID:
-                    for (int i = 0; i < remoteOneSheeldsCounter; i++)
-                        listOfRemoteOneSheelds[i].processFrame();
-                    if (isOneSheeldRemoteDataUsed)
-                        processRemoteData();
+                    if (listOfRemoteOneSheelds != null)
+                    {
+                        for (int i = 0; i < remoteOneSheeldsCounter; i++)
+                            listOfRemoteOneSheelds[i].processFrame();
+                        if (isOneSheeldRemoteDataUsed)
+                            processRemoteData();
+                    }
                     break;
 
                 default:
