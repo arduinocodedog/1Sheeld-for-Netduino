@@ -233,7 +233,7 @@ namespace OneSheeldClasses
             set { }
         }
 
-        public OneSheeldClass _OneSheeld = null;
+        public static OneSheeldClass _OneSheeld = null;
 
         public OneSheeldClass OneSheeld
         {
