@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 
 namespace OneSheeldClasses
 {
-    public interface IHttpResponseJsonResponseCallback
+    public interface IHttpJsonResponseCallback
     {
         void OnJsonResponse(JsonKeyChain chain, byte[] data);
     }

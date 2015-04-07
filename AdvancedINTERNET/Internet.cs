@@ -10,7 +10,7 @@ namespace AdvancedINTERNET
     public class Internet : OneSheeldUser, IOneSheeldSketch,
         IHttpRequestSuccessCallback,
         IHttpRequestFailureCallback,
-        IHttpResponseJsonResponseCallback,
+        IHttpJsonResponseCallback,
         IHttpResponseErrorCallback,
         IInternetErrorCallback
     {

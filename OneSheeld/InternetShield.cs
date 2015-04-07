@@ -64,7 +64,7 @@ namespace OneSheeldClasses
 
 	    public void cancelAllRequests()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_CANCEL_ALL_REQUESTS, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_CANCEL_ALL_REQUESTS);
         }
 
 	    public void ignoreResponse(HttpRequest request)
@@ -90,7 +90,7 @@ namespace OneSheeldClasses
 
 	    public void clearBasicAuthentication()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_CLEAR_AUTHENTICATION, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_CLEAR_AUTHENTICATION);
         }
 
 	    public void setIntialResponseMaxBytesCount(int size)

@@ -14,31 +14,31 @@ namespace OneSheeldClasses
         //Stop Setter
         public void stop()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_STOP,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_STOP);
         }
 
         //Play Setter
         public void play()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PLAY,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PLAY);
         }
 
         //Pause Setter
         public void pause()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PAUSE,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PAUSE);
         }
 
         //Previous Setter
         public void previous()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PREVIOUS,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PREVIOUS);
         }
 
         //Next Setter
         public void next()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_NEXT,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_NEXT);
         }
 
         //SeekForward Setter

@@ -18,7 +18,7 @@ namespace OneSheeldClasses
 
         public IHttpResponseNextResponseBytesCallback getNextCallBack = null;
         public IHttpResponseErrorCallback getErrorCallBack = null;
-        public IHttpResponseJsonResponseCallback getJsonCallBack = null;
+        public IHttpJsonResponseCallback getJsonCallBack = null;
         public IHttpJsonArrayLengthResponseCallback getJsonArrayLengthCallBack = null;
         public IHttpResponseGetHeaderCallback getHeaderCallBack = null;
 
@@ -110,7 +110,7 @@ namespace OneSheeldClasses
 	        getErrorCallBack = userCallback;
         }
 
-        public void setOnJsonResponse(IHttpResponseJsonResponseCallback userCallback)
+        public void setOnJsonResponse(IHttpJsonResponseCallback userCallback)
         {
 	        callbacksRequested |= RESPONSE_GET_JSON_BIT;
 	        getJsonCallBack = userCallback;

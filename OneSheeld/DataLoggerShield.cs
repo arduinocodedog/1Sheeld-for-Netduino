@@ -13,7 +13,7 @@ namespace OneSheeldClasses
 
         public void start()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_START_LOG, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_START_LOG);
         }
 
         public void start(string fileName)
@@ -29,7 +29,7 @@ namespace OneSheeldClasses
 
         public void stop()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_STOP_LOG, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_STOP_LOG);
         }
 
         public void add(string key, float value)
@@ -64,7 +64,7 @@ namespace OneSheeldClasses
 
         public void log()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_LOG_DATA, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_LOG_DATA);
         }
 
         //Ouput Function ID's

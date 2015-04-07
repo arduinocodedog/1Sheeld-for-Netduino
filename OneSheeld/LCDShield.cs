@@ -23,73 +23,73 @@ namespace OneSheeldClasses
         //Clear Setter
         public void clear()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_CLEAR, 0, null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_CLEAR);
         }
 
         //Home Setter
         public void home()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_HOME, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_HOME);
         }
 
         //NoBlink Setter
         public void noBlink()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_NOBLINK, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_NOBLINK);
         }
 
         //Blink Setter
         public void blink()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_BLINK, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_BLINK);
         }
 
         //NoCursor Setter
         public void noCursor()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_NOCURSOR, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_NOCURSOR);
         }
 
         //Display Cursor Setter
         public void cursor()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_CURSOR, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_CURSOR);
         }
 
         //Scrolling Setter
         public void scrollDisplayLeft()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_SCROLLLEFT, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_SCROLLLEFT);
         }
 
         //Scrolling Setter
         public void scrollDisplayRight()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_SCROLLRIGHT, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_SCROLLRIGHT);
         }
 
         //left-Right Setter
         public void leftToRight()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_LEFT_RIGHT, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_LEFT_RIGHT);
         }
 
         //Right-left Setter
         public void rightToLeft()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_RIGHT_LEFT, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_RIGHT_LEFT);
         }
 
         //AutoScroll Setter
         public void autoScroll()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_AUTOSCROLL, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_AUTOSCROLL);
         }
 
         //NoAutoScroll Setter
         public void noAutoScroll()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_NOAUTOSCROLL, 0, null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LCD_ID, 0, LCD_NOAUTOSCROLL);
         }
 
         //Cursor Setter

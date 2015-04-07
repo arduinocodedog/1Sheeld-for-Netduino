@@ -66,7 +66,7 @@ namespace OneSheeldClasses
         {
             isOneSheeldConnected = false;
 
-            sendPacket(ShieldIds.ONESHEELD_ID, 0, WAIT_RESET_APPLICATION, 0, null);
+            sendPacket(ShieldIds.ONESHEELD_ID, 0, WAIT_RESET_APPLICATION);
 
             while (!isOneSheeldConnected)
             {
@@ -103,7 +103,7 @@ namespace OneSheeldClasses
             set { OneSheeldClass.isInit = value; }
         }
 
-        public void sendPacket(ShieldIds shieldID, byte instanceID, byte functionID, int argNo, ArrayList args)
+        public void sendPacket(ShieldIds shieldID, byte instanceID, byte functionID, int argNo = 0, ArrayList args = null)
         {
             ulong mill = millis() + 1;
 
@@ -492,7 +492,7 @@ namespace OneSheeldClasses
             }
             else if (functionId == LIBRARY_VERSION_REQUEST)
             {
-                sendPacket(ShieldIds.ONESHEELD_ID, 0, SEND_LIBRARY_VERSION, 0, null);
+                sendPacket(ShieldIds.ONESHEELD_ID, 0, SEND_LIBRARY_VERSION);
             }
         }
 
@@ -503,7 +503,7 @@ namespace OneSheeldClasses
             if (!isInACallback())
             {
                 OneSheeldClass.inACallback = true;
-                sendPacket(ShieldIds.ONESHEELD_ID, 0, CALLBACK_ENTERED, 0, null);
+                sendPacket(ShieldIds.ONESHEELD_ID, 0, CALLBACK_ENTERED);
             }
         }
 
@@ -512,7 +512,7 @@ namespace OneSheeldClasses
             if (isInACallback())
             {
                 OneSheeldClass.inACallback = false;
-                sendPacket(ShieldIds.ONESHEELD_ID, 0, CALLBACK_EXITED, 0, null);
+                sendPacket(ShieldIds.ONESHEELD_ID, 0, CALLBACK_EXITED);
             }
         }
 

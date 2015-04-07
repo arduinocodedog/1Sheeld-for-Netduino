@@ -57,7 +57,7 @@
     <Compile Include="IHttpRequestSuccessCallback.cs" />
     <Compile Include="IHttpResponseErrorCallback.cs" />
     <Compile Include="IHttpResponseGetHeaderCallback.cs" />
-    <Compile Include="IHttpResponseJsonResponseCallback.cs" />
+    <Compile Include="IHttpJsonResponseCallback.cs" />
     <Compile Include="IHttpResponseNextResponseBytesCallback.cs" />
     <Compile Include="IInternetErrorCallback.cs" />
     <Compile Include="IncludedShieldsDefines.cs" />

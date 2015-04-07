@@ -51,7 +51,7 @@ namespace OneSheeldClasses
         //Dot Setter
         public void setDot()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_DOT,0,null);
+	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_DOT);
         }
 
         const byte SEVENSEGMENT_SET_VALUE = 0x01;

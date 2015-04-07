@@ -143,13 +143,19 @@ namespace OneSheeldClasses
             for (int i = 2; i < counter + 2; i++)
             {
                 if (keysArray[i - 2].isString())
+                {
                     arguments[i] = new FunctionArg(keysArray[i - 2].getString().Length, System.Text.Encoding.UTF8.GetBytes(keysArray[i - 2].getString()));
+
+                    //Debug.Print("Argument # (string):" + i.ToString() + "   Length: " + keysArray[i - 2].getString().Length.ToString() + "   Data: " + keysArray[i - 2].getString());
+                }
                 else
                 {
                     byte[] integerArray = new byte[2];
                     integerArray[1] = (byte)((keysArray[i - 2].getNumber() >> 8) & 0xFF);
-                    integerArray[0] = (byte)(keysArray[i-2].getNumber() & 0xFF);
+                    integerArray[0] = (byte)(keysArray[i - 2].getNumber() & 0xFF);
                     arguments[i] = new FunctionArg(2, integerArray);
+
+                    //Debug.Print("Argument # (number):" + i.ToString() + "   Length: 2" + "   Data: " + keysArray[i - 2].getNumber().ToString());
                 }
                 int isString = keysArray[i-2].isString() ? 1 : 0;
                 types |= ((isString) << (i - 2));
@@ -159,11 +165,13 @@ namespace OneSheeldClasses
             typeArray[1] = (byte) ((types >> 8) & 0xFF);
             typeArray[0] = (byte) (types & 0xFF);
             arguments[1] = new FunctionArg(2, typeArray);
+            //Debug.Print("Argument #: 1   Types: " + types.ToString() + "   Length: 2");
 
             byte[] requestIdArray = new byte[2];
             requestIdArray[1] = (byte) ((request >> 8) & 0xFF);
             requestIdArray[0] = (byte) (request & 0xFF);
             arguments[0] = new FunctionArg(2, requestIdArray);
+            //Debug.Print("Argument #: 0   request: " + request.ToString() + "   Length: 2");
 
             ArrayList args = new ArrayList();
 

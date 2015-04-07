@@ -24,7 +24,7 @@ namespace OneSheeldClasses
 
         public void begin()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.CLOCK_ID,0,CLOCK_BEGIN,0,null);
+            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.CLOCK_ID,0,CLOCK_BEGIN);
 	        timeStart= (ulong)(DateTime.Now.Ticks / 10000L);
 	        isClockInit=false;
 	        while(!isClockInit)
