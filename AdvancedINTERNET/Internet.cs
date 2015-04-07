@@ -29,6 +29,8 @@ namespace AdvancedINTERNET
             OneSheeld.begin();
             OneSheeld.waitForAppConnection();
 
+            //OneSheeld.delay(20000);
+
             oneSheeldRequest = new HttpRequest("http://api.openweathermap.org/data/2.5/weather");
             oneSheeldRequest.setOnSuccess(this);
             oneSheeldRequest.setOnFailure(this);

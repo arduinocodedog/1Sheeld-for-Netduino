@@ -582,7 +582,7 @@ namespace OneSheeldClasses
 
         public ulong millis()
         {
-            return (ulong)(DateTime.Now.Ticks / 10000L);
+            return (ulong)(DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
         }
 
         // Write a byte to the Serial Port
