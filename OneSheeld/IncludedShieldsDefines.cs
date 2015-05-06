@@ -2,6 +2,7 @@
 #define BUZZER_SHIELD
 #define CAMERA_SHIELD
 #define CLOCK_SHIELD
+#define COLOR_SHIELD
 #define DATA_LOGGER_SHIELD
 #define EMAIL_SHIELD
 #define FACEBOOK_SHIELD
@@ -16,25 +17,25 @@
 #define LCD_SHIELD
 #define LED_SHIELD
 #define LIGHT_SHIELD
-#define SLIDER_SHIELD
-#define PUSH_BUTTON_SHIELD
-#define TOGGLE_BUTTON_SHIELD
-#define PROXIMITY_SHIELD
 #define MAGNETOMETER_SHIELD
 #define MIC_SHIELD
 #define MUSIC_PLAYER_SHIELD
+#define NFC_SHIELD
 #define NOTIFICATION_SHIELD
 #define TEMPERATURE_SHIELD
 #define ORIENTATION_SHIELD
 #define PATTERN_SHIELD
 #define PHONE_SHIELD
 #define PRESSURE_SHIELD
-#define REMOTE_SHIELD
+#define PROXIMITY_SHIELD
+#define PUSH_BUTTON_SHIELD
 #define SEVEN_SEGMENT_SHIELD
 #define SKYPE_SHIELD
+#define SLIDER_SHIELD
 #define SMS_SHIELD
 #define TERMINAL_SHIELD
 #define TEXTTOSPEECH_SHIELD
+#define TOGGLE_BUTTON_SHIELD
 #define TWITTER_SHIELD
 #define VOICE_RECOGNITION_SHIELD
 
@@ -61,6 +62,10 @@ namespace OneSheeldClasses
 
             #if CLOCK_SHIELD
                 _CLOCK = new ClockShield();
+            #endif
+
+            #if COLOR_SHIELD
+                _COLORDETECTOR = new ColorShield();
             #endif
 
             #if DATA_LOGGER_SHIELD
@@ -131,6 +136,10 @@ namespace OneSheeldClasses
                 _MUSICPLAYER = new MusicPlayerShield();
             #endif
 
+            #if NFC_SHIELD
+                _NFC = new NFCShield();
+            #endif
+
             #if NOTIFICATION_SHIELD
                _NOTIFICATION = new NotificationShield();
             #endif
@@ -157,12 +166,6 @@ namespace OneSheeldClasses
 
             #if PUSH_BUTTON_SHIELD
                 _PUSHBUTTON = new PushButtonShield();
-            #endif
-
-            #if REMOTE_SHIELD
-                // Maximum number of Remote Connections
-                const int MAX_REMOTE_CONNECTIONS = 10;
-                OneSheeld.listOfRemoteOneSheelds = new RemoteOneSheeld[MAX_REMOTE_CONNECTIONS];
             #endif
 
             #if SEVEN_SEGMENT_SHIELD

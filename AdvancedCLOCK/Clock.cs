@@ -22,7 +22,7 @@ namespace AdvancedCLOCK
             if (!CLOCK.isInitialized())
             {
                 TERMINAL.println("Initializing Clock.");
-                CLOCK.begin();
+                CLOCK.queryDateAndTime();
             }
             else
             {

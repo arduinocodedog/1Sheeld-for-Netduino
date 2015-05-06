@@ -1,13 +1,14 @@
 ﻿using System;
 using Microsoft.SPOT;
 
-namespace AdvancedREMOTE1
+namespace AdvancedNFC
 {
     public class Program
     {
         public static void Main()
         {
-            OneSheeldClasses.OneSheeldUser.Run(new Remote1());
+            OneSheeldClasses.OneSheeldUser.Run(new NFC());
         }
+
     }
 }

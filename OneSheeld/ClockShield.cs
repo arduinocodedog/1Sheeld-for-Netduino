@@ -14,29 +14,14 @@ namespace OneSheeldClasses
 
         bool isClockInit = false;
 
-        ulong timeStart = 0L;
-        ulong timeCheck = 0L;
-
         public ClockShield()
             : base(ShieldIds.CLOCK_ID)
         {
         }
 
-        public void begin()
+        public void queryDateAndTime()
         {
             OneSheeldMain.OneSheeld.sendPacket(ShieldIds.CLOCK_ID,0,CLOCK_BEGIN);
-	        timeStart= (ulong)(DateTime.Now.Ticks / 10000L);
-	        isClockInit=false;
-	        while(!isClockInit)
-	        {
-		        timeCheck=(ulong)(DateTime.Now.Ticks / 10000L);
-                if (timeCheck - timeStart >= ONE_SECOND)
-                {
-                    break;
-                }
-
-		        OneSheeldMain.OneSheeld.processInput();
-            }		
         }
 
         public bool isInitialized()

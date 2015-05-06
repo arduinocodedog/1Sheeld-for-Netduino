@@ -9,6 +9,7 @@ namespace OneSheeldClasses
         public static BuzzerShield _BUZZER = null;
         public static CameraShield _CAMERA = null;
         public static ClockShield _CLOCK = null;
+        public static ColorShield _COLORDETECTOR = null;
         public static DataLoggerShield _DATALOGGER = null;
         public static EmailShield _EMAIL = null;
         public static FacebookShield _FACEBOOK = null;
@@ -26,6 +27,7 @@ namespace OneSheeldClasses
         public static MagnetometerSensorShield _MAGNETOMETER = null;
         public static MicShield _MIC = null;
         public static MusicPlayerShield _MUSICPLAYER = null;
+        public static NFCShield _NFC = null;
         public static NotificationShield _NOTIFICATION = null;
         public static OrientationSensorShield _ORIENTATION = null;
         public static PatternShield _PATTERN = null;

@@ -37,6 +37,8 @@
     <Compile Include="CharInputShield.cs" />
     <Compile Include="CircularBuffer.cs" />
     <Compile Include="ClockShield.cs" />
+    <Compile Include="ColorClass.cs" />
+    <Compile Include="ColorShield.cs" />
     <Compile Include="DataLoggerShield.cs" />
     <Compile Include="EmailShield.cs" />
     <Compile Include="FacebookShield.cs" />
@@ -47,7 +49,10 @@
     <Compile Include="GyroscopeSensorShield.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="HttpResponse.cs" />
+    <Compile Include="IAppConnected.cs" />
     <Compile Include="ICharCallback.cs" />
+    <Compile Include="IColorCallback.cs" />
+    <Compile Include="IColorsCallback.cs" />
     <Compile Include="IGamePadCallback.cs" />
     <Compile Include="IGPSCallback.cs" />
     <Compile Include="IHttpJsonArrayLengthResponseCallback.cs" />
@@ -61,12 +66,15 @@
     <Compile Include="IHttpResponseNextResponseBytesCallback.cs" />
     <Compile Include="IInternetErrorCallback.cs" />
     <Compile Include="IncludedShieldsDefines.cs" />
+    <Compile Include="INFCError.cs" />
+    <Compile Include="INFCNewTagScanned.cs" />
     <Compile Include="InternetShield.cs" />
     <Compile Include="IOneSheeldSketch.cs" />
     <Compile Include="IPatternCallback.cs" />
     <Compile Include="IPhoneCallback.cs" />
-    <Compile Include="IRemoteCallback.cs" />
-    <Compile Include="IRemoteShieldCallback.cs" />
+    <Compile Include="IRecordDataCallback.cs" />
+    <Compile Include="IRecordParsedCallback.cs" />
+    <Compile Include="IRecordTypeCallback.cs" />
     <Compile Include="ISByteCallback.cs" />
     <Compile Include="ISelectedCallback.cs" />
     <Compile Include="ISMSCallback.cs" />
@@ -82,6 +90,9 @@
     <Compile Include="LightSensorShield.cs" />
     <Compile Include="MagnetometerSensorShield.cs" />
     <Compile Include="MusicPlayerShield.cs" />
+    <Compile Include="NFCRecord.cs" />
+    <Compile Include="NFCShield.cs" />
+    <Compile Include="NFCTag.cs" />
     <Compile Include="NotificationShield.cs" />
     <Compile Include="OneSheeldUser.cs" />
     <Compile Include="OneSheeldMain.cs" />
@@ -91,7 +102,6 @@
     <Compile Include="PhoneShield.cs" />
     <Compile Include="PressureSensorShield.cs" />
     <Compile Include="ProximitySensorShield.cs" />
-    <Compile Include="RemoteOneSheeld.cs" />
     <Compile Include="ShieldIds.cs" />
     <Compile Include="ShieldParent.cs" />
     <Compile Include="SkypeShield.cs" />

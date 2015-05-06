@@ -29,6 +29,12 @@ namespace OneSheeldClasses
             set { }
         }
 
+        public static ColorShield COLORDETECTOR
+        {
+            get { return OneSheeldMain._COLORDETECTOR; }
+            set { }
+        }
+
         public static DataLoggerShield DATALOGGER
         {
             get { return OneSheeldMain._DATALOGGER;  }
@@ -128,6 +134,12 @@ namespace OneSheeldClasses
         public static MusicPlayerShield MUSICPLAYER
         {
             get { return OneSheeldMain._MUSICPLAYER;  }
+            set { }
+        }
+
+        public static NFCShield NFC
+        {
+            get { return OneSheeldMain._NFC; }
             set { }
         }
 

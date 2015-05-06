@@ -23,14 +23,12 @@ namespace OneSheeldClasses
         static HttpRequest[] requestsArray = null;
         static SerialPort Serial1 = null;
 
-        public RemoteOneSheeld[] listOfRemoteOneSheelds = null;
-
         Stream OneSheeldSerial = null;
         bool framestart = false;
         bool isArgumentsNumberAllocated = false;
         bool isArgumentLengthsAllocated = false;
         bool isOneSheeldConnected = false;
-        bool isOneSheeldRemoteDataUsed = false;
+        bool isAppConnectedCallBack = false;
         byte functions = 0;
         byte shield = 0;
         byte instance = 0;
@@ -42,8 +40,8 @@ namespace OneSheeldClasses
         byte endFrame = 0;
         byte[][] arguments = null;
         byte[] argumentLengths = null;
-        int remoteOneSheeldsCounter = 0;
-        IRemoteCallback remoteCallBack = null;
+
+        IAppConnected AppConnectedCallBack = null;
 
         public OneSheeldClass()
         {
@@ -66,8 +64,6 @@ namespace OneSheeldClasses
         {
             isOneSheeldConnected = false;
 
-            sendPacket(ShieldIds.ONESHEELD_ID, 0, WAIT_RESET_APPLICATION);
-
             while (!isOneSheeldConnected)
             {
                 processInput();
@@ -77,6 +73,7 @@ namespace OneSheeldClasses
         public void begin()
         {
             begin(115200);
+            sendPacket(ShieldIds.ONESHEELD_ID, 0, CHECK_APP_CONNECTION);
             OneSheeldClass.isInitialized = true;
             for (int i = 0; i < OneSheeldClass.requestsCounter; i++)
                 OneSheeldClass.requestsArray[i].sendInitFrame();
@@ -106,8 +103,8 @@ namespace OneSheeldClasses
         public void sendPacket(ShieldIds shieldID, byte instanceID, byte functionID, int argNo = 0, ArrayList args = null)
         {
             ulong mill = millis() + 1;
-
-            if ((shieldID != ShieldIds.ONESHEELD_ID) && OneSheeldClass.isFirstFrame == true && OneSheeldClass.lastTimeFrameSent > 0L && (mill - OneSheeldClass.lastTimeFrameSent) < TIME_GAP)
+            ulong localLastTimeFrameSent = OneSheeldClass.lastTimeFrameSent;
+            if ((shieldID != ShieldIds.ONESHEELD_ID) && OneSheeldClass.isFirstFrame == true && localLastTimeFrameSent > 0L && (mill - localLastTimeFrameSent) < TIME_GAP)
             {
                 byte[] buffer = new byte[1];
 
@@ -117,7 +114,7 @@ namespace OneSheeldClasses
                     TempOneSheeld.OneSheeldSerial = OneSheeldSerial;
 
                     ShieldParent.setOneSheeldInstance(TempOneSheeld);
-                    while ((millis() < (TIME_GAP + OneSheeldClass.lastTimeFrameSent)) || TempOneSheeld.framestart)
+                    while ((millis() < (TIME_GAP + localLastTimeFrameSent)) || TempOneSheeld.framestart)
                     {
                         if (((SerialPort)TempOneSheeld.OneSheeldSerial).BytesToRead > 0)
                         {
@@ -130,7 +127,7 @@ namespace OneSheeldClasses
                 }
                 else
                 {
-                    while ((millis() < (TIME_GAP + OneSheeldClass.lastTimeFrameSent)) || framestart)
+                    while ((millis() < (TIME_GAP + localLastTimeFrameSent)) || framestart)
                     {
                         if (((SerialPort)OneSheeldSerial).BytesToRead > 0)
                         {
@@ -164,12 +161,19 @@ namespace OneSheeldClasses
             }
 
             Write(END_OF_FRAME);
-            OneSheeldClass.lastTimeFrameSent = millis() + 1;
+            if (shieldID != ShieldIds.ONESHEELD_ID) 
+                OneSheeldClass.lastTimeFrameSent = millis() + 1;
         }
 
         public bool isAppConnected()
         {
             return isOneSheeldConnected;
+        }
+
+        void setOnAppConnected(IAppConnected userCallback)
+        {
+          AppConnectedCallBack = userCallback;
+          isAppConnectedCallBack = true;
         }
 
         public byte getShieldId()
@@ -325,7 +329,7 @@ namespace OneSheeldClasses
                 {
                     shield = data;
                     bool found = false;
-                    if (shield == (byte)ShieldIds.ONESHEELD_ID || shield == (byte)ShieldIds.REMOTE_SHEELD_ID)
+                    if (shield == (byte)ShieldIds.ONESHEELD_ID)
                         found = true;
                     else
                     {
@@ -389,12 +393,6 @@ namespace OneSheeldClasses
             }
         }
 
-        public void listenToRemoteOneSheeld(RemoteOneSheeld remoteonesheeld)
-        {
-            if (listOfRemoteOneSheelds != null && remoteOneSheeldsCounter < MAX_REMOTE_CONNECTIONS)
-                listOfRemoteOneSheelds[remoteOneSheeldsCounter++] = remoteonesheeld;
-        }
-
         void sendToShields()
         {
             //Checking the Shield-ID    
@@ -403,16 +401,6 @@ namespace OneSheeldClasses
             {
                 case (byte)ShieldIds.ONESHEELD_ID:
                     processFrame(); break;
-
-                case (byte)ShieldIds.REMOTE_SHEELD_ID:
-                    if (listOfRemoteOneSheelds != null)
-                    {
-                        for (int i = 0; i < remoteOneSheeldsCounter; i++)
-                            listOfRemoteOneSheelds[i].processFrame();
-                        if (isOneSheeldRemoteDataUsed)
-                            processRemoteData();
-                    }
-                    break;
 
                 default:
                     for (int i = 0; i < OneSheeldClass.shieldsCounter; i++)
@@ -423,61 +411,6 @@ namespace OneSheeldClasses
             }
         }
 
-        public void setOnNewMessage(IRemoteCallback userCallback)
-        {
-            isOneSheeldRemoteDataUsed = true;
-            remoteCallBack = userCallback;
-        }
-
-        void processRemoteData()
-        {
-            byte functionId = getFunctionId();
-
-            if (functionId == READ_MESSAGE_FLOAT)
-            {
-                string remoteAddress = "";
-                for (int i = 0; i < 36; i++)
-                    remoteAddress += Convert.ToChar(getArgumentData(0)[i]);
-
-                string key = "";
-                int keyLength = getArgumentLength(1);
-                for (int i = 0; i < keyLength; i++)
-                    key += Convert.ToChar(getArgumentData(1)[i]);
-
-                float incomingValue = convertBytesToFloat(getArgumentData(2));
-
-                if (isOneSheeldRemoteDataUsed && !isInACallback())
-                {
-                    enteringACallback();
-                    remoteCallBack.OnNewMessage(remoteAddress, key, incomingValue);
-                    exitingACallback();
-                }
-            }
-            else if (functionId == READ_MESSAGE_STRING)
-            {
-                string remoteAddress = "";
-                for (int i = 0; i < 36; i++)
-                    remoteAddress += Convert.ToChar(getArgumentData(0)[i]);
-
-                string key = "";
-                int keyLength = getArgumentLength(1);
-                for (int i = 0; i < keyLength; i++)
-                    key += Convert.ToChar(getArgumentData(1)[i]);
-
-                string stringData = "";
-                int stringDataLength = getArgumentLength(2);
-                for (int i = 0; i < stringDataLength; i++)
-                    stringData += Convert.ToChar(getArgumentData(2)[i]);
-
-                if (isOneSheeldRemoteDataUsed && !isInACallback())
-                {
-                    enteringACallback();
-                    remoteCallBack.OnNewMessage(remoteAddress, key, stringData);
-                    exitingACallback();
-                }
-            }
-        }
-
         void processFrame()
         {
             byte functionId = getFunctionId();
@@ -485,10 +418,14 @@ namespace OneSheeldClasses
             if (functionId == DISCONNECTION_CHECK_FUNCTION)
             {
                 isOneSheeldConnected = false;
+                if (isAppConnectedCallBack)
+                    AppConnectedCallBack.OnAppConnected(isOneSheeldConnected);
             }
             else if (functionId == CONNECTION_CHECK_FUNCTION)
             {
                 isOneSheeldConnected = true;
+                if (isAppConnectedCallBack)
+                    AppConnectedCallBack.OnAppConnected(isOneSheeldConnected);
             }
             else if (functionId == LIBRARY_VERSION_REQUEST)
             {
@@ -684,11 +621,11 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 5;
+        const byte LIBRARY_VERSION = 6;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;
-        const byte WAIT_RESET_APPLICATION = 0x02;
+        const byte CHECK_APP_CONNECTION = 0x02;
         const byte CALLBACK_ENTERED = 0x03;
         const byte CALLBACK_EXITED = 0x04;
 
@@ -702,7 +639,7 @@ namespace OneSheeldClasses
         const int TIME_GAP = 200;
 
         // Number of Shields
-        const int SHIELDS_NO = 38;
+        const int SHIELDS_NO = 40;
 
         // Maximum number of Remote Connections
         const int MAX_REMOTE_CONNECTIONS = 10;
