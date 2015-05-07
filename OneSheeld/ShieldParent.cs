@@ -85,7 +85,7 @@ namespace OneSheeldClasses
                 if (isCallBackSet && !isInACallback())
                 {
                     enteringACallback();
-                    callBack.selected();
+                    callBack.OnSelection();
                     exitingACallback();
                 }
             }

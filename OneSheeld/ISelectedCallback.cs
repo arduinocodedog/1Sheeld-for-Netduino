@@ -5,6 +5,6 @@ namespace OneSheeldClasses
 {
     public interface ISelectedCallback
     {
-        void selected();
+        void OnSelection();
     }
 }

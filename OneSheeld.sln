@@ -89,6 +89,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleNFC", "SimpleNFC\Simp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedNFC", "AdvancedNFC\AdvancedNFC.csproj", "{53D06A59-C598-407D-AB09-CE3333E483A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedCOLOR", "AdvancedCOLOR\AdvancedCOLOR.csproj", "{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -351,6 +353,12 @@ Global
 		{53D06A59-C598-407D-AB09-CE3333E483A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53D06A59-C598-407D-AB09-CE3333E483A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{53D06A59-C598-407D-AB09-CE3333E483A2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -198,22 +198,22 @@ namespace OneSheeldClasses
         const byte ALL_COLORS_VALUE = 0x02;
 
         //Literals
-        const int COLOR_UPPER_LEFT = 0;
-        const int COLOR_UPPER_MIDDLE = 1;
-        const int COLOR_UPPER_RIGHT = 2;
-        const int COLOR_CENTER_LEFT = 3;
-        const int COLOR_CENTER_MIDDLE = 4;
-        const int COLOR_CENTER_RIGHT = 5;
-        const int COLOR_LOWER_LEFT = 6;
-        const int COLOR_LOWER_MIDDLE = 7;
-        const int COLOR_LOWER_RIGHT = 8;
+        public const int COLOR_UPPER_LEFT = 0;
+        public const int COLOR_UPPER_MIDDLE = 1;
+        public const int COLOR_UPPER_RIGHT = 2;
+        public const int COLOR_CENTER_LEFT = 3;
+        public const int COLOR_CENTER_MIDDLE = 4;
+        public const int COLOR_CENTER_RIGHT = 5;
+        public const int COLOR_LOWER_LEFT = 6;
+        public const int COLOR_LOWER_MIDDLE = 7;
+        public const int COLOR_LOWER_RIGHT = 8;
 
-        const byte MOST_DOMINANT_COLOR = 0x01;
-        const byte AVERAGE_COLOR = 0x02;
+        public const byte MOST_DOMINANT_COLOR = 0x01;
+        public const byte AVERAGE_COLOR = 0x02;
 
-        const byte SMALL_SIZE = 0x01;
-        const byte MEDIUM_SIZE = 0x02;
-        const byte LARGE_SIZE = 0x03;
+        public const byte SMALL_SIZE = 0x01;
+        public const byte MEDIUM_SIZE = 0x02;
+        public const byte LARGE_SIZE = 0x03;
 
         public const int _1_BIT_GRAYSCALE_PALETTE = 1;
         public const int _2_BIT_GRAYSCALE_PALETTE = 2;
