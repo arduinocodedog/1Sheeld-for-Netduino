@@ -7,7 +7,8 @@ using OneSheeldClasses;
 
 namespace SimpleCOLOR
 {
-    public class Color : OneSheeldUser, IOneSheeldSketch
+    public class Color : OneSheeldUser, IOneSheeldSketch,
+        ISelectedCallback
     {
         PWM red = null;
         PWM green = null;
@@ -24,6 +25,11 @@ namespace SimpleCOLOR
 
             OneSheeld.begin();
 
+            COLORDETECTOR.setOnSelected(this);
+        }
+
+        public void OnSelection()
+        {
             COLORDETECTOR.setPalette(ColorShield._3_BIT_RGB_PALETTE);
         }
 

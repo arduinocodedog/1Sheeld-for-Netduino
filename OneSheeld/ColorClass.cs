@@ -18,6 +18,12 @@ namespace OneSheeldClasses
         {
         }
 
+        public void setColor(ulong _rgb)
+        {
+            rgb = _rgb;
+            hsb = ColorShield.convertRgbToHsb(rgb);
+        }
+
         public static bool operator==(ColorClass a, ColorClass b)
 	    {
 	        return (a.rgb==b.rgb)||(a.hsb==b.hsb);

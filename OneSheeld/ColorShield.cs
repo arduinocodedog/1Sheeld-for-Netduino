@@ -18,6 +18,8 @@ namespace OneSheeldClasses
             base(ShieldIds.COLOR_ID)
         {
             colorInstances = new ColorClass[9];
+            for (int i = 0; i < 9; i++)
+                colorInstances[i] = new ColorClass();
         }
 
         public void setPalette(byte range)
@@ -151,9 +153,9 @@ namespace OneSheeldClasses
 		        isNewColor = true;
 		        fullOperation=false;
 
-		        colorInstances[COLOR_CENTER_MIDDLE] = new ColorClass((ulong)(((ulong)getOneSheeldInstance().getArgumentData(0)[0])|
-											                    ((ulong)getOneSheeldInstance().getArgumentData(0)[1])<<8|
-											                    ((ulong)getOneSheeldInstance().getArgumentData(0)[2])<<16));
+		        colorInstances[COLOR_CENTER_MIDDLE].setColor((ulong)(((ulong)getOneSheeldInstance().getArgumentData(0)[0])|
+											                 ((ulong)getOneSheeldInstance().getArgumentData(0)[1])<<8|
+											                 ((ulong)getOneSheeldInstance().getArgumentData(0)[2])<<16));
 		
 		        if(colorCallBackInvoked && !isInACallback())
 		        {
@@ -169,9 +171,9 @@ namespace OneSheeldClasses
 
 		        for(int i=0;i < 9;i++)
 		        {
-			        colorInstances[i] = new ColorClass((ulong)(((ulong)getOneSheeldInstance().getArgumentData((byte)i)[0])|
-											              ((ulong)getOneSheeldInstance().getArgumentData((byte)i)[1])<<8|
-											              ((ulong)getOneSheeldInstance().getArgumentData((byte)i)[2])<<16));
+			        colorInstances[i].setColor((ulong)(((ulong)getOneSheeldInstance().getArgumentData((byte)i)[0])|
+											   ((ulong)getOneSheeldInstance().getArgumentData((byte)i)[1])<<8|
+											   ((ulong)getOneSheeldInstance().getArgumentData((byte)i)[2])<<16));
 		        }
 
 		
