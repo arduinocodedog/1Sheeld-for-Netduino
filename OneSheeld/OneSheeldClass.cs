@@ -119,8 +119,8 @@ namespace OneSheeldClasses
                         if (((SerialPort)TempOneSheeld.OneSheeldSerial).BytesToRead > 0)
                         {
                             int datacount = TempOneSheeld.OneSheeldSerial.Read(buffer, 0, 1);
-                            if (datacount == 0) return;
-                            TempOneSheeld.processInput(buffer[0]);
+                            if (datacount != 0)
+                                TempOneSheeld.processInput(buffer[0]);
                         }
                     }
                     ShieldParent.unSetOneSheeldInstance();
@@ -132,8 +132,8 @@ namespace OneSheeldClasses
                         if (((SerialPort)OneSheeldSerial).BytesToRead > 0)
                         {
                             int datacount = OneSheeldSerial.Read(buffer, 0, 1);
-                            if (datacount == 0) return;
-                            processInput(buffer[0]);
+                            if (datacount != 0) 
+                                processInput(buffer[0]);
                         }
                     }
                 }
@@ -218,22 +218,21 @@ namespace OneSheeldClasses
             return System.BitConverter.ToSingle(data, 0);
         }
 
-        void processInput(byte data)
+        void processInput(int data)
         {
+            // if (data == -1) return;
             if (!framestart && data == START_OF_FRAME)
             {
                 freeMemoryAllocated();
                 counter = 0;
                 framestart = true;
-                arguments = null;
-                argumentLengths = null;
                 counter++;
             }
             else if (counter == 4 && framestart) // data is the no of arguments
             {
                 datalengthcounter = 0;
                 argumentcounter = 0;
-                argumentnumber = data;
+                argumentnumber = (byte) data;
                 counter++;
             }
             else if (counter == 5 && framestart) // data is the no of arguments
@@ -261,58 +260,68 @@ namespace OneSheeldClasses
             }
             else if (counter == 6 && framestart)  // data is the first argument
             {
-                argumentLengths[argumentcounter] = data;
-                counter++;
+                if (isArgumentLengthsAllocated)
+                {
+                    argumentLengths[argumentcounter] = (byte)data;
+                    counter++;
+                }
             }
             else if (counter == 7 && framestart)  // data is the first argument data information
             {
-                if ((255 - argumentLengths[argumentcounter]) == data)
+                if (isArgumentLengthsAllocated && isArgumentsNumberAllocated)
                 {
-                    if (argumentLengths[argumentcounter] != 0)
+                    if ((255 - argumentLengths[argumentcounter]) == data)
                     {
-                        arguments[argumentcounter] = new byte[argumentLengths[argumentcounter]];
-                        counter++;
+                        if (argumentLengths[argumentcounter] != 0)
+                        {
+                            arguments[argumentcounter] = new byte[argumentLengths[argumentcounter]];
+                            counter++;
+                        }
+                        else
+                        {
+                            arguments[argumentcounter] = null;
+                            datalengthcounter = 0;
+                            argumentcounter++;
+                            if (argumentcounter == argumentnumber)
+                                counter = 9;
+                            else
+                                counter = 6;
+                        }
+                        numberOfDataAllocated++;
                     }
                     else
                     {
-                        arguments[argumentcounter] = null;
-                        datalengthcounter = 0;
-                        argumentcounter++;
-                        if (argumentcounter == argumentnumber)
-                            counter = 9;
-                        else
-                            counter = 6;
+                        framestart = false;
+                        freeMemoryAllocated();
+                        return;
                     }
-                    numberOfDataAllocated++;
-                }
-                else
-                {
-                    framestart = false;
-                    freeMemoryAllocated();
-                    return;
                 }
             }
             else if (counter == 8 && framestart)
             {
-                if (arguments[argumentcounter] != null)
-                    arguments[argumentcounter][datalengthcounter++] = data;
-                if (datalengthcounter == argumentLengths[argumentcounter])
+                if (isArgumentLengthsAllocated && isArgumentsNumberAllocated)
                 {
-                    datalengthcounter = 0;
-                    argumentcounter++;
-                    if (argumentcounter == argumentnumber)
+                    if (arguments[argumentcounter] != null)
+                        arguments[argumentcounter][datalengthcounter++] = (byte)data;
+
+                    if (datalengthcounter == argumentLengths[argumentcounter])
                     {
-                        counter++;    // increment the counter to take the last byte which is the end of the frame
-                    }
-                    else
-                    {
-                        counter = 6;
+                        datalengthcounter = 0;
+                        argumentcounter++;
+                        if (argumentcounter == argumentnumber)
+                        {
+                            counter++;    // increment the counter to take the last byte which is the end of the frame
+                        }
+                        else
+                        {
+                            counter = 6;
+                        }
                     }
                 }
             }
             else if (counter == 9 && framestart)
             {
-                endFrame = data;
+                endFrame = (byte) data;
                 if (endFrame == END_OF_FRAME)
                 {
                     sendToShields();
@@ -327,7 +336,7 @@ namespace OneSheeldClasses
             {
                 if (counter == 1)
                 {
-                    shield = data;
+                    shield = (byte) data;
                     bool found = false;
                     if (shield == (byte)ShieldIds.ONESHEELD_ID)
                         found = true;
@@ -350,11 +359,11 @@ namespace OneSheeldClasses
                 }
                 else if (counter == 2)
                 {
-                    instance = data;
+                    instance = (byte) data;
                 }
                 else if (counter == 3)
                 {
-                    functions = data;
+                    functions = (byte) data;
                 }
                 counter++;
             }
@@ -367,8 +376,8 @@ namespace OneSheeldClasses
             while (((SerialPort)OneSheeldSerial).BytesToRead > 0)
             {
                 int datacount = OneSheeldSerial.Read(buffer, 0, 1);
-                if (datacount == 0) return;
-                processInput(buffer[0]);
+                if (datacount != 0)
+                    processInput(buffer[0]);
             }
         }
 
@@ -377,13 +386,19 @@ namespace OneSheeldClasses
             framestart = false;
             if (isArgumentsNumberAllocated)
             {
-                for (int i = 0; i < numberOfDataAllocated; i++)
+                if (arguments != null)
                 {
-                    if (arguments[i] != null)
-                        arguments[i] = null;
+                    for (int i = 0; i < numberOfDataAllocated; i++)
+                    {
+                        if (arguments.Length > i)
+                        {
+                            if (arguments[i] != null)
+                                arguments[i] = null;
+                        }
+                    }
+                    numberOfDataAllocated = 0;
+                    arguments = null;
                 }
-                numberOfDataAllocated = 0;
-                arguments = null;
                 isArgumentsNumberAllocated = false;
             }
             if (isArgumentLengthsAllocated)
@@ -405,7 +420,8 @@ namespace OneSheeldClasses
                 default:
                     for (int i = 0; i < OneSheeldClass.shieldsCounter; i++)
                     {
-                        OneSheeldClass.shieldsArray[i].processFrame();
+                        //if (shieldsArray[i].getShieldID() == ShieldNumber)
+                            OneSheeldClass.shieldsArray[i].processFrame();
                     }
                     break;
             }
@@ -489,8 +505,8 @@ namespace OneSheeldClasses
                     if (((SerialPort)TempOneSheeld.OneSheeldSerial).BytesToRead > 0)
                     {
                         int datacount = TempOneSheeld.OneSheeldSerial.Read(buffer, 0, 1);
-                        if (datacount == 0) return;
-                        processInput(buffer[0]);
+                        if (datacount != 0)
+                            processInput(buffer[0]);
                     }
                 }
                 ShieldParent.unSetOneSheeldInstance();
@@ -502,8 +518,8 @@ namespace OneSheeldClasses
                     if (((SerialPort)OneSheeldSerial).BytesToRead > 0)
                     {
                         int datacount = OneSheeldSerial.Read(buffer, 0, 1);
-                        if (datacount == 0) return;
-                        processInput(buffer[0]);
+                        if (datacount != 0)
+                            processInput(buffer[0]);
                     }
                 }
             }

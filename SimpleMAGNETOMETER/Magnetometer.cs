@@ -15,24 +15,21 @@ namespace SimpleMAGNETOMETER
         public void Setup()
         {
             OneSheeld.begin();
+            OneSheeld.waitForAppConnection();
 
             LCD.begin();
+
+            LCD.setCursor(0, 0);
+            LCD.print("MagneticStrength");
+            LCD.setCursor(1, 7);
+            LCD.print("Tesla");
         }
 
         public void Loop()
         {
-            /* Move the cursor. */
-            LCD.setCursor(0, 0);
-            /* Print a title. */
-            LCD.print("MagneticStrength");
-            /* Move the cursor. */
+            //TERMINAL.println(MAGNETOMETER.getMagneticStrength());
             LCD.setCursor(1, 0);
-            /* Display the magnetic strength. */
-            LCD.print(MAGNETOMETER.getMagneticStrength(), 2);
-            /* Move the cursor. */
-            LCD.setCursor(1, 7);
-            /* Print a unit. */
-            LCD.print("Tesla");
+            LCD.print(MAGNETOMETER.getMagneticStrength());
             /* Wait for 1 second. */
             Thread.Sleep(1000);
         }

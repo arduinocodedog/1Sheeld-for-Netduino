@@ -85,14 +85,14 @@ namespace OneSheeldClasses
         }
 
         //print double with newline
-        public void println(double data, int precision)
+        public void println(double data, int precision = 3)
         {
             string buffer = Round(data, precision) + "\r\n";
             print(buffer);
         }
 
         //print float with newline
-        public void println(float data, int precision)
+        public void println(float data, int precision = 3)
         {
             string buffer = Round(data, precision) + "\r\n";
             print(buffer);

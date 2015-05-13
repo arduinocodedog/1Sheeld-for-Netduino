@@ -159,7 +159,7 @@ namespace OneSheeldClasses
             OneSheeldMain.OneSheeld.sendPacket(shieldId, 0, print_fn_id, 1, args);	
         }
 
-        public void print(double data, int precision)
+        public void print(double data, int precision = 3)
         {
             ArrayList args = new ArrayList();
 
@@ -172,7 +172,7 @@ namespace OneSheeldClasses
             OneSheeldMain.OneSheeld.sendPacket(shieldId, 0, print_fn_id, 1, args);
 	    }
 
-        public void print(float data, int precision)
+        public void print(float data, int precision = 3)
         {
             print((double) data, precision);
         }
