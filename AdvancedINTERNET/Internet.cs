@@ -12,9 +12,12 @@ namespace AdvancedINTERNET
         IHttpRequestFailureCallback,
         IHttpJsonResponseCallback,
         IHttpResponseErrorCallback,
-        IInternetErrorCallback
+        IInternetErrorCallback,
+        ISelectedCallback
     {
         HttpRequest oneSheeldRequest = null;
+
+        bool internetInitialized = false;
 
         OutputPort red = null;
         OutputPort green = null;
@@ -29,24 +32,35 @@ namespace AdvancedINTERNET
             OneSheeld.begin();
             OneSheeld.waitForAppConnection();
 
-            //OneSheeld.delay(20000);
+            INTERNET.setOnSelected(this);
+        }
 
-            oneSheeldRequest = new HttpRequest("http://api.openweathermap.org/data/2.5/weather");
-            oneSheeldRequest.setOnSuccess(this);
-            oneSheeldRequest.setOnFailure(this);
-            oneSheeldRequest.response.setOnJsonResponse(this);
-            oneSheeldRequest.response.setOnError(this);
+        public void OnSelection()
+        {
+            if (!internetInitialized)
+            {
+                oneSheeldRequest = new HttpRequest("http://api.openweathermap.org/data/2.5/weather");
+                oneSheeldRequest.setOnSuccess(this);
+                oneSheeldRequest.setOnFailure(this);
+                oneSheeldRequest.response.setOnJsonResponse(this);
+                oneSheeldRequest.response.setOnError(this);
 
-            INTERNET.setOnError(this);
+                INTERNET.setOnError(this);
+
+                internetInitialized = true;
+            }
         }
 
         public void Loop() 
-        { 
-            if (VOICERECOGNITION.isNewCommandReceived())
+        {
+            if (internetInitialized)
             {
-                oneSheeldRequest.addParameter("q", VOICERECOGNITION.getLastCommand());
-                INTERNET.performGet(oneSheeldRequest);
-                //OneSheeld.delay(5000);
+                if (VOICERECOGNITION.isNewCommandReceived())
+                {
+                    oneSheeldRequest.addParameter("q", VOICERECOGNITION.getLastCommand());
+                    INTERNET.performGet(oneSheeldRequest);
+                    //OneSheeld.delay(5000);
+                }
             }
         }
 
