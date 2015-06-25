@@ -116,12 +116,7 @@ namespace OneSheeldClasses
                     ShieldParent.setOneSheeldInstance(TempOneSheeld);
                     while ((millis() < (TIME_GAP + localLastTimeFrameSent)) || TempOneSheeld.framestart)
                     {
-                        if (((SerialPort)TempOneSheeld.OneSheeldSerial).BytesToRead > 0)
-                        {
-                            int datacount = TempOneSheeld.OneSheeldSerial.Read(buffer, 0, 1);
-                            if (datacount != 0)
-                                TempOneSheeld.processInput(buffer[0]);
-                        }
+                        processSerial((SerialPort) TempOneSheeld.OneSheeldSerial);
                     }
                     ShieldParent.unSetOneSheeldInstance();
                 }
@@ -129,12 +124,7 @@ namespace OneSheeldClasses
                 {
                     while ((millis() < (TIME_GAP + localLastTimeFrameSent)) || framestart)
                     {
-                        if (((SerialPort)OneSheeldSerial).BytesToRead > 0)
-                        {
-                            int datacount = OneSheeldSerial.Read(buffer, 0, 1);
-                            if (datacount != 0) 
-                                processInput(buffer[0]);
-                        }
+                        processSerial((SerialPort) OneSheeldSerial);
                     }
                 }
             }
@@ -371,13 +361,9 @@ namespace OneSheeldClasses
 
         public void processInput()
         {
-            byte[] buffer = new byte[1];
-
             while (((SerialPort)OneSheeldSerial).BytesToRead > 0)
             {
-                int datacount = OneSheeldSerial.Read(buffer, 0, 1);
-                if (datacount != 0)
-                    processInput(buffer[0]);
+                processSerial((SerialPort) OneSheeldSerial);
             }
         }
 
@@ -502,12 +488,7 @@ namespace OneSheeldClasses
                 ShieldParent.setOneSheeldInstance(TempOneSheeld);
                 while ((millis() < (now + (ulong)time)) || TempOneSheeld.framestart)
                 {
-                    if (((SerialPort)TempOneSheeld.OneSheeldSerial).BytesToRead > 0)
-                    {
-                        int datacount = TempOneSheeld.OneSheeldSerial.Read(buffer, 0, 1);
-                        if (datacount != 0)
-                            processInput(buffer[0]);
-                    }
+                    processSerial((SerialPort) TempOneSheeld.OneSheeldSerial);
                 }
                 ShieldParent.unSetOneSheeldInstance();
             }
@@ -515,12 +496,7 @@ namespace OneSheeldClasses
             {
                 while ((millis() < (now + (ulong)time)) || framestart)
                 {
-                    if (((SerialPort)OneSheeldSerial).BytesToRead > 0)
-                    {
-                        int datacount = OneSheeldSerial.Read(buffer, 0, 1);
-                        if (datacount != 0)
-                            processInput(buffer[0]);
-                    }
+                    processSerial((SerialPort) OneSheeldSerial);
                 }
             }
         }
@@ -630,6 +606,28 @@ namespace OneSheeldClasses
                 retval = 19;
 
             return retval;
+        }
+
+        static bool inSerialProcess = false;
+
+        private void processSerial(SerialPort sp)
+        {
+            if (!inSerialProcess)
+            {
+                inSerialProcess = true;
+                byte[] buffer = null;
+                int bytestoread = sp.BytesToRead;
+                if (bytestoread > 0)
+                {
+                    buffer = new byte[bytestoread];
+                    OneSheeldSerial.Read(buffer, 0, bytestoread);
+                    for (int i = 0; i < bytestoread; i++)
+                        processInput(buffer[i]);
+                    buffer = null;
+                }
+
+                inSerialProcess = false;
+            }
         }
 
         //Start and End of packet sent

@@ -10,19 +10,30 @@ using OneSheeldClasses;
 
 namespace SimpleMAGNETOMETER
 {
-    class Magnetometer : OneSheeldUser, IOneSheeldSketch
+    class Magnetometer : OneSheeldUser, IOneSheeldSketch, ISelectedCallback
     {
+        bool isFirstLCDSelection = true;
+
         public void Setup()
         {
             OneSheeld.begin();
-            OneSheeld.waitForAppConnection();
 
             LCD.begin();
 
-            LCD.setCursor(0, 0);
-            LCD.print("MagneticStrength");
-            LCD.setCursor(1, 7);
-            LCD.print("Tesla");
+            LCD.setOnSelected(this);
+        }
+
+        public void OnSelection()
+        {
+            if (isFirstLCDSelection)
+            {
+                isFirstLCDSelection = false;
+
+                LCD.setCursor(0, 0);
+                LCD.print("MagneticStrength");
+                LCD.setCursor(1, 7);
+                LCD.print("Tesla");
+            }
         }
 
         public void Loop()
@@ -31,7 +42,7 @@ namespace SimpleMAGNETOMETER
             LCD.setCursor(1, 0);
             LCD.print(MAGNETOMETER.getMagneticStrength());
             /* Wait for 1 second. */
-            Thread.Sleep(1000);
+            OneSheeld.delay(1000);
         }
     }
 }

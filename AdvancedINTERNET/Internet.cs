@@ -30,7 +30,6 @@ namespace AdvancedINTERNET
             blue = new OutputPort(Pins.GPIO_PIN_D10, false);
 
             OneSheeld.begin();
-            OneSheeld.waitForAppConnection();
 
             INTERNET.setOnSelected(this);
         }

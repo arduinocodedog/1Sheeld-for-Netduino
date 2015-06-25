@@ -14,29 +14,39 @@ namespace SimpleINTERNET
         IHttpRequestFinishCallback,
         IHttpResponseNextResponseBytesCallback,
         IHttpResponseErrorCallback,
-        IInternetErrorCallback
+        IInternetErrorCallback,
+        ISelectedCallback
     {
         HttpRequest oneSheeldRequest = null;
-
         OutputPort led = null;
+        bool InternetInitialized = false;
 
         public void Setup()
         {
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
             OneSheeld.begin();
-            OneSheeld.waitForAppConnection();
 
-            oneSheeldRequest = new HttpRequest("http://www.1sheeld.com/");
-            oneSheeldRequest.setOnSuccess(this);
-            oneSheeldRequest.setOnFailure(this);
-            oneSheeldRequest.setOnStart(this);
-            oneSheeldRequest.setOnFinish(this);
-            oneSheeldRequest.getResponse().setOnNextResponseBytesUpdate(this);
-            oneSheeldRequest.getResponse().setOnError(this);
+            INTERNET.setOnSelected(this);
+        }
 
-            INTERNET.setOnError(this);
-            INTERNET.performGet(oneSheeldRequest);
+        public void OnSelection()
+        {
+            if (!InternetInitialized)
+            {
+                oneSheeldRequest = new HttpRequest("http://www.1sheeld.com/");
+                oneSheeldRequest.setOnSuccess(this);
+                oneSheeldRequest.setOnFailure(this);
+                oneSheeldRequest.setOnStart(this);
+                oneSheeldRequest.setOnFinish(this);
+                oneSheeldRequest.getResponse().setOnNextResponseBytesUpdate(this);
+                oneSheeldRequest.getResponse().setOnError(this);
+
+                INTERNET.setOnError(this);
+                INTERNET.performGet(oneSheeldRequest);
+
+                InternetInitialized = true;
+            }
         }
 
         public void Loop() { }
