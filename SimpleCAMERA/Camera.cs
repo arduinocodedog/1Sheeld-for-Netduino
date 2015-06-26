@@ -31,7 +31,7 @@ namespace SimpleCAMERA
                 led.Write(true);
                 CAMERA.setFlash(CAMERA.ON);
                 CAMERA.rearCapture();
-                Thread.Sleep(10000);
+                OneSheeld.delay(10000);
                 TWITTER.tweetLastPicture("Posted by @1Sheeld");
             }
             else

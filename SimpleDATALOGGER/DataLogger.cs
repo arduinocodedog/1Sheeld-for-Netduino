@@ -29,7 +29,7 @@ namespace SimpleDATALOGGER
             if (button.Read())
             {
                 DATALOGGER.stop();
-                Thread.Sleep(500);
+                OneSheeld.delay(500);
                 DATALOGGER.start("Mic values");
                 startFlag = true;
             }
@@ -38,7 +38,7 @@ namespace SimpleDATALOGGER
             {
                 DATALOGGER.add("Decibles", MIC.getValue());
                 DATALOGGER.log();
-                Thread.Sleep(1000);
+                OneSheeld.delay(1000);
                 counter++;
                 if (counter == 20)
                 {

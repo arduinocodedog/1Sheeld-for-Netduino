@@ -23,9 +23,9 @@ namespace SimpleSLIDER
         public void Loop()
         {
             BUZZER.buzzOn();
-            Thread.Sleep(waitvalue);
+            OneSheeld.delay(waitvalue);
             BUZZER.buzzOff();
-            Thread.Sleep(waitvalue);
+            OneSheeld.delay(waitvalue);
         }
 
         public void OnChange(byte value)

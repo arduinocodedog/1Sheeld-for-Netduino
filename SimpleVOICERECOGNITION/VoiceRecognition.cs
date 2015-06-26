@@ -49,7 +49,7 @@ namespace SimpleVOICERECOGNITION
                     }
                 }
 
-                Thread.Sleep(300);
+                OneSheeld.delay(300);
             }
         }
     }

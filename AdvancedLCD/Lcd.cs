@@ -27,20 +27,20 @@ namespace AdvancedLCD
             {
                 LCD.begin();
                 LCD.blink();
-                Thread.Sleep(5000);
+                OneSheeld.delay(5000);
                 LCD.noBlink();
                 LCD.write('A');
                 LCD.write('B');
                 LCD.write('C');
-                Thread.Sleep(2000);
+                OneSheeld.delay(2000);
                 LCD.clear();
                 LCD.print("Hello, World!");
                 LCD.setCursor(1, 0);
                 LCD.print("This is 1Sheeld");
-                Thread.Sleep(10000);
+                OneSheeld.delay(10000);
                 LCD.clear();
                 LCD.print("Closing!");
-                Thread.Sleep(10000);
+                OneSheeld.delay(10000);
             }
         }
     }

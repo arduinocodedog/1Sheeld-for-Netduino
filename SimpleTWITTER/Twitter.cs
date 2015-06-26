@@ -29,7 +29,7 @@ namespace SimpleTWITTER
             {
                 led.Write(true);
                 TWITTER.tweet("I'm tweeting from @Netduino via @1Sheeld!");
-                Thread.Sleep(300);
+                OneSheeld.delay(300);
             }
             else
             {

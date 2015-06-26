@@ -44,7 +44,7 @@ namespace SimpleGAMEPAD
             if (GAMEPAD.isBluePressed())
                 TERMINAL.println("BLUE Pressed");
 
-            Thread.Sleep(2000);
+            OneSheeld.delay(2000);
 
         }
 

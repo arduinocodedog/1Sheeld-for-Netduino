@@ -41,7 +41,7 @@ namespace SimpleMUSICPLAYER
                     MusicPlaying = true;
                 }
 
-                Thread.Sleep(300);
+                OneSheeld.delay(300);
             }
         }
     }

@@ -24,7 +24,7 @@ namespace SimplePHONE
             {
                 led.Write(true);
                 PHONE.call("1234567890");
-                Thread.Sleep(300);
+                OneSheeld.delay(300);
             }
             else
             {

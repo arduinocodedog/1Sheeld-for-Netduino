@@ -55,7 +55,7 @@ namespace SimpleGAMEPAD
             if (blueButton)
                 TERMINAL.println("BLUE Pressed");
 
-            Thread.Sleep(2000);
+            OneSheeld.delay(2000);
         }
 
         public void OnButtonChange(bool up, bool down, bool left, bool right, bool orange, bool red, bool green, bool blue)

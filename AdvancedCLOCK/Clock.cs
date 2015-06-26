@@ -37,7 +37,7 @@ namespace AdvancedCLOCK
                 TERMINAL.println(dt.ToString());
             }
 
-            Thread.Sleep(2000);
+            OneSheeld.delay(2000);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace SimpleNOTIFICATION
             {
                 led.Write(true);
                 NOTIFICATION.notifyPhone("Someone pressed the button!");
-                Thread.Sleep(300);
+                OneSheeld.delay(300);
             }
             else
             {

@@ -27,7 +27,7 @@ namespace SimpleFOURSQUARE
             {
                 led.Write(true);
                 FOURSQUARE.checkIn("511759f2e4b0b0ae6ed91067", "Back to work!");
-                Thread.Sleep(300);
+                OneSheeld.delay(300);
             }
             else
             {

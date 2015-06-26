@@ -29,7 +29,7 @@ namespace SimpleFACEBOOK
             {
                 led.Write(true);
                 FACEBOOK.post("Posting to Facebook with a 1Sheeld on a Netduino!");
-                Thread.Sleep(300);
+                OneSheeld.delay(300);
             }
             else
             {

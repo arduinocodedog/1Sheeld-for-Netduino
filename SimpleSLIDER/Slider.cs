@@ -24,9 +24,9 @@ namespace SimpleSLIDER
             int waitvalue = 1000 - (3 * value);
 
             BUZZER.buzzOn();
-            Thread.Sleep(waitvalue);
+            OneSheeld.delay(waitvalue);
             BUZZER.buzzOff();
-            Thread.Sleep(waitvalue);
+            OneSheeld.delay(waitvalue);
         }
     }
 }
