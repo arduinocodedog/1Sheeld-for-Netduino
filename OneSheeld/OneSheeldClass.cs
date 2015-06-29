@@ -406,7 +406,7 @@ namespace OneSheeldClasses
                 default:
                     for (int i = 0; i < OneSheeldClass.shieldsCounter; i++)
                     {
-                        //if (shieldsArray[i].getShieldID() == ShieldNumber)
+                        if (shieldsArray[i].getShieldID() == ShieldNumber)
                             OneSheeldClass.shieldsArray[i].processFrame();
                     }
                     break;
@@ -475,6 +475,8 @@ namespace OneSheeldClasses
             OneSheeldClass.callbacksInterrupts = true;
         }
 
+        // OneSheeld delay - so that serial processing continues to 
+        // execute even during a delay.
         public void delay(long time)
         {
             ulong now = millis();
@@ -509,6 +511,28 @@ namespace OneSheeldClasses
             processInput();
         }
 
+        // For Serial Port Handling and input processing
+        static bool inSerialProcess = false;
+        private void processSerial(SerialPort sp)
+        {
+            if (!inSerialProcess)
+            {
+                inSerialProcess = true;
+                int bytestoread = sp.BytesToRead;
+                if (bytestoread > 0)
+                {
+                    byte[] buffer = new byte[bytestoread];
+                    sp.Read(buffer, 0, bytestoread);
+                    for (int i = 0; i < bytestoread; i++)
+                        processInput(buffer[i]);
+                    buffer = null;
+                }
+
+                inSerialProcess = false;
+            }
+        }
+
+        // Current Time in Milliseconds
         public ulong millis()
         {
             return (ulong)(DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond);
@@ -606,28 +630,6 @@ namespace OneSheeldClasses
                 retval = 19;
 
             return retval;
-        }
-
-        static bool inSerialProcess = false;
-
-        private void processSerial(SerialPort sp)
-        {
-            if (!inSerialProcess)
-            {
-                inSerialProcess = true;
-                byte[] buffer = null;
-                int bytestoread = sp.BytesToRead;
-                if (bytestoread > 0)
-                {
-                    buffer = new byte[bytestoread];
-                    OneSheeldSerial.Read(buffer, 0, bytestoread);
-                    for (int i = 0; i < bytestoread; i++)
-                        processInput(buffer[i]);
-                    buffer = null;
-                }
-
-                inSerialProcess = false;
-            }
         }
 
         //Start and End of packet sent
