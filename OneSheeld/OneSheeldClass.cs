@@ -518,16 +518,18 @@ namespace OneSheeldClasses
             if (!inSerialProcess)
             {
                 inSerialProcess = true;
-                int bytestoread = sp.BytesToRead;
-                if (bytestoread > 0)
+                do
                 {
-                    byte[] buffer = new byte[bytestoread];
-                    sp.Read(buffer, 0, bytestoread);
-                    for (int i = 0; i < bytestoread; i++)
-                        processInput(buffer[i]);
-                    buffer = null;
-                }
-
+                    int bytestoread = sp.BytesToRead;
+                    if (bytestoread > 0)
+                    {
+                        byte[] buffer = new byte[bytestoread];
+                        sp.Read(buffer, 0, bytestoread);
+                        for (int i = 0; i < bytestoread; i++)
+                            processInput(buffer[i]);
+                        buffer = null;
+                    }
+                } while (sp.BytesToRead > 0);
                 inSerialProcess = false;
             }
         }
