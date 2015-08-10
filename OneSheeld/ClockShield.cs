@@ -103,8 +103,12 @@ namespace OneSheeldClasses
                                hours =   getOneSheeldInstance().getArgumentData(2)[0];
                                day =     getOneSheeldInstance().getArgumentData(3)[0];
                                month =   getOneSheeldInstance().getArgumentData(4)[0];
-                               year =    (short)getOneSheeldInstance().getArgumentData(5)[0];
-						   	   year |=   (short)(getOneSheeldInstance().getArgumentData(5)[1]<<8); break;
+
+                               ushort uyear = 0;
+                               uyear =   (ushort)getOneSheeldInstance().getArgumentData(5)[0];
+						   	   uyear |=  (ushort)(getOneSheeldInstance().getArgumentData(5)[1]<<8);
+                               year  =   (short)uyear;  break;
+
 		        }
 	        }
         }
