@@ -639,7 +639,7 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 6;
+        const byte LIBRARY_VERSION = 7;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;
@@ -657,7 +657,7 @@ namespace OneSheeldClasses
         const int TIME_GAP = 200;
 
         // Number of Shields
-        const int SHIELDS_NO = 40;
+        const int SHIELDS_NO = 41;
 
         // Maximum number of Remote Connections
         const int MAX_REMOTE_CONNECTIONS = 10;

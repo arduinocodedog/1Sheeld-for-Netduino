@@ -8,6 +8,7 @@
 #define FACEBOOK_SHIELD
 #define FOURSQUARE_SHIELD
 #define GAMEPAD_SHIELD
+#define GLCD_SHIELD
 #define GPS_SHIELD
 #define GRAVITY_SHIELD
 #define GYROSCOPE_SHIELD
@@ -86,6 +87,10 @@ namespace OneSheeldClasses
 
             #if GAMEPAD_SHIELD
                 _GAMEPAD = new GamePadShield();
+            #endif
+
+            #if GLCD_SHIELD
+                _GLCD = new GLCDShield();
             #endif
 
             #if GPS_SHIELD

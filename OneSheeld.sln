@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSheeld", "OneSheeld\OneSheeld.csproj", "{83310819-1C4A-4085-9923-90BF5234AAC5}"
 EndProject
@@ -90,6 +90,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedNFC", "AdvancedNFC\AdvancedNFC.csproj", "{53D06A59-C598-407D-AB09-CE3333E483A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedCOLOR", "AdvancedCOLOR\AdvancedCOLOR.csproj", "{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGLCD", "SimpleGLCD\SimpleGLCD.csproj", "{7654E02B-CAAA-4C70-990A-CBB6CBCC5C71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedGLCD", "AdvancedGLCD\AdvancedGLCD.csproj", "{07FB397C-E11B-4963-80E9-83B506165E12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -359,6 +363,18 @@ Global
 		{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7D5292D6-6BD8-47BA-A528-09C79C4FB2A0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{7654E02B-CAAA-4C70-990A-CBB6CBCC5C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7654E02B-CAAA-4C70-990A-CBB6CBCC5C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7654E02B-CAAA-4C70-990A-CBB6CBCC5C71}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7654E02B-CAAA-4C70-990A-CBB6CBCC5C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7654E02B-CAAA-4C70-990A-CBB6CBCC5C71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7654E02B-CAAA-4C70-990A-CBB6CBCC5C71}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{07FB397C-E11B-4963-80E9-83B506165E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07FB397C-E11B-4963-80E9-83B506165E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07FB397C-E11B-4963-80E9-83B506165E12}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{07FB397C-E11B-4963-80E9-83B506165E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07FB397C-E11B-4963-80E9-83B506165E12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07FB397C-E11B-4963-80E9-83B506165E12}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

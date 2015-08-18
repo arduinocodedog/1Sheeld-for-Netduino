@@ -65,6 +65,12 @@ namespace OneSheeldClasses
             set { }
         }
 
+        public static GLCDShield GLCD
+        {
+            get { return OneSheeldMain._GLCD; }
+            set { }
+        }
+
         public static GPSShield GPS
         {
             get { return OneSheeldMain._GPS;  }

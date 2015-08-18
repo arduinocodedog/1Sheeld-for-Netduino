@@ -15,6 +15,7 @@ namespace OneSheeldClasses
         public static FacebookShield _FACEBOOK = null;
         public static FoursquareShield _FOURSQUARE = null;
         public static GamePadShield _GAMEPAD = null;
+        public static GLCDShield _GLCD = null;
         public static GPSShield _GPS = null;
         public static GravitySensorShield _GRAVITY = null;
         public static GyroscopeSensorShield _GYROSCOPE = null;
