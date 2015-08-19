@@ -34,6 +34,7 @@ namespace AdvancedGLCD
             coffeeMakerButton = new CoffeeMakerButton(190, 49, 50, 30, "CM:ON");
 
             drawAllShapes();
+            setButtonStyles();
         }
 
         public void Loop()
@@ -48,6 +49,13 @@ namespace AdvancedGLCD
             GLCD.draw(lightButton1);
             GLCD.draw(lightButton2);
             GLCD.draw(coffeeMakerButton);
+        }
+
+        void setButtonStyles()
+        {
+            lightButton1.setStyle(GLCDButton.STYLE_3D);
+            lightButton2.setStyle(GLCDButton.STYLE_3D);
+            coffeeMakerButton.setStyle(GLCDButton.STYLE_3D);
         }
     }
 }

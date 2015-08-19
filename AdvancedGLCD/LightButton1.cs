@@ -16,7 +16,6 @@ namespace AdvancedGLCD
             led = new OutputPort(Pins.GPIO_PIN_D13, false);
 
             SetOnChange(this);
-            setStyle(GLCDButton.STYLE_3D);
         }
 
         public void OnChange(byte button1State)

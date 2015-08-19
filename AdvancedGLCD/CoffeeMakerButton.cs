@@ -20,7 +20,6 @@ namespace AdvancedGLCD
             relay = new OutputPort(Pins.GPIO_PIN_D11, false);
 
             SetOnChange(this);
-            setStyle(GLCDButton.STYLE_3D);
         }
 
         public void OnChange(byte coffeeMakerButtonState)
