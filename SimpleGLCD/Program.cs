@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleGLCD
+﻿namespace SimpleGLCD
 {
     public class Program
     {

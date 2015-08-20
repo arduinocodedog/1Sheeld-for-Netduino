@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace AdvancedSKYPE
+﻿namespace AdvancedSKYPE
 {
     public class Program
     {

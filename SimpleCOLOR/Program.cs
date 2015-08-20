@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleCOLOR
+﻿namespace SimpleCOLOR
 {
     public class Program
     {

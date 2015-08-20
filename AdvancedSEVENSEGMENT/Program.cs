@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace AdvancedSEVENSEGMENT
+﻿namespace AdvancedSEVENSEGMENT
 {
     public class Program
     {

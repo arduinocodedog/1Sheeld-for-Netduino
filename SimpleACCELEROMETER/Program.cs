@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleACCELEROMETER
+﻿namespace SimpleACCELEROMETER
 {
     public class Program
     {

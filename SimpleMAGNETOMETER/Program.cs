@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleMAGNETOMETER
+﻿namespace SimpleMAGNETOMETER
 {
     public class Program
     {

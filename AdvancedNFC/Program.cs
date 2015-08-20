@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace AdvancedNFC
+﻿namespace AdvancedNFC
 {
     public class Program
     {

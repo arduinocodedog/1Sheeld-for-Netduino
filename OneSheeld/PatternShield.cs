@@ -1,6 +1,3 @@
-using System;
-using Microsoft.SPOT;
-
 namespace OneSheeldClasses
 {
     public class PatternShield : ShieldParent

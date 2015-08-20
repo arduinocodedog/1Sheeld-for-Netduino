@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleTOGGLEBUTTON
+﻿namespace SimpleTOGGLEBUTTON
 {
     public class Program
     {

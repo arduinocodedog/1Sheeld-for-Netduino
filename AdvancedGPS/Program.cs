@@ -1,8 +1,4 @@
-﻿using System;
-
-using Microsoft.SPOT;
-
-namespace AdvancedGPS
+﻿namespace AdvancedGPS
 {
     public class Program
     {

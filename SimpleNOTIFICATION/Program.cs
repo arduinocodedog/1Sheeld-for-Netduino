@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleNOTIFICATION
+﻿namespace SimpleNOTIFICATION
 {
     public class Program
     {

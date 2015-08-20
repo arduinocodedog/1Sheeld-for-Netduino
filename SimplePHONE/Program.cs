@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimplePHONE
+﻿namespace SimplePHONE
 {
     public class Program
     {

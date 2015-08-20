@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimplePROXIMITY
+﻿namespace SimplePROXIMITY
 {
     public class Program
     {

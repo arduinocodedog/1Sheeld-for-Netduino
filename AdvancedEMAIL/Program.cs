@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace AdvancedEMAIL
+﻿namespace AdvancedEMAIL
 {
     public class Program
     {

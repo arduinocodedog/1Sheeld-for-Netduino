@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace AdvancedLCD
+﻿namespace AdvancedLCD
 {
     public class Program
     {

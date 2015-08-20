@@ -2,10 +2,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.IO.Ports;
-using System.Threading;
-using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
-using SecretLabs.NETMF.Hardware;
 using SecretLabs.NETMF.Hardware.Netduino;
 
 namespace OneSheeldClasses

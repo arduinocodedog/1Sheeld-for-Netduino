@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleDATALOGGER
+﻿namespace SimpleDATALOGGER
 {
     public class Program
     {

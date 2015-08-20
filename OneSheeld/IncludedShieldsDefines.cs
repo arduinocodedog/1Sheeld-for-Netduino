@@ -40,9 +40,6 @@
 #define TWITTER_SHIELD
 #define VOICE_RECOGNITION_SHIELD
 
-using System;
-using Microsoft.SPOT;
-
 namespace OneSheeldClasses
 {
     public partial class OneSheeldMain

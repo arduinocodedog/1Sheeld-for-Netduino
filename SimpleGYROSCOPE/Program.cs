@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleGYROSCOPE
+﻿namespace SimpleGYROSCOPE
 {
     public class Program
     {

@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleGRAVITY
+﻿namespace SimpleGRAVITY
 {
     public class Program
     {

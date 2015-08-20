@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleNFC
+﻿namespace SimpleNFC
 {
     public class Program
     {

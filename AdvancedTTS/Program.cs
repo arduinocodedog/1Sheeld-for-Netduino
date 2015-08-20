@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace AdvancedTTS
+﻿namespace AdvancedTTS
 {
     public class Program
     {

@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleTWITTER
+﻿namespace SimpleTWITTER
 {
     public class Program
     {

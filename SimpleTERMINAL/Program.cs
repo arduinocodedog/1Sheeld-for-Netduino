@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleTERMINAL
+﻿namespace SimpleTERMINAL
 {
     public class Program
     {

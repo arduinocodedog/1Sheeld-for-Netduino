@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimplePATTERN
+﻿namespace SimplePATTERN
 {
     public class Program
     {

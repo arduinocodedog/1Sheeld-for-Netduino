@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace AdvancedCLOCK
+﻿namespace AdvancedCLOCK
 {
     public class Program
     {

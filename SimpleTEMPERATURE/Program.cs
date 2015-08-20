@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleTEMPERATURE
+﻿namespace SimpleTEMPERATURE
 {
     public class Program
     {

@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace AdvancedPRESSURE
+﻿namespace AdvancedPRESSURE
 {
     public class Program
     {

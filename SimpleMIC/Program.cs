@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleMIC
+﻿namespace SimpleMIC
 {
     public class Program
     {

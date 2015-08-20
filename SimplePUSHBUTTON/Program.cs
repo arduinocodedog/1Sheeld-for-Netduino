@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimplePUSHBUTTON
+﻿namespace SimplePUSHBUTTON
 {
     public class Program
     {

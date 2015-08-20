@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleMUSICPLAYER
+﻿namespace SimpleMUSICPLAYER
 {
     public class Program
     {

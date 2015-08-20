@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleCAMERA
+﻿namespace SimpleCAMERA
 {
     public class Program
     {

@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleFOURSQUARE
+﻿namespace SimpleFOURSQUARE
 {
     public class Program
     {

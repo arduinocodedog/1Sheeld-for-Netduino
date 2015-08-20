@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleGAMEPAD
+﻿namespace SimpleGAMEPAD
 {
     public class Program
     {

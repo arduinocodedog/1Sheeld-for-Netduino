@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleKEYPAD
+﻿namespace SimpleKEYPAD
 {
     public class Program
     {

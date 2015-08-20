@@ -1,6 +1,4 @@
-﻿using Microsoft.SPOT;
-
-namespace SimpleSLIDER
+﻿namespace SimpleSLIDER
 {
     public class Program
     {

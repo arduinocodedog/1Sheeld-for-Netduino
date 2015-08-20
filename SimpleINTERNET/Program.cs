@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleINTERNET
+﻿namespace SimpleINTERNET
 {
     public class Program
     {

@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace AdvancedGLCD
+﻿namespace AdvancedGLCD
 {
     public class Program
 {

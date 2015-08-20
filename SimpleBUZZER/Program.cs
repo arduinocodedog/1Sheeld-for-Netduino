@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleBUZZER
+﻿namespace SimpleBUZZER
 {
     public class Program
     {

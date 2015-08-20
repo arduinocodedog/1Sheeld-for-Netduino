@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace AdvancedCOLOR
+﻿namespace AdvancedCOLOR
 {
     public class Program
     {

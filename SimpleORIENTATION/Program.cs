@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleORIENTATION
+﻿namespace SimpleORIENTATION
 {
     public class Program
     {

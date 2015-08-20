@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.SPOT;
-
-namespace SimpleFACEBOOK
+﻿namespace SimpleFACEBOOK
 {
     public class Program
     {
