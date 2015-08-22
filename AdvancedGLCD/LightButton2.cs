@@ -16,9 +16,11 @@ namespace AdvancedGLCD
             SetOnChange(this);
         }
 
-        public void OnChange(byte button2State)
+        public void OnChange(object data)
         {
-            if (button2State != 0)
+            bool button2State = (bool) data;
+
+            if (button2State)
             {
                 led.Write(true);
             }

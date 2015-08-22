@@ -20,9 +20,11 @@ namespace AdvancedGLCD
             SetOnChange(this);
         }
 
-        public void OnChange(byte coffeeMakerButtonState)
+        public void OnChange(object data)
         {
-            if (coffeeMakerButtonState != 0)
+            bool coffeeMakerButtonState = (bool) data;
+
+            if (coffeeMakerButtonState)
             {
                 if (firstTimePressed)
                 {

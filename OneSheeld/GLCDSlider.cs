@@ -4,7 +4,7 @@ namespace OneSheeldClasses
 {
     public class GLCDSlider : InteractiveShapeClass
     {
-        public byte sliderValue = 0x00;
+        public int sliderValue = 0;
         int width = 0;
         int height = 0;
 
@@ -188,7 +188,7 @@ namespace OneSheeldClasses
             OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 4, args);
         }
 
-        public byte getValue()
+        public int getValue()
         {
             return sliderValue;
         }

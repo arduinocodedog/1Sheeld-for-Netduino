@@ -4,7 +4,7 @@ namespace OneSheeldClasses
 {
     public class GLCDCheckBox : InteractiveShapeClass
     {
-        public byte checkboxValue = 0x00;
+        public bool checkboxValue = false;
         string dataString = null;
 
         public GLCDCheckBox(int x, int y, string _dataString)
@@ -117,7 +117,7 @@ namespace OneSheeldClasses
 
         public bool isSelected()
         {
-            return (bool)(checkboxValue != 0x00);
+            return checkboxValue;
         }
 
         public void select()

@@ -4,7 +4,7 @@ namespace OneSheeldClasses
 {
     public class GLCDButton : InteractiveShapeClass
     {
-        public byte buttonValue = 0x00;
+        public bool buttonValue = false;
 
         int width = 0;
         int height = 0;
@@ -83,7 +83,7 @@ namespace OneSheeldClasses
 
         public bool isPressed()
         {
-            return (bool) (buttonValue != 0x00);
+            return buttonValue;
         }
 
         public void setText(string _dataString)

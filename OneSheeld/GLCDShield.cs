@@ -75,7 +75,7 @@ namespace OneSheeldClasses
                         switch (incomingShapeType)
                         {
                             case GLCD_BUTTON_TYPE:
-                                byte incomingButtonValue = getOneSheeldInstance().getArgumentData(2)[0];
+                                bool incomingButtonValue = (getOneSheeldInstance().getArgumentData(2)[0] != 0);
                                 GLCDButton buttonPointer = ((GLCDButton)(interactiveShapesArray[i]));
                                 buttonPointer.buttonValue = incomingButtonValue;
                                 if (buttonPointer.isCallbackAssigned && !isInACallback())
@@ -87,7 +87,7 @@ namespace OneSheeldClasses
                                 break;
 
                             case GLCD_RADIO_BUTTON_TYPE:
-                                byte incomingRadioButtonValue = getOneSheeldInstance().getArgumentData(2)[0];
+                                bool incomingRadioButtonValue = (getOneSheeldInstance().getArgumentData(2)[0] != 0);
                                 GLCDRadioButton radioButtonPointer = ((GLCDRadioButton)(interactiveShapesArray[i]));
                                 radioButtonPointer.radiobuttonValue = incomingRadioButtonValue;
                                 if (radioButtonPointer.isCallbackAssigned && !isInACallback())
@@ -99,7 +99,7 @@ namespace OneSheeldClasses
                                 break;
 
                             case GLCD_CHECK_BOX_TYPE:
-                                byte incomingCheckBoxValue = getOneSheeldInstance().getArgumentData(2)[0];
+                                bool incomingCheckBoxValue = (getOneSheeldInstance().getArgumentData(2)[0] != 0);
                                 GLCDCheckBox checkBoxPointer = ((GLCDCheckBox)(interactiveShapesArray[i]));
                                 checkBoxPointer.checkboxValue = incomingCheckBoxValue;
                                 if (checkBoxPointer.isCallbackAssigned && !isInACallback())
@@ -111,7 +111,7 @@ namespace OneSheeldClasses
                                 break;
 
                             case GLCD_SLIDER_TYPE:
-                                byte incomingSliderValue = (byte)(getOneSheeldInstance().getArgumentData(2)[0] | (getOneSheeldInstance().getArgumentData(2)[1] << 8));
+                                int incomingSliderValue = (int)(getOneSheeldInstance().getArgumentData(2)[0] | (getOneSheeldInstance().getArgumentData(2)[1] << 8));
                                 GLCDSlider sliderPointer = ((GLCDSlider)(interactiveShapesArray[i]));
                                 sliderPointer.sliderValue = incomingSliderValue;
                                 if (sliderPointer.isCallbackAssigned && !isInACallback())

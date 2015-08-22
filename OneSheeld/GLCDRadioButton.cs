@@ -4,7 +4,7 @@ namespace OneSheeldClasses
 {
     public class GLCDRadioButton : InteractiveShapeClass
     {
-        public byte radiobuttonValue = 0x00;
+        public bool radiobuttonValue = false;
 
         bool sendAsGroup = false;
         string dataString = null;
@@ -33,7 +33,7 @@ namespace OneSheeldClasses
 
         public bool isSelected()
         {
-            return (bool)(radiobuttonValue != 0x00);
+            return radiobuttonValue;
         }
 
         public override void draw()
