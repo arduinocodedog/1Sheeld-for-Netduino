@@ -18,7 +18,7 @@ namespace OneSheeldClasses
 
         public void queryDateAndTime()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.CLOCK_ID,0,CLOCK_BEGIN);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.CLOCK_ID,0,CLOCK_BEGIN);
         }
 
         public bool isInitialized()

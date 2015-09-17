@@ -55,7 +55,7 @@ namespace OneSheeldClasses
 
             args.Add(arg5);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 5, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 5, args);
 
         }
 
@@ -106,7 +106,7 @@ namespace OneSheeldClasses
             FunctionArg arg4 = new FunctionArg(2, endArray);
 
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 4, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 4, args);
         }
 
         public void setValue(int v)
@@ -136,7 +136,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 3, args);
 
         }
 
@@ -167,7 +167,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 3, args);
 
         }
 

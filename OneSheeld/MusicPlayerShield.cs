@@ -12,31 +12,31 @@ namespace OneSheeldClasses
         //Stop Setter
         public void stop()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_STOP);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_STOP);
         }
 
         //Play Setter
         public void play()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PLAY);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PLAY);
         }
 
         //Pause Setter
         public void pause()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PAUSE);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PAUSE);
         }
 
         //Previous Setter
         public void previous()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PREVIOUS);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PREVIOUS);
         }
 
         //Next Setter
         public void next()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_NEXT);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_NEXT);
         }
 
         //SeekForward Setter
@@ -51,7 +51,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_SEEK_FORWARD,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_SEEK_FORWARD,1,args);
         }
 
         //SeekBackward Setter
@@ -66,7 +66,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_SEEK_BACKWARD, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_SEEK_BACKWARD, 1, args);
         }
 
         //Volume Setter
@@ -86,7 +86,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_VOLUME, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_VOLUME, 1, args);
         }
 
         //Output Functions ID's

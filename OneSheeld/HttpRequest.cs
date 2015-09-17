@@ -72,7 +72,7 @@ namespace OneSheeldClasses
             FunctionArg arg2 = new FunctionArg(_url.Length, System.Text.Encoding.UTF8.GetBytes(_url));
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, HTTP_REQUEST_URL, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_REQUEST_URL, 2, args);
 
             isInitFrameSent = true;
         }
@@ -90,7 +90,7 @@ namespace OneSheeldClasses
             FunctionArg arg2 = new FunctionArg(urlName.Length, System.Text.Encoding.UTF8.GetBytes(urlName));
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, HTTP_SET_URL, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_SET_URL, 2, args);
         }
         
         public void addHeader(string headername, string data)
@@ -109,7 +109,7 @@ namespace OneSheeldClasses
             FunctionArg arg3 = new FunctionArg(data.Length, System.Text.Encoding.UTF8.GetBytes(data));
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, HTTP_ADD_HEADER, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_HEADER, 3, args);
         }
 
         public void addParameter(string paramname, string data)
@@ -128,7 +128,7 @@ namespace OneSheeldClasses
             FunctionArg arg3 = new FunctionArg(data.Length, System.Text.Encoding.UTF8.GetBytes(data));
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, HTTP_ADD_PARAMETER, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_PARAMETER, 3, args);
         }
 
         public void addRawData(string data)
@@ -144,7 +144,7 @@ namespace OneSheeldClasses
             FunctionArg arg2 = new FunctionArg(data.Length, System.Text.Encoding.UTF8.GetBytes(data));
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, HTTP_ADD_RAW_DATA, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_RAW_DATA, 2, args);
         }
 
         public int getId()
@@ -159,7 +159,7 @@ namespace OneSheeldClasses
             FunctionArg arg1 = new FunctionArg(2, localRequestId);
             args.Add(arg1);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, HTTP_DELETE_HEADER, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_DELETE_HEADER, 1, args);
         }
 
         public void deleteParameters()
@@ -169,7 +169,7 @@ namespace OneSheeldClasses
             FunctionArg arg1 = new FunctionArg(2, localRequestId);
             args.Add(arg1);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, HTTP_DELETE_PARAMETER, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_DELETE_PARAMETER, 1, args);
         }
 
         public void deleteCallBacks()
@@ -190,7 +190,7 @@ namespace OneSheeldClasses
             FunctionArg arg2 = new FunctionArg(contenttype.Length, System.Text.Encoding.UTF8.GetBytes(contenttype));
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, HTTP_SET_CONTENT_TYPE, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_SET_CONTENT_TYPE, 2, args);
         }
 
         public void setParametersContentEncoding(string contentEncoding)
@@ -206,7 +206,7 @@ namespace OneSheeldClasses
             FunctionArg arg2 = new FunctionArg(contentEncoding.Length, System.Text.Encoding.UTF8.GetBytes(contentEncoding));
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, HTTP_SET_CONTENT_ENCODING, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_SET_CONTENT_ENCODING, 2, args);
         }
 
         public void ignoreResponse()
@@ -216,7 +216,7 @@ namespace OneSheeldClasses
             FunctionArg arg1 = new FunctionArg(2, localRequestId);
             args.Add(arg1);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, HTTP_IGNORE_REQUEST, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_IGNORE_REQUEST, 1, args);
         }
 
         public void setOnSuccess(IHttpRequestSuccessCallback callBack)

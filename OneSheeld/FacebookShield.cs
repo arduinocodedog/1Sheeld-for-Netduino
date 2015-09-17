@@ -17,7 +17,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.FACEBOOK_ID, 0, FACEBOOK_UPDATE_STATUS, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.FACEBOOK_ID, 0, FACEBOOK_UPDATE_STATUS, 1, args);
         }
 
         public void postLastPicture(string pictureText, byte imageSource)
@@ -35,7 +35,7 @@ namespace OneSheeldClasses
 
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.FACEBOOK_ID, 0, FACEBOOK_POST_LAST_PIC, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.FACEBOOK_ID, 0, FACEBOOK_POST_LAST_PIC, 2, args);
         }
 
         const byte FACEBOOK_UPDATE_STATUS = 0x01;

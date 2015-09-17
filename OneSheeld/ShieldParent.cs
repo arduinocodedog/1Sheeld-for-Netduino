@@ -16,17 +16,17 @@ namespace OneSheeldClasses
 
         public void select()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldID, 0x00, SELECT_SHIELD);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldID, 0x00, SELECT_SHIELD);
         }
 
         public void deselect()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldID, 0x00, DESELECT_SHIELD);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldID, 0x00, DESELECT_SHIELD);
         }
 
         public void setOnSelected(ISelectedCallback userCallback)
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldID, 0x00, QUERY_SELECTED);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldID, 0x00, QUERY_SELECTED);
             isCallBackSet = true;
             callBack = userCallback;
         }

@@ -57,7 +57,7 @@ namespace OneSheeldClasses
 
             args.Add(arg5);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_CHECK_BOX_TYPE, 5, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_CHECK_BOX_TYPE, 5, args);
         }
 
         public void setText(string dataString)
@@ -83,7 +83,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_CHECK_BOX_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_CHECK_BOX_TYPE, 3, args);
         }
 
         public void setSize(byte size)
@@ -112,7 +112,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_CHECK_BOX_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_CHECK_BOX_TYPE, 3, args);
         }
 
         public bool isSelected()
@@ -139,7 +139,7 @@ namespace OneSheeldClasses
 
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_CHECK_BOX_TYPE, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_CHECK_BOX_TYPE, 2, args);
         }
 
         public void deselect()
@@ -161,7 +161,7 @@ namespace OneSheeldClasses
 
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_CHECK_BOX_TYPE, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_CHECK_BOX_TYPE, 2, args);
         }
 
         const byte GLCD_CHECK_BOX_TYPE = 0x0a;

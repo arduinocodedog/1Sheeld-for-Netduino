@@ -51,7 +51,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, shapeType, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, shapeType, 3, args);
         }
 
         public virtual void setPosition(int _xPos, int _yPos)
@@ -89,7 +89,7 @@ namespace OneSheeldClasses
 
             args.Add(arg4);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, shapeType, 4, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, shapeType, 4, args);
         }
 
         public virtual void draw() { }

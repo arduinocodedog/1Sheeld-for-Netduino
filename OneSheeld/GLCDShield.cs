@@ -25,7 +25,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_TYPE, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_TYPE, 1, args);
         }
 
         public void draw(ShapeClass usersShape)

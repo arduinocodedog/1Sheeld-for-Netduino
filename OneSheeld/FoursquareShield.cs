@@ -21,7 +21,7 @@ namespace OneSheeldClasses
 
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.FOURSQUARE_ID, 0, FOURSQUARE_CHECK_IN, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.FOURSQUARE_ID, 0, FOURSQUARE_CHECK_IN, 2, args);
         }
 
         const byte FOURSQUARE_CHECK_IN = 0x01;

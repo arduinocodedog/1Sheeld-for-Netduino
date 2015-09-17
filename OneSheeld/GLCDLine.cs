@@ -65,7 +65,7 @@ namespace OneSheeldClasses
 
             args.Add(arg6);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_LINE_TYPE, 6, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_LINE_TYPE, 6, args);
 
         }
 
@@ -120,7 +120,7 @@ namespace OneSheeldClasses
 
             args.Add(arg6);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_LINE_TYPE, 6, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_LINE_TYPE, 6, args);
         }
 
         const byte GLCD_LINE_TYPE = 0x03;

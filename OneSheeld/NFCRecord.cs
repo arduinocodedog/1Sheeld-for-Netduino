@@ -68,7 +68,7 @@ namespace OneSheeldClasses
 
                 args.Add(arg3);
 
-                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.NFC_ID, 0, NFC_RECORD_QUERY_DATA, 3, args);
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.NFC_ID, 0, NFC_RECORD_QUERY_DATA, 3, args);
             }
         }
 
@@ -100,7 +100,7 @@ namespace OneSheeldClasses
 
                 args.Add(arg3);
 
-                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.NFC_ID, 0, NFC_RECORD_QUERY_TYPE, 3, args);
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.NFC_ID, 0, NFC_RECORD_QUERY_TYPE, 3, args);
             }
         }
 
@@ -117,7 +117,7 @@ namespace OneSheeldClasses
 
                 args.Add(arg1);
 
-                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.NFC_ID, 0, NFC_RECORD_QUERY_PARSED_DATA, 1, args);
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.NFC_ID, 0, NFC_RECORD_QUERY_PARSED_DATA, 1, args);
             }
         }
 

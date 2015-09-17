@@ -91,6 +91,8 @@
     <Compile Include="IRecordTypeCallback.cs" />
     <Compile Include="ISByteCallback.cs" />
     <Compile Include="ISelectedCallback.cs" />
+    <Compile Include="ISerialDataCallback.cs" />
+    <Compile Include="IShieldFrameCallback.cs" />
     <Compile Include="ISMSCallback.cs" />
     <Compile Include="ISubscribeCallback.cs" />
     <Compile Include="IULongCallback.cs" />

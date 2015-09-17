@@ -65,7 +65,7 @@ namespace OneSheeldClasses
 
             args.Add(arg6);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_ELLIPSE_TYPE, 6, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ELLIPSE_TYPE, 6, args);
 
         }
 
@@ -104,7 +104,7 @@ namespace OneSheeldClasses
 
             args.Add(arg4);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_ELLIPSE_TYPE, 4, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ELLIPSE_TYPE, 4, args);
 
         }
 
@@ -134,7 +134,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_ELLIPSE_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ELLIPSE_TYPE, 3, args);
         }
 
         const byte GLCD_ELLIPSE_TYPE = 0x04;

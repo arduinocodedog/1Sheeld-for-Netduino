@@ -43,13 +43,13 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_VALUE,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_VALUE,1,args);
         }
 
         //Dot Setter
         public void setDot()
         {
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_DOT);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_DOT);
         }
 
         const byte SEVENSEGMENT_SET_VALUE = 0x01;

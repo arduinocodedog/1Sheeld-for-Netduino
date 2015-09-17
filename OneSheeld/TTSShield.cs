@@ -17,7 +17,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.TTS_ID, 0, TTS_SAY, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.TTS_ID, 0, TTS_SAY, 1, args);
         }
 
         public void say(string text)
@@ -28,7 +28,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.TTS_ID, 0, TTS_SAY, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.TTS_ID, 0, TTS_SAY, 1, args);
         }
 
         //Output Function ID

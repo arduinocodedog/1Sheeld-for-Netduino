@@ -65,7 +65,7 @@ namespace OneSheeldClasses
 
             args.Add(arg6);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_PROGRESS_BAR_TYPE, 6, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_PROGRESS_BAR_TYPE, 6, args);
         }
 
         public void setRange(int start, int end)
@@ -115,7 +115,7 @@ namespace OneSheeldClasses
             FunctionArg arg4 = new FunctionArg(2, endArray);
 
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_PROGRESS_BAR_TYPE, 4, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_PROGRESS_BAR_TYPE, 4, args);
 
         }
 
@@ -146,7 +146,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_PROGRESS_BAR_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_PROGRESS_BAR_TYPE, 3, args);
         }
 
         public void setDimensions(int xdimension, int ydimension)
@@ -184,7 +184,7 @@ namespace OneSheeldClasses
 
             args.Add(arg4);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_PROGRESS_BAR_TYPE, 4, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_PROGRESS_BAR_TYPE, 4, args);
         }
 
         const byte GLCD_PROGRESS_BAR_TYPE = 0x06;

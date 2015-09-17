@@ -23,7 +23,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.PHONE_ID, 0, PHONE_CALL, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.PHONE_ID, 0, PHONE_CALL, 1, args);
         }
 
         public bool isRinging()

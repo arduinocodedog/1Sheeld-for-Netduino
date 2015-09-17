@@ -17,7 +17,7 @@ namespace OneSheeldClasses
 
         public void start()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.VOICE_RECOGNITION_ID, 0, VOICE_START_LISTENING);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.VOICE_RECOGNITION_ID, 0, VOICE_START_LISTENING);
         }
 
         public string getLastCommand()

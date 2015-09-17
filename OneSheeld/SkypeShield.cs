@@ -17,7 +17,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SKYPE_ID, 0, SKYPE_CALL, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.SKYPE_ID, 0, SKYPE_CALL, 1, args);
         }
 
         public void videoCall(string username)
@@ -28,7 +28,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SKYPE_ID, 0, SKYPE_VIDEO_CALL, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.SKYPE_ID, 0, SKYPE_VIDEO_CALL, 1, args);
         }
 
         //Output Function ID's

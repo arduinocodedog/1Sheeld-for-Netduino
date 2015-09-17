@@ -21,7 +21,7 @@ namespace OneSheeldClasses
             bool isAdded = addToRequestsArray(request);
             if (isAdded)
             {
-                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_GET, 2, GetRequestArgs(request));
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, INTERNET_GET, 2, GetRequestArgs(request));
             }
 
             return isAdded;
@@ -32,7 +32,7 @@ namespace OneSheeldClasses
             bool isAdded = addToRequestsArray(request);
             if (isAdded)
             {
-                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_POST, 2, GetRequestArgs(request));
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, INTERNET_POST, 2, GetRequestArgs(request));
             }
 
             return isAdded;
@@ -43,7 +43,7 @@ namespace OneSheeldClasses
             bool isAdded = addToRequestsArray(request);
             if (isAdded)
             {
-                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_PUT, 2, GetRequestArgs(request));
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, INTERNET_PUT, 2, GetRequestArgs(request));
             }
 
             return isAdded;
@@ -54,7 +54,7 @@ namespace OneSheeldClasses
             bool isAdded = addToRequestsArray(request);
             if (isAdded)
             {
-                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_DELETE, 2, GetRequestArgs(request));
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, INTERNET_DELETE, 2, GetRequestArgs(request));
             }
 
             return isAdded;
@@ -62,7 +62,7 @@ namespace OneSheeldClasses
 
 	    public void cancelAllRequests()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_CANCEL_ALL_REQUESTS);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, INTERNET_CANCEL_ALL_REQUESTS);
         }
 
 	    public void ignoreResponse(HttpRequest request)
@@ -83,12 +83,12 @@ namespace OneSheeldClasses
             FunctionArg arg2 = new FunctionArg(password.Length, System.Text.Encoding.UTF8.GetBytes(password));
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_SET_AUTHENTICATION, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, INTERNET_SET_AUTHENTICATION, 2, args);
         }
 
 	    public void clearBasicAuthentication()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_CLEAR_AUTHENTICATION);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, INTERNET_CLEAR_AUTHENTICATION);
         }
 
 	    public void setIntialResponseMaxBytesCount(int size)
@@ -102,7 +102,7 @@ namespace OneSheeldClasses
             FunctionArg arg = new FunctionArg(2, sizeArray);
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, INTERNET_SET_DEFAULT_MAX_RESPONSE, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, INTERNET_SET_DEFAULT_MAX_RESPONSE, 1, args);
         }
 
         public override void processData()

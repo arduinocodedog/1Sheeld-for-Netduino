@@ -12,7 +12,7 @@ namespace OneSheeldClasses
         //Rear Capture 
         public void rearCapture()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.CAMERA_ID, 0, CAMERA_REAR_CAPTURE);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.CAMERA_ID, 0, CAMERA_REAR_CAPTURE);
         }
 
         //Camera Flash 
@@ -27,13 +27,13 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.CAMERA_ID, 0, CAMERA_SET_FLASH, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.CAMERA_ID, 0, CAMERA_SET_FLASH, 1, args);
         }
 
         //Front Capture 
         public void frontCapture()
         {
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.CAMERA_ID, 0, CAMERA_FRONT_CAPTURE);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.CAMERA_ID, 0, CAMERA_FRONT_CAPTURE);
         }
 
         //Quality Set
@@ -48,7 +48,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.CAMERA_ID, 0, CAMERA_SET_QUALITY, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.CAMERA_ID, 0, CAMERA_SET_QUALITY, 1, args);
         }
 
         //Output Functions ID's

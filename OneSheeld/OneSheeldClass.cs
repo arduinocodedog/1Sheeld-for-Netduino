@@ -26,6 +26,8 @@ namespace OneSheeldClasses
         bool isArgumentLengthsAllocated = false;
         bool isOneSheeldConnected = false;
         bool isAppConnectedCallBack = false;
+        bool isShieldFrameCallback = false;
+        bool isSerialDataCallback = false;
         byte functions = 0;
         byte shield = 0;
         byte instance = 0;
@@ -39,6 +41,9 @@ namespace OneSheeldClasses
         byte[] argumentLengths = null;
 
         IAppConnected AppConnectedCallBack = null;
+
+        IShieldFrameCallback shieldFrameCallback = null;
+        ISerialDataCallback serialDataCallback = null;
 
         public OneSheeldClass()
         {
@@ -70,7 +75,7 @@ namespace OneSheeldClasses
         public void begin()
         {
             begin(115200);
-            sendPacket(ShieldIds.ONESHEELD_ID, 0, CHECK_APP_CONNECTION);
+            sendShieldFrame(ShieldIds.ONESHEELD_ID, 0, CHECK_APP_CONNECTION);
             OneSheeldClass.isInitialized = true;
             for (int i = 0; i < OneSheeldClass.requestsCounter; i++)
                 OneSheeldClass.requestsArray[i].sendInitFrame();
@@ -97,7 +102,19 @@ namespace OneSheeldClasses
             set { OneSheeldClass.isInit = value; }
         }
 
-        public void sendPacket(ShieldIds shieldID, byte instanceID, byte functionID, int argNo = 0, ArrayList args = null)
+        public void setOnNewShieldFrame(IShieldFrameCallback userCallback)
+        {
+            isShieldFrameCallback=true;
+            shieldFrameCallback=userCallback;
+        }
+
+        public void setOnNewSerialData(ISerialDataCallback userCallback)
+        {
+            isSerialDataCallback=true;
+            serialDataCallback=userCallback;
+        }
+
+        public void sendShieldFrame(ShieldIds shieldID, byte instanceID, byte functionID, int argNo = 0, ArrayList args = null)
         {
             ulong mill = millis() + 1;
             ulong localLastTimeFrameSent = OneSheeldClass.lastTimeFrameSent;
@@ -159,8 +176,8 @@ namespace OneSheeldClasses
 
         void setOnAppConnected(IAppConnected userCallback)
         {
-          AppConnectedCallBack = userCallback;
-          isAppConnectedCallBack = true;
+            AppConnectedCallBack = userCallback;
+            isAppConnectedCallBack = true;
         }
 
         public byte getShieldId()
@@ -312,6 +329,8 @@ namespace OneSheeldClasses
                 if (endFrame == END_OF_FRAME)
                 {
                     sendToShields();
+                    if (isShieldFrameCallback)
+                        shieldFrameCallback.OneNewShieldFrame(shield, instance, functions, argumentnumber, argumentLengths, arguments);
                     freeMemoryAllocated();
                 }
                 else
@@ -325,7 +344,7 @@ namespace OneSheeldClasses
                 {
                     shield = (byte) data;
                     bool found = false;
-                    if (shield == (byte)ShieldIds.ONESHEELD_ID)
+                    if (shield == (byte)ShieldIds.ONESHEELD_ID || isShieldFrameCallback)
                         found = true;
                     else
                     {
@@ -360,8 +379,8 @@ namespace OneSheeldClasses
         {
             while (((SerialPort)OneSheeldSerial).BytesToRead > 0)
             {
-                processSerial((SerialPort) OneSheeldSerial);
-            }
+                processSerial((SerialPort)OneSheeldSerial);
+            }                
         }
 
         void freeMemoryAllocated()
@@ -428,7 +447,7 @@ namespace OneSheeldClasses
             }
             else if (functionId == LIBRARY_VERSION_REQUEST)
             {
-                sendPacket(ShieldIds.ONESHEELD_ID, 0, SEND_LIBRARY_VERSION);
+                sendShieldFrame(ShieldIds.ONESHEELD_ID, 0, SEND_LIBRARY_VERSION);
             }
         }
 
@@ -439,7 +458,7 @@ namespace OneSheeldClasses
             if (!isInACallback())
             {
                 OneSheeldClass.inACallback = true;
-                sendPacket(ShieldIds.ONESHEELD_ID, 0, CALLBACK_ENTERED);
+                sendShieldFrame(ShieldIds.ONESHEELD_ID, 0, CALLBACK_ENTERED);
             }
         }
 
@@ -448,7 +467,7 @@ namespace OneSheeldClasses
             if (isInACallback())
             {
                 OneSheeldClass.inACallback = false;
-                sendPacket(ShieldIds.ONESHEELD_ID, 0, CALLBACK_EXITED);
+                sendShieldFrame(ShieldIds.ONESHEELD_ID, 0, CALLBACK_EXITED);
             }
         }
 
@@ -523,7 +542,11 @@ namespace OneSheeldClasses
                         byte[] buffer = new byte[bytestoread];
                         sp.Read(buffer, 0, bytestoread);
                         for (int i = 0; i < bytestoread; i++)
+                        {
                             processInput(buffer[i]);
+                            if (isSerialDataCallback)
+                                serialDataCallback.OnNewSerialData(buffer[i]);
+                        }
                         buffer = null;
                     }
                 } while (sp.BytesToRead > 0);
@@ -636,7 +659,7 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 7;
+        const byte LIBRARY_VERSION = 8;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;

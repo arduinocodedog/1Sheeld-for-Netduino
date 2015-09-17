@@ -75,7 +75,7 @@ namespace OneSheeldClasses
 
             args.Add(arg7);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_RECTANGLE_TYPE, 7, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RECTANGLE_TYPE, 7, args);
 
         }
 
@@ -106,7 +106,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_RECTANGLE_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RECTANGLE_TYPE, 3, args);
         }
 
         public void setFill(bool f)
@@ -135,7 +135,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_RECTANGLE_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RECTANGLE_TYPE, 3, args);
         }
 
         public void setDimensions(int xdimension, int ydimension)
@@ -173,7 +173,7 @@ namespace OneSheeldClasses
 
             args.Add(arg4);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_RECTANGLE_TYPE, 4, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RECTANGLE_TYPE, 4, args);
         }
 
         const byte GLCD_RECTANGLE_TYPE = 0x02;

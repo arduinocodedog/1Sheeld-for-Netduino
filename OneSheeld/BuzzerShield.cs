@@ -18,7 +18,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.BUZZER_ID,0,BUZZER_SET,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.BUZZER_ID,0,BUZZER_SET,1,args);
         }
 
         // ----------------------  Public Methods -----------------------

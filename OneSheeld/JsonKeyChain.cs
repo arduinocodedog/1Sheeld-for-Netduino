@@ -178,7 +178,7 @@ namespace OneSheeldClasses
                 args.Add(arguments[c]);
             }
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, functionId, counter+2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, functionId, counter+2, args);
 
             for (int d = 0; d < counter+2; d++)
             {

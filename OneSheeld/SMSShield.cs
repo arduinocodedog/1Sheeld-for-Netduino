@@ -27,7 +27,7 @@ namespace OneSheeldClasses
             FunctionArg arg2 = new FunctionArg(text.Length, System.Text.Encoding.UTF8.GetBytes(text));
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.SMS_ID, 0, SMS_SEND, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.SMS_ID, 0, SMS_SEND, 2, args);
         }
 
         //Number Getter

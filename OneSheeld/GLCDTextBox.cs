@@ -56,7 +56,7 @@ namespace OneSheeldClasses
 
             args.Add(arg5);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_TEXTBOX_TYPE, 5, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_TEXTBOX_TYPE, 5, args);
         }
 
         public void setFont(byte fonttype)
@@ -83,7 +83,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg3 = new FunctionArg(1, fontArray);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_TEXTBOX_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_TEXTBOX_TYPE, 3, args);
         }
 
         public void setSize(byte size)
@@ -110,7 +110,7 @@ namespace OneSheeldClasses
 
             FunctionArg arg3 = new FunctionArg(1, sizeArray);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_TEXTBOX_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_TEXTBOX_TYPE, 3, args);
         }
 
         public void setText(string _dataString)
@@ -138,7 +138,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_TEXTBOX_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_TEXTBOX_TYPE, 3, args);
 
         }
 

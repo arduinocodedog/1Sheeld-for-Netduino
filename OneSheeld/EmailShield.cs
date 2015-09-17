@@ -26,7 +26,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.EMAIL_ID, 0, EMAIL_SEND, 3, args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.EMAIL_ID, 0, EMAIL_SEND, 3, args);
         }
 
         //Attaching picture
@@ -52,7 +52,7 @@ namespace OneSheeldClasses
             FunctionArg arg4 = new FunctionArg(1, imgsrc);
             args.Add(arg4);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.EMAIL_ID, 0, EMAIL_ATTACH_PICTURE, 4, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.EMAIL_ID, 0, EMAIL_ATTACH_PICTURE, 4, args);
         }
 
         const byte EMAIL_SEND = 0x01;

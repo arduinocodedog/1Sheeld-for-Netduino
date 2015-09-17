@@ -87,7 +87,7 @@ namespace OneSheeldClasses
                 FunctionArg arg3 = new FunctionArg(2, sizeArray);
                 args.Add(arg3);
 
-                OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID, 0, RESPONSE_GET_NEXT_BYTES, 3, args);
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, RESPONSE_GET_NEXT_BYTES, 3, args);
     	    }
         }
 
@@ -150,7 +150,7 @@ namespace OneSheeldClasses
 	
 	        if(sendFrame)
 	        {
-		        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID,0,RESPONSE_DISPOSE,1,args);
+		        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID,0,RESPONSE_DISPOSE,1,args);
 		        callbacksRequested=0;
 	        }
         }
@@ -180,7 +180,14 @@ namespace OneSheeldClasses
                 FunctionArg arg1 = new FunctionArg(headerName.Length, System.Text.Encoding.UTF8.GetBytes(headerName));
                 args.Add(arg1);
 
-		        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.INTERNET_ID,0,RESPONSE_INPUT_GET_HEADER,1,args);	
+                byte[] reqId = new byte[2];
+                reqId[1] = (byte)((requestId >> 8) & 0xFF);
+                reqId[0] = (byte)(requestId & 0xFF);
+
+                FunctionArg arg2 = new FunctionArg(2, reqId);
+                args.Add(arg2);
+
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID,0,RESPONSE_GET_HEADER,2,args);	
 	        }
 	
         }
@@ -212,9 +219,9 @@ namespace OneSheeldClasses
             return chain.AddKeytoChain(key);
         }
 
-        const byte RESPONSE_INPUT_GET_HEADER = 0x07;
         const byte RESPONSE_DISPOSE = 0x11;
         const byte RESPONSE_GET_NEXT_BYTES = 0x12;
+        const byte RESPONSE_GET_HEADER = 0x13;
 
         const byte RESPONSE_INPUT_GET_HEADER_BIT = 0x01;
         const byte RESPONSE_GET_ERROR_BIT = 0x02;

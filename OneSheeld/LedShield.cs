@@ -16,7 +16,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.LED_ID,0,LED_SET_VALUE,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.LED_ID,0,LED_SET_VALUE,1,args);
         }
 
         // ----------------------  Public Methods -----------------------

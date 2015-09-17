@@ -31,19 +31,19 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.COLOR_ID,0,COLOR_PALETTE_ID,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.COLOR_ID,0,COLOR_PALETTE_ID,1,args);
         }
 
         public void enableFullOperation()
         {
 	        isNewColor=false;
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.COLOR_ID,0,COLOR_FULL_OPERATION_ID,0);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.COLOR_ID,0,COLOR_FULL_OPERATION_ID,0);
         }
 
         public void enableNormalOperation()
         {
 	        isNewColor=false;
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.COLOR_ID,0,COLOR_NORMAL_OPERATION_ID,0);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.COLOR_ID,0,COLOR_NORMAL_OPERATION_ID,0);
         }
 
         public void setCalculationMode(byte mode)
@@ -57,7 +57,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.COLOR_ID, 0, COLOR_CALCULATION_MODE_ID, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.COLOR_ID, 0, COLOR_CALCULATION_MODE_ID, 1, args);
         }
 
         public void setPatchSize(byte mode)
@@ -71,7 +71,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.COLOR_ID, 0, COLOR_SET_PATH_SIZE_ID, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.COLOR_ID, 0, COLOR_SET_PATH_SIZE_ID, 1, args);
         }
 
         public ColorClass getLastColor(byte whichColor = COLOR_CENTER_MIDDLE)

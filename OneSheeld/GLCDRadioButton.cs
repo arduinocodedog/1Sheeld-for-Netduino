@@ -88,7 +88,7 @@ namespace OneSheeldClasses
                 sendAsGroup = false;
             }
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, args.Count, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, args.Count, args);
         }
 
         public void setText(string dataString)
@@ -114,7 +114,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 3, args);
 
         }
 
@@ -144,7 +144,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 3, args);
         }
 
         public void setGroup(int number)
@@ -174,7 +174,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 3, args);
         }
 
         public void select()
@@ -196,7 +196,7 @@ namespace OneSheeldClasses
 
             args.Add(arg2);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 2, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 2, args);
         }
 
         const byte GLCD_RADIO_BUTTON_TYPE = 0x09;

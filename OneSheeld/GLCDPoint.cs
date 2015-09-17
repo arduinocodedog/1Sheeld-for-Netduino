@@ -45,7 +45,7 @@ namespace OneSheeldClasses
 
             args.Add(arg4);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_POINT_TYPE, 4, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_POINT_TYPE, 4, args);
 
         }
 

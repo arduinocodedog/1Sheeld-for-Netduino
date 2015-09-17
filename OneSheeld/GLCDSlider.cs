@@ -66,7 +66,7 @@ namespace OneSheeldClasses
 
             args.Add(arg6);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 6, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 6, args);
 
         }
 
@@ -117,7 +117,7 @@ namespace OneSheeldClasses
             FunctionArg arg4 = new FunctionArg(2, endArray);
 
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 4, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 4, args);
         }
 
         public void setValue(int v)
@@ -147,7 +147,7 @@ namespace OneSheeldClasses
 
             args.Add(arg3);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 3, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 3, args);
         }
 
         public void setDimensions(int xdimension, int ydimension)
@@ -185,7 +185,7 @@ namespace OneSheeldClasses
 
             args.Add(arg4);
 
-            OneSheeldMain.OneSheeld.sendPacket(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 4, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 4, args);
         }
 
         public int getValue()

@@ -17,7 +17,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        OneSheeldMain.OneSheeld.sendPacket(ShieldIds.NOTIFICATION_ID,0,NOTIFICATION_NOTIFY_PHONE,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.NOTIFICATION_ID,0,NOTIFICATION_NOTIFY_PHONE,1,args);
         }
 
         const byte NOTIFICATION_NOTIFY_PHONE = 0x01;

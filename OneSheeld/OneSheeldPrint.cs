@@ -28,7 +28,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(shieldId, 0, write_fn_id, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(shieldId, 0, write_fn_id, 1, args);
         }
 
         //Print character
@@ -43,7 +43,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(shieldId, 0, print_fn_id, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(shieldId, 0, print_fn_id, 1, args);
         }
 
         //Write unsigned byte
@@ -58,7 +58,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        OneSheeldMain.OneSheeld.sendPacket(shieldId,0,write_fn_id,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,write_fn_id,1,args);
         }
 
         //Print unsigned byte
@@ -73,7 +73,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        OneSheeldMain.OneSheeld.sendPacket(shieldId,0,print_fn_id,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,args);
         }
 
         //Print integers
@@ -87,7 +87,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-	        OneSheeldMain.OneSheeld.sendPacket(shieldId,0,print_fn_id,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,args);
         }
 
         //Print unsigned integers 
@@ -101,7 +101,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 	
-	        OneSheeldMain.OneSheeld.sendPacket(shieldId,0,print_fn_id,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,args);
         }
 
         //Print long integers
@@ -115,7 +115,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 	
-	        OneSheeldMain.OneSheeld.sendPacket(shieldId,0,print_fn_id,1,args);
+	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,args);
         }
 
         //Print unsigned long integers
@@ -129,7 +129,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 	
-	        OneSheeldMain.OneSheeld.sendPacket(shieldId,0,print_fn_id,1,args);	
+	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,args);	
         }
 
         // Print byte Array
@@ -141,7 +141,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(shieldId, 0, print_fn_id, 1, args);	
+            OneSheeldMain.OneSheeld.sendShieldFrame(shieldId, 0, print_fn_id, 1, args);	
 
         }
 
@@ -154,7 +154,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(shieldId, 0, print_fn_id, 1, args);	
+            OneSheeldMain.OneSheeld.sendShieldFrame(shieldId, 0, print_fn_id, 1, args);	
         }
 
         public void print(double data, int precision = 3)
@@ -167,7 +167,7 @@ namespace OneSheeldClasses
 
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendPacket(shieldId, 0, print_fn_id, 1, args);
+            OneSheeldMain.OneSheeld.sendShieldFrame(shieldId, 0, print_fn_id, 1, args);
 	    }
 
         public void print(float data, int precision = 3)
