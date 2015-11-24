@@ -394,9 +394,11 @@ namespace OneSheeldClasses
         const byte INTERNET_SET_AUTHENTICATION = 0x0E;
         const byte INTERNET_CLEAR_AUTHENTICATION = 0x0F;
         const byte INTERNET_SET_DEFAULT_MAX_RESPONSE = 0x10;
-        const byte INTERNET_GET_ERROR = 0x06;
         const byte INTERNET_QUERY_JSON = 0x14;
         const byte INTERNET_QUERY_JSON_ARRAY_LENGTH = 0x17;
+
+        // Input Function ID's for Internet Class
+        const byte INTERNET_GET_ERROR = 0x06;
 
         // HTTP Request Function Ids
         const byte HTTP_GET_SUCCESS = 0x01;

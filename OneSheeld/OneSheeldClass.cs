@@ -30,7 +30,7 @@ namespace OneSheeldClasses
         bool isSerialDataCallback = false;
         byte functions = 0;
         byte shield = 0;
-        byte instance = 0;
+        byte verificationByte = 0;
         byte counter = 0;
         byte argumentcounter = 0;
         byte datalengthcounter = 0;
@@ -185,11 +185,6 @@ namespace OneSheeldClasses
             return shield;
         }
 
-        public byte getInstanceId()
-        {
-            return instance;
-        }
-
         public byte getFunctionId()
         {
             return functions;
@@ -330,7 +325,11 @@ namespace OneSheeldClasses
                 {
                     sendToShields();
                     if (isShieldFrameCallback)
-                        shieldFrameCallback.OneNewShieldFrame(shield, instance, functions, argumentnumber, argumentLengths, arguments);
+                    {
+                        enteringACallback();
+                        shieldFrameCallback.OneNewShieldFrame(shield, functions, argumentnumber, argumentLengths, arguments);
+                        exitingACallback();
+                    }
                     freeMemoryAllocated();
                 }
                 else
@@ -365,7 +364,10 @@ namespace OneSheeldClasses
                 }
                 else if (counter == 2)
                 {
-                    instance = (byte) data;
+                    verificationByte = (byte) data;
+                    byte leastBits = (byte)(verificationByte & 0x0f);
+                    if ((255-verificationByte>>4) != leastBits) 
+                        framestart = false;
                 }
                 else if (counter == 3)
                 {
@@ -545,7 +547,11 @@ namespace OneSheeldClasses
                         {
                             processInput(buffer[i]);
                             if (isSerialDataCallback)
+                            {
+                                enteringACallback();
                                 serialDataCallback.OnNewSerialData(buffer[i]);
+                                enteringACallback();
+                            }
                         }
                         buffer = null;
                     }
@@ -659,7 +665,7 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 8;
+        const byte LIBRARY_VERSION = 9;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;

@@ -5,14 +5,16 @@ namespace OneSheeldClasses
     public class GLCDButton : InteractiveShapeClass
     {
         public bool buttonValue = false;
+        public bool buttonHasName = false;
 
         int width = 0;
         int height = 0;
         string dataString = null;
 
-        public GLCDButton(int x, int y, int w, int h, string _dataString)
+        public GLCDButton(int x, int y, int w, int h, string _dataString = null)
             : base(GLCD_BUTTON_TYPE, x, y)
         {
+            buttonHasName = (_dataString != null) ? true : false;
             width = w;
             height = h;
             dataString = _dataString;
@@ -74,11 +76,18 @@ namespace OneSheeldClasses
 
             args.Add(arg6);
 
-            FunctionArg arg7 = new FunctionArg(dataString.Length, System.Text.Encoding.UTF8.GetBytes(dataString));
+            if (buttonHasName)
+            {
+                FunctionArg arg7 = new FunctionArg(dataString.Length, System.Text.Encoding.UTF8.GetBytes(dataString));
 
-            args.Add(arg7);
+                args.Add(arg7);
 
-            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_BUTTON_TYPE, 7, args);
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_BUTTON_TYPE, 7, args);
+            }
+            else
+            {
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_BUTTON_TYPE, 6, args);
+            }
         }
 
         public bool isPressed()
@@ -86,10 +95,8 @@ namespace OneSheeldClasses
             return buttonValue;
         }
 
-        public void setText(string _dataString)
+        public void setText(string dataString)
         {
-            dataString = _dataString;
-
             ArrayList args = new ArrayList();
 
             byte[] functionid = new byte[1];

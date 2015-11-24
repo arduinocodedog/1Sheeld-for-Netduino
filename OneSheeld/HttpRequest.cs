@@ -131,6 +131,50 @@ namespace OneSheeldClasses
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_PARAMETER, 3, args);
         }
 
+        public void addLastImageAsParameter(string paramName,byte imageSource,byte encoding)
+        {
+            //Check length of string 
+	        if(paramName.Length == 0)
+                return;
+
+            ArrayList args = new ArrayList();
+
+            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            args.Add(arg1);
+
+            FunctionArg arg2 = new FunctionArg(paramName.Length, System.Text.Encoding.UTF8.GetBytes(paramName));
+            args.Add(arg2);
+
+            byte[] imgsrc = new byte[1];
+            imgsrc[0] = imageSource;
+            FunctionArg arg3 = new FunctionArg(1, imgsrc);
+            args.Add(arg3);
+
+            byte[] enc = new byte[1];
+            enc[0] = encoding;
+            FunctionArg arg4 = new FunctionArg(1, enc);
+            args.Add(arg4);
+
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_LAST_IMAGE_AS_PARAM, 4, args);
+        }
+
+        public void addLastImageAsRawEntity(byte imageSource)
+        {
+            ArrayList args = new ArrayList();
+
+            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            args.Add(arg1);
+
+            byte[] imgsrc = new byte[1];
+            imgsrc[0] = imageSource;
+
+            FunctionArg arg2 = new FunctionArg(1, imgsrc);
+            args.Add(arg2);
+
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_LAST_IMAGE_AS_RAW_ENTITY, 2, args);
+        }
+
+
         public void addRawData(string data)
         {
             if (data.Length == 0)
@@ -252,12 +296,14 @@ namespace OneSheeldClasses
         const byte HTTP_SET_URL = 0x02;
         const byte HTTP_ADD_HEADER = 0x03;
         const byte HTTP_ADD_PARAMETER = 0x04;
-        const byte HTTP_ADD_RAW_DATA = 0x15;
         const byte HTTP_DELETE_HEADER = 0x05;
         const byte HTTP_DELETE_PARAMETER = 0x06;
         const byte HTTP_SET_CONTENT_TYPE = 0x07;
         const byte HTTP_IGNORE_REQUEST = 0x08;
+        const byte HTTP_ADD_RAW_DATA = 0x15;
         const byte HTTP_SET_CONTENT_ENCODING = 0x16;
+        const byte HTTP_ADD_LAST_IMAGE_AS_PARAM = 0x18;
+        const byte HTTP_ADD_LAST_IMAGE_AS_RAW_ENTITY = 0x19;
 
         const byte SUCCESS_CALLBACK_BIT = 0x01;
         const byte FAILURE_CALLBACK_BIT	= 0x02;
@@ -265,5 +311,8 @@ namespace OneSheeldClasses
         const byte FINISH_CALLBACK_BIT = 0x08;
 
         const int MAX_NO_OF_REQUESTS = 20;
+
+        const byte RAW = 0x00;
+        const byte BASE64 = 0x01;
     }
 }

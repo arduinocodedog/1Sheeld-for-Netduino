@@ -35,7 +35,7 @@ namespace AdvancedINTERNET
         {
             if (!internetInitialized)
             {
-                oneSheeldRequest = new HttpRequest("http://api.openweathermap.org/data/2.5/weather");
+                oneSheeldRequest = new HttpRequest("http://api.openweathermap.org/data/2.5/weather?appid=2711d6a2cc90e292afaf00f9335028b1");
                 oneSheeldRequest.setOnSuccess(this);
                 oneSheeldRequest.setOnFailure(this);
                 oneSheeldRequest.response.setOnJsonResponse(this);
