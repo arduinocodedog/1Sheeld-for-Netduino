@@ -128,6 +128,7 @@
     <Compile Include="TerminalShield.cs" />
     <Compile Include="TTSShield.cs" />
     <Compile Include="ULongInputShield.cs" />
+    <Compile Include="VibrationShield.cs" />
     <Compile Include="VoiceRecognitionShield.cs" />
     <Compile Include="XYZSensorShield.cs" />
     <Compile Include="SevenSegmentShield.cs" />

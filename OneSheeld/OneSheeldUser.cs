@@ -242,6 +242,12 @@ namespace OneSheeldClasses
             set { }
         }
 
+        public static VibrationShield VIBRATION
+        {
+            get { return OneSheeldMain._VIBRATION; }
+            set { }
+        }
+
         public static VoiceRecognitionShield VOICERECOGNITION
         {
             get { return OneSheeldMain._VOICERECOGNITION;  }

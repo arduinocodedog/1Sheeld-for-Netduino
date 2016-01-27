@@ -38,6 +38,7 @@
 #define TEXTTOSPEECH_SHIELD
 #define TOGGLE_BUTTON_SHIELD
 #define TWITTER_SHIELD
+#define VIBRATION_SHIELD
 #define VOICE_RECOGNITION_SHIELD
 
 namespace OneSheeldClasses
@@ -204,6 +205,10 @@ namespace OneSheeldClasses
 
             #if TWITTER_SHIELD
                 _TWITTER = new TwitterShield();
+            #endif
+
+            #if VIBRATION_SHIELD
+                _VIBRATION = new VibrationShield();
             #endif
 
             #if VOICE_RECOGNITION_SHIELD

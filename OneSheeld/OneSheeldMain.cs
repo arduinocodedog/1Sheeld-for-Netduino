@@ -42,6 +42,7 @@ namespace OneSheeldClasses
         public static ToggleButtonShield _TOGGLEBUTTON = null;
         public static TTSShield _TTS = null;
         public static TwitterShield _TWITTER = null;
+        public static VibrationShield _VIBRATION = null;
         public static VoiceRecognitionShield _VOICERECOGNITION = null;
 
         public static OneSheeldClass OneSheeld = null;
