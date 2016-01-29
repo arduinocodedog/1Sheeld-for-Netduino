@@ -46,26 +46,13 @@ namespace OneSheeldClasses
             {
                 ArrayList args = new ArrayList();
 
-                byte[] rn = new byte[1];
-                rn[0] = recordNumber;
-
-                FunctionArg arg1 = new FunctionArg(1, rn);
-
+                FunctionArg arg1 = new FunctionArg(recordNumber);
                 args.Add(arg1);
 
-                byte[] startArray = new byte[2];
-                startArray[1] = (byte)((start >> 8) & 0xFF);
-                startArray[0] = (byte)(start & 0xFF);
-
-                FunctionArg arg2 = new FunctionArg(2, startArray);
-
+                FunctionArg arg2 = new FunctionArg(start);
                 args.Add(arg2);
 
-                byte[] s = new byte[1];
-                s[0] = size;
-
-                FunctionArg arg3 = new FunctionArg(1, s);
-
+                FunctionArg arg3 = new FunctionArg(size);
                 args.Add(arg3);
 
                 OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.NFC_ID, 0, NFC_RECORD_QUERY_DATA, 3, args);
@@ -78,26 +65,13 @@ namespace OneSheeldClasses
             {
                 ArrayList args = new ArrayList();
 
-                byte[] rn = new byte[1];
-                rn[0] = recordNumber;
-
-                FunctionArg arg1 = new FunctionArg(1, rn);
-
+                FunctionArg arg1 = new FunctionArg(recordNumber);
                 args.Add(arg1);
 
-                byte[] startArray = new byte[2];
-                startArray[1] = (byte)((start >> 8) & 0xFF);
-                startArray[0] = (byte)(start & 0xFF);
-
-                FunctionArg arg2 = new FunctionArg(2, startArray);
-
+                FunctionArg arg2 = new FunctionArg(start);
                 args.Add(arg2);
 
-                byte[] s = new byte[1];
-                s[0] = size;
-
-                FunctionArg arg3 = new FunctionArg(1, s);
-
+                FunctionArg arg3 = new FunctionArg(size);
                 args.Add(arg3);
 
                 OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.NFC_ID, 0, NFC_RECORD_QUERY_TYPE, 3, args);
@@ -110,11 +84,7 @@ namespace OneSheeldClasses
             {
                 ArrayList args = new ArrayList();
 
-                byte[] rn = new byte[1];
-                rn[0] = recordNumber;
-
-                FunctionArg arg1 = new FunctionArg(1, rn);
-
+                FunctionArg arg1 = new FunctionArg(recordNumber);
                 args.Add(arg1);
 
                 OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.NFC_ID, 0, NFC_RECORD_QUERY_PARSED_DATA, 1, args);

@@ -77,10 +77,10 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(userName.Length, System.Text.Encoding.UTF8.GetBytes(userName));
+            FunctionArg arg1 = new FunctionArg(userName);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(password.Length, System.Text.Encoding.UTF8.GetBytes(password));
+            FunctionArg arg2 = new FunctionArg(password);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, INTERNET_SET_AUTHENTICATION, 2, args);
@@ -95,11 +95,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] sizeArray = new byte[2];
-  	        sizeArray[1] = (byte)((size >> 8) & 0xFF);
-  	        sizeArray[0] = (byte)(size & 0xFF);
-
-            FunctionArg arg = new FunctionArg(2, sizeArray);
+            FunctionArg arg = new FunctionArg(size);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, INTERNET_SET_DEFAULT_MAX_RESPONSE, 1, args);
@@ -358,12 +354,10 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, request.localRequestId);
+            FunctionArg arg1 = new FunctionArg(request.localRequestId);
             args.Add(arg1);
 
-            byte[] callbacksRequested = new byte[1];
-            callbacksRequested[0] = request.callbacksRequested;
-            FunctionArg arg2 = new FunctionArg(1, callbacksRequested);
+            FunctionArg arg2 = new FunctionArg(request.callbacksRequested);
             args.Add(arg2);
 
             return args;

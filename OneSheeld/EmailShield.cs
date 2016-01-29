@@ -14,16 +14,13 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(email.Length, System.Text.Encoding.UTF8.GetBytes(email));
-
+            FunctionArg arg1 = new FunctionArg(email);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(subject.Length, System.Text.Encoding.UTF8.GetBytes(subject));
-
+            FunctionArg arg2 = new FunctionArg(subject);
             args.Add(arg2);
 
-            FunctionArg arg3 = new FunctionArg(message.Length, System.Text.Encoding.UTF8.GetBytes(message));
-
+            FunctionArg arg3 = new FunctionArg(message);
             args.Add(arg3);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.EMAIL_ID, 0, EMAIL_SEND, 3, args);
@@ -34,22 +31,16 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(email.Length, System.Text.Encoding.UTF8.GetBytes(email));
-
+            FunctionArg arg1 = new FunctionArg(email);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(subject.Length, System.Text.Encoding.UTF8.GetBytes(subject));
-
+            FunctionArg arg2 = new FunctionArg(subject);
             args.Add(arg2);
 
-            FunctionArg arg3 = new FunctionArg(message.Length, System.Text.Encoding.UTF8.GetBytes(message));
-
+            FunctionArg arg3 = new FunctionArg(message);
             args.Add(arg3);
 
-            byte[] imgsrc = new byte[1];
-            imgsrc[0] = imageSource;
-
-            FunctionArg arg4 = new FunctionArg(1, imgsrc);
+            FunctionArg arg4 = new FunctionArg(imageSource);
             args.Add(arg4);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.EMAIL_ID, 0, EMAIL_ATTACH_PICTURE, 4, args);

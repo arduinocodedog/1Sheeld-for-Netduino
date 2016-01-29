@@ -142,16 +142,13 @@ namespace OneSheeldClasses
             {
                 if (keysArray[i - 2].isString())
                 {
-                    arguments[i] = new FunctionArg(keysArray[i - 2].getString().Length, System.Text.Encoding.UTF8.GetBytes(keysArray[i - 2].getString()));
+                    arguments[i] = new FunctionArg(keysArray[i - 2].getString());
 
                     //Debug.Print("Argument # (string):" + i.ToString() + "   Length: " + keysArray[i - 2].getString().Length.ToString() + "   Data: " + keysArray[i - 2].getString());
                 }
                 else
                 {
-                    byte[] integerArray = new byte[2];
-                    integerArray[1] = (byte)((keysArray[i - 2].getNumber() >> 8) & 0xFF);
-                    integerArray[0] = (byte)(keysArray[i - 2].getNumber() & 0xFF);
-                    arguments[i] = new FunctionArg(2, integerArray);
+                    arguments[i] = new FunctionArg(keysArray[i - 2].getNumber());
 
                     //Debug.Print("Argument # (number):" + i.ToString() + "   Length: 2" + "   Data: " + keysArray[i - 2].getNumber().ToString());
                 }
@@ -159,16 +156,10 @@ namespace OneSheeldClasses
                 types |= ((isString) << (i - 2));
             }
 
-            byte[] typeArray = new byte[2];
-            typeArray[1] = (byte) ((types >> 8) & 0xFF);
-            typeArray[0] = (byte) (types & 0xFF);
-            arguments[1] = new FunctionArg(2, typeArray);
+            arguments[1] = new FunctionArg(types);
             //Debug.Print("Argument #: 1   Types: " + types.ToString() + "   Length: 2");
 
-            byte[] requestIdArray = new byte[2];
-            requestIdArray[1] = (byte) ((request >> 8) & 0xFF);
-            requestIdArray[0] = (byte) (request & 0xFF);
-            arguments[0] = new FunctionArg(2, requestIdArray);
+            arguments[0] = new FunctionArg(request);
             //Debug.Print("Argument #: 0   request: " + request.ToString() + "   Length: 2");
 
             ArrayList args = new ArrayList();

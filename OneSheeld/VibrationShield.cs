@@ -29,15 +29,10 @@ namespace OneSheeldClasses
                 patternpos++;
             }
 
-            FunctionArg arg1 = new FunctionArg(patternLength * sizeof(short), bytepattern);
-
+            FunctionArg arg1 = new FunctionArg(bytepattern);
             args.Add(arg1);
 
-            ushort ushortrepdelay = (ushort)repetitionDelay;
-            byte[] byterepdelay = BitConverter.GetBytes(ushortrepdelay);
-
-            FunctionArg arg2 = new FunctionArg(sizeof(short), byterepdelay);
-
+            FunctionArg arg2 = new FunctionArg((ushort) repetitionDelay);
             args.Add(arg2);
             
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.VIBRATION_ID, 0, VIBRATION_START_PATTERN, 2, args);
@@ -49,18 +44,10 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            ushort ushortduration = (ushort)duration;
-            byte[] byteduration = BitConverter.GetBytes(ushortduration);
-
-            FunctionArg arg1 = new FunctionArg(sizeof(ushort), byteduration);
-
+            FunctionArg arg1 = new FunctionArg((ushort) duration);
             args.Add(arg1);
 
-            ushort ushortrepdelay = (ushort)repetitionDelay;
-            byte[] byterepdelay = BitConverter.GetBytes(ushortrepdelay);
-
-            FunctionArg arg2 = new FunctionArg(sizeof(short), byterepdelay);
-
+            FunctionArg arg2 = new FunctionArg((ushort) repetitionDelay);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.VIBRATION_ID, 0, VIBRATION_START_DURATION, 2, args);

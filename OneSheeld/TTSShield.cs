@@ -13,9 +13,8 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(text.Length, text);
-
-            args.Add(arg);
+            FunctionArg arg = new FunctionArg(text);
+           args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.TTS_ID, 0, TTS_SAY, 1, args);
         }
@@ -24,8 +23,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(text.Length, System.Text.Encoding.UTF8.GetBytes(text));
-
+            FunctionArg arg = new FunctionArg(text);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.TTS_ID, 0, TTS_SAY, 1, args);

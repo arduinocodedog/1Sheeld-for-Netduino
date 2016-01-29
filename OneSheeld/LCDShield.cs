@@ -95,20 +95,11 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] xarg = new byte[1];
-            xarg[0] = x;
-
-            FunctionArg arg1 = new FunctionArg(1, xarg);
-
+            FunctionArg arg1 = new FunctionArg(x);
             args.Add(arg1);
 
-            byte[] yarg = new byte[1];
-            yarg[0] = y;
-
-            FunctionArg arg2 = new FunctionArg(1, yarg);
-
+            FunctionArg arg2 = new FunctionArg(y);
             args.Add(arg2);
-
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.LCD_ID,0,LCD_SETCURSOR,2,args);
         }

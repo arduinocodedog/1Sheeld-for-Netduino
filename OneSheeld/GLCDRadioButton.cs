@@ -40,49 +40,24 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = SHAPE_DRAW;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] xPositionArray = new byte[2];
-            xPositionArray[1] = (byte)((xposition >> 8) & 0xFF);
-            xPositionArray[0] = (byte)(xposition & 0xFF);
-
-            FunctionArg arg3 = new FunctionArg(2, xPositionArray);
-
+            FunctionArg arg3 = new FunctionArg(xposition);
             args.Add(arg3);
 
-            byte[] yPositionArray = new byte[2];
-            yPositionArray[1] = (byte)((yposition >> 8) & 0xFF);
-            yPositionArray[0] = (byte)(yposition & 0xFF);
-
-            FunctionArg arg4 = new FunctionArg(2, yPositionArray);
-
+            FunctionArg arg4 = new FunctionArg(yposition);
             args.Add(arg4);
 
-            FunctionArg arg5 = new FunctionArg(dataString.Length, System.Text.Encoding.UTF8.GetBytes(dataString));
-
+            FunctionArg arg5 = new FunctionArg(dataString);
             args.Add(arg5);
 
             if (sendAsGroup)
             {
-                byte[] groupNumberArray = new byte[2];
-                groupNumberArray[1] = (byte)((groupNumber >> 8) & 0xFF);
-                groupNumberArray[0] = (byte)(groupNumber & 0xFF);
-
-                FunctionArg arg6 = new FunctionArg(2, groupNumberArray);
-
+                FunctionArg arg6 = new FunctionArg(groupNumber);
                 args.Add(arg6);
 
                 sendAsGroup = false;
@@ -95,23 +70,14 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_RADIO_BUTTON_SET_TEXT;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
+            FunctionArg arg1 = new FunctionArg(GLCD_RADIO_BUTTON_SET_TEXT);
 
             args.Add(arg1);
-
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
+            FunctionArg arg2 = new FunctionArg(shapeID);
 
             args.Add(arg2);
 
-            FunctionArg arg3 = new FunctionArg(dataString.Length, System.Text.Encoding.UTF8.GetBytes(dataString));
-
+            FunctionArg arg3 = new FunctionArg(dataString);
             args.Add(arg3);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 3, args);
@@ -122,26 +88,13 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_RADIO_BUTTON_SET_SIZE;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(GLCD_RADIO_BUTTON_SET_SIZE);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] sizeArray = new byte[1];
-            sizeArray[0] = size;
-
-            FunctionArg arg3 = new FunctionArg(1, sizeArray);
-
+            FunctionArg arg3 = new FunctionArg(size);
             args.Add(arg3);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 3, args);
@@ -151,27 +104,13 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_RADIO_BUTTON_SET_GROUP;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(GLCD_RADIO_BUTTON_SET_GROUP);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] numberArray = new byte[2];
-            numberArray[1] = (byte)((number >> 8) & 0xFF);
-            numberArray[0] = (byte)(number & 0xFF);
-
-            FunctionArg arg3 = new FunctionArg(1, numberArray);
-
+            FunctionArg arg3 = new FunctionArg(number);
             args.Add(arg3);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 3, args);
@@ -181,19 +120,10 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_RADIO_BUTTON_SELECT;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(GLCD_RADIO_BUTTON_SELECT);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_RADIO_BUTTON_TYPE, 2, args);

@@ -19,8 +19,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(data.Length, System.Text.Encoding.UTF8.GetBytes(data));
-
+            FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.TWITTER_ID, 0, TWITTER_SEND, 1, args);
@@ -30,10 +29,10 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(username.Length, System.Text.Encoding.UTF8.GetBytes(username));
+            FunctionArg arg1 = new FunctionArg(username);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(message.Length, System.Text.Encoding.UTF8.GetBytes(message));
+            FunctionArg arg2 = new FunctionArg(message);
             args.Add(arg2);
 
 
@@ -44,13 +43,10 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(pictureText.Length, System.Text.Encoding.UTF8.GetBytes(pictureText));
+            FunctionArg arg1 = new FunctionArg(pictureText);
             args.Add(arg1);
 
-            byte[] imgsrc = new byte[1];
-            imgsrc[0] = imageSource;
-
-            FunctionArg arg2 = new FunctionArg(1, imgsrc);
+            FunctionArg arg2 = new FunctionArg(imageSource);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.TWITTER_ID, 0, TWITTER_POST_LAST_PIC, 2, args);
@@ -71,7 +67,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(keyword.Length, System.Text.Encoding.UTF8.GetBytes(keyword));
+            FunctionArg arg = new FunctionArg(keyword);
             args.Add(arg);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.TWITTER_ID,0,TWITTER_TRACK_KEYWORD,1,args);
@@ -81,7 +77,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(keyword.Length, System.Text.Encoding.UTF8.GetBytes(keyword));
+            FunctionArg arg = new FunctionArg(keyword);
             args.Add(arg);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.TWITTER_ID,0,TWITTER_UNTRACK_KEYWORD,1,args);

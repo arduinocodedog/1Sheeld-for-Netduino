@@ -13,8 +13,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(username.Length, System.Text.Encoding.UTF8.GetBytes(username));
-
+            FunctionArg arg = new FunctionArg(username);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.SKYPE_ID, 0, SKYPE_CALL, 1, args);
@@ -24,8 +23,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(username.Length, System.Text.Encoding.UTF8.GetBytes(username));
-
+            FunctionArg arg = new FunctionArg(username);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.SKYPE_ID, 0, SKYPE_VIDEO_CALL, 1, args);

@@ -19,51 +19,22 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = SHAPE_DRAW;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] xPositionArray = new byte[2];
-            xPositionArray[1] = (byte)((xposition >> 8) & 0xFF);
-            xPositionArray[0] = (byte)(xposition & 0xFF);
-
-            FunctionArg arg3 = new FunctionArg(2, xPositionArray);
-
+            FunctionArg arg3 = new FunctionArg(xposition);
             args.Add(arg3);
 
-            byte[] yPositionArray = new byte[2];
-            yPositionArray[1] = (byte)((yposition >> 8) & 0xFF);
-            yPositionArray[0] = (byte)(yposition & 0xFF);
-
-            FunctionArg arg4 = new FunctionArg(2, yPositionArray);
-
+            FunctionArg arg4 = new FunctionArg(yposition);
             args.Add(arg4);
 
-            byte[] widthArray = new byte[2];
-            widthArray[1] = (byte)((width >> 8) & 0xFF);
-            widthArray[0] = (byte)(width & 0xFF);
-
-            FunctionArg arg5 = new FunctionArg(2, widthArray);
-
+            FunctionArg arg5 = new FunctionArg(width);
             args.Add(arg5);
 
-            byte[] heightArray = new byte[2];
-            heightArray[1] = (byte)((height >> 8) & 0xFF);
-            heightArray[0] = (byte)(height & 0xFF);
-
-            FunctionArg arg6 = new FunctionArg(2, heightArray);
-
+            FunctionArg arg6 = new FunctionArg(height);
             args.Add(arg6);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 6, args);
@@ -87,35 +58,17 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_SLIDER_RANGE;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(GLCD_SLIDER_RANGE);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] startArray = new byte[2];
-            startArray[1] = (byte)((start >> 8) & 0xFF);
-            startArray[0] = (byte)(start & 0xFF);
-
-            FunctionArg arg3 = new FunctionArg(2, startArray);
-
+            FunctionArg arg3 = new FunctionArg(start);
             args.Add(arg3);
 
-            byte[] endArray = new byte[2];
-            endArray[1] = (byte)((end >> 8) & 0xFF);
-            endArray[0] = (byte)(end & 0xFF);
-
-            FunctionArg arg4 = new FunctionArg(2, endArray);
-
+            FunctionArg arg4 = new FunctionArg(end);
+            args.Add(arg4);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 4, args);
         }
@@ -124,27 +77,13 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_SLIDER_VALUE;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(GLCD_SLIDER_VALUE);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] valueArray = new byte[2];
-            valueArray[1] = (byte)((v >> 8) & 0xFF);
-            valueArray[0] = (byte)(v & 0xFF);
-
-            FunctionArg arg3 = new FunctionArg(2, valueArray);
-
+            FunctionArg arg3 = new FunctionArg(v);
             args.Add(arg3);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 3, args);
@@ -154,35 +93,16 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_SLIDER_DIMENSIONS;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(GLCD_SLIDER_DIMENSIONS);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] xDimensionArray = new byte[2];
-            xDimensionArray[1] = (byte)((xdimension >> 8) & 0xFF);
-            xDimensionArray[0] = (byte)(xdimension & 0xFF);
-
-            FunctionArg arg3 = new FunctionArg(2, xDimensionArray);
-
+            FunctionArg arg3 = new FunctionArg(xdimension);
             args.Add(arg3);
 
-            byte[] yDimensionArray = new byte[2];
-            yDimensionArray[1] = (byte)((ydimension >> 8) & 0xFF);
-            yDimensionArray[0] = (byte)(ydimension & 0xFF);
-
-            FunctionArg arg4 = new FunctionArg(2, yDimensionArray);
-
+            FunctionArg arg4 = new FunctionArg(ydimension);
             args.Add(arg4);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_SLIDER_TYPE, 4, args);

@@ -13,8 +13,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(status.Length, System.Text.Encoding.UTF8.GetBytes(status));
-
+            FunctionArg arg = new FunctionArg(status);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.FACEBOOK_ID, 0, FACEBOOK_UPDATE_STATUS, 1, args);
@@ -24,15 +23,10 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(pictureText.Length, System.Text.Encoding.UTF8.GetBytes(pictureText));
-
+            FunctionArg arg1 = new FunctionArg(pictureText);
             args.Add(arg1);
 
-            byte[] imgsrc = new byte[1];
-            imgsrc[0] = (byte)imageSource;
-
-            FunctionArg arg2 = new FunctionArg(1, imgsrc);
-
+            FunctionArg arg2 = new FunctionArg(imageSource);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.FACEBOOK_ID, 0, FACEBOOK_POST_LAST_PIC, 2, args);

@@ -66,10 +66,10 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(_url.Length, System.Text.Encoding.UTF8.GetBytes(_url));
+            FunctionArg arg2 = new FunctionArg(_url);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_REQUEST_URL, 2, args);
@@ -84,10 +84,10 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(urlName.Length, System.Text.Encoding.UTF8.GetBytes(urlName));
+            FunctionArg arg2 = new FunctionArg(urlName);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_SET_URL, 2, args);
@@ -100,13 +100,13 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(headername.Length, System.Text.Encoding.UTF8.GetBytes(headername));
+            FunctionArg arg2 = new FunctionArg(headername);
             args.Add(arg2);
 
-            FunctionArg arg3 = new FunctionArg(data.Length, System.Text.Encoding.UTF8.GetBytes(data));
+            FunctionArg arg3 = new FunctionArg(data);
             args.Add(arg3);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_HEADER, 3, args);
@@ -119,13 +119,13 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(paramname.Length, System.Text.Encoding.UTF8.GetBytes(paramname));
+            FunctionArg arg2 = new FunctionArg(paramname);
             args.Add(arg2);
 
-            FunctionArg arg3 = new FunctionArg(data.Length, System.Text.Encoding.UTF8.GetBytes(data));
+            FunctionArg arg3 = new FunctionArg(data);
             args.Add(arg3);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_PARAMETER, 3, args);
@@ -139,20 +139,16 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(paramName.Length, System.Text.Encoding.UTF8.GetBytes(paramName));
+            FunctionArg arg2 = new FunctionArg(paramName);
             args.Add(arg2);
 
-            byte[] imgsrc = new byte[1];
-            imgsrc[0] = imageSource;
-            FunctionArg arg3 = new FunctionArg(1, imgsrc);
+            FunctionArg arg3 = new FunctionArg(imageSource);
             args.Add(arg3);
 
-            byte[] enc = new byte[1];
-            enc[0] = encoding;
-            FunctionArg arg4 = new FunctionArg(1, enc);
+            FunctionArg arg4 = new FunctionArg(encoding);
             args.Add(arg4);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_LAST_IMAGE_AS_PARAM, 4, args);
@@ -162,13 +158,10 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
-            byte[] imgsrc = new byte[1];
-            imgsrc[0] = imageSource;
-
-            FunctionArg arg2 = new FunctionArg(1, imgsrc);
+            FunctionArg arg2 = new FunctionArg(imageSource);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_LAST_IMAGE_AS_RAW_ENTITY, 2, args);
@@ -182,10 +175,10 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(data.Length, System.Text.Encoding.UTF8.GetBytes(data));
+            FunctionArg arg2 = new FunctionArg(data);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_ADD_RAW_DATA, 2, args);
@@ -200,7 +193,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_DELETE_HEADER, 1, args);
@@ -210,7 +203,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_DELETE_PARAMETER, 1, args);
@@ -228,10 +221,10 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(contenttype.Length, System.Text.Encoding.UTF8.GetBytes(contenttype));
+            FunctionArg arg2 = new FunctionArg(contenttype);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_SET_CONTENT_TYPE, 2, args);
@@ -244,10 +237,10 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(contentEncoding.Length, System.Text.Encoding.UTF8.GetBytes(contentEncoding));
+            FunctionArg arg2 = new FunctionArg(contentEncoding);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_SET_CONTENT_ENCODING, 2, args);
@@ -257,7 +250,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(2, localRequestId);
+            FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, HTTP_IGNORE_REQUEST, 1, args);

@@ -11,11 +11,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = data;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.BUZZER_ID,0,BUZZER_SET,1,args);

@@ -20,11 +20,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = x;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(x);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.CAMERA_ID, 0, CAMERA_SET_FLASH, 1, args);
@@ -41,11 +37,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = x;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(x);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.CAMERA_ID, 0, CAMERA_SET_QUALITY, 1, args);

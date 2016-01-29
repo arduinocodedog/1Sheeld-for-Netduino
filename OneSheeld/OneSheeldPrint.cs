@@ -21,11 +21,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = (byte)data;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(shieldId, 0, write_fn_id, 1, args);
@@ -36,11 +32,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = (byte)data;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(shieldId, 0, print_fn_id, 1, args);
@@ -51,11 +43,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = (byte) data;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,write_fn_id,1,args);
@@ -66,11 +54,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = (byte) data;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,args);
@@ -83,8 +67,7 @@ namespace OneSheeldClasses
 
             string datas = data.ToString();
 
-            FunctionArg arg = new FunctionArg(datas.Length, System.Text.Encoding.UTF8.GetBytes(datas));
-
+            FunctionArg arg = new FunctionArg(datas);
             args.Add(arg);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,args);
@@ -93,12 +76,11 @@ namespace OneSheeldClasses
         //Print unsigned integers 
         public void print(uint data, byte b = DEC)
         {
-           ArrayList args = new ArrayList();
+            ArrayList args = new ArrayList();
 
             string datas = data.ToString();
 
-            FunctionArg arg = new FunctionArg(datas.Length, System.Text.Encoding.UTF8.GetBytes(datas));
-
+            FunctionArg arg = new FunctionArg(datas);
             args.Add(arg);
 	
 	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,args);
@@ -107,12 +89,11 @@ namespace OneSheeldClasses
         //Print long integers
         public void print(long data, byte b = DEC)
         {
-           ArrayList args = new ArrayList();
+            ArrayList args = new ArrayList();
 
-           string datas = data.ToString();
+            string datas = data.ToString();
 
-           FunctionArg arg = new FunctionArg(datas.Length, System.Text.Encoding.UTF8.GetBytes(datas));
-
+            FunctionArg arg = new FunctionArg(datas);
             args.Add(arg);
 	
 	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,args);
@@ -125,8 +106,7 @@ namespace OneSheeldClasses
 
             string datas = data.ToString();
 
-            FunctionArg arg = new FunctionArg(datas.Length, System.Text.Encoding.UTF8.GetBytes(datas));
-
+            FunctionArg arg = new FunctionArg(datas);
             args.Add(arg);
 	
 	        OneSheeldMain.OneSheeld.sendShieldFrame(shieldId,0,print_fn_id,1,args);	
@@ -137,8 +117,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(data.Length, data);
-
+            FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(shieldId, 0, print_fn_id, 1, args);	
@@ -150,7 +129,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(stringData.Length, System.Text.Encoding.UTF8.GetBytes(stringData));
+            FunctionArg arg = new FunctionArg(stringData);
 
             args.Add(arg);
 
@@ -163,8 +142,7 @@ namespace OneSheeldClasses
 
             string datas = Round(data, precision);
 
-            FunctionArg arg = new FunctionArg(datas.Length, System.Text.Encoding.UTF8.GetBytes(datas));
-
+            FunctionArg arg = new FunctionArg(datas);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(shieldId, 0, print_fn_id, 1, args);

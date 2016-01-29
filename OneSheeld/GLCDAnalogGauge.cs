@@ -16,43 +16,19 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = SHAPE_DRAW;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] xPositionArray = new byte[2];
-            xPositionArray[1] = (byte)((xposition >> 8) & 0xFF);
-            xPositionArray[0] = (byte)(xposition & 0xFF);
-
-            FunctionArg arg3 = new FunctionArg(2, xPositionArray);
-
+            FunctionArg arg3 = new FunctionArg(xposition);
             args.Add(arg3);
 
-            byte[] yPositionArray = new byte[2];
-            yPositionArray[1] = (byte)((yposition >> 8) & 0xFF);
-            yPositionArray[0] = (byte)(yposition & 0xFF);
-
-            FunctionArg arg4 = new FunctionArg(2, yPositionArray);
-
+            FunctionArg arg4 = new FunctionArg(yposition);
             args.Add(arg4);
 
-            byte[] radiusArray = new byte[2];
-            radiusArray[1] = (byte)((radius >> 8) & 0xFF);
-            radiusArray[0] = (byte)(radius & 0xFF);
-
-            FunctionArg arg5 = new FunctionArg(2, radiusArray);
-
+            FunctionArg arg5 = new FunctionArg(radius);
             args.Add(arg5);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 5, args);
@@ -76,35 +52,17 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_ANALOG_GAUGE_RANGE;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(GLCD_ANALOG_GAUGE_RANGE);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] startArray = new byte[2];
-            startArray[1] = (byte)((start >> 8) & 0xFF);
-            startArray[0] = (byte)(start & 0xFF);
-
-            FunctionArg arg3 = new FunctionArg(2, startArray);
-
+            FunctionArg arg3 = new FunctionArg(start);
             args.Add(arg3);
 
-            byte[] endArray = new byte[2];
-            endArray[1] = (byte)((end >> 8) & 0xFF);
-            endArray[0] = (byte)(end & 0xFF);
-
-            FunctionArg arg4 = new FunctionArg(2, endArray);
-
+            FunctionArg arg4 = new FunctionArg(end);
+            args.Add(arg4);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 4, args);
         }
@@ -113,58 +71,29 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_ANALOG_GAUGE_VALUE;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(GLCD_ANALOG_GAUGE_VALUE);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] valueArray = new byte[2];
-            valueArray[1] = (byte)((v >> 8) & 0xFF);
-            valueArray[0] = (byte)(v & 0xFF);
-
-            FunctionArg arg3 = new FunctionArg(2, valueArray);
-
+            FunctionArg arg3 = new FunctionArg(v);
             args.Add(arg3);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 3, args);
-
         }
 
         public void setRadius(int r)
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_ANALOG_GAUGE_RADIUS;
-
-            FunctionArg arg1 = new FunctionArg(1, functionid);
-
+            FunctionArg arg1 = new FunctionArg(GLCD_ANALOG_GAUGE_RADIUS);
             args.Add(arg1);
 
-            byte[] shapeIdArray = new byte[2];
-            shapeIdArray[1] = (byte)((shapeID >> 8) & 0xFF);
-            shapeIdArray[0] = (byte)(shapeID & 0xFF);
-
-            FunctionArg arg2 = new FunctionArg(2, shapeIdArray);
-
+            FunctionArg arg2 = new FunctionArg(shapeID);
             args.Add(arg2);
 
-            byte[] radiusArray = new byte[2];
-            radiusArray[1] = (byte)((radius >> 8) & 0xFF);
-            radiusArray[0] = (byte)(radius & 0xFF);
-
-            FunctionArg arg3 = new FunctionArg(2, radiusArray);
-
+            FunctionArg arg3 = new FunctionArg(radius);
             args.Add(arg3);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_ANALOG_GAUGE_TYPE, 3, args);

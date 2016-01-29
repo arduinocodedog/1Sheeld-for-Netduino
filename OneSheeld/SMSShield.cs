@@ -21,10 +21,10 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg1 = new FunctionArg(number.Length, System.Text.Encoding.UTF8.GetBytes(number));
+            FunctionArg arg1 = new FunctionArg(number);
             args.Add(arg1);
 
-            FunctionArg arg2 = new FunctionArg(text.Length, System.Text.Encoding.UTF8.GetBytes(text));
+            FunctionArg arg2 = new FunctionArg(text);
             args.Add(arg2);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.SMS_ID, 0, SMS_SEND, 2, args);

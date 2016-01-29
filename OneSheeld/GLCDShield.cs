@@ -18,11 +18,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] functionid = new byte[1];
-            functionid[0] = GLCD_CLEAR;
-
-            FunctionArg arg = new FunctionArg(1, functionid);
-
+            FunctionArg arg = new FunctionArg(GLCD_CLEAR);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.GLCD_ID, 0, GLCD_TYPE, 1, args);

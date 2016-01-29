@@ -24,11 +24,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = range;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(range);
             args.Add(arg);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.COLOR_ID,0,COLOR_PALETTE_ID,1,args);
@@ -50,11 +46,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = mode;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(mode);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.COLOR_ID, 0, COLOR_CALCULATION_MODE_ID, 1, args);
@@ -64,11 +56,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = mode;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(mode);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.COLOR_ID, 0, COLOR_SET_PATH_SIZE_ID, 1, args);

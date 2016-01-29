@@ -36,11 +36,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] datas = new byte[1];
-            datas[0] = shape;
-
-            FunctionArg arg = new FunctionArg(1, datas);
-
+            FunctionArg arg = new FunctionArg(shape);
             args.Add(arg);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.SEV_SEG_ID,0,SEVENSEGMENT_SET_VALUE,1,args);

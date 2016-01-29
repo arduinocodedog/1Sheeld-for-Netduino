@@ -19,8 +19,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(phone.Length, System.Text.Encoding.UTF8.GetBytes(phone));
-
+            FunctionArg arg = new FunctionArg(phone);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.PHONE_ID, 0, PHONE_CALL, 1, args);

@@ -44,11 +44,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] parm = new byte[1];
-            parm[0] = x;
-
-            FunctionArg arg = new FunctionArg(1, parm);
-
+            FunctionArg arg = new FunctionArg(x);
             args.Add(arg);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_SEEK_FORWARD,1,args);
@@ -59,11 +55,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            byte[] parm = new byte[1];
-            parm[0] = x;
-
-            FunctionArg arg = new FunctionArg(1, parm);
-
+            FunctionArg arg = new FunctionArg(x);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_SEEK_BACKWARD, 1, args);
@@ -79,11 +71,7 @@ namespace OneSheeldClasses
 
             ArrayList args = new ArrayList();
 
-            byte[] parm = new byte[1];
-            parm[0] = x;
-
-            FunctionArg arg = new FunctionArg(1, parm);
-
+            FunctionArg arg = new FunctionArg(x);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_VOLUME, 1, args);

@@ -64,27 +64,13 @@ namespace OneSheeldClasses
 
                 ArrayList args = new ArrayList();
 
-                byte[] reqId = new byte[2];
-                reqId[1] = (byte)((requestId >> 8) & 0xFF);
-                reqId[0] = (byte)(requestId & 0xFF);
-
-                FunctionArg arg1 = new FunctionArg(2, reqId);
+                FunctionArg arg1 = new FunctionArg(requestId);
                 args.Add(arg1);
 
-                byte[] startArray = new byte[4];
-	  	        startArray[0] = (byte)(start & 0xFF);
-	  	        startArray[1] = (byte)((start >> 8) & 0xFF);
-	  	        startArray[2] = (byte)((start >> 16) & 0xFF);
-	  	        startArray[3] = (byte)((start >> 24) & 0xFF);
-
-                FunctionArg arg2 = new FunctionArg(4, startArray);
+                FunctionArg arg2 = new FunctionArg(start);
                 args.Add(arg2);
 
-                byte[] sizeArray = new byte[2];
-	  	        sizeArray[1] = (byte)((size >> 8) & 0xFF);
-	  	        sizeArray[0] = (byte)(size & 0xFF);
-
-                FunctionArg arg3 = new FunctionArg(2, sizeArray);
+                FunctionArg arg3 = new FunctionArg(size);
                 args.Add(arg3);
 
                 OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID, 0, RESPONSE_GET_NEXT_BYTES, 3, args);
@@ -139,18 +125,14 @@ namespace OneSheeldClasses
 	        statusCode = 0;
 	        totalBytesCount = 0;
 
-            ArrayList args = new ArrayList();
-
-            byte[] reqId = new byte[2];
-            reqId[1] = (byte)((requestId >> 8) & 0xFF);
-            reqId[0] = (byte)(requestId & 0xFF);
-
-            FunctionArg arg1 = new FunctionArg(2, reqId);
-            args.Add(arg1);
-	
 	        if(sendFrame)
 	        {
-		        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID,0,RESPONSE_DISPOSE,1,args);
+                ArrayList args = new ArrayList();
+
+                FunctionArg arg1 = new FunctionArg(requestId);
+                args.Add(arg1);
+
+                OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID,0,RESPONSE_DISPOSE,1,args);
 		        callbacksRequested=0;
 	        }
         }
@@ -177,14 +159,10 @@ namespace OneSheeldClasses
 
                 ArrayList args = new ArrayList();
 
-                FunctionArg arg1 = new FunctionArg(headerName.Length, System.Text.Encoding.UTF8.GetBytes(headerName));
+                FunctionArg arg1 = new FunctionArg(headerName);
                 args.Add(arg1);
 
-                byte[] reqId = new byte[2];
-                reqId[1] = (byte)((requestId >> 8) & 0xFF);
-                reqId[0] = (byte)(requestId & 0xFF);
-
-                FunctionArg arg2 = new FunctionArg(2, reqId);
+                FunctionArg arg2 = new FunctionArg(requestId);
                 args.Add(arg2);
 
                 OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID,0,RESPONSE_GET_HEADER,2,args);	

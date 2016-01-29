@@ -13,8 +13,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(data.Length, System.Text.Encoding.UTF8.GetBytes(data));
-
+            FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
 
 	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.NOTIFICATION_ID,0,NOTIFICATION_NOTIFY_PHONE,1,args);

@@ -17,7 +17,7 @@ namespace OneSheeldClasses
             {
                 ArrayList args = new ArrayList();
 
-                FunctionArg arg1 = new FunctionArg(filename.Length, System.Text.Encoding.UTF8.GetBytes(filename));
+                FunctionArg arg1 = new FunctionArg(filename);
                 args.Add(arg1);
 
                 OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MIC_ID, 0, MIC_START_RECORD, 1, args);

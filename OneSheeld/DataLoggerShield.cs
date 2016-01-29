@@ -18,8 +18,7 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg arg = new FunctionArg(fileName.Length, System.Text.Encoding.UTF8.GetBytes(fileName));
-
+            FunctionArg arg = new FunctionArg(fileName);
             args.Add(arg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_START_LOG, 1, args);
@@ -34,12 +33,10 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg keyarg = new FunctionArg(key.Length, System.Text.Encoding.UTF8.GetBytes(key));
-
+            FunctionArg keyarg = new FunctionArg(key);
             args.Add(keyarg);
 
-            FunctionArg floatarg = new FunctionArg(sizeof(float), OneSheeldMain.OneSheeld.convertFloatToBytes(value));
-
+            FunctionArg floatarg = new FunctionArg(value);
             args.Add(floatarg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_ADD_FLOAT, 2, args);
@@ -49,12 +46,10 @@ namespace OneSheeldClasses
         {
             ArrayList args = new ArrayList();
 
-            FunctionArg keyarg = new FunctionArg(key.Length, System.Text.Encoding.UTF8.GetBytes(key));
-
+            FunctionArg keyarg = new FunctionArg(key);
             args.Add(keyarg);
 
-            FunctionArg dataarg = new FunctionArg(data.Length, System.Text.Encoding.UTF8.GetBytes(data));
-
+            FunctionArg dataarg = new FunctionArg(data);
             args.Add(dataarg);
 
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_ADD_STRING, 2, args);
