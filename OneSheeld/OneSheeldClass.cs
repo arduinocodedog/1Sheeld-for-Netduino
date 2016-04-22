@@ -72,14 +72,23 @@ namespace OneSheeldClasses
             }
         }
 
+        void init()
+        {
+            sendShieldFrame(ShieldIds.ONESHEELD_ID, 0, CHECK_APP_CONNECTION);
+            OneSheeldClass.isInitialized = true;
+            if (OneSheeldClass.requestsArray != null)
+            {
+                for (int i = 0; i < OneSheeldClass.requestsCounter; i++)
+                    OneSheeldClass.requestsArray[i].sendInitFrame();
+                OneSheeldClass.requestsArray = null;
+                OneSheeldClass.requestsCounter = 0;
+            }
+        }
+
         public void begin()
         {
             begin(115200);
-            sendShieldFrame(ShieldIds.ONESHEELD_ID, 0, CHECK_APP_CONNECTION);
-            OneSheeldClass.isInitialized = true;
-            for (int i = 0; i < OneSheeldClass.requestsCounter; i++)
-                OneSheeldClass.requestsArray[i].sendInitFrame();
-            requestsArray = null;
+            init();
         }
 
         public static void addToShieldsArray(ShieldParent shield)
@@ -147,7 +156,7 @@ namespace OneSheeldClasses
             Write(START_OF_FRAME);
             Write(LIBRARY_VERSION);
             Write((byte)shieldID);
-            Write(instanceID);
+            Write(getVerificationByte());
             Write(functionID);
             Write((byte)argNo);
             Write((byte)(255 - argNo));
@@ -451,6 +460,38 @@ namespace OneSheeldClasses
             {
                 sendShieldFrame(ShieldIds.ONESHEELD_ID, 0, SEND_LIBRARY_VERSION);
             }
+            else if (functionId == LIBRARY_TESTING_REQUEST)
+            {
+                bool goodCompare = true;
+                byte[] compareBytes = System.Text.Encoding.UTF8.GetBytes("Are you ok?");
+                byte[] argumentBytes = getArgumentData(0);
+                for (int i = 0; i < 11; i++)
+                {
+                    if (compareBytes[i] != argumentBytes[i])
+                        goodCompare = false;
+                }
+                if (goodCompare)
+                {
+                    const string responseString = "Yup, I'm feeling great!";
+                    byte testAnswer = 0;
+                    int sumOfData = 0;
+                    for (int i = 0; i < getArgumentLength(1); i++)
+                    {
+                        sumOfData += getArgumentData(1)[i];
+                    }
+                    testAnswer = (byte) (sumOfData % 256);
+
+                    ArrayList args = new ArrayList();
+
+                    FunctionArg arg1 = new FunctionArg(responseString);
+                    args.Add(arg1);
+
+                    FunctionArg arg2 = new FunctionArg(testAnswer);
+                    args.Add(arg2);
+
+                    sendShieldFrame(ShieldIds.ONESHEELD_ID, 0x00, LIBRARY_TESTING_RESPONSE, 2, args);
+                }
+            }
         }
 
         /***** NO analogRead ... not used anyhow *****/
@@ -519,6 +560,16 @@ namespace OneSheeldClasses
                     processSerial((SerialPort) OneSheeldSerial);
                 }
             }
+        }
+
+        byte getVerificationByte()
+        {
+            Random r = new Random();
+            byte randomValue = (byte)r.Next(16);
+            byte randomValueComplement = (byte)~(randomValue);
+            randomValue &= 0x0F;
+            randomValue = (byte)(randomValue | (randomValueComplement << 4));
+            return randomValue;
         }
 
         // ----- Netduino Specific Functions -----
@@ -665,19 +716,21 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 10;
+        const byte LIBRARY_VERSION = 11;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;
         const byte CHECK_APP_CONNECTION = 0x02;
         const byte CALLBACK_ENTERED = 0x03;
         const byte CALLBACK_EXITED = 0x04;
+        const byte LIBRARY_TESTING_RESPONSE = 0x05;
 
         //Input function ID's 
         //Checking Bluetooth connection
         const byte CONNECTION_CHECK_FUNCTION = 0x01;
         const byte DISCONNECTION_CHECK_FUNCTION = 0x02;
         const byte LIBRARY_VERSION_REQUEST = 0x03;
+        const byte LIBRARY_TESTING_REQUEST = 0x05;
 
         // Time between sending frames
         const int TIME_GAP = 200;

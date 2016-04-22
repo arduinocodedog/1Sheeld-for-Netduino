@@ -159,10 +159,10 @@ namespace OneSheeldClasses
 
                 ArrayList args = new ArrayList();
 
-                FunctionArg arg1 = new FunctionArg(headerName);
+                FunctionArg arg1 = new FunctionArg(requestId);
                 args.Add(arg1);
 
-                FunctionArg arg2 = new FunctionArg(requestId);
+                FunctionArg arg2 = new FunctionArg(headerName);
                 args.Add(arg2);
 
                 OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.INTERNET_ID,0,RESPONSE_GET_HEADER,2,args);	

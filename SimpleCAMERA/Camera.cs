@@ -25,7 +25,7 @@ namespace SimpleCAMERA
                 CAMERA.setFlash(CAMERA.ON);
                 CAMERA.rearCapture();
                 OneSheeld.delay(10000);
-                TWITTER.tweetLastPicture("Posted by @1Sheeld");
+                TWITTER.tweetLastPicture("Posted by @1Sheeld and @Netduino");
             }
             else
             {
