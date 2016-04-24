@@ -462,15 +462,8 @@ namespace OneSheeldClasses
             }
             else if (functionId == LIBRARY_TESTING_REQUEST)
             {
-                bool goodCompare = true;
-                byte[] compareBytes = System.Text.Encoding.UTF8.GetBytes("Are you ok?");
-                byte[] argumentBytes = getArgumentData(0);
-                for (int i = 0; i < 11; i++)
-                {
-                    if (compareBytes[i] != argumentBytes[i])
-                        goodCompare = false;
-                }
-                if (goodCompare)
+                string argumentStr = ConvertByteArrayToString(getArgumentData(0));
+                if (argumentStr.CompareTo("Are you ok?") == 0)
                 {
                     const string responseString = "Yup, I'm feeling great!";
                     byte testAnswer = 0;
@@ -491,6 +484,7 @@ namespace OneSheeldClasses
 
                     sendShieldFrame(ShieldIds.ONESHEELD_ID, 0x00, LIBRARY_TESTING_RESPONSE, 2, args);
                 }
+                argumentStr = null;
             }
         }
 
@@ -709,6 +703,20 @@ namespace OneSheeldClasses
                 retval = 19;
 
             return retval;
+        }
+
+        // Convert a byte array to a string
+        public string ConvertByteArrayToString(byte[] byteArray)
+        {
+            // start with an empty string
+            string str = "";
+
+            // convert each byte to a char and add it to the string
+            foreach (byte b in byteArray)
+                str += (char) b;
+
+            // We're done, return the string
+            return str;
         }
 
         //Start and End of packet sent
