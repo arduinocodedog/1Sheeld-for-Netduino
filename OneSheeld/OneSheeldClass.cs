@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.IO;
 using System.IO.Ports;
+using System.Threading;
 using Microsoft.SPOT.Hardware;
 using SecretLabs.NETMF.Hardware.Netduino;
 
@@ -28,6 +29,7 @@ namespace OneSheeldClasses
         bool isAppConnectedCallBack = false;
         bool isShieldFrameCallback = false;
         bool isSerialDataCallback = false;
+        bool dontDelay = false;
         byte functions = 0;
         byte shield = 0;
         byte verificationByte = 0;
@@ -113,14 +115,14 @@ namespace OneSheeldClasses
 
         public void setOnNewShieldFrame(IShieldFrameCallback userCallback)
         {
-            isShieldFrameCallback=true;
-            shieldFrameCallback=userCallback;
+            isShieldFrameCallback = true;
+            shieldFrameCallback = userCallback;
         }
 
         public void setOnNewSerialData(ISerialDataCallback userCallback)
         {
-            isSerialDataCallback=true;
-            serialDataCallback=userCallback;
+            isSerialDataCallback = true;
+            serialDataCallback = userCallback;
         }
 
         public void sendShieldFrame(ShieldIds shieldID, byte instanceID, byte functionID, int argNo = 0, ArrayList args = null)
@@ -153,27 +155,27 @@ namespace OneSheeldClasses
             }
 
             OneSheeldClass.isFirstFrame = true;
-            Write(START_OF_FRAME);
-            Write(LIBRARY_VERSION);
-            Write((byte)shieldID);
-            Write(getVerificationByte());
-            Write(functionID);
-            Write((byte)argNo);
-            Write((byte)(255 - argNo));
+            oneSheeldWrite(START_OF_FRAME);
+            oneSheeldWrite(LIBRARY_VERSION);
+            oneSheeldWrite((byte)shieldID);
+            oneSheeldWrite(getVerificationByte());
+            oneSheeldWrite(functionID);
+            oneSheeldWrite((byte)argNo);
+            oneSheeldWrite((byte)(255 - argNo));
 
             for (int i = 0; i < argNo; i++)
             {
                 FunctionArg temp = args[i] as FunctionArg;
-                Write((byte)temp.getLength());
-                Write((byte)(255 - (temp.getLength())));
+                oneSheeldWrite((byte)temp.getLength());
+                oneSheeldWrite((byte)(255 - (temp.getLength())));
                 for (int j = 0; j < temp.getLength(); j++)
                 {
-                    Write(temp.getData()[j]);
+                    oneSheeldWrite(temp.getData()[j]);
                 }
                 temp = null;
             }
 
-            Write(END_OF_FRAME);
+            oneSheeldWrite(END_OF_FRAME);
             if (shieldID != ShieldIds.ONESHEELD_ID) 
                 OneSheeldClass.lastTimeFrameSent = millis() + 1;
         }
@@ -332,8 +334,9 @@ namespace OneSheeldClasses
                 endFrame = (byte) data;
                 if (endFrame == END_OF_FRAME)
                 {
+                    framestart = false;
                     sendToShields();
-                    if (isShieldFrameCallback)
+                    if (isShieldFrameCallback && shield != 0)
                     {
                         enteringACallback();
                         shieldFrameCallback.OneNewShieldFrame(shield, functions, argumentnumber, argumentLengths, arguments);
@@ -495,7 +498,9 @@ namespace OneSheeldClasses
             if (!isInACallback())
             {
                 OneSheeldClass.inACallback = true;
+                dontDelay = true;
                 sendShieldFrame(ShieldIds.ONESHEELD_ID, 0, CALLBACK_ENTERED);
+                dontDelay = false;
             }
         }
 
@@ -504,7 +509,9 @@ namespace OneSheeldClasses
             if (isInACallback())
             {
                 OneSheeldClass.inACallback = false;
+                dontDelay = true;
                 sendShieldFrame(ShieldIds.ONESHEELD_ID, 0, CALLBACK_EXITED);
+                dontDelay = false;
             }
         }
 
@@ -612,12 +619,16 @@ namespace OneSheeldClasses
         }
 
         // Write a byte to the Serial Port
-        public void Write(byte b)
+        public void oneSheeldWrite(byte b)
         {
             byte[] buffer = new byte[1];
             buffer[0] = b;
 
             OneSheeldSerial.Write(buffer, 0, 1);
+            if (!dontDelay)
+            {
+                Thread.Sleep(2);
+            }
         }
 
         // Convert a Arduino Pin # to a Netduino GPIO_PIN
@@ -724,7 +735,7 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 11;
+        const byte LIBRARY_VERSION = 13;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;
