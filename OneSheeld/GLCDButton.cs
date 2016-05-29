@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class GLCDButton : InteractiveShapeClass
@@ -27,7 +25,7 @@ namespace OneSheeldClasses
 
         public override void draw()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);
@@ -63,7 +61,7 @@ namespace OneSheeldClasses
 
         public void setText(string dataString)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_BUTTON_TEXT);
             args.Add(arg1);
@@ -79,7 +77,7 @@ namespace OneSheeldClasses
 
         public void setStyle(byte style)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_BUTTON_STYLE);
             args.Add(arg1);
@@ -95,7 +93,7 @@ namespace OneSheeldClasses
 
         public void setDimensions(int xdimension, int ydimension)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_BUTTON_DIMENSIONS);
             args.Add(arg1);

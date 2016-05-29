@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class FacebookShield : ShieldParent
@@ -11,7 +9,7 @@ namespace OneSheeldClasses
 
         public void post(string status)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(status);
             args.Add(arg);
@@ -21,7 +19,7 @@ namespace OneSheeldClasses
 
         public void postLastPicture(string pictureText, byte imageSource)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(pictureText);
             args.Add(arg1);

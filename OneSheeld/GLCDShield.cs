@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class GLCDShield : ShieldParent
@@ -16,7 +14,7 @@ namespace OneSheeldClasses
 
         public void clear()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(GLCD_CLEAR);
             args.Add(arg);

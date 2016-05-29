@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class BuzzerShield : ShieldParent
@@ -9,7 +7,7 @@ namespace OneSheeldClasses
         //Buzz Setter 
         void setValue(byte data)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(data);
             args.Add(arg);

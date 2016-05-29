@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class ColorShield : ShieldParent
@@ -22,7 +20,7 @@ namespace OneSheeldClasses
 
         public void setPalette(byte range)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(range);
             args.Add(arg);
@@ -44,7 +42,7 @@ namespace OneSheeldClasses
 
         public void setCalculationMode(byte mode)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(mode);
             args.Add(arg);
@@ -54,7 +52,7 @@ namespace OneSheeldClasses
 
         public void setPatchSize(byte mode)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(mode);
             args.Add(arg);

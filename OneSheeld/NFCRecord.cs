@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class NFCRecord
@@ -44,7 +42,7 @@ namespace OneSheeldClasses
         {
             if (!isRecordNull)
             {
-                ArrayList args = new ArrayList();
+                FunctionArgs args = new FunctionArgs();
 
                 FunctionArg arg1 = new FunctionArg(recordNumber);
                 args.Add(arg1);
@@ -63,7 +61,7 @@ namespace OneSheeldClasses
         {
             if (!isRecordNull)
             {
-                ArrayList args = new ArrayList();
+                FunctionArgs args = new FunctionArgs();
 
                 FunctionArg arg1 = new FunctionArg(recordNumber);
                 args.Add(arg1);
@@ -82,7 +80,7 @@ namespace OneSheeldClasses
         {
             if (!isRecordNull)
             {
-                ArrayList args = new ArrayList();
+                FunctionArgs args = new FunctionArgs();
 
                 FunctionArg arg1 = new FunctionArg(recordNumber);
                 args.Add(arg1);

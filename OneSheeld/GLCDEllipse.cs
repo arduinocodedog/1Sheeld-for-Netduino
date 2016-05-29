@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class GLCDEllipse : ShapeClass
@@ -16,7 +14,7 @@ namespace OneSheeldClasses
 
         public override void draw()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);
@@ -42,7 +40,7 @@ namespace OneSheeldClasses
 
         public void setRadius(int r1, int r2)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_ELLIPSE_RADIUS);
             args.Add(arg1);
@@ -62,7 +60,7 @@ namespace OneSheeldClasses
 
         public void setFill(bool f)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_ELLIPSE_FILL);
             args.Add(arg1);

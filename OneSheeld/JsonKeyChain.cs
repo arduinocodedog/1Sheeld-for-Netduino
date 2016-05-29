@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class JsonKeyChain
@@ -162,7 +160,7 @@ namespace OneSheeldClasses
             arguments[0] = new FunctionArg(request);
             //Debug.Print("Argument #: 0   request: " + request.ToString() + "   Length: 2");
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             for (int c = 0; c < counter+2; c++)
             {

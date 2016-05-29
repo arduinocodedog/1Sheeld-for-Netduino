@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class CameraShield : ShieldParent
@@ -18,7 +16,7 @@ namespace OneSheeldClasses
         //Camera Flash 
         public void setFlash(byte x)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(x);
             args.Add(arg);
@@ -35,7 +33,7 @@ namespace OneSheeldClasses
         //Quality Set
         public void setQuality(byte x)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(x);
             args.Add(arg);

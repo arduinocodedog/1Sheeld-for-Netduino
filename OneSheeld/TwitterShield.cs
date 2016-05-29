@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class TwitterShield : ShieldParent
@@ -17,7 +15,7 @@ namespace OneSheeldClasses
 
         public void tweet(string data)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
@@ -27,7 +25,7 @@ namespace OneSheeldClasses
 
         public void sendMessage(string username, string message)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(username);
             args.Add(arg1);
@@ -41,7 +39,7 @@ namespace OneSheeldClasses
 
         public void tweetLastPicture(string pictureText, byte imageSource)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(pictureText);
             args.Add(arg1);
@@ -65,7 +63,7 @@ namespace OneSheeldClasses
 
         public void trackKeyword(string keyword)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(keyword);
             args.Add(arg);
@@ -75,7 +73,7 @@ namespace OneSheeldClasses
 
         public void untrackKeyword(string keyword)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(keyword);
             args.Add(arg);

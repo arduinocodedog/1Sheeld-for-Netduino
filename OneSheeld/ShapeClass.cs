@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class ShapeClass
@@ -27,7 +25,7 @@ namespace OneSheeldClasses
 
         public virtual void setVisibility(byte _vType)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(SHAPE_VISIBILITY);
             args.Add(arg1);
@@ -43,7 +41,7 @@ namespace OneSheeldClasses
 
         public virtual void setPosition(int _xPos, int _yPos)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(SHAPE_POSITION);
             args.Add(arg1);

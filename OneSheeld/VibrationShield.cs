@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 
 namespace OneSheeldClasses
 {
@@ -11,7 +10,7 @@ namespace OneSheeldClasses
 
         public void start(int patternLength, int[] pattern, int repetitionDelay = VIBRATION_NO_REPEAT)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             byte[] bytepattern = new byte[patternLength * sizeof(short)];
             int patternpos = 0;
@@ -42,7 +41,7 @@ namespace OneSheeldClasses
 
         public void start(int duration, int repetitionDelay = VIBRATION_NO_REPEAT)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg((ushort) duration);
             args.Add(arg1);

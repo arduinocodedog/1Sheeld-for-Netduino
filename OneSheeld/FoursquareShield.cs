@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class FoursquareShield : ShieldParent
@@ -11,7 +9,7 @@ namespace OneSheeldClasses
 
         public void checkIn(string placeId, string message)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(placeId);
             args.Add(arg1);

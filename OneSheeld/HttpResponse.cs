@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class HttpResponse 
@@ -62,7 +60,7 @@ namespace OneSheeldClasses
 	        {
 		        index=start;
 
-                ArrayList args = new ArrayList();
+                FunctionArgs args = new FunctionArgs();
 
                 FunctionArg arg1 = new FunctionArg(requestId);
                 args.Add(arg1);
@@ -127,7 +125,7 @@ namespace OneSheeldClasses
 
 	        if(sendFrame)
 	        {
-                ArrayList args = new ArrayList();
+                FunctionArgs args = new FunctionArgs();
 
                 FunctionArg arg1 = new FunctionArg(requestId);
                 args.Add(arg1);
@@ -157,7 +155,7 @@ namespace OneSheeldClasses
 		        callbacksRequested |= RESPONSE_INPUT_GET_HEADER_BIT;
 		        getHeaderCallBack = userCallback;
 
-                ArrayList args = new ArrayList();
+                FunctionArgs args = new FunctionArgs();
 
                 FunctionArg arg1 = new FunctionArg(requestId);
                 args.Add(arg1);

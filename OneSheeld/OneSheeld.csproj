@@ -43,6 +43,7 @@
     <Compile Include="EmailShield.cs" />
     <Compile Include="FacebookShield.cs" />
     <Compile Include="FoursquareShield.cs" />
+    <Compile Include="FunctionArgs.cs" />
     <Compile Include="GamePadShield.cs" />
     <Compile Include="GLCDAnalogGauge.cs" />
     <Compile Include="GLCDButton.cs" />

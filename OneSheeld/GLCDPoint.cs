@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class GLCDPoint : ShapeClass
@@ -12,7 +10,7 @@ namespace OneSheeldClasses
 
         public override void draw()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);

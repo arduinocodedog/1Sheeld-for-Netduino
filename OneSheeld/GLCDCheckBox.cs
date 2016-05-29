@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class GLCDCheckBox : InteractiveShapeClass
@@ -20,7 +18,7 @@ namespace OneSheeldClasses
 
         public override void draw()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);
@@ -42,7 +40,7 @@ namespace OneSheeldClasses
 
         public void setText(string dataString)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_CHECK_BOX_SET_TEXT);
             args.Add(arg1);
@@ -58,7 +56,7 @@ namespace OneSheeldClasses
 
         public void setSize(byte size)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_CHECK_BOX_SET_SIZE);
             args.Add(arg1);
@@ -79,7 +77,7 @@ namespace OneSheeldClasses
 
         public void select()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_CHECK_BOX_SELECT);
             args.Add(arg1);
@@ -92,7 +90,7 @@ namespace OneSheeldClasses
 
         public void deselect()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_CHECK_BOX_UNSELECT);
             args.Add(arg1);

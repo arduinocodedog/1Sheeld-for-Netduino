@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class MusicPlayerShield : ShieldParent
@@ -42,7 +40,7 @@ namespace OneSheeldClasses
         //SeekForward Setter
         public void seekForward(byte x)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(x);
             args.Add(arg);
@@ -53,7 +51,7 @@ namespace OneSheeldClasses
         //SeekBackward Setter
         public void seekBackward(byte x)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(x);
             args.Add(arg);
@@ -69,7 +67,7 @@ namespace OneSheeldClasses
 	        else if (x < 0) 
                 x=0;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(x);
             args.Add(arg);

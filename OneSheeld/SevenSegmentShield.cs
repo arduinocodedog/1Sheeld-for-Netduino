@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class SevenSegmentShield : ShieldParent
@@ -34,7 +32,7 @@ namespace OneSheeldClasses
         //Setter
         public void setValue(byte shape)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(shape);
             args.Add(arg);

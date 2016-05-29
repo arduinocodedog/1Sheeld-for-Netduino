@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses 
 {
     class GLCDTextBox : ShapeClass
@@ -19,7 +17,7 @@ namespace OneSheeldClasses
 
         public override void draw()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);
@@ -41,7 +39,7 @@ namespace OneSheeldClasses
 
         public void setFont(byte fonttype)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_TEXTBOX_SET_FONT);
             args.Add(arg1);
@@ -57,7 +55,7 @@ namespace OneSheeldClasses
 
         public void setSize(byte size)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_TEXTBOX_SET_SIZE);
             args.Add(arg1);
@@ -75,7 +73,7 @@ namespace OneSheeldClasses
         {
             dataString = _dataString;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_TEXTBOX_TEXT);
             args.Add(arg1);

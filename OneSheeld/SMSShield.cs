@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class SMSShield : ShieldParent
@@ -19,7 +17,7 @@ namespace OneSheeldClasses
 
         public void send(string number, string text)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(number);
             args.Add(arg1);

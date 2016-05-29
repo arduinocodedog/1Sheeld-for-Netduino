@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.IO;
 using System.IO.Ports;
 using System.Threading;
@@ -125,7 +124,7 @@ namespace OneSheeldClasses
             serialDataCallback = userCallback;
         }
 
-        public void sendShieldFrame(ShieldIds shieldID, byte instanceID, byte functionID, int argNo = 0, ArrayList args = null)
+        public void sendShieldFrame(ShieldIds shieldID, byte instanceID, byte functionID, int argNo = 0, FunctionArgs args = null)
         {
             ulong mill = millis() + 1;
             ulong localLastTimeFrameSent = OneSheeldClass.lastTimeFrameSent;
@@ -477,7 +476,7 @@ namespace OneSheeldClasses
                     }
                     testAnswer = (byte) (sumOfData % 256);
 
-                    ArrayList args = new ArrayList();
+                    FunctionArgs args = new FunctionArgs();
 
                     FunctionArg arg1 = new FunctionArg(responseString);
                     args.Add(arg1);

@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class OneSheeldPrint : ShieldParent
@@ -19,7 +17,7 @@ namespace OneSheeldClasses
         //Write character 
         public void write(char data)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
@@ -30,7 +28,7 @@ namespace OneSheeldClasses
         //Print character
         public void print(char data)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
@@ -41,7 +39,7 @@ namespace OneSheeldClasses
         //Write unsigned byte
         public void write(sbyte data)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
@@ -52,7 +50,7 @@ namespace OneSheeldClasses
         //Print unsigned byte
         public void print(sbyte data)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
@@ -63,7 +61,7 @@ namespace OneSheeldClasses
         //Print integers
         public void print(int data, byte b = DEC)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             string datas = data.ToString();
 
@@ -76,7 +74,7 @@ namespace OneSheeldClasses
         //Print unsigned integers 
         public void print(uint data, byte b = DEC)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             string datas = data.ToString();
 
@@ -89,7 +87,7 @@ namespace OneSheeldClasses
         //Print long integers
         public void print(long data, byte b = DEC)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             string datas = data.ToString();
 
@@ -102,7 +100,7 @@ namespace OneSheeldClasses
         //Print unsigned long integers
         public void print(ulong data , byte b = DEC)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             string datas = data.ToString();
 
@@ -115,7 +113,7 @@ namespace OneSheeldClasses
         // Print byte Array
         public void print (byte[] data)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(data);
             args.Add(arg);
@@ -127,7 +125,7 @@ namespace OneSheeldClasses
         //Print string
         public void print(string stringData)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(stringData);
 
@@ -138,7 +136,7 @@ namespace OneSheeldClasses
 
         public void print(double data, int precision = 3)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             string datas = Round(data, precision);
 

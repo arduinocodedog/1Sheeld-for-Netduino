@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class GLCDSlider : InteractiveShapeClass
@@ -17,7 +15,7 @@ namespace OneSheeldClasses
 
         public override void draw()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);
@@ -56,7 +54,7 @@ namespace OneSheeldClasses
                 end = 100;
             }
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_SLIDER_RANGE);
             args.Add(arg1);
@@ -75,7 +73,7 @@ namespace OneSheeldClasses
 
         public void setValue(int v)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_SLIDER_VALUE);
             args.Add(arg1);
@@ -91,7 +89,7 @@ namespace OneSheeldClasses
 
         public void setDimensions(int xdimension, int ydimension)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_SLIDER_DIMENSIONS);
             args.Add(arg1);

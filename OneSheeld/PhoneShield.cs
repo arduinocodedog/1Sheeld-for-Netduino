@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 
 namespace OneSheeldClasses
 {
@@ -17,7 +16,7 @@ namespace OneSheeldClasses
 
         public void call(string phone)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(phone);
             args.Add(arg);

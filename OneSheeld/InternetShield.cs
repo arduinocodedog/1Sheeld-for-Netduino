@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class InternetShield : ShieldParent 
@@ -75,7 +73,7 @@ namespace OneSheeldClasses
             if (userName.Length == 0 || password.Length == 0)
                 return;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(userName);
             args.Add(arg1);
@@ -93,7 +91,7 @@ namespace OneSheeldClasses
 
 	    public void setIntialResponseMaxBytesCount(int size)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(size);
             args.Add(arg);
@@ -350,9 +348,9 @@ namespace OneSheeldClasses
         }
 
         // Netduino Specific
-        ArrayList GetRequestArgs(HttpRequest request)
+        FunctionArgs GetRequestArgs(HttpRequest request)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(request.localRequestId);
             args.Add(arg1);

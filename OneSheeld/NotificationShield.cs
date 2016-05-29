@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class NotificationShield : ShieldParent
@@ -11,7 +9,7 @@ namespace OneSheeldClasses
 
         public void notifyPhone(string data)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(data);
             args.Add(arg);

@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     class GLCDAnalogGauge : ShapeClass
@@ -14,7 +12,7 @@ namespace OneSheeldClasses
 
         public override void draw()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);
@@ -50,7 +48,7 @@ namespace OneSheeldClasses
                 end = 100;
             }
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_ANALOG_GAUGE_RANGE);
             args.Add(arg1);
@@ -69,7 +67,7 @@ namespace OneSheeldClasses
 
         public void setValue(int v)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_ANALOG_GAUGE_VALUE);
             args.Add(arg1);
@@ -85,7 +83,7 @@ namespace OneSheeldClasses
 
         public void setRadius(int r)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_ANALOG_GAUGE_RADIUS);
             args.Add(arg1);

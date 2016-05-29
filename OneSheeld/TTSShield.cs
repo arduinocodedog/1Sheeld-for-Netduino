@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class TTSShield : ShieldParent
@@ -11,7 +9,7 @@ namespace OneSheeldClasses
 
         public void say(byte[] text)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(text);
            args.Add(arg);
@@ -21,7 +19,7 @@ namespace OneSheeldClasses
 
         public void say(string text)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(text);
             args.Add(arg);

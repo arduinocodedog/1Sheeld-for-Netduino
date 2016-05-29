@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class LedShield : ShieldParent
@@ -7,7 +5,7 @@ namespace OneSheeldClasses
         //Setter 
         void setValue(byte data)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(data);
             args.Add(arg);

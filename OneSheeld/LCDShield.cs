@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class LCDShield : OneSheeldPrint
@@ -93,7 +91,7 @@ namespace OneSheeldClasses
         //Cursor Setter
         public void setCursor(byte x ,byte y)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(x);
             args.Add(arg1);

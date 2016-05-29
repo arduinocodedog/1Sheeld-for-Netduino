@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class HttpRequest
@@ -64,7 +62,7 @@ namespace OneSheeldClasses
             if (_url.Length == 0)
                 return;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -82,7 +80,7 @@ namespace OneSheeldClasses
             if (urlName.Length == 0)
                 return;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -98,7 +96,7 @@ namespace OneSheeldClasses
             if (headername.Length == 0 || data.Length == 0)
                 return;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -117,7 +115,7 @@ namespace OneSheeldClasses
             if (paramname.Length == 0 || data.Length == 0)
                 return;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -137,7 +135,7 @@ namespace OneSheeldClasses
 	        if(paramName.Length == 0)
                 return;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -156,7 +154,7 @@ namespace OneSheeldClasses
 
         public void addLastImageAsRawEntity(byte imageSource)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -173,7 +171,7 @@ namespace OneSheeldClasses
             if (data.Length == 0)
                 return;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -191,7 +189,7 @@ namespace OneSheeldClasses
 
         public void deleteHeaders()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -201,7 +199,7 @@ namespace OneSheeldClasses
 
         public void deleteParameters()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -219,7 +217,7 @@ namespace OneSheeldClasses
             if (contenttype.Length == 0)
                 return;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -235,7 +233,7 @@ namespace OneSheeldClasses
             if (contentEncoding.Length == 0)
                 return;
 
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);
@@ -248,7 +246,7 @@ namespace OneSheeldClasses
 
         public void ignoreResponse()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(localRequestId);
             args.Add(arg1);

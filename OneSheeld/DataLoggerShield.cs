@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class DataLoggerShield : ShieldParent
@@ -16,7 +14,7 @@ namespace OneSheeldClasses
 
         public void start(string fileName)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(fileName);
             args.Add(arg);
@@ -31,7 +29,7 @@ namespace OneSheeldClasses
 
         public void add(string key, float value)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg keyarg = new FunctionArg(key);
             args.Add(keyarg);
@@ -44,7 +42,7 @@ namespace OneSheeldClasses
 
         public void add(string key, string data)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg keyarg = new FunctionArg(key);
             args.Add(keyarg);

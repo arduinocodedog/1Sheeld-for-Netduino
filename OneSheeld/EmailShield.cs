@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class EmailShield : ShieldParent
@@ -12,7 +10,7 @@ namespace OneSheeldClasses
         //Email Sender
         public void send(string email, string subject, string message)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(email);
             args.Add(arg1);
@@ -29,7 +27,7 @@ namespace OneSheeldClasses
         //Attaching picture
         public void attachLastPicture(string email, string subject, string message, byte imageSource)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(email);
             args.Add(arg1);

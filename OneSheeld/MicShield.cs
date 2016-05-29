@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class MicShield : ByteInputShield
@@ -15,7 +13,7 @@ namespace OneSheeldClasses
             }
             else
             {
-                ArrayList args = new ArrayList();
+                FunctionArgs args = new FunctionArgs();
 
                 FunctionArg arg1 = new FunctionArg(filename);
                 args.Add(arg1);

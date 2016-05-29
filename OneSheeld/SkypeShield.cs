@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class SkypeShield : ShieldParent
@@ -11,7 +9,7 @@ namespace OneSheeldClasses
 
         public void call(string username)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(username);
             args.Add(arg);
@@ -21,7 +19,7 @@ namespace OneSheeldClasses
 
         public void videoCall(string username)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(username);
             args.Add(arg);

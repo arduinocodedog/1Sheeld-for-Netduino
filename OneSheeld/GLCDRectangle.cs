@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace OneSheeldClasses
 {
     public class GLCDRectangle : ShapeClass
@@ -18,7 +16,7 @@ namespace OneSheeldClasses
 
         public override void draw()
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(SHAPE_DRAW);
             args.Add(arg1);
@@ -47,7 +45,7 @@ namespace OneSheeldClasses
 
         public void setRadius(int r)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_RECTANGLE_RADIUS);
             args.Add(arg1);
@@ -63,7 +61,7 @@ namespace OneSheeldClasses
 
         public void setFill(bool f)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_RECTANGLE_FILL);
             args.Add(arg1);
@@ -79,7 +77,7 @@ namespace OneSheeldClasses
 
         public void setDimensions(int xdimension, int ydimension)
         {
-            ArrayList args = new ArrayList();
+            FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg1 = new FunctionArg(GLCD_RECTANGLE_DIMENSIONS);
             args.Add(arg1);
