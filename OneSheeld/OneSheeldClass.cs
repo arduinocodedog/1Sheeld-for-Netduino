@@ -10,6 +10,7 @@ namespace OneSheeldClasses
     public class OneSheeldClass : OneSheeldMain
     {
         static ulong lastTimeFrameSent = 0L;
+        static ulong argumentDataBytesTimeReceived = 0L;
         static bool isFirstFrame = false;
         static bool isInit = false;
         static bool callbacksInterrupts = false;
@@ -230,6 +231,11 @@ namespace OneSheeldClasses
         void processInput(int data)
         {
             // if (data == -1) return;
+            if ((millis() - argumentDataBytesTimeReceived) > 100 && argumentDataBytesTimeReceived != 0)
+            {
+                framestart = false;
+                argumentDataBytesTimeReceived = 0;
+            }
             if (!framestart && data == START_OF_FRAME)
             {
                 freeMemoryAllocated();
@@ -310,6 +316,7 @@ namespace OneSheeldClasses
             {
                 if (isArgumentLengthsAllocated && isArgumentsNumberAllocated)
                 {
+                    argumentDataBytesTimeReceived = millis();
                     if (arguments[argumentcounter] != null)
                         arguments[argumentcounter][datalengthcounter++] = (byte)data;
 
@@ -377,7 +384,7 @@ namespace OneSheeldClasses
                 {
                     verificationByte = (byte) data;
                     byte leastBits = (byte)(verificationByte & 0x0f);
-                    if ((255-verificationByte>>4) != leastBits) 
+                    if (((255-verificationByte)>>4) != leastBits) 
                         framestart = false;
                 }
                 else if (counter == 3)
@@ -734,7 +741,7 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 13;
+        const byte LIBRARY_VERSION = 14;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;
@@ -754,7 +761,7 @@ namespace OneSheeldClasses
         const int TIME_GAP = 200;
 
         // Number of Shields
-        const int SHIELDS_NO = 42;
+        const int SHIELDS_NO = 43;
 
         // Maximum number of Remote Connections
         const int MAX_REMOTE_CONNECTIONS = 10;

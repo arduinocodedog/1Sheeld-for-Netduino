@@ -8,6 +8,12 @@ namespace OneSheeldClasses
             set { }
         }
 
+        public static BarcodeScannerShield BARCODESCANNER
+        {
+            get { return OneSheeldMain._BARCODESCANNER; }
+            set { }
+        }
+
         public static BuzzerShield BUZZER
         {
             get { return OneSheeldMain._BUZZER;  }

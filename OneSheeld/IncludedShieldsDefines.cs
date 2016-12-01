@@ -1,4 +1,5 @@
 #define ACCELEROMETER_SHIELD
+#define BARCODE_SCANNER_SHIELD
 #define BUZZER_SHIELD
 #define CAMERA_SHIELD
 #define CLOCK_SHIELD
@@ -49,6 +50,10 @@ namespace OneSheeldClasses
         {
             #if ACCELEROMETER_SHIELD
                 _ACCELEROMETER = new AccelerometerSensorShield();
+            #endif
+
+            #if BARCODE_SCANNER_SHIELD
+                _BARCODESCANNER = new BarcodeScannerShield();
             #endif
 
             #if BUZZER_SHIELD

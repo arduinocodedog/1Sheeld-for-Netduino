@@ -64,8 +64,6 @@ namespace OneSheeldClasses
         {
 	        if (x > 10) 
                 x=10;
-	        else if (x < 0) 
-                x=0;
 
             FunctionArgs args = new FunctionArgs();
 

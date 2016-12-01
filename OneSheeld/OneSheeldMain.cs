@@ -3,6 +3,7 @@ namespace OneSheeldClasses
     public partial class OneSheeldMain
     {
         public static AccelerometerSensorShield _ACCELEROMETER = null;
+        public static BarcodeScannerShield _BARCODESCANNER = null;
         public static BuzzerShield _BUZZER = null;
         public static CameraShield _CAMERA = null;
         public static ClockShield _CLOCK = null;

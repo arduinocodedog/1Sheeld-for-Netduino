@@ -30,6 +30,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AccelerometerSensorShield.cs" />
+    <Compile Include="BarcodeScannerShield.cs" />
     <Compile Include="BoolInputShield.cs" />
     <Compile Include="BuzzerShield.cs" />
     <Compile Include="ByteInputShield.cs" />
@@ -63,6 +64,10 @@
     <Compile Include="HttpRequest.cs" />
     <Compile Include="HttpResponse.cs" />
     <Compile Include="IAppConnected.cs" />
+    <Compile Include="IBarcodeErrorCallback.cs" />
+    <Compile Include="IBarcodeNextDataResponseCallback.cs" />
+    <Compile Include="IBarcodeParameterValueCallback.cs" />
+    <Compile Include="IBarcodeScannerCallback.cs" />
     <Compile Include="ICharCallback.cs" />
     <Compile Include="IColorCallback.cs" />
     <Compile Include="IColorsCallback.cs" />

@@ -24,8 +24,6 @@ namespace OneSheeldClasses
 
         public void draw(ShapeClass usersShape)
         {
-            byte currentShapeType = usersShape.shapeType;
-
             if (usersShape.isInteractiveShape)
             {
                 bool shapeIsAdded = addToShapeArray(usersShape);

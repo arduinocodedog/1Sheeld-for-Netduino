@@ -105,7 +105,7 @@ namespace OneSheeldClasses
             double gd = (double)((rgb&0x00FF00)>>8)/255;
             double bd = (double)((rgb&0x0000FF))/255;
             double maximum = System.Math.Max(rd, System.Math.Max(gd, bd)), minimum = System.Math.Min(rd, System.Math.Min(gd, bd));
-            double h = 0, s = 0, b = maximum;
+            double h = maximum, s = maximum, b = maximum;
 
             double d = maximum - minimum;
             s = maximum == 0 ? 0 : d / maximum;
