@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneSheeld", "OneSheeld\OneSheeld.csproj", "{83310819-1C4A-4085-9923-90BF5234AAC5}"
 EndProject
@@ -98,6 +98,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleVIBRATION", "SimpleVIBRATION\SimpleVIBRATION.csproj", "{E6DAE717-5B3B-410B-B1EC-F7442DDFE8C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedVIBRATION", "AdvancedVIBRATION\AdvancedVIBRATION.csproj", "{EBA99097-2919-4BBD-9E9A-FC32606BD8FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedBARCODESCANNER", "AdvancedBARCODESCANNER\AdvancedBARCODESCANNER.csproj", "{A24B8D3B-9C5D-4FE9-A77C-5CABAEA84F4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBARCODESCANNER", "SimpleBARCODESCANNER\SimpleBARCODESCANNER.csproj", "{30C2939E-6BF2-42AE-A23B-6085EB688A98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -391,6 +395,18 @@ Global
 		{EBA99097-2919-4BBD-9E9A-FC32606BD8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBA99097-2919-4BBD-9E9A-FC32606BD8FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EBA99097-2919-4BBD-9E9A-FC32606BD8FC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A24B8D3B-9C5D-4FE9-A77C-5CABAEA84F4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24B8D3B-9C5D-4FE9-A77C-5CABAEA84F4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A24B8D3B-9C5D-4FE9-A77C-5CABAEA84F4F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A24B8D3B-9C5D-4FE9-A77C-5CABAEA84F4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A24B8D3B-9C5D-4FE9-A77C-5CABAEA84F4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A24B8D3B-9C5D-4FE9-A77C-5CABAEA84F4F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{30C2939E-6BF2-42AE-A23B-6085EB688A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C2939E-6BF2-42AE-A23B-6085EB688A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C2939E-6BF2-42AE-A23B-6085EB688A98}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{30C2939E-6BF2-42AE-A23B-6085EB688A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C2939E-6BF2-42AE-A23B-6085EB688A98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30C2939E-6BF2-42AE-A23B-6085EB688A98}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
