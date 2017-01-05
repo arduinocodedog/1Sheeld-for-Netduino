@@ -56,6 +56,18 @@ namespace OneSheeldClasses
             set { }
         }
 
+        public static FaceDetectionShield FACEDETECTOR
+        {
+            get { return OneSheeldMain._FACEDETECTOR; }
+            set { }
+        }
+
+        public static FingerprintScannerShield FINGERPRINTSCANNER
+        {
+            get { return OneSheeldMain._FINGERPRINTSCANNER; }
+            set { }
+        }
+
         public static FoursquareShield FOURSQUARE
         {
             get { return OneSheeldMain._FOURSQUARE;  }

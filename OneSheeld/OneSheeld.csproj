@@ -42,7 +42,10 @@
     <Compile Include="ColorShield.cs" />
     <Compile Include="DataLoggerShield.cs" />
     <Compile Include="EmailShield.cs" />
+    <Compile Include="Face.cs" />
     <Compile Include="FacebookShield.cs" />
+    <Compile Include="FaceDetectionShield.cs" />
+    <Compile Include="FingerprintScannerShield.cs" />
     <Compile Include="FoursquareShield.cs" />
     <Compile Include="FunctionArgs.cs" />
     <Compile Include="GamePadShield.cs" />
@@ -71,6 +74,8 @@
     <Compile Include="ICharCallback.cs" />
     <Compile Include="IColorCallback.cs" />
     <Compile Include="IColorsCallback.cs" />
+    <Compile Include="IFaceNotVisibleCallback.cs" />
+    <Compile Include="IFingerprintErrorCallback.cs" />
     <Compile Include="IGamePadCallback.cs" />
     <Compile Include="IGPSCallback.cs" />
     <Compile Include="IHttpJsonArrayLengthResponseCallback.cs" />
@@ -85,6 +90,8 @@
     <Compile Include="IInteractiveShapeChangeCallback.cs" />
     <Compile Include="IInternetErrorCallback.cs" />
     <Compile Include="IncludedShieldsDefines.cs" />
+    <Compile Include="INewFaceCallback.cs" />
+    <Compile Include="INewFingerScannedCallback.cs" />
     <Compile Include="INFCError.cs" />
     <Compile Include="INFCNewTagScanned.cs" />
     <Compile Include="InteractiveShapeClass.cs" />

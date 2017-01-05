@@ -7,6 +7,8 @@
 #define DATA_LOGGER_SHIELD
 #define EMAIL_SHIELD
 #define FACEBOOK_SHIELD
+#define FACEDETECTOR_SHIELD
+#define FINGERPRINT_SCANNER_SHIELD
 #define FOURSQUARE_SHIELD
 #define GAMEPAD_SHIELD
 #define GLCD_SHIELD
@@ -82,6 +84,14 @@ namespace OneSheeldClasses
 
             #if FACEBOOK_SHIELD
                 _FACEBOOK = new FacebookShield();
+            #endif
+
+            #if FACEDETECTOR_SHIELD
+                _FACEDETECTOR = new FaceDetectionShield();
+            #endif
+
+            #if FINGERPRINT_SCANNER_SHIELD
+                _FINGERPRINTSCANNER = new FingerprintScannerShield();
             #endif
 
             #if FOURSQUARE_SHIELD

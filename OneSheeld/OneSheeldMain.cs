@@ -11,6 +11,8 @@ namespace OneSheeldClasses
         public static DataLoggerShield _DATALOGGER = null;
         public static EmailShield _EMAIL = null;
         public static FacebookShield _FACEBOOK = null;
+        public static FaceDetectionShield _FACEDETECTOR = null;
+        public static FingerprintScannerShield _FINGERPRINTSCANNER = null;
         public static FoursquareShield _FOURSQUARE = null;
         public static GamePadShield _GAMEPAD = null;
         public static GLCDShield _GLCD = null;
