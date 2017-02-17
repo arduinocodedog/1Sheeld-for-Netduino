@@ -2,6 +2,7 @@
 #define BARCODE_SCANNER_SHIELD
 #define BUZZER_SHIELD
 #define CAMERA_SHIELD
+#define CHART_SHIELD
 #define CLOCK_SHIELD
 #define COLOR_SHIELD
 #define DATA_LOGGER_SHIELD
@@ -64,6 +65,10 @@ namespace OneSheeldClasses
 
             #if CAMERA_SHIELD
                 _CAMERA = new CameraShield();
+            #endif
+
+            #if CHART_SHIELD
+                _CHART = new ChartShield();
             #endif
 
             #if CLOCK_SHIELD

@@ -231,11 +231,11 @@ namespace OneSheeldClasses
         void processInput(int data)
         {
             // if (data == -1) return;
-            if ((millis() - argumentDataBytesTimeReceived) > 1000 && argumentDataBytesTimeReceived != 0)
+            if ((millis() - argumentDataBytesTimeReceived) > 2000 && argumentDataBytesTimeReceived != 0 && framestart)
             {
-                framestart = false;
-                argumentDataBytesTimeReceived = 0;
+                freeMemoryAllocated();
             }
+            argumentDataBytesTimeReceived = millis();
             if (!framestart && data == START_OF_FRAME)
             {
                 freeMemoryAllocated();
@@ -316,7 +316,6 @@ namespace OneSheeldClasses
             {
                 if (isArgumentLengthsAllocated && isArgumentsNumberAllocated)
                 {
-                    argumentDataBytesTimeReceived = millis();
                     if (arguments[argumentcounter] != null)
                         arguments[argumentcounter][datalengthcounter++] = (byte)data;
 
@@ -741,7 +740,7 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 15;
+        const byte LIBRARY_VERSION = 16;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;
@@ -761,7 +760,7 @@ namespace OneSheeldClasses
         const int TIME_GAP = 200;
 
         // Number of Shields
-        const int SHIELDS_NO = 45;
+        const int SHIELDS_NO = 46;
 
         // Maximum number of Remote Connections
         const int MAX_REMOTE_CONNECTIONS = 10;

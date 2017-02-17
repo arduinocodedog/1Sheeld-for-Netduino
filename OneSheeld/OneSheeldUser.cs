@@ -26,6 +26,12 @@ namespace OneSheeldClasses
             set { }
         }
 
+        public static ChartShield CHART
+        {
+            get { return OneSheeldMain._CHART; }
+            set { }
+        }
+
         public static ClockShield CLOCK
         {
             get { return OneSheeldMain._CLOCK;  }

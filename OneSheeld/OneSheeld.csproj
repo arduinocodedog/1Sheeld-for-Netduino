@@ -36,6 +36,7 @@
     <Compile Include="ByteInputShield.cs" />
     <Compile Include="CameraShield.cs" />
     <Compile Include="CharInputShield.cs" />
+    <Compile Include="ChartShield.cs" />
     <Compile Include="CircularBuffer.cs" />
     <Compile Include="ClockShield.cs" />
     <Compile Include="ColorClass.cs" />

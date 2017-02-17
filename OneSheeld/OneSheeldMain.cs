@@ -6,6 +6,7 @@ namespace OneSheeldClasses
         public static BarcodeScannerShield _BARCODESCANNER = null;
         public static BuzzerShield _BUZZER = null;
         public static CameraShield _CAMERA = null;
+        public static ChartShield _CHART = null;
         public static ClockShield _CLOCK = null;
         public static ColorShield _COLORDETECTOR = null;
         public static DataLoggerShield _DATALOGGER = null;
