@@ -17,6 +17,7 @@
 #define GRAVITY_SHIELD
 #define GYROSCOPE_SHIELD
 #define INTERNET_SHIELD
+#define IOT_SHIELD
 #define KEYBOARD_SHIELD
 #define KEYPAD_SHIELD
 #define LCD_SHIELD
@@ -125,6 +126,10 @@ namespace OneSheeldClasses
 
             #if INTERNET_SHIELD
                 _INTERNET = new InternetShield();
+            #endif
+
+            #if IOT_SHIELD
+                _IOT = new IOTShield();
             #endif
 
             #if KEYBOARD_SHIELD

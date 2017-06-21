@@ -76,8 +76,8 @@ namespace OneSheeldClasses
 
         void init()
         {
+            isInitialized = true;
             sendShieldFrame(ShieldIds.ONESHEELD_ID, 0, CHECK_APP_CONNECTION);
-            OneSheeldClass.isInitialized = true;
             if (OneSheeldClass.requestsArray != null)
             {
                 for (int i = 0; i < OneSheeldClass.requestsCounter; i++)
@@ -629,7 +629,7 @@ namespace OneSheeldClasses
             byte[] buffer = new byte[1];
             buffer[0] = b;
 
-            OneSheeldSerial.Write(buffer, 0, 1);
+            if (isInitialized) OneSheeldSerial.Write(buffer, 0, 1);
             if (!dontDelay)
             {
                 Thread.Sleep(2);
@@ -740,7 +740,7 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 16;
+        const byte LIBRARY_VERSION = 17;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;
@@ -760,7 +760,7 @@ namespace OneSheeldClasses
         const int TIME_GAP = 200;
 
         // Number of Shields
-        const int SHIELDS_NO = 46;
+        const int SHIELDS_NO = 47;
 
         // Maximum number of Remote Connections
         const int MAX_REMOTE_CONNECTIONS = 10;

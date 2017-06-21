@@ -21,6 +21,7 @@ namespace OneSheeldClasses
         public static GravitySensorShield _GRAVITY = null;
         public static GyroscopeSensorShield _GYROSCOPE = null;
         public static InternetShield _INTERNET = null;
+        public static IOTShield _IOT = null;
         public static KeyboardShield _KEYBOARD = null;
         public static KeypadShield _KEYPAD = null;
         public static LCDShield _LCD = null;

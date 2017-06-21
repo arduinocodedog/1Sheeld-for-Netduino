@@ -90,6 +90,13 @@
     <Compile Include="IHttpResponseNextResponseBytesCallback.cs" />
     <Compile Include="IInteractiveShapeChangeCallback.cs" />
     <Compile Include="IInternetErrorCallback.cs" />
+    <Compile Include="IIOTconnectionStatusCallback.cs" />
+    <Compile Include="IIOTerrorCallback.cs" />
+    <Compile Include="IIOTStrIntCallback.cs" />
+    <Compile Include="IIOTStrRawCallback.cs" />
+    <Compile Include="IIOTStrStrCallback.cs" />
+    <Compile Include="IIOTStrFloatCallback.cs" />
+    <Compile Include="IIOTStrUnIntCallback.cs" />
     <Compile Include="IncludedShieldsDefines.cs" />
     <Compile Include="INewFaceCallback.cs" />
     <Compile Include="INewFingerScannedCallback.cs" />
@@ -98,6 +105,7 @@
     <Compile Include="InteractiveShapeClass.cs" />
     <Compile Include="InternetShield.cs" />
     <Compile Include="IOneSheeldSketch.cs" />
+    <Compile Include="IOTShield.cs" />
     <Compile Include="IPatternCallback.cs" />
     <Compile Include="IPhoneCallback.cs" />
     <Compile Include="IRecordDataCallback.cs" />

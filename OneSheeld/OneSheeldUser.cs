@@ -116,6 +116,12 @@ namespace OneSheeldClasses
             set { }
         }
 
+        public static IOTShield IOT
+        {
+            get { return OneSheeldMain._IOT; }
+            set { }
+        }
+
         public static KeyboardShield KEYBOARD
         {
             get { return OneSheeldMain._KEYBOARD;  }
