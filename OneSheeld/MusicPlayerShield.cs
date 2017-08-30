@@ -25,6 +25,26 @@ namespace OneSheeldClasses
 	        OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID,0,MUSIC_PAUSE);
         }
 
+        public void play(string fileName)
+        {
+            FunctionArgs args = new FunctionArgs();
+
+            FunctionArg arg = new FunctionArg(fileName);
+            args.Add(arg);
+            
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_PLAY_FILE_NAME, 1, args);
+        }
+
+        public void play(int fileIndex)
+        {
+            FunctionArgs args = new FunctionArgs();
+
+            FunctionArg arg = new FunctionArg(fileIndex);
+            args.Add(arg);
+
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.MUSIC_PLAYER_ID, 0, MUSIC_PLAYD_FILE_INDEX, 1, args);
+        }
+
         //Previous Setter
         public void previous()
         {
@@ -82,5 +102,7 @@ namespace OneSheeldClasses
         const byte MUSIC_SEEK_FORWARD = 0x06;
         const byte MUSIC_SEEK_BACKWARD = 0x07;
         const byte MUSIC_VOLUME = 0x08;
+        const byte MUSIC_PLAY_FILE_NAME = 0x09;
+        const byte MUSIC_PLAYD_FILE_INDEX = 0x0A;
     }
 }

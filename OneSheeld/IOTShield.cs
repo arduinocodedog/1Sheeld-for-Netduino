@@ -51,17 +51,17 @@ namespace OneSheeldClasses
                         }
                         newMessageStrStrCallback.OnsetNewMessageStrStr(topic, payload, qos, retain);
                     }
-                    if ((callbacksAssignments & (1 << STRING_INT)) != 0)
+                    if ((callbacksAssignments & (1 << STRING_INT)) != 0 && (getOneSheeldInstance().getArgumentLength(1) == 2))
                     {
                         int payload = getOneSheeldInstance().getArgumentData(1)[0] | ((getOneSheeldInstance().getArgumentData(1)[1]) << 8);
                         newMessageStrIntCallback.OnsetNewMessageStrInt(topic, payload, qos, retain);
                     }
-                    if ((callbacksAssignments & (1 << STRING_UNINT)) != 0)
+                    if ((callbacksAssignments & (1 << STRING_UNINT)) != 0 && (getOneSheeldInstance().getArgumentLength(1) == 2))
                     {
                         uint payload = (uint) (getOneSheeldInstance().getArgumentData(1)[0] | ((getOneSheeldInstance().getArgumentData(1)[1]) << 8));
                         newMessageStrUnIntCallback.OnnewMessageStrUnIntCallback(topic, payload, qos, retain);
                     }
-                    if ((callbacksAssignments & (1 << STRING_FLOAT)) != 0)
+                    if ((callbacksAssignments & (1 << STRING_FLOAT)) != 0 && (getOneSheeldInstance().getArgumentLength(1) == 4))
                     {
                         float payload = OneSheeldMain.OneSheeld.convertBytesToFloat(getOneSheeldInstance().getArgumentData(1));
                         newMessageStrFloatCallback.OnnewMessageStrFloatCallback(topic, payload, qos, retain);

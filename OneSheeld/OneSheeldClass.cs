@@ -740,7 +740,7 @@ namespace OneSheeldClasses
         const byte END_OF_FRAME = 0x00;
 
         //Library Version
-        const byte LIBRARY_VERSION = 17;
+        const byte LIBRARY_VERSION = 18;
 
         //Output function ID's
         const byte SEND_LIBRARY_VERSION = 0x01;

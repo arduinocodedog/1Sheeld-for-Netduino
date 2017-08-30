@@ -12,14 +12,17 @@ namespace OneSheeldClasses
             OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_START_LOG);
         }
 
-        public void start(string fileName)
+        public void start(string fileName, bool saveOnOld = false)
         {
             FunctionArgs args = new FunctionArgs();
 
             FunctionArg arg = new FunctionArg(fileName);
             args.Add(arg);
 
-            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_START_LOG, 1, args);
+            FunctionArg arg2 = new OneSheeldClasses.FunctionArg(saveOnOld);
+            args.Add(arg2);
+
+            OneSheeldMain.OneSheeld.sendShieldFrame(ShieldIds.DATA_LOGGER_ID, 0, LOGGER_START_LOG, 2, args);
         }
 
         public void stop()
